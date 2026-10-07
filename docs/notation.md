@@ -1,6 +1,6 @@
 # Notation
 
-What makes musical intent encodable, and presentable by an LLM through a medium. The exact syntax does not matter much: a capable model learns any reasonable variant from a short spec, as Scrimshaw's composing prompt shows. This note is about the properties that matter across variants. Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)) is the main example so far.
+What makes musical intent encodable, and presentable by an LLM through a medium. The exact syntax does not matter much: a capable model learns any reasonable variant from a short spec, as Scrimshaw's composing prompt shows. This note is about the properties that let the model present the idea it has, across variants. When a medium lacks them, a probe can fail because the idea could not get out, not because it was missing. Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)) is the main example so far.
 
 ## Principles
 
@@ -35,15 +35,6 @@ Scrimshaw's comments carry the model's reasons inline: "the standoff: both duell
 ### Allow instrument-specific detail
 
 Some intent only exists for one instrument. Tab carries string and fret, which encode playability and hand position. Other examples are bowing, breath marks, and pedaling. These should be optional layers on top of the shared notation.
-
-## Presentable
-
-A medium is presentable when the model can actually present the idea it has through it. Any format can work, but two things can stop an idea from getting out:
-
-- **No room for the idea.** If the medium has no construct for something, the model cannot present it, even if it has the intuition. Scrimshaw's six tracks used chord names voiced by the renderer, so voicing intuition had no way out.
-- **Friction in writing it.** Music is parallel and timed, while the model writes one token after another. A medium that makes simultaneous parts and bar alignment hard to write turns intuition into errors. Scrimshaw's per-voice lines, bar by bar, are one way to make parallel time writable, and its counting errors are this kind of friction.
-
-Both hide intuition rather than show its absence. So when a probe fails, the first question is whether the idea was missing or could not be presented.
 
 ## Open questions
 
