@@ -28,19 +28,19 @@ Text score → note events → MIDI file → WAV.
 
 The six Scrimshaw tracks are the test fixtures, so the first milestone covers what they use.
 
-| Feature | Handling |
-| --- | --- |
-| `title`, `composer`, `about`, comments | Kept as metadata |
-| `tempo`, `beats`, `steps`, `swing`, global and per pattern | Implemented. Swing delays every other step by a fraction of a step |
-| Notes, rests, ties, `+` stacks | Implemented |
-| Chord names and slash bass | Voiced near `center` with a simple close-position rule, written down in the code |
-| `!` and `?` | Fixed velocity steps from a base level |
-| `gate` | Shortens note duration |
-| `vol`, `pan` | MIDI channel volume and pan |
-| `oct`, `trans` | Implemented |
-| `~` slide, `glide`, `rev`, `bright`, `att`, `rel`, `reverb` | Parsed and ignored at first, because General MIDI has no clean equivalent |
-| Drum lanes `x X o .` | Three velocity levels |
-| Instruments | Mapped to the nearest General MIDI program or percussion note |
+| Feature                                                     | Handling                                                                         |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `title`, `composer`, `about`, comments                      | Kept as metadata                                                                 |
+| `tempo`, `beats`, `steps`, `swing`, global and per pattern  | Implemented. Swing delays every other step by a fraction of a step               |
+| Notes, rests, ties, `+` stacks                              | Implemented                                                                      |
+| Chord names and slash bass                                  | Voiced near `center` with a simple close-position rule, written down in the code |
+| `!` and `?`                                                 | Fixed velocity steps from a base level                                           |
+| `gate`                                                      | Shortens note duration                                                           |
+| `vol`, `pan`                                                | MIDI channel volume and pan                                                      |
+| `oct`, `trans`                                              | Implemented                                                                      |
+| `~` slide, `glide`, `rev`, `bright`, `att`, `rel`, `reverb` | Parsed and ignored at first, because General MIDI has no clean equivalent        |
+| Drum lanes `x X o .`                                        | Three velocity levels                                                            |
+| Instruments                                                 | Mapped to the nearest General MIDI program or percussion note                    |
 
 ## Stack
 

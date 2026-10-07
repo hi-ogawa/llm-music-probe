@@ -25,15 +25,15 @@ What the conversation shows about the process:
 
 The format is close to notations that already exist as text in the world: chord charts, scientific pitch names, drum grids from tab and trackers. Each layer of a musical decision has its own word:
 
-| Layer | How it is written | Example |
-| --- | --- | --- |
-| Form | named patterns, variation by copying, an arrangement line | `pattern A2 from A`, `play intro`, `loop A A2 B*2 A2+2` |
-| Harmony | chord names, voiced automatically near `center` | `[Dm]`, `[A7sus4]`, `[C/E]` |
-| Pitch | note name and octave, stacked with `+` | `D5`, `C4+E4+G4` |
-| Rhythm | step grid, so duration is token length | `A4-- D5-- F5- E5` |
-| Drums | one character per step | `x..x ..x. ..x. x...` |
-| Expression | coarse accents, slides, gate, global swing | `D5!!`, `~A2`, `gate=0.45`, `swing 0.12` |
-| Orchestration | instrument name and mix settings per voice | `voice pan steeldrum vol=1.15 pan=-0.15` |
+| Layer         | How it is written                                         | Example                                                 |
+| ------------- | --------------------------------------------------------- | ------------------------------------------------------- |
+| Form          | named patterns, variation by copying, an arrangement line | `pattern A2 from A`, `play intro`, `loop A A2 B*2 A2+2` |
+| Harmony       | chord names, voiced automatically near `center`           | `[Dm]`, `[A7sus4]`, `[C/E]`                             |
+| Pitch         | note name and octave, stacked with `+`                    | `D5`, `C4+E4+G4`                                        |
+| Rhythm        | step grid, so duration is token length                    | `A4-- D5-- F5- E5`                                      |
+| Drums         | one character per step                                    | `x..x ..x. ..x. x...`                                   |
+| Expression    | coarse accents, slides, gate, global swing                | `D5!!`, `~A2`, `gate=0.45`, `swing 0.12`                |
+| Orchestration | instrument name and mix settings per voice                | `voice pan steeldrum vol=1.15 pan=-0.15`                |
 
 What the format leaves out, which caps what this example can show:
 

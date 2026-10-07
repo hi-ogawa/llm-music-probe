@@ -49,17 +49,17 @@ Follow-up: the scores, the format, and the shared conversation are broken down i
 
 ## Claim status
 
-| Claim | Status | Basis |
-| --- | --- | --- |
-| An encodable text medium for musical intuition exists | Supported | Scrimshaw Jukebox |
-| End-to-end audio is not needed for an AI to present musical ideas | Supported | Text model with no audio in or out, rendered by a plain synth |
-| Harmony, melody, form, and instrumentation ideas are encoded in the text vocabulary | Supported | Named idioms across six styles, judged legitimate by ear |
-| Music needs a perceptual feedback loop more than visuals do | Refuted for presenting ideas | Only an execution check, no listening |
-| Note-level vocabulary is locked in audio ("no GitHub for music") | Refuted at this level | Named idioms are written down in theory teaching and symbolic notation |
-| Artistic music will stay end-to-end | Refuted for presenting ideas | Aesthetic music produced symbolically. Production quality such as timbre and vocals is a separate question |
-| Depth and breadth will follow from training | Working assumption | Track record in other domains, with the taste-signal caveat |
-| Voicing, groove, and timbre each have an encodable medium | Open | [directions.md](directions.md) |
-| The intuition holds beyond genres with a strong symbolic tradition | Open | [directions.md](directions.md), genre breadth |
+| Claim                                                                               | Status                       | Basis                                                                                                      |
+| ----------------------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| An encodable text medium for musical intuition exists                               | Supported                    | Scrimshaw Jukebox                                                                                          |
+| End-to-end audio is not needed for an AI to present musical ideas                   | Supported                    | Text model with no audio in or out, rendered by a plain synth                                              |
+| Harmony, melody, form, and instrumentation ideas are encoded in the text vocabulary | Supported                    | Named idioms across six styles, judged legitimate by ear                                                   |
+| Music needs a perceptual feedback loop more than visuals do                         | Refuted for presenting ideas | Only an execution check, no listening                                                                      |
+| Note-level vocabulary is locked in audio ("no GitHub for music")                    | Refuted at this level        | Named idioms are written down in theory teaching and symbolic notation                                     |
+| Artistic music will stay end-to-end                                                 | Refuted for presenting ideas | Aesthetic music produced symbolically. Production quality such as timbre and vocals is a separate question |
+| Depth and breadth will follow from training                                         | Working assumption           | Track record in other domains, with the taste-signal caveat                                                |
+| Voicing, groove, and timbre each have an encodable medium                           | Open                         | [directions.md](directions.md)                                                                             |
+| The intuition holds beyond genres with a strong symbolic tradition                  | Open                         | [directions.md](directions.md), genre breadth                                                              |
 
 ## Sources from the discussion
 
