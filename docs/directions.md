@@ -31,9 +31,13 @@ Probe ideas:
 
 A practical, self-contained slice that goes deep in one area and touches several directions at once: groove (depth), sound choice through labels (timbre), production-led genres (genre breadth), and easy feedback such as "lay back the snare" (the adjustment loop). It leaves harmony out, which comping covers.
 
-Extend the tool from General MIDI drums to labeled one-shot samples. The drum lane notation stays the same, and only the voice declaration changes from a General MIDI drum to a sample chosen by its label. The model never hears the samples. It chooses and combines them by description, the same way Scrimshaw turned "the villain's ship" into pipe organ and choir. This tests whether text can carry sound choice as well as note choice, which opens the timbre rows marked Missing in [notation.md](notation.md) through vocabulary rather than synth parameters. The choices can only be as good as the labels, so labeling quality is part of what gets tested.
+Scrimshaw already shows the grid level: genre-appropriate drum patterns (son clave, calypso, 6/8 bodhran, four-on-the-floor), accents and ghost notes, global swing, and drum sounds chosen from 27 fixed names such as `conga`, `clave`, and `ohat`. The notation is expressive enough to start with.
 
-It is cheap: the renderer only mixes one-shot WAVs at event times, and a free sample pack's file names already work as labels. It is also practical as a rhythm machine and practice companion, for example "a laid-back neo-soul groove at 84 bpm" to play bass over. It feeds the groove probe once per-note timing exists, and genre breadth, because production-led genres depend heavily on sample choice.
+Steps, in order:
+
+1. **Better samples, same format.** Map each drum name to a good one-shot sample, so the output is usable as a beat with the right mood. We choose the sounds and the model chooses the patterns. The renderer only mixes one-shot WAVs at event times. This is already practical as a rhythm machine and practice companion, for example "a laid-back neo-soul groove at 84 bpm" to play bass over.
+2. **Sample choice by label.** Let the model pick samples from a labeled library instead of fixed names. It never hears them and chooses by description, the same way Scrimshaw turned "the villain's ship" into pipe organ and choir. This tests whether text can carry sound choice, and the choices can only be as good as the labels.
+3. **Feel.** Add per-note timing offsets and velocities, so "laid back" and "pushed" become writable. This is the groove probe under Depth.
 
 ## Generality across media
 
