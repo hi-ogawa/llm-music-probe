@@ -21,6 +21,7 @@ export const GENERAL_MIDI_SOUNDS: Record<string, GeneralMidiSound> = {
   organ: { kind: "program", program: 16 }, // Drawbar Organ
   pipe: { kind: "program", program: 19 }, // Church Organ
   harpsichord: { kind: "program", program: 6 }, // Harpsichord
+  epiano: { kind: "program", program: 4 }, // Electric Piano 1
   strings: { kind: "program", program: 48 }, // String Ensemble 1
   pizz: { kind: "program", program: 45 }, // Pizzicato Strings
   fiddle: { kind: "program", program: 110 }, // Fiddle
@@ -28,6 +29,7 @@ export const GENERAL_MIDI_SOUNDS: Record<string, GeneralMidiSound> = {
   guitar: { kind: "program", program: 24 }, // Acoustic Guitar (nylon)
   banjo: { kind: "program", program: 105 }, // Banjo
   upright: { kind: "program", program: 32 }, // Acoustic Bass
+  ebass: { kind: "program", program: 33 }, // Electric Bass (finger)
   flute: { kind: "program", program: 73 }, // Flute
   clarinet: { kind: "program", program: 71 }, // Clarinet
   oboe: { kind: "program", program: 68 }, // Oboe
