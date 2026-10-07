@@ -1,47 +1,33 @@
 # Probe plan
 
-The working hypothesis is that musical intuition is already encoded in the text vocabulary, and that remaining gaps come from how expressive the output format and tooling are. The plan is built to separate those two causes. If a failure disappears when the format gets richer, it was tooling. If it persists with a rich format, or shows up even with no output format at all, it is in the encoding.
+The existence of an encodable medium is settled at a primitive level (see [context.md](context.md)). How deep a current model goes is expected to improve with training, so measuring it is not the goal. The open question is per layer: does a text medium exist that can carry this layer of musical intuition, and does the model use it when one is offered?
 
-## P0. Reproduce the baseline
+Scrimshaw's format hid several layers. Chord names were voiced by the renderer, the chord vocabulary stopped at 7ths and 9ths, and groove was one global swing value plus three dynamic levels. Each probe below opens one of those layers and checks whether the model fills it with intent.
 
-Reproduce the Scrimshaw Jukebox setup with a renderer under our control, so that every later probe shares the same pipeline.
+## P0. Baseline
 
-- Read the shared conversation and the tool source to learn the text format and the prompt.
-- Pick an output format to standardize on. Candidates are the Scrimshaw format, ABC notation, or a small JSON note list that renders to MIDI.
-- Done when one prompt produces a track that renders and plays locally.
+Done in [experiments/01-scrimshaw-breakdown](../experiments/01-scrimshaw-breakdown/README.md). Next, pick a format to extend: the Scrimshaw format itself, or a small note list that renders to MIDI. Implementation should stay trivial, because the interest is the encoding.
 
-## P1. Encoding without output
+## P1. Voicing
 
-Ask text-only questions with no rendering, so tooling is removed entirely.
+Medium: explicit note stacks instead of chord names. Ask for the same progression in contrasting characters, for example dark and close against open and airy, or a jazz ballad against a pop ballad. The signal is whether the voicings change in ways that match the stated intent: spacing, register, low-interval limits, voice leading between chords.
 
-- Voicing discrimination: given two voicings of the same chord as note lists, which is muddier, brighter, or more open, and why. Include borderline cases near low-interval limits, such as a close 3rd around C2 compared with the same notes an octave up.
-- Reharm fit: given a melody and two candidate reharms, which fits better and why.
-- Analysis: explain what a bass line does against the harmony (approach notes, pedal points, where tension comes from) on material the model cannot have memorized, such as original or personally transcribed lines.
+## P2. Tension and reharmonization
 
-Rule-based knowledge should pass the easy cases, so the borderline cases are the signal.
+Medium: an extended chord vocabulary (9, 11, 13, altered tensions) and explicit notes. Give a melody and a plain progression and ask for a reharm. Check validity mechanically, then judge by ear whether the tensions are placed with intent or just added.
 
-## P2. Genre transfer
+## P3. Groove
 
-Repeat the P0 setup outside pastiche-friendly genres, for example a K-pop bass line from a chord chart, or neo-soul keys voicings. This tells whether the intuition is general or depends on genres with a strong symbolic tradition.
+Medium: per-note timing offsets and velocities. Ask for the same bass line straight, laid back, and pushing, or with ghost notes. This is the layer least written down as text, so it is the most likely place where no medium exists in the model's vocabulary, even if one exists in the format.
 
-## P3. Constrained edits
+## P4. Timbre and orchestration
 
-Give a melody and a plain progression and ask for a reharm that keeps every melody note as a chord tone or an available tension. Check validity mechanically, then judge the valid ones by ear. This separates "broke a rule" from "valid but bland".
+Medium: instrument choice plus synth parameters such as brightness, attack, release, and register. Ask for the same passage orchestrated for different scenes. The signal is whether parameter choices follow from the stated intent rather than staying at defaults.
 
-## P4. Expressiveness ladder
+## Judging
 
-This is the direct test of the working hypothesis. Run the same task in three formats:
-
-1. Chord symbols and section structure only
-2. Full notes with pitch and duration
-3. Notes plus velocity, micro-timing, and articulation
-
-If quality keeps rising with the format, the limit was tooling. If it plateaus early, the limit is in the encoding. The groove layer (playing behind the beat, ghost notes) only becomes expressible at level 3, so this is where it gets tested.
-
-## P5. Blind A/B
-
-Render model output and human references the same way and rate them blind. Past the basics, taste is the only meaningful metric. Bass lines are the best target, because that is where the judge's ear is most reliable.
+Judge by ear, blind where possible. Bass lines and grooves are the strongest targets, because that is where the judge's ear is most reliable.
 
 ## Order
 
-P0 first, because everything else reuses it. Then P1 and P2, which are cheap and tell whether the depth is there at all. P4 is the most informative for the thesis and doubles as a design question for an application: how expressive a format to give the model. P3 and P5 refine the judgment of quality.
+P1 and P2 first, because they extend Scrimshaw's format in the most obvious way and have the richest written literature, so they should work if the thesis holds. P3 is the real test, because it is where an encoding could be missing. P4 depends most on the renderer, so it comes last.

@@ -10,9 +10,19 @@ Creative work starts as discrete, symbolic ideas: which sections, which instrume
 
 The motivating analogy is code-based visual generation. Geometric and motion intuition shows up through code in motion graphics, explanatory material, and 2D/3D demos, without diffusion-style image generation. The question was whether musical intuition is encoded in the same way.
 
+The question that matters is whether an encodable medium exists: a form an LLM can write that carries high-level musical intuition such as voicing, orchestration, tension, and reharmonization. It is not how deep a particular model goes today. Once such a medium exists, depth and breadth become a matter of training, which future models can be expected to improve, as they have in other domains.
+
+## Conclusion so far (2026-10-07)
+
+1. **An encodable medium for musical intuition exists.** Scrimshaw Jukebox shows it at a primitive level: a plain-text score format carried harmony, bass, rhythm, orchestration, and form idioms that were judged legitimate by ear.
+2. **End-to-end audio is not needed for an AI to present musical ideas.** A text model with no audio input or output produced the music, and audio was only rendering. This was the main point the discussion set out to settle.
+3. **Working assumption: depth and breadth will follow from training.** This is plausible given how other domains have gone, but not demonstrated. The one caveat from the discussion is that taste has no automatic checker, so improvement would rely on preference data, as it has for prose and design.
+
+What remains open is which layers of musical intuition have an encodable medium at all, which [probe-plan.md](probe-plan.md) now targets.
+
 ## How the discussion got here (2026-10-06)
 
-1. **Starting question.** How deep is LLM music intuition beyond easily symbolized chord progressions, for example voicing, orchestration, tension, and reharmonization, and how would we probe it? The initial probe ideas are folded into [probe-plan.md](probe-plan.md).
+1. **Starting question.** How deep is LLM music intuition beyond easily symbolized chord progressions, for example voicing, orchestration, tension, and reharmonization, and how would we probe it? This was later clarified as a question about whether such intuition is encodable for an LLM to present, not about measuring a current model's depth.
 2. **Feedback loop.** The assistant first argued that visual demos work because vision closes the loop, and music lacks an equivalent ear. Prior work surveyed: symbolic critics (ComposerX, Libretto), render plus analysis (vcv-agent), DAW control over MCP (ableton-mcp, reaper-mcp, DAWZY), and audio LLMs as the ear. The MUSE benchmark found audio LLMs good at surface perception (oddball detection, rhythm) and weak at relational harmony (Gemini Pro 66.67% on chord sequence matching against 85% for expert musicians).
 3. **Correction: the loop is not the creativity.** Vision feedback catches coarse errors like overlap and clipping, and precision comes from the code. The creative content is already in the first draft and comes from training. Multimodal training matters because it grounds words like "airy" or "too busy" in perception, not because it adds a checker.
 4. **Where musical vocabulary would come from.** Speech and environmental sound have huge labeled corpora, but music mostly gets captions like "♪ upbeat music ♪". Narrated music (bass lessons, theory videos) exists only as a niche.
@@ -32,21 +42,22 @@ Simon Willison, [Scrimshaw Jukebox](https://simonwillison.net/2026/Oct/6/scrimsh
 Caveats:
 
 - One example in one genre. Retro game music is the friendliest case for symbolic composition, because it was originally written as notes for synth chips and many symbolic transcriptions exist.
-- At the time of writing, the evidence was read through a summary of the post. The tracks and the shared conversation have not been examined in detail.
 - "Surprisingly good" speaks to competence, not to the depth of voicing, tension, or reharm choices.
+
+Follow-up: the scores, the format, and the shared conversation are broken down in [experiments/01-scrimshaw-breakdown](../experiments/01-scrimshaw-breakdown/README.md). The tracks were judged legitimate by ear. The conversation shows a single prompt with no musical direction, a format the model designed itself, and a loop that only checked execution (levels, clipping, semitone clashes) because the model could not listen.
 
 ## Claim status
 
 | Claim | Status | Basis |
 | --- | --- | --- |
-| Harmony, melody, form, and instrumentation ideas are encoded in the text vocabulary | Supported | Scrimshaw Jukebox |
-| Rendering symbolic ideas into sound is a harness problem | Supported | Scrimshaw Jukebox uses a plain synth with no ear |
-| Music needs a perceptual feedback loop more than visuals do | Weakened | Competent output without one |
-| Note-level vocabulary is locked in audio ("no GitHub for music") | Weakened | Competent multi-voice output, though in a genre with a symbolic tradition |
-| Artistic music will stay end-to-end | Challenged | Aesthetic music produced symbolically |
-| Intuition goes deep: voicing, tension, reharm quality, not just validity | Open | P1, P3, P5 |
-| Intuition generalizes beyond pastiche-friendly genres | Open | P2 |
-| Remaining gaps are tooling and expressiveness, not encoding | Open, the current working hypothesis | P4 |
+| An encodable text medium for musical intuition exists | Supported | Scrimshaw Jukebox |
+| End-to-end audio is not needed for an AI to present musical ideas | Supported | Text model with no audio in or out, rendered by a plain synth |
+| Harmony, melody, form, and instrumentation ideas are encoded in the text vocabulary | Supported | Named idioms across six styles, judged legitimate by ear |
+| Music needs a perceptual feedback loop more than visuals do | Refuted for presenting ideas | Only an execution check, no listening |
+| Note-level vocabulary is locked in audio ("no GitHub for music") | Refuted at this level | Named idioms are written down in theory teaching and symbolic notation |
+| Artistic music will stay end-to-end | Refuted for presenting ideas | Aesthetic music produced symbolically. Production quality such as timbre and vocals is a separate question |
+| Depth and breadth will follow from training | Working assumption | Track record in other domains, with the taste-signal caveat |
+| Voicing, groove, and timbre each have an encodable medium | Open | [probe-plan.md](probe-plan.md) |
 
 ## Sources from the discussion
 
