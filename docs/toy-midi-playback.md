@@ -41,11 +41,11 @@ This comes from reading code on 2026-10-08: toy-midi, the synth wrapper it vendo
 ## Order for our use
 
 1. Import tracks separately with their programs, play channel 10 as a drum kit by selecting a bank 128 preset, and apply the first tempo and time signature. This is enough to hear the six Scrimshaw tracks.
-2. Add loading by URL or CLI, so an agent can put a score into toy-midi without a manual upload. This matters as soon as we iterate on scores with an agent.
+2. Let an agent put a score into the open toy-midi, so the loop of writing, listening, and revising needs no manual upload. Loading by URL or CLI is the narrowest form. The same need is open more broadly in [toy-midi #730](https://github.com/hi-ogawa/toy-midi/issues/730), projects as folders on disk that agents can edit, which lists external edits to `project.json` while a project is open as an open point, and [toy-compositor #157](https://github.com/hi-ogawa/toy-compositor/issues/157), editor operations exposed to an agent through WebMCP. The framing is to be revisited across the three.
 3. Add per-track pan as a `StereoPannerNode` on each track's channel strip. toy-midi already runs one synth per track, so static pan and volume need no wrapper change.
 4. Expose MIDI events in the wrapper, and add pitch bend, sustain, and controller events over time to the app, once our export writes slides as pitch bend, which it could today, or later feel and phrasing. These change during a note or over time, so they have to go through the synth rather than the mixer. A channel argument is not needed while each track has its own synth.
 5. Add a tempo map, for tempo changes within a song. None of the six Scrimshaw tracks need it.
 
-Fixing the importer is preferred over having our tool write toy-midi's project JSON directly, because the JSON route would still need the drum and wrapper work, and an importer fix helps with any General MIDI file.
+Fixing the importer is preferred over having our tool write toy-midi's project JSON directly, because the JSON route would still need the drum and wrapper work, and an importer fix helps with any General MIDI file. If projects become folders on disk as in #730, writing `project.json` directly becomes more attractive, so this preference may change.
 
 The 6/8 jig shows up as 2/4 in toy-midi's grid, because our export writes a score beat as a quarter note, so compound meters become simple meters with triplet steps.
