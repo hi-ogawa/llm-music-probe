@@ -1,6 +1,6 @@
 # Notation
 
-What makes musical intent encodable for an LLM and presentable to a human. The exact syntax does not matter much: a capable model learns any reasonable variant from a short spec, as Scrimshaw's composing prompt shows. This note is about the properties that matter across variants. Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)) is the main example so far.
+What makes musical intent encodable, and presentable by an LLM through a medium. The exact syntax does not matter much: a capable model learns any reasonable variant from a short spec, as Scrimshaw's composing prompt shows. This note is about the properties that matter across variants. Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)) is the main example so far.
 
 ## Principles
 
@@ -38,11 +38,12 @@ Some intent only exists for one instrument. Tab carries string and fret, which e
 
 ## Presentable
 
-A notation is presentable when a musician can read it, edit it, and hear it.
+A medium is presentable when the model can actually present the idea it has through it. Any format can work, but two things can stop an idea from getting out:
 
-- Readable as a chart or a score, without tooling
-- Diffable and editable as text, which is the "project file, not a flattened render" argument from the original discussion
-- Round-trips with a DAW, so the model's output opens in real tools and existing projects can be turned back into text. The toy-midi JSON format is a candidate bridge, see [ideas.md](ideas.md)
+- **No room for the idea.** If the medium has no construct for something, the model cannot present it, even if it has the intuition. Scrimshaw's six tracks used chord names voiced by the renderer, so voicing intuition had no way out.
+- **Friction in writing it.** Music is parallel and timed, while the model writes one token after another. A medium that makes simultaneous parts and bar alignment hard to write turns intuition into errors. Scrimshaw's per-voice lines, bar by bar, are one way to make parallel time writable, and its counting errors are this kind of friction.
+
+Both hide intuition rather than show its absence. So when a probe fails, the first question is whether the idea was missing or could not be presented.
 
 ## Open questions
 
