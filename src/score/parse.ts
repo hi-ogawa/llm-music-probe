@@ -187,6 +187,10 @@ export function parseScore(text: string): {
           report("mute outside a pattern");
           break;
         }
+        if (!score.voices.has(args[0])) {
+          report(`voice "${args[0]}" is not declared`);
+          break;
+        }
         pattern.parts.delete(args[0]);
         break;
       }
@@ -199,6 +203,10 @@ export function parseScore(text: string): {
             report(`cannot read "${arg}" in ${keyword}`);
             continue;
           }
+          if (!score.patterns.has(cue.pattern)) {
+            report(`unknown pattern "${cue.pattern}" in ${keyword}`);
+            continue;
+          }
           score[keyword].push(cue);
         }
         break;
@@ -209,14 +217,6 @@ export function parseScore(text: string): {
     }
   });
 
-  for (const cue of [...score.play, ...score.loop]) {
-    if (!score.patterns.has(cue.pattern)) {
-      diagnostics.push({
-        line: 0,
-        message: `arrangement uses unknown pattern "${cue.pattern}"`,
-      });
-    }
-  }
   return { score, diagnostics };
 }
 

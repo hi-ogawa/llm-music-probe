@@ -79,9 +79,8 @@ export function expandScore(
     length: 0,
   };
   for (const cue of arrangeCues(score, options.loops)) {
-    // An unknown pattern is already reported by the parser
-    const pattern = compiled.get(cue.pattern);
-    for (let i = 0; pattern && i < cue.repeat; i++) {
+    const pattern = compiled.get(cue.pattern)!;
+    for (let i = 0; i < cue.repeat; i++) {
       playPattern(song, pattern, cue.transpose, score.voices);
     }
   }
