@@ -40,9 +40,18 @@ export function exportMidi(
     track.channel = channels.get(voice.name)!;
     if (sound.kind !== "percussion") {
       track.instrument.number = sound.program;
-      // Percussion voices share one channel, so they cannot have their own pan
+      // Percussion voices share one channel, so they cannot have their own volume or pan
+      track.addCC({
+        number: 7,
+        value: getChannelVolume(voice.vol) / 127,
+        ticks: 0,
+      });
       track.addCC({ number: 10, value: (voice.pan + 1) / 2, ticks: 0 });
     }
+    // A voice with its own channel sets its level with channel volume and
+    // keeps the full velocity range for dynamics. Percussion voices share a
+    // channel, so their level scales velocity instead.
+    const velocityVol = sound.kind === "percussion" ? voice.vol : DEFAULT_VOL;
     const addPlayedNote = (note: PlayedNote) =>
       track.addNote({
         midi: note.pitch,
@@ -57,7 +66,7 @@ export function exportMidi(
           pitch: note.pitch!,
           start: note.start,
           duration: note.duration,
-          velocity: getVelocity(note.level, voice.vol),
+          velocity: getVelocity(note.level, velocityVol),
         })),
         { instrument: voice.instrument, gate: voice.gate },
       );
@@ -81,21 +90,27 @@ export function exportMidi(
               : note.pitch!,
         start: note.start,
         duration: sound.kind === "effect" ? sound.length : note.duration,
-        velocity: getVelocity(note.level, voice.vol),
+        velocity: getVelocity(note.level, velocityVol),
       });
     }
   }
   return midi.toArray();
 }
 
+const DEFAULT_VOL = 0.8;
+
 /**
- * MIDI velocity from a note's dynamic level and its voice's `vol`.
- * Level 0 at the default `vol` of 0.8 is velocity 90, each level step is 18,
- * and `vol` scales the result, so voice balance and accents share one control.
+ * MIDI velocity from a note's dynamic level, scaled by `vol` relative to its
+ * default. Level 0 is velocity 90, and each level step is 18.
  */
 function getVelocity(level: number, vol: number): number {
-  const velocity = Math.round(((90 + 18 * level) * vol) / 0.8);
+  const velocity = Math.round(((90 + 18 * level) * vol) / DEFAULT_VOL);
   return Math.min(127, Math.max(1, velocity));
+}
+
+/** Channel volume (CC7) from `vol`: 100 at the default of 0.8, the General MIDI default */
+function getChannelVolume(vol: number): number {
+  return Math.min(127, Math.max(0, Math.round((100 * vol) / DEFAULT_VOL)));
 }
 
 /** Percussion voices share channel 10, and every other voice gets its own channel */

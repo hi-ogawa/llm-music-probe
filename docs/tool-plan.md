@@ -65,7 +65,8 @@ The six Scrimshaw tracks are the test fixtures, so the first milestone covers wh
 
 ## Decisions made in the first version
 
-- Velocity is 90 at level 0, plus 18 per `!` and minus 18 per `?`, scaled by `vol` relative to its default of 0.8, and clamped to 1 to 127. Drum `o`, `x`, and `X` are levels -2, 0, and 2.
+- Velocity is 90 at level 0, plus 18 per `!` and minus 18 per `?`, clamped to 1 to 127. Drum `o`, `x`, and `X` are levels -2, 0, and 2.
+- A melodic voice's `vol` sets channel volume (CC7), 100 at the default of 0.8, so velocity keeps its full range for dynamics. Drum voices share a channel, so their `vol` scales velocity instead. An earlier version scaled velocity for every voice, which pushed loud lines to a flat 127 and clipped their accents.
 - Chord names are voiced in close position, with each tone placed from 6 semitones below `center` to 5 above, and a slash bass below the lowest tone.
 - The loop plays once by default, and `--loops` changes it.
 - Drum voices share MIDI channel 10, so they have no pan of their own.

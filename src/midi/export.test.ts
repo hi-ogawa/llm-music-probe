@@ -89,3 +89,20 @@ ${names.map((name) => `${name} | C4--------------- |`).join("\n")}
     0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11,
   ]);
 });
+
+test("sets a melodic voice's level with channel volume and keeps velocity for dynamics", () => {
+  const midi = readMidi(`
+beats 1
+voice lead flute vol=1.2
+voice kick kick vol=1.2
+pattern A
+lead | C5! D5? E5 F5 |
+kick | x... |
+`);
+  const [lead, kick] = midi.tracks;
+  expect(lead.controlChanges[7][0].value * 127).toBeCloseTo(127);
+  expect(lead.notes.map((note) => Math.round(note.velocity * 127))).toEqual([
+    108, 72, 90, 90,
+  ]);
+  expect(Math.round(kick.notes[0].velocity * 127)).toBe(127);
+});
