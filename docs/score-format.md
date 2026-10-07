@@ -140,7 +140,7 @@ A note, stack, or chord counts 1 plus its dashes. A rest counts its dots plus it
 
 ```
 E5-- G5-- B5- A5 G5 F#5 E5 D5---     3+3+2+1+1+1+1+4 = 16
-.- C4+E4+G4- .- C4+E4+G4- .------    2+2+2+2+8 = 16
+.- C4+E4+G4- .- C4+E4+G4- .-------   2+2+2+2+8 = 16
 x... .... x... x.x.                  16 characters
 ```
 
