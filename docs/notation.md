@@ -1,8 +1,10 @@
 # Notation
 
-What makes musical intent encodable, and presentable by an LLM through a medium. The exact syntax does not matter much: a capable model learns any reasonable variant from a short spec, as Scrimshaw's composing prompt shows. This note is about the properties that let the model present the idea it has, across variants. When a medium lacks them, a probe can fail because the idea could not get out, not because it was missing. Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)) is the main example so far.
+What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it has been tested yet.
 
-## Principles
+The central hypothesis is that exact syntax matters little, because a capable model can learn and use any reasonable format, and that what matters is whether the medium has room for an idea. If it does not, a probe can fail because the idea could not get out, not because it was missing.
+
+## Candidate principles
 
 ### Reuse notation that already exists as text
 
@@ -28,9 +30,9 @@ Scrimshaw's comments carry the model's reasons inline: "the standoff: both duell
 
 Some intent only exists for one instrument. Tab carries string and fret, which encode playability and hand position. Other examples are bowing, breath marks, and pedaling. These should be optional layers on top of the shared notation.
 
-## Rejected as principles
+## Rejected candidates
 
-These looked like principles at first because Scrimshaw has them, but they fail the test of whether a feature gives the medium room for an idea it could not otherwise carry.
+These looked like principles at first because Scrimshaw has them, but by our reasoning they fail the test of whether a feature gives the medium room for an idea it could not otherwise carry.
 
 - **Give each layer of decision its own words.** The example was `pattern A2 from A` for "A with a counter-line". Only `from` is notation, and it means copy A's voices and let voices written in A2 replace or add parts. "With a counter-line" comes from a comment. So the functional part is copy-and-override, and it is rejected for the reason below.
 - **Make repetition and variation first-class.** Copy-and-override, `%`, `*2`, and transposition add no room for any idea, because a flat note list expresses exactly the same music. What they do provide is cheap repetition and editing: write a variation without rewriting the whole part. But a modern agent already gets that from its harness. It copies blocks, transforms parts with scripts, and edits one passage surgically, the same way it iterates on one large HTML file for an image or animation. So the harness already covers what the feature offers, and the feature adds nothing to what the model can present.
