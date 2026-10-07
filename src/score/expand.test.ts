@@ -59,6 +59,17 @@ lead | C4--- D4--- E4--- F4-- |
     ]);
   });
 
+  test("reads metadata containing a bar line as text", () => {
+    const { song, diagnostics } = readSong(`
+about Verse | chorus | verse
+voice lead flute
+pattern A
+lead | C4--------------- |
+`);
+    expect(diagnostics).toEqual([]);
+    expect(song.meta.about).toBe("Verse | chorus | verse");
+  });
+
   test("holds a note across a bar line", () => {
     const { song } = readSong(`
 beats 1

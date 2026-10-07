@@ -102,6 +102,13 @@ export function parseScore(text: string): {
       return;
     }
     const report = (message: string) => diagnostics.push({ line, message });
+    const [keyword, ...args] = content.split(/\s+/);
+
+    // Metadata is free text, so a `|` in it does not make a music line
+    if (keyword === "title" || keyword === "composer" || keyword === "about") {
+      score.meta[keyword] = content.slice(keyword.length).trim();
+      return;
+    }
 
     if (content.includes("|")) {
       if (!pattern) {
@@ -133,14 +140,7 @@ export function parseScore(text: string): {
       return;
     }
 
-    const [keyword, ...args] = content.split(/\s+/);
     switch (keyword) {
-      case "title":
-      case "composer":
-      case "about": {
-        score.meta[keyword] = content.slice(keyword.length).trim();
-        break;
-      }
       case "tempo":
       case "beats":
       case "steps":
