@@ -2,6 +2,7 @@
 import tonejsMidi from "@tonejs/midi";
 import type { Song } from "../score/expand.ts";
 import { GENERAL_MIDI_SOUNDS } from "./general-midi.ts";
+import { phraseLine, type PlayedNote } from "./phrase.ts";
 
 const { Midi } = tonejsMidi;
 
@@ -11,8 +12,13 @@ const PERCUSSION_CHANNEL = 9;
  * Write a song as a Standard MIDI File with one track per voice.
  * A score beat is written as one MIDI quarter note, so 6/8 written as
  * `beats 2 steps 3` becomes 2/4 with triplet steps.
+ * Voices listed in `phrase` are played through the phrasing pass, which
+ * shapes velocity, note length, and expression without changing notes.
  */
-export function exportMidi(song: Song): Uint8Array {
+export function exportMidi(
+  song: Song,
+  options: { phrase?: string[] } = {},
+): Uint8Array {
   const midi = new Midi();
   midi.name = song.meta.title ?? "";
   const toTicks = (beats: number) => Math.round(beats * midi.header.ppq);
@@ -37,22 +43,45 @@ export function exportMidi(song: Song): Uint8Array {
       // Percussion voices share one channel, so they cannot have their own pan
       track.addCC({ number: 10, value: (voice.pan + 1) / 2, ticks: 0 });
     }
-    for (const note of song.notes) {
-      if (note.voice !== voice.name) {
-        continue;
-      }
-      const pitch =
-        sound.kind === "percussion"
-          ? sound.note
-          : sound.kind === "effect"
-            ? sound.pitch
-            : note.pitch!;
-      const duration = sound.kind === "effect" ? sound.length : note.duration;
+    const addPlayedNote = (note: PlayedNote) =>
       track.addNote({
-        midi: pitch,
+        midi: note.pitch,
         ticks: toTicks(note.start),
-        durationTicks: Math.max(1, toTicks(duration)),
-        velocity: getVelocity(note.level, voice.vol) / 127,
+        durationTicks: Math.max(1, toTicks(note.duration)),
+        velocity: note.velocity / 127,
+      });
+    const notes = song.notes.filter((note) => note.voice === voice.name);
+    if (sound.kind === "program" && options.phrase?.includes(voice.name)) {
+      const phrased = phraseLine(
+        notes.map((note) => ({
+          pitch: note.pitch!,
+          start: note.start,
+          duration: note.duration,
+          velocity: getVelocity(note.level, voice.vol),
+        })),
+        { instrument: voice.instrument, gate: voice.gate },
+      );
+      phrased.notes.forEach((note) => addPlayedNote(note));
+      for (const control of phrased.controls) {
+        track.addCC({
+          number: control.number,
+          value: control.value / 127,
+          ticks: toTicks(control.time),
+        });
+      }
+      continue;
+    }
+    for (const note of notes) {
+      addPlayedNote({
+        pitch:
+          sound.kind === "percussion"
+            ? sound.note
+            : sound.kind === "effect"
+              ? sound.pitch
+              : note.pitch!,
+        start: note.start,
+        duration: sound.kind === "effect" ? sound.length : note.duration,
+        velocity: getVelocity(note.level, voice.vol),
       });
     }
   }
