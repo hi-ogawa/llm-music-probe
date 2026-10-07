@@ -39,7 +39,7 @@ Some intent only exists for one instrument. Tab carries string and fret, which e
 ## Open questions
 
 - Should the model write in passes, from a chart to a realization, the way musicians often do, or in one notation that mixes levels?
-  - Resolved: writing order does not matter. A capable agent drafts, edits surgically, and rewrites with scripts, the same way it iterates on one large HTML file for an image or animation. Simon's transcript shows the same pattern: tracks written, checked, then edited in place. The order of writing is a workflow detail, not a property of the medium.
+  - Working hypothesis: writing order does not matter. A capable agent drafts, edits surgically, and rewrites with scripts, the same way it iterates on one large HTML file for an image or animation. Simon's transcript shows the same pattern: tracks written, checked, then edited in place. The order of writing is a workflow detail, not a property of the medium.
 - One notation with optional layers, or separate notations per layer (a chart, a part, an expression track) that refer to each other?
 - How much should a renderer decide by default, and how should a score say "this part is deliberate, do not change it"?
 - Does intent survive translation between notations? If the same idea comes out well in several notations, the intuition sits above any one of them.
