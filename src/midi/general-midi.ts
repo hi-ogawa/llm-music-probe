@@ -18,15 +18,22 @@ export const GENERAL_MIDI_SOUNDS: Record<string, GeneralMidiSound> = {
   xylophone: { kind: "program", program: 13 }, // Xylophone
   musicbox: { kind: "program", program: 10 }, // Music Box
   bell: { kind: "program", program: 14 }, // Tubular Bells
+  piano: { kind: "program", program: 0 }, // Acoustic Grand Piano
   organ: { kind: "program", program: 16 }, // Drawbar Organ
   pipe: { kind: "program", program: 19 }, // Church Organ
   harpsichord: { kind: "program", program: 6 }, // Harpsichord
   epiano: { kind: "program", program: 4 }, // Electric Piano 1
   strings: { kind: "program", program: 48 }, // String Ensemble 1
+  violin: { kind: "program", program: 40 }, // Violin
+  viola: { kind: "program", program: 41 }, // Viola
+  cello: { kind: "program", program: 42 }, // Cello
+  contrabass: { kind: "program", program: 43 }, // Contrabass
   pizz: { kind: "program", program: 45 }, // Pizzicato Strings
   fiddle: { kind: "program", program: 110 }, // Fiddle
   harp: { kind: "program", program: 46 }, // Orchestral Harp
   guitar: { kind: "program", program: 24 }, // Acoustic Guitar (nylon)
+  eguitar: { kind: "program", program: 27 }, // Electric Guitar (clean)
+  distguitar: { kind: "program", program: 30 }, // Distortion Guitar
   banjo: { kind: "program", program: 105 }, // Banjo
   upright: { kind: "program", program: 32 }, // Acoustic Bass
   ebass: { kind: "program", program: 33 }, // Electric Bass (finger)
@@ -35,7 +42,11 @@ export const GENERAL_MIDI_SOUNDS: Record<string, GeneralMidiSound> = {
   oboe: { kind: "program", program: 68 }, // Oboe
   bassoon: { kind: "program", program: 70 }, // Bassoon
   accordion: { kind: "program", program: 21 }, // Accordion
+  altosax: { kind: "program", program: 65 }, // Alto Sax
+  tenorsax: { kind: "program", program: 66 }, // Tenor Sax
+  barisax: { kind: "program", program: 67 }, // Baritone Sax
   trumpet: { kind: "program", program: 56 }, // Trumpet
+  trombone: { kind: "program", program: 57 }, // Trombone
   brass: { kind: "program", program: 61 }, // Brass Section
   horn: { kind: "program", program: 60 }, // French Horn
   tuba: { kind: "program", program: 58 }, // Tuba
