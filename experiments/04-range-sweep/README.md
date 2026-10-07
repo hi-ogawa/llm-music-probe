@@ -162,4 +162,12 @@ The first test of musician feedback driving a revision.
 
 ## Judgment
 
-Pending the sweep.
+By ear (Hiroshi), after listening to all renders:
+
+- Everything except melody sounds convincing: harmony, voicing, bass, groove, genre idioms, form, and arrangement. The model has good musical intuition in these layers.
+- Melody sounds off across the sweep. What exactly is off is not yet characterized, and it may be quantifiable from the scores.
+
+Expectations stated alongside the judgment, not yet tested:
+
+- The convincing layers would get better programmed in a real DAW with better samples and sounds, because their weakness is the General MIDI rendering, not the writing.
+- In a DAW, a human could polish the nuance and expression of one part by hand, and an agent could then adopt that nuance throughout the piece.
