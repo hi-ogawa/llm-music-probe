@@ -27,7 +27,9 @@ Probe ideas:
 - **Neo-soul or R&B keys and bass.** Dense voicings and a groove that is rarely notated.
 - **Production-led genres such as hip-hop or modern pop.** Much of the idea is in the beat and the sound, so this also tests where a text medium runs out.
 
-## Sample-based rhythm
+## Beat making
+
+A practical, self-contained slice that goes deep in one area and touches several directions at once: groove (depth), sound choice through labels (timbre), production-led genres (genre breadth), and easy feedback such as "lay back the snare" (the adjustment loop). It leaves harmony out, which comping covers.
 
 Extend the tool from General MIDI drums to labeled one-shot samples. The drum lane notation stays the same, and only the voice declaration changes from a General MIDI drum to a sample chosen by its label. The model never hears the samples. It chooses and combines them by description, the same way Scrimshaw turned "the villain's ship" into pipe organ and choir. This tests whether text can carry sound choice as well as note choice, which opens the timbre rows marked Missing in [notation.md](notation.md) through vocabulary rather than synth parameters. The choices can only be as good as the labels, so labeling quality is part of what gets tested.
 
