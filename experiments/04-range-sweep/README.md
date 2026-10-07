@@ -1,4 +1,4 @@
-# 04-width-sweep
+# 04-range-sweep
 
 - Direction: Genre breadth and Fan-out in [directions.md](../../docs/directions.md)
 - Date: 2026-10-08
@@ -7,7 +7,7 @@
 
 ## Question
 
-Experiments 02 and 03 worked by ear in one genre, neo-soul loops in 4/4. How wide does the model's musical intuition go? This sweep explores as broadly as the format allows: grooves across genres, melody and form, ensembles from solo piano to big band, styles far from pop, and one open brief repeated to separate real range from sampling variance.
+Experiments 02 and 03 worked by ear in one genre, neo-soul loops in 4/4. What is the range of the model's musical intuition, both across styles and in depth? This sweep explores as broadly as the format allows: grooves across genres, melody and form, ensembles from solo piano to big band, and styles far from pop. A depth ladder asks for the same briefs at different levels of sophistication, and one open brief is repeated to separate real range from sampling variance.
 
 ## Design
 
@@ -21,6 +21,7 @@ Axes covered across the cells:
 - Ensemble: solo instrument, rhythm section, small band, chamber group, big band
 - Meter: 4/4, 3/4, 7/8, and compound or swung feels (12/8)
 - Tempo: from about 60 to 170 bpm
+- Depth: asked to be as simple as possible, given no instruction, or asked to be as sophisticated as possible
 - Brief: specified, or open "your own taste"
 
 ### Grooves
@@ -74,6 +75,17 @@ Loops with drums, bass, and one or two harmony parts.
 | s04  | Ambient piece                                      | Texture, space, and slow harmonic motion             |
 | s05  | Film cue that builds tension to a climax           | Dramatic arc and orchestration over time             |
 
+### Depth ladder
+
+Each brief runs three times with one added instruction: "as simple as possible while still being good music", no instruction, or "as sophisticated as you can while staying musical". The signal is whether the depth actually changes with the request, in which layers (harmony, rhythm, voicing, texture), and whether the simple version is good rather than merely empty.
+
+| Cells           | Brief                                                                                  | Main thing to hear                                    |
+| --------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| d01s, d01, d01d | Bass line over fixed changes, 4 bars looped: `Am7 \| D7 \| Gmaj7 \| Cmaj7`, with drums | The bass alone, since harmony and form are fixed      |
+| d02s, d02, d02d | Comping a jazz ballad over a standard-like 8-bar progression of its choice             | Voicings, reharmonization, and rhythmic placement     |
+| d03s, d03, d03d | Pop chorus with a lead melody over a band                                              | Melody and harmony together, at pop's usual depth     |
+| d04s, d04, d04d | String quartet, about 16 bars                                                          | Counterpoint and texture without drums or chord names |
+
 ### Open brief
 
 | Cell | Brief                       | Main thing to hear                    |
@@ -102,9 +114,9 @@ Every subagent gets the same material:
 
 1. Add the missing instruments to the tool.
 2. Write the format reference in `docs/score-format.md`, so later experiments can reuse it.
-3. Spawn one subagent per cell, each writing `<cell>-<slug>.scrim` in this directory. With 32 cells, run them in batches.
+3. Spawn one subagent per cell, each writing `<cell>-<slug>.scrim` in this directory. With 44 cells, run them in batches.
 4. Render every score to `.tmp/04-width-sweep/`, looping short pieces to roughly a minute of audio.
-5. Hiroshi listens, ideally without knowing which run produced which file for o01 to o03.
+5. Hiroshi listens, ideally without knowing which run produced which file for o01 to o03, or which depth produced which file in each ladder.
 
 ## Judgment
 
