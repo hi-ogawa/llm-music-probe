@@ -6,7 +6,7 @@ What makes musical intent encodable, and presentable by an LLM through a medium.
 
 ### The medium needs room for the idea
 
-If a medium has no way to write something, the model cannot present it, even if it has the intuition. Scrimshaw's six tracks used chord names voiced by the renderer, so voicing had no way out, and one global swing value left no way to write groove.
+If a medium has no way to write something, the model cannot present it, even if it has the intuition. Scrimshaw's six tracks used chord names voiced by the renderer, so voicing had no way out, and one global swing value left no way to write groove. Exact syntax matters much less: a capable model writes and edits any reasonable format.
 
 ## Observations from Scrimshaw's design
 
