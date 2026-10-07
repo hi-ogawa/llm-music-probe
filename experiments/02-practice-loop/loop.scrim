@@ -1,0 +1,39 @@
+title    A Minor Practice Loop
+composer Claude
+about    Neo-soul practice loop in A minor. Two bars on A, two on F, with the chord color changing each bar while the root stays.
+tempo    90
+beats    4
+steps    4
+swing    0.12          # light 16th swing, between straight funk and a lazier hip-hop pocket
+
+voice keys  epiano vol=0.6 pan=-0.15
+voice bass  ebass  vol=0.95
+voice kick  kick   vol=0.85
+voice snare snare  vol=0.6
+voice hat   hat    vol=0.4  pan=0.25
+voice ohat  ohat   vol=0.35 pan=0.25
+
+# Harmony, one color per bar over two roots:
+#   Am9         Am6/9 (dorian F#)   Fmaj9          Fmaj7#11 (lydian B)
+# Keys are rootless, leaving the root to the bass, and move by step:
+#   G3 B3 C4 E4 -> F#3 B3 C4 E4 -> G3 A3 C4 E4 -> G3 A3 B3 E4 -> back to G3 B3 C4 E4
+# The inner voice walks B C B C against the static E4 on top.
+
+pattern A
+# Keys: long chords for harmony. Bar 2 is pushed an 8th early and tied over the bar line,
+# and short ghosted re-hits fill the gaps.
+keys  | G3+B3+C4+E4--------- . . G3+B3+C4+E4?- F#3+B3+C4+E4!- | -------- .... F#3+B3+C4+E4?--- |
+keys  | G3+A3+C4+E4----------- . . G3+A3+C4+E4?- | G3+A3+B3+E4--------- . . G3+A3+B3+E4?- . . |
+
+# Bass: root on the one each bar, octaves and fifths in between.
+# Bar 2 walks down G1 F#1 into F1. Bar 3 anticipates bar 4 and ties over.
+# Bar 4 climbs E1 F1 G#1 back to A1 at the top of the loop.
+bass  | A1-- A1?? .- E2- A2- G2 E2 .- C2 B1 | A1-- . .- E2- F#2- E2 C2 .- G1 F#1 |
+bass  | F1----- . F2- C2 . E2- . F1- | -- . C2- B1- C2 . .- E1 F1 G#1-- |
+
+kick  | x... ...x ..x. .... | x... ...x ..x. .x.. | x... ...x ..x. .... | x... ...x ..x. ..x. |
+snare | .... x..o .o.. x... | .... x..o .o.. x..o | .... x..o .o.. x... | .... x..o .o.. X.oo |
+hat   | x.x. x.xo x.x. x.xo | % | % | x.x. x.xo x.x. .... |
+ohat  | _ | _ | _ | .... .... .... x... |
+
+loop A
