@@ -7,7 +7,7 @@
 
 ## Question
 
-Experiments 02 and 03 worked by ear in one genre, neo-soul in 4/4. How wide does that go? This sweep covers genre, form length, meter, and tempo, and repeats one brief to separate real range from sampling variance.
+Experiments 02 and 03 worked by ear in one genre, neo-soul loops in 4/4. How wide does the model's musical intuition go? This sweep explores as broadly as the format allows: grooves across genres, melody and form, ensembles from solo piano to big band, styles far from pop, and one open brief repeated to separate real range from sampling variance.
 
 ## Design
 
@@ -15,47 +15,96 @@ Each cell is one brief handed to a fresh subagent. The subagent sees only the sh
 
 Axes covered across the cells:
 
-- Genre: funk, boom-bap, bossa nova, jazz waltz, blues shuffle, reggae, afrobeat, K-pop, house, fusion, gospel
-- Form length: 2-bar vamp, 4 bars, 8 bars, 12-bar blues
-- Meter: 4/4, 3/4, 7/8, and swung or compound feels (12/8)
-- Tempo: from about 60 to 150 bpm
-- Brief: specified genre, or open "your own taste"
+- Genre and style, from funk and K-pop to Bach-style counterpoint, minimalism, and film music
+- Melody: none, a riff, a hook, or a full tune across a form
+- Form: a 2-bar vamp up to a song in sections or a 32-bar AABA
+- Ensemble: solo instrument, rhythm section, small band, chamber group, big band
+- Meter: 4/4, 3/4, 7/8, and compound or swung feels (12/8)
+- Tempo: from about 60 to 170 bpm
+- Brief: specified, or open "your own taste"
 
-| Cell | Genre and feel               | Form           | Meter | Tempo | Main thing to hear                                 |
-| ---- | ---------------------------- | -------------- | ----- | ----- | -------------------------------------------------- |
-| 01   | Funk, one-chord dorian vamp  | 2 bars         | 4/4   | 100   | 16th syncopation and ghost notes in the bass       |
-| 02   | Boom-bap hip-hop             | 4 bars         | 4/4   | 88    | Sample-like keys loop and a heavy, sparse bass     |
-| 03   | Bossa nova                   | 8 bars         | 4/4   | 130   | Guitar comping pattern and root-fifth bass         |
-| 04   | Jazz waltz                   | 8 bars         | 3/4   | 150   | Waltz comping and a two-feel bass line             |
-| 05   | Blues shuffle                | 12 bars        | 12/8  | 110   | Shuffle feel and a walking or boogie bass          |
-| 06   | Reggae one-drop              | 4 bars         | 4/4   | 75    | Offbeat skank and a melodic bass that leaves space |
-| 07   | Afrobeat                     | 4 bars         | 4/4   | 105   | Interlocking guitar and keys parts                 |
-| 08   | K-pop chorus loop            | 8 bars         | 4/4   | 120   | Four-chord pop harmony and a driving synth bass    |
-| 09   | House                        | 8 bars         | 4/4   | 124   | Organ bass, chord stabs, four-on-the-floor         |
-| 10   | Fusion in odd meter          | 4 bars         | 7/8   | 120   | Phrasing in 2+2+3 and extended harmony             |
-| 11   | Gospel ballad                | 8 bars         | 12/8  | 60    | Rich voicings and passing chords                   |
-| 12a  | Open brief: "your own taste" | Model's choice | —     | —     | Range of choices with no constraints               |
-| 12b  | Same open brief, second run  | Model's choice | —     | —     | Sampling variance against 12a                      |
-| 12c  | Same open brief, third run   | Model's choice | —     | —     | Sampling variance against 12a and 12b              |
+### Grooves
 
-Every cell stays at practice-loop scale: drums, bass, and one or two harmony or lead parts.
+Loops with drums, bass, and one or two harmony parts.
+
+| Cell | Brief                       | Form    | Meter | Tempo | Main thing to hear                                 |
+| ---- | --------------------------- | ------- | ----- | ----- | -------------------------------------------------- |
+| g01  | Funk, one-chord dorian vamp | 2 bars  | 4/4   | 100   | 16th syncopation and ghost notes in the bass       |
+| g02  | Boom-bap hip-hop            | 4 bars  | 4/4   | 88    | Sample-like keys loop and a heavy, sparse bass     |
+| g03  | Bossa nova                  | 8 bars  | 4/4   | 130   | Guitar comping pattern and root-fifth bass         |
+| g04  | Jazz waltz                  | 8 bars  | 3/4   | 150   | Waltz comping and a two-feel bass line             |
+| g05  | Blues shuffle               | 12 bars | 12/8  | 110   | Shuffle feel and a walking or boogie bass          |
+| g06  | Reggae one-drop             | 4 bars  | 4/4   | 75    | Offbeat skank and a melodic bass that leaves space |
+| g07  | Afrobeat                    | 4 bars  | 4/4   | 105   | Interlocking guitar and keys parts                 |
+| g08  | K-pop chorus loop           | 8 bars  | 4/4   | 120   | Four-chord pop harmony and a driving synth bass    |
+| g09  | House                       | 8 bars  | 4/4   | 124   | Organ bass, chord stabs, four-on-the-floor         |
+| g10  | Fusion in odd meter         | 4 bars  | 7/8   | 120   | Phrasing in 2+2+3 and extended harmony             |
+| g11  | Gospel ballad               | 8 bars  | 12/8  | 60    | Rich voicings and passing chords                   |
+| g12  | Salsa                       | 8 bars  | 4/4   | 180   | Clave, tumbao bass, and piano montuno              |
+| g13  | Drum and bass               | 8 bars  | 4/4   | 170   | Breakbeat drums and a half-time bass line          |
+| g14  | Rock riff                   | 8 bars  | 4/4   | 120   | A guitar riff that locks with the bass and drums   |
+
+### Melody and form
+
+| Cell | Brief                                                         | Main thing to hear                                     |
+| ---- | ------------------------------------------------------------- | ------------------------------------------------------ |
+| m01  | Pop song chorus with a lead melody over a band                | A memorable hook, and how its phrasing fits the chords |
+| m02  | Jazz head, 32-bar AABA, horn melody with a rhythm section     | A melody across a full form, and the bridge contrast   |
+| m03  | A short song in sections: intro, verse, chorus, bridge, outro | Development, contrast, and transitions                 |
+| m04  | Lullaby or children's song                                    | Whether simplicity is handled as well as complexity    |
+| m05  | Blues with a call-and-response melody and fills               | Phrasing, space, and answering phrases                 |
+
+### Ensembles and orchestration
+
+| Cell | Brief                                                        | Main thing to hear                                         |
+| ---- | ------------------------------------------------------------ | ---------------------------------------------------------- |
+| e01  | Solo piano, about 16 bars                                    | Melody and accompaniment in one instrument, no bass player |
+| e02  | Soul or Motown band: drums, bass, guitar, keys, horn section | Interlocking parts and horn arranging                      |
+| e03  | String quartet                                               | Counterpoint, voice leading, and string writing            |
+| e04  | Big band shout chorus                                        | Section writing for saxes, trumpets, and trombones         |
+| e05  | Four-part chorale for choir                                  | Voice leading under classical rules                        |
+
+### Styles beyond pop
+
+| Cell | Brief                                              | Main thing to hear                                   |
+| ---- | -------------------------------------------------- | ---------------------------------------------------- |
+| s01  | Two-voice invention in the style of Bach           | Imitation and counterpoint                           |
+| s02  | Impressionist piano miniature                      | Color harmony, parallel chords, and pedal-like holds |
+| s03  | Minimalist piece with phasing or additive patterns | Process and gradual change                           |
+| s04  | Ambient piece                                      | Texture, space, and slow harmonic motion             |
+| s05  | Film cue that builds tension to a climax           | Dramatic arc and orchestration over time             |
+
+### Open brief
+
+| Cell | Brief                       | Main thing to hear                    |
+| ---- | --------------------------- | ------------------------------------- |
+| o01  | "Your own taste", first run | Range of choices with no constraints  |
+| o02  | Same open brief, second run | Sampling variance against o01         |
+| o03  | Same open brief, third run  | Sampling variance against o01 and o02 |
+
+Length, tempo, and ensemble size are left to the model wherever the table does not set them.
+
+## Limits of the medium
+
+- There are no vocals, so melodies are played by instruments, and the chorale is sung by the General MIDI choir sound.
+- A song can have at most 15 voices that are not percussion. A section such as a trumpet section can be one voice playing note stacks.
+- The instrument set lacks several sounds these cells need, at least acoustic piano, clean and distorted electric guitar, saxophones, trombone, violin, viola, cello, and contrabass. They are added before the sweep, each mapped to its General MIDI program.
 
 ## Shared brief
 
 Every subagent gets the same material:
 
-1. A format reference for our score format, adapted from Scrimshaw's composing prompt. It drops the early-1990s game-music framing, adds the `epiano` and `ebass` instruments, and states which options are parsed but not rendered.
-2. Its cell's brief from the table, in plain words.
+1. A format reference for our score format, adapted from Scrimshaw's composing prompt. It drops the early-1990s game-music framing, lists the full instrument set, and states which options are parsed but not rendered.
+2. Its cell's brief from the tables, in plain words.
 3. Instructions to write explicit note stacks where voicing matters, to write its intent in comments, to save the score at a given path, and to run `pnpm cli check` until it passes. It is told that it cannot listen and that the output is rendered through General MIDI.
-
-The format reference needs writing before the sweep runs.
 
 ## Procedure
 
-1. Write the format reference.
-2. Spawn one subagent per cell, in parallel, each writing `<cell>-<slug>.scrim` in this directory.
-3. Render every score to `.tmp/04-width-sweep/` with a loop count that gives roughly a minute of audio.
-4. Hiroshi listens, ideally without knowing which brief produced which file for 12a to 12c.
+1. Add the missing instruments to the tool.
+2. Write the format reference in `docs/score-format.md`, so later experiments can reuse it.
+3. Spawn one subagent per cell, each writing `<cell>-<slug>.scrim` in this directory. With 32 cells, run them in batches.
+4. Render every score to `.tmp/04-width-sweep/`, looping short pieces to roughly a minute of audio.
+5. Hiroshi listens, ideally without knowing which run produced which file for o01 to o03.
 
 ## Judgment
 
