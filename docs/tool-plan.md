@@ -70,4 +70,4 @@ The six Scrimshaw tracks are the test fixtures, so the first milestone covers wh
 - The loop plays once by default, and `--loops` changes it.
 - Drum voices share MIDI channel 10, so they have no pan of their own.
 - `thunder` and `surf` play General MIDI Seashore, held for 8 beats, because General MIDI has no thunder or surf.
-- fluidsynth renders at gain 0.5, which peaks between about 0.4 and 0.7 on the six Scrimshaw tracks.
+- fluidsynth renders at gain 0.5, which peaks between about 0.4 and 0.7 on the six Scrimshaw tracks. `--gain` lowers it for dense arrangements that clip.

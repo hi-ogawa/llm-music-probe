@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { parseArgs } from "node:util";
 import { exportMidi } from "./midi/export.ts";
-import { DEFAULT_SOUNDFONT, renderWav } from "./midi/render.ts";
+import { DEFAULT_GAIN, DEFAULT_SOUNDFONT, renderWav } from "./midi/render.ts";
 import { expandScore, type Song } from "./score/expand.ts";
 import { parseScore } from "./score/parse.ts";
 
@@ -12,16 +12,18 @@ const HELP = `\
 Usage:
   llm-music-probe check <score...>
       Report problems in each score, and exit non-zero if there are any
-  llm-music-probe render <score> <output> [--loops <n>] [--soundfont <file>]
+  llm-music-probe render <score> <output> [--loops <n>] [--gain <g>] [--soundfont <file>]
       Render a score. The output extension picks the format:
       .json for note events, .mid for MIDI, .wav for audio through fluidsynth.
-      --loops sets how many times the loop section plays (default 1)`;
+      --loops sets how many times the loop section plays (default 1).
+      --gain sets the fluidsynth output gain for .wav (default ${DEFAULT_GAIN})`;
 
 async function main() {
   const { positionals, values } = parseArgs({
     allowPositionals: true,
     options: {
       loops: { type: "string", default: "1" },
+      gain: { type: "string", default: String(DEFAULT_GAIN) },
       soundfont: { type: "string", default: DEFAULT_SOUNDFONT },
       help: { type: "boolean", short: "h" },
     },
@@ -52,7 +54,11 @@ async function main() {
         process.exitCode = 1;
         break;
       }
-      await writeSong(song, { outputFile, soundfont: values.soundfont });
+      const gain = Number(values.gain);
+      if (!(gain > 0)) {
+        throw new Error("--gain must be a positive number");
+      }
+      await writeSong(song, { outputFile, soundfont: values.soundfont, gain });
       break;
     }
     default: {
@@ -74,9 +80,9 @@ function readSong(file: string, loops: number): Song | undefined {
 
 async function writeSong(
   song: Song,
-  options: { outputFile: string; soundfont: string },
+  options: { outputFile: string; soundfont: string; gain: number },
 ) {
-  const { outputFile, soundfont } = options;
+  const { outputFile, soundfont, gain } = options;
   switch (path.extname(outputFile)) {
     case ".json": {
       fs.writeFileSync(outputFile, JSON.stringify(song, null, 2));
@@ -91,7 +97,7 @@ async function writeSong(
       const midiFile = path.join(dir, "song.mid");
       try {
         fs.writeFileSync(midiFile, exportMidi(song));
-        await renderWav({ midiFile, outputFile, soundfont });
+        await renderWav({ midiFile, outputFile, soundfont, gain });
       } finally {
         fs.rmSync(dir, { recursive: true });
       }
