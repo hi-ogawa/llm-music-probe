@@ -8,4 +8,5 @@ Notes and experiments on how much musical intuition a general LLM has in its tex
 - [docs/tool-plan.md](docs/tool-plan.md): plan for our own score-to-sound tool
 - [docs/toy-midi-playback.md](docs/toy-midi-playback.md): what toy-midi needs to play our MIDI output
 - [docs/directions.md](docs/directions.md): open research directions and the probe ideas that serve them
+- [docs/industry-landscape.md](docs/industry-landscape.md): how the music industry uses AI as of October 2026, with sources
 - [experiments/](experiments/): one directory per experiment, each with its own README
