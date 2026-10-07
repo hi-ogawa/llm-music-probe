@@ -90,7 +90,7 @@ One mismatch between stated intent and notes: Lantern Waltz says "the oboe a thi
 
 - "Harmony, melody, form, and instrumentation ideas are encoded in the text vocabulary" is strengthened, with concrete idioms across six styles.
 - "An encodable text medium for musical intuition exists" and "end-to-end audio is not needed to present musical ideas" are supported.
-- The format caps voicing, extended tension, and groove, so this example cannot show whether those layers have a medium. That is what P1 to P3 in the probe plan open up: explicit voicings, extended chords, and per-note timing.
+- The format caps voicing, extended tension, and groove, so this example cannot show whether those layers have a medium. The depth probes in [directions.md](../../docs/directions.md) open them up: explicit voicings, extended chords, and per-note timing.
 
 ## Files
 
