@@ -43,6 +43,19 @@ What the format leaves out, which caps what this example can show:
 
 The model designed this format itself, and it chose to stay close to existing notation. That choice is evidence too: the model knows which textual encoding its musical vocabulary lives in. The composing prompt on the page was written after the tracks, so it did not prime them.
 
+## Playback
+
+Read from the page source on 2026-10-08. There is no soundfont and there are no samples. Every sound is a recipe written with Web Audio nodes:
+
+- **Harmonic tables** (`createPeriodicWave`) for organ, pipe organ, clarinet, oboe, bassoon, and horn
+- **Karplus-Strong plucked strings**, a noise burst fed through a decaying delay line, for harp, guitar, banjo, harpsichord, pizzicato, and upright bass
+- **Decaying sine partials** for steel drum, marimba, and bells. The steel drum adds slightly detuned overtones and a noise click for the strike.
+- **Filtered noise and pitched oscillators** for drums. Cymbals use six square waves at inharmonic ratios, a TR-808-style recipe.
+
+Slides are real pitch glides, some instruments get vibrato from a delayed LFO, and `bright`, `att`, and `rel` shape each recipe's filter and envelope. Swing delays every other step. The mix runs through low and high shelf EQ, a compressor, and a limiter, with a convolver reverb on a generated impulse response and a send level per voice. The page plays live and can also render offline with `OfflineAudioContext`, which is how the model checked levels without listening.
+
+Compared with General MIDI through `fluidsynth`, as our tool renders it: Scrimshaw has real per-note slides and timbre parameters tuned to each instrument, which General MIDI has no standard equivalent for, so our tool ignores `bright`, `att`, and `rel`. A soundfont gives far more realistic instruments than these recipes.
+
 ## Vocabulary the model wrote
 
 Read from the scores. These are named idioms, each placed where it belongs.
