@@ -59,6 +59,7 @@ Follow-up: the scores, the format, and the shared conversation are broken down i
 | Artistic music will stay end-to-end | Refuted for presenting ideas | Aesthetic music produced symbolically. Production quality such as timbre and vocals is a separate question |
 | Depth and breadth will follow from training | Working assumption | Track record in other domains, with the taste-signal caveat |
 | Voicing, groove, and timbre each have an encodable medium | Open | [directions.md](directions.md) |
+| The intuition holds beyond genres with a strong symbolic tradition | Open | [directions.md](directions.md), genre breadth |
 
 ## Sources from the discussion
 
