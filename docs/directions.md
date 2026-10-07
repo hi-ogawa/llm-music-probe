@@ -50,12 +50,12 @@ Decision models are a new class of model that cannot generate. They take a state
 - **Jev** from TypeSafe AI, released 2026-09-15 and API only, with a 32k context and reported latency of roughly 150 to 500 ms
 - **Clef** and **Clef-flash** from Cloudflare, released 2026-10-01 with open weights under Apache 2.0, a 64k context, and median latency of 209 ms and 39 ms. They come with an RL fine-tuning service.
 
-Neither has published anything on music, so these are untested ideas. Each needs the state, questions, and options designed well, which is part of the experiment:
+The motivation is real-time interaction. A decision fast enough fits inside the music: at 120 bpm a beat is 500 ms and a bar is 2 s, so Clef-flash could decide every beat and Jev every bar, while a generating model is far too slow for that loop. That suggests a split:
 
-- **A judge for fan-out.** Score variants from a generating model, for example "Does the bass lock with the kick?" on a scale of 1 to 4. Whether a decision model has any musical judgment is itself the question.
-- **Live arrangement.** A generating model writes a vocabulary of patterns and fills ahead of time, and a fast model picks the next one each bar from the recent bars as state. This fits the beat-making practice companion, which could react to the player.
-- **Encoding probes at scale.** The discrimination probes from the original discussion, such as which of two voicings is muddier, map directly onto choice questions with probabilities. Calibrated probabilities show how sure the model is, not only what it picks.
-- **A taste checker.** Fine-tuning a decision model on one listener's ratings could give the "checker for taste" that the original discussion said music lacks. This is the most speculative idea.
+- A generating model prepares the musical vocabulary ahead of time: patterns, fills, variations, and section changes, written in the score format.
+- A decision model picks among them live, with the recent bars and the player's input as state, for example "keep the groove, add a fill, or move to the next section?"
+
+This fits the beat-making practice companion, which could then react to the player instead of looping. Neither model has published anything on music, so whether their choices make musical sense is untested. Designing the state, the questions, and the options is the experiment. Other uses, such as judging fan-out variants or running discrimination probes at scale, are possible but secondary.
 
 ## Generality across media
 
