@@ -169,6 +169,8 @@ By ear (Hiroshi), after listening to all renders:
 - Vaguer melodic material sounds reasonable: piano figures, ambient textures, the chorale, and arpeggiated lines.
 - The cause is hard to tell. It may be the notes, the default sounds, or the missing performance techniques a DAW user would apply to a line, such as shaping volume across a phrase.
 
+This judgment was made on renders with a renderer flaw: loud voices, mostly lead and bass lines, played at a flat velocity of 127 with their accents clipped. The sweep was re-rendered with the fix, and [05-phrasing-pass](../05-phrasing-pass/README.md) describes it. The judgment of melodic lines may change on the new renders.
+
 Expectations stated alongside the judgment, not yet tested:
 
 - The convincing layers would get better programmed in a real DAW with better samples and sounds, because their weakness is the General MIDI rendering, not the writing.
