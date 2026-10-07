@@ -17,6 +17,16 @@ Probe ideas:
 - **Instrument idiom.** Bass tab, through the toy-midi JSON format (`../toy-midi`): do the model's string and fret choices make sense for playability and hand position?
 - **Timbre and orchestration.** The same passage orchestrated for different scenes, with synth parameters available. The signal is whether parameters follow the intent rather than staying at defaults.
 
+## Genre breadth
+
+Scrimshaw's six tracks are in the friendliest genres for a symbolic medium: retro game music, folk jig, and waltz. They were written as notes in the first place, and many symbolic transcriptions exist. Does the intuition hold in genres whose vocabulary lives mostly in recordings rather than in written notation? Simon's follow-up dance track, Starlight Armada, is one data point outside game music, but it is formulaic and has not been judged by ear.
+
+Probe ideas:
+
+- **K-pop bass line from a chord chart.** A genre the judge knows well as a bassist, so the result can be judged in seconds.
+- **Neo-soul or R&B keys and bass.** Dense voicings and a groove that is rarely notated.
+- **Production-led genres such as hip-hop or modern pop.** Much of the idea is in the beat and the sound, so this also tests where a text medium runs out.
+
 ## Generality across media
 
 Does the pattern hold beyond visuals and music? Choreography, lighting cues, sound design, and game level design all have or could have text notations. If intuition carries into each of them, that says something about language itself, which is the original interest.
