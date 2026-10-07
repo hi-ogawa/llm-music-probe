@@ -115,7 +115,7 @@ Every subagent gets the same material:
 1. Add the missing instruments to the tool.
 2. Write the format reference in `docs/score-format.md`, so later experiments can reuse it.
 3. Spawn one subagent per cell, each writing `<cell>-<slug>.scrim` in this directory. With 44 cells, run them in batches.
-4. Render every score to `.tmp/04-width-sweep/`, looping short pieces to roughly a minute of audio.
+4. Render every score to `.tmp/04-range-sweep/`, looping short pieces to roughly a minute of audio.
 5. Hiroshi listens, ideally without knowing which run produced which file for o01 to o03, or which depth produced which file in each ladder.
 
 ## Judgment
