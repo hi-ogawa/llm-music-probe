@@ -20,7 +20,7 @@ Text score → note events → MIDI file → WAV.
 
 1. **Parse.** Read settings, voices, patterns, and the arrangement. Report errors with line numbers, especially bars whose step count is wrong.
 2. **Expand.** Resolve shorthand into plain events: `from`, `mute`, `%`, `_`, `=`, `*n`, `+n`, chord names, and per-pattern settings. Play the `play` section once, then the `loop` section a configurable number of times.
-3. **Events.** Each note event has voice, start time in seconds, duration in seconds, MIDI pitch, and velocity. Start and duration are also kept in steps, so musical position stays inspectable.
+3. **Events.** Each note event has voice, start and duration in beats, MIDI pitch, and a dynamic level. Tempo and meter changes are kept as separate lists in beats, so the bar grid survives into MIDI. Velocity is decided at MIDI export.
 4. **MIDI.** One track and channel per voice, with a General MIDI program from an instrument map. Drum voices go to channel 10 with General MIDI percussion note numbers. Tempo is written as tempo events.
 5. **Render.** Run `fluidsynth` on the MIDI file to produce a WAV.
 
@@ -61,8 +61,11 @@ The six Scrimshaw tracks are the test fixtures, so the first milestone covers wh
 2. MIDI export, checked by opening a track in a DAW or toy-midi
 3. WAV render through `fluidsynth`, checked by ear on all six tracks
 
-## Open decisions
+## Decisions made in the first version
 
-- The velocity curve for `!` and `?`, and the base velocity
-- The chord voicing rule for chord names. It only matters for scores that use names, because explicit stacks bypass it.
-- How many times to play the loop when rendering
+- Velocity is 90 at level 0, plus 18 per `!` and minus 18 per `?`, scaled by `vol` relative to its default of 0.8, and clamped to 1 to 127. Drum `o`, `x`, and `X` are levels -2, 0, and 2.
+- Chord names are voiced in close position, with each tone placed from 6 semitones below `center` to 5 above, and a slash bass below the lowest tone.
+- The loop plays once by default, and `--loops` changes it.
+- Drum voices share MIDI channel 10, so they have no pan of their own.
+- `thunder` and `surf` play General MIDI Seashore, held for 8 beats, because General MIDI has no thunder or surf.
+- fluidsynth renders at gain 0.5, which peaks between about 0.4 and 0.7 on the six Scrimshaw tracks.
