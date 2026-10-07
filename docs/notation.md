@@ -52,7 +52,7 @@ An abstract symbol delegates the decision to the renderer. `[Dm]` says "D minor 
 
 ### Make time visible and alignable
 
-Writing duration as token length on a step grid makes rhythm countable and lets parts line up bar by bar, like a tracker or drum tab. The cost is counting errors, which were Scrimshaw's most common failure. That cost belongs to execution, so a validator in the loop handles it. It does not limit what ideas can be expressed.
+Writing duration as token length on a step grid makes rhythm countable and lets parts line up bar by bar, like a tracker or drum tab. The cost is counting errors. Scrimshaw's composing prompt, written by the model, warns that a miscounted bar is "the most common mistake", but the transcript shows no such error in the final tracks. That cost belongs to execution, so a validator in the loop handles it. It does not limit what ideas can be expressed.
 
 ### Express feel in words a musician would use, with numbers available
 
