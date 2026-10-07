@@ -1,6 +1,9 @@
-import { Midi } from "@tonejs/midi";
+// @tonejs/midi is CommonJS, so Node can only import it as a default export
+import tonejsMidi from "@tonejs/midi";
 import type { Song } from "../score/expand.ts";
 import { GENERAL_MIDI_SOUNDS } from "./general-midi.ts";
+
+const { Midi } = tonejsMidi;
 
 const PERCUSSION_CHANNEL = 9;
 
