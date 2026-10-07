@@ -61,7 +61,7 @@ Loops with drums, bass, and one or two harmony parts.
 | ---- | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | e01  | Solo piano, about 16 bars                                    | Melody and accompaniment in one instrument, no bass player |
 | e02  | Soul or Motown band: drums, bass, guitar, keys, horn section | Interlocking parts and horn arranging                      |
-| e03  | String quartet                                               | Counterpoint, voice leading, and string writing            |
+| e03  | String quartet                                               | Not run: same brief as d04, see d04s, d04, d04d            |
 | e04  | Big band shout chorus                                        | Section writing for saxes, trumpets, and trombones         |
 | e05  | Four-part chorale for choir                                  | Voice leading under classical rules                        |
 
