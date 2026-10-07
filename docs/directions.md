@@ -39,6 +39,10 @@ Steps, in order:
 2. **Sample choice by label.** Let the model pick samples from a labeled library instead of fixed names. It never hears them and chooses by description, the same way Scrimshaw turned "the villain's ship" into pipe organ and choir. This tests whether text can carry sound choice, and the choices can only be as good as the labels.
 3. **Feel.** Add per-note timing offsets and velocities, so "laid back" and "pushed" become writable. This is the groove probe under Depth.
 
+## Fan-out
+
+Do subagents that fan out composition ideas improve quality or the range of choices? Much of the gain may just be sampling variance, which shrinks as models improve, so this is one angle rather than a main direction. Fan-out mostly buys exploration: picking the best variant needs a judge, and taste has no automatic checker, so in practice the judge is the human ear, for example four grooves generated and one picked. A second form splits the work by role, such as a bass agent and a drums agent, which ComposerX tried with symbolic critics.
+
 ## Generality across media
 
 Does the pattern hold beyond visuals and music? Choreography, lighting cues, sound design, and game level design all have or could have text notations. If intuition carries into each of them, that says something about language itself, which is the original interest.
