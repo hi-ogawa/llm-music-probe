@@ -12,10 +12,14 @@ const HELP = `\
 Usage:
   llm-music-probe check <score...>
       Report problems in each score, and exit non-zero if there are any
-  llm-music-probe render <score> <output> [--loops <n>] [--gain <g>] [--soundfont <file>]
+  llm-music-probe render <score> <output> [--loops <n>] [--phrase <voices>]
+                         [--solo <voices>] [--gain <g>] [--soundfont <file>]
       Render a score. The output extension picks the format:
       .json for note events, .mid for MIDI, .wav for audio through fluidsynth.
       --loops sets how many times the loop section plays (default 1).
+      --phrase plays the listed voices, comma-separated, through the phrasing
+      pass, which shapes velocity, length, and expression without changing notes.
+      --solo keeps only the listed voices, comma-separated.
       --gain sets the fluidsynth output gain for .wav (default ${DEFAULT_GAIN})`;
 
 async function main() {
@@ -23,6 +27,8 @@ async function main() {
     allowPositionals: true,
     options: {
       loops: { type: "string", default: "1" },
+      phrase: { type: "string" },
+      solo: { type: "string" },
       gain: { type: "string", default: String(DEFAULT_GAIN) },
       soundfont: { type: "string", default: DEFAULT_SOUNDFONT },
       help: { type: "boolean", short: "h" },
@@ -49,16 +55,24 @@ async function main() {
       if (!Number.isInteger(loops) || loops < 0) {
         throw new Error("--loops must be a whole number from 0");
       }
-      const song = readSong(scoreFile, loops);
-      if (!song) {
+      const read = readSong(scoreFile, loops);
+      if (!read) {
         process.exitCode = 1;
         break;
       }
+      const phrase = readVoiceList(read, values.phrase);
+      const solo = readVoiceList(read, values.solo);
+      const song = solo ? soloVoices(read, solo) : read;
       const gain = Number(values.gain);
       if (!(gain > 0)) {
         throw new Error("--gain must be a positive number");
       }
-      await writeSong(song, { outputFile, soundfont: values.soundfont, gain });
+      await writeSong(song, {
+        outputFile,
+        soundfont: values.soundfont,
+        gain,
+        phrase,
+      });
       break;
     }
     default: {
@@ -78,25 +92,52 @@ function readSong(file: string, loops: number): Song | undefined {
   return diagnostics.length === 0 ? expanded.song : undefined;
 }
 
+/** Split a comma-separated list of voice names, checking that the song declares each */
+function readVoiceList(song: Song, text: string | undefined) {
+  if (text === undefined) {
+    return undefined;
+  }
+  const names = text.split(",");
+  for (const name of names) {
+    if (!song.voices.some((voice) => voice.name === name)) {
+      throw new Error(`unknown voice "${name}"`);
+    }
+  }
+  return names;
+}
+
+function soloVoices(song: Song, names: string[]): Song {
+  return {
+    ...song,
+    voices: song.voices.filter((voice) => names.includes(voice.name)),
+    notes: song.notes.filter((note) => names.includes(note.voice)),
+  };
+}
+
 async function writeSong(
   song: Song,
-  options: { outputFile: string; soundfont: string; gain: number },
+  options: {
+    outputFile: string;
+    soundfont: string;
+    gain: number;
+    phrase?: string[];
+  },
 ) {
-  const { outputFile, soundfont, gain } = options;
+  const { outputFile, soundfont, gain, phrase } = options;
   switch (path.extname(outputFile)) {
     case ".json": {
       fs.writeFileSync(outputFile, JSON.stringify(song, null, 2));
       break;
     }
     case ".mid": {
-      fs.writeFileSync(outputFile, exportMidi(song));
+      fs.writeFileSync(outputFile, exportMidi(song, { phrase }));
       break;
     }
     case ".wav": {
       const dir = fs.mkdtempSync(path.join(os.tmpdir(), "llm-music-probe-"));
       const midiFile = path.join(dir, "song.mid");
       try {
-        fs.writeFileSync(midiFile, exportMidi(song));
+        fs.writeFileSync(midiFile, exportMidi(song, { phrase }));
         await renderWav({ midiFile, outputFile, soundfont, gain });
       } finally {
         fs.rmSync(dir, { recursive: true });
