@@ -4,6 +4,10 @@ What makes musical intent encodable, and presentable by an LLM through a medium.
 
 The central hypothesis is that exact syntax matters little, because a capable model can learn and use any reasonable format, and that what matters is whether the medium has room for an idea. If it does not, a probe can fail because the idea could not get out, not because it was missing.
 
+A renderer default is where room is lost most easily, as with chord names voiced by Scrimshaw's renderer. So every decision that can carry intent should be writable explicitly, with defaults applying only where the score says nothing. An explicit value is then deliberate by definition, and no separate "do not change this" mark is needed.
+
+Whether intent survives translation between notations is a question about the model rather than the notation, so it lives in [directions.md](directions.md) as "Robustness across notations".
+
 ## Scrimshaw's capabilities
 
 What the format can write, from its spec ([composing prompt](../experiments/01-scrimshaw-breakdown/source/composing-prompt.md)), classified by the room test:
@@ -67,14 +71,5 @@ These looked like principles at first, but they fail as independent principles. 
 - **Express feel in words a musician would use, with numbers available.** Room for feel is real, and it is the Coarse and Missing rows for swing, dynamics, and timing. Preferring named marks such as "laid back" over numbers is a syntax claim with no support.
 - **Keep the intent next to the notes.** The Intent row covers this. The original argument was that a human can review the what and the why together, which is the human-facing angle, not whether the model can present an idea.
 - **Allow instrument-specific detail.** Tab, bowing, and pedaling are the room test applied to instrument idiom, and the Missing rows cover them.
-
-## Open questions
-
-- Should the model write in passes, from a chart to a realization, the way musicians often do, or in one notation that mixes levels?
-  - Working hypothesis: writing order does not matter. A capable agent drafts, edits surgically, and rewrites with scripts, the same way it iterates on one large HTML file for an image or animation. Simon's transcript shows the same pattern: tracks written, checked, then edited in place. The order of writing is a workflow detail, not a property of the medium.
-- One notation with optional layers, or separate notations per layer (a chart, a part, an expression track) that refer to each other?
-  - Working hypothesis: it does not matter for presenting ideas. Splitting into layers or files adds no room for any idea, because the same content fits in one notation, and an agent works across several files as easily as one. Like writing order, it is a workflow detail.
-- How much should a renderer decide by default, and how should a score say "this part is deliberate, do not change it"?
-  - Working hypothesis: a renderer default is exactly where room is lost, as with chord names voiced by Scrimshaw's renderer. Every decision that can carry intent should be writable explicitly, and defaults should apply only where the score says nothing. An explicit value is then deliberate by definition, so no separate mark is needed.
-- Does intent survive translation between notations? If the same idea comes out well in several notations, the intuition sits above any one of them.
-  - Moved: this asks about the model rather than the notation, and it is now the "Robustness across notations" direction in [directions.md](directions.md).
+- **Write in passes, from a chart to a realization, the way musicians often do.** Writing order does not matter. A capable agent drafts, edits surgically, and rewrites with scripts, the same way it iterates on one large HTML file for an image or animation. Simon's transcript shows the same pattern: tracks written, checked, then edited in place. The order of writing is a workflow detail, not a property of the medium.
+- **Split the notation into separate layers that refer to each other, such as a chart, a part, and an expression track.** Splitting adds no room for any idea, because the same content fits in one notation, and an agent works across several files as easily as one. Like writing order, it is a workflow detail.
