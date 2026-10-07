@@ -1,0 +1,68 @@
+title    Lydian Tide
+composer Claude
+about    A slow ambient piece in D Lydian over a mostly held D pedal. Chords change every four bars and move by step, so the harmony drifts rather than progresses.
+tempo    56      # slow pulse, so a whole-bar chord lasts about 4.3 seconds
+beats    4
+steps    2       # 4/4 in eighths: 8 steps per bar is enough resolution for sparse motes
+
+# low: string ensemble holding open fifths at the bottom. It is the floor of the piece,
+#      restruck only when the root changes, so there is almost no rhythmic attack down here.
+voice low     strings  vol=0.6  pan=-0.2
+# pad: the main harmonic body. Five-note stacks written explicitly so that every chord
+#      change moves each inner voice by a step or holds it (smooth, cloud-like voice leading).
+voice pad     pad      vol=0.7
+# air: a single choir line high above the pad, entering late in each chord so the
+#      texture "breathes in" partway through each four-bar block.
+voice air     choir    vol=0.45 pan=0.25
+# motes: very sparse, quiet celesta tones placed off the downbeat, like light on water.
+#        They sit in the upper register and leave most bars empty, which creates the space.
+voice motes   celesta  vol=0.35 pan=0.45
+# harp: an occasional slow rolled chord that marks a harmony change without a hard attack.
+voice harp    harp     vol=0.4  pan=-0.45
+
+# Harmonic plan (D Lydian: D E F# G# A B C#), one chord per four bars:
+#   Dmaj9 -> E/D (the Lydian II over the pedal, carrying the raised 4th G#)
+#   -> Bm9 -> F#m11/A -> C#m7add11 -> E9sus4 -> back to Dmaj9.
+# The G# of E/D is the color tone of the mode. It is the only bright, lifting moment.
+
+# intro: just the open fifth, then the pad's bare D-A-E fades in. Establishes space first.
+pattern intro
+low   | D2+A2-------? | -------- | -------- | -------- |
+pad   | _ | _ | D3+A3+E4-------? | -------- |
+motes | _ | .--- A5---? | _ | .- E6---? .- |
+
+# A1: Dmaj9 to E/D over the D pedal. Pad voice leading: A3->B3, C#4->D4, E4 holds, F#4->G#4.
+pattern A1
+low   | D2+A2------- | -------- | -------- | -------- | D2+A2------- | -------- | -------- | -------- |
+pad   | D3+A3+C#4+E4+F#4------- | -------- | -------- | -------- | D3+B3+D4+E4+G#4------- | -------- | -------- | -------- |
+air   | _ | _ | F#5------- | -------- | _ | E5------- | -------- | -------- |
+motes | .--- C#6---? | _ | .- E6--- .- | _ | .--- B5---? | _ | .- G#5--- .- | _ |
+harp  | D3 A3 E4 F#4---- | _ | _ | _ | D3 B3 E4 G#4---- | _ | _ | _ |
+
+# A2: the bass finally leaves D. Bm9 then F#m11 over A. The pad moves only one note (D3->E3)
+#     across these eight bars, so the change is felt mostly through the bass.
+pattern A2
+low   | B1+F#2------- | -------- | -------- | -------- | A1+E2------- | -------- | -------- | -------- |
+pad   | D3+A3+B3+C#4+F#4------- | -------- | -------- | -------- | E3+A3+B3+C#4+F#4------- | -------- | -------- | -------- |
+air   | _ | _ | C#5------- | -------- | _ | B4------- | -------- | .------- |
+motes | .--- F#5---? | _ | .- C#6--- .- | _ | _ | .--- B5---? | _ | .- E6--- .- |
+harp  | B2 F#3 C#4 D4---- | _ | _ | _ | A2 E3 B3 C#4---- | _ | _ | _ |
+
+# B: the darkest point, C#m7add11, then E9sus4, which leans back toward D.
+#    Pad: C#3->D3 and G#3->A3, the other three notes hold. The choir rises G#4 A4 B4.
+pattern B
+low   | C#2+G#2------- | -------- | -------- | -------- | E2+B2------- | -------- | -------- | -------- |
+pad   | C#3+G#3+B3+E4+F#4------- | -------- | -------- | -------- | D3+A3+B3+E4+F#4------- | -------- | -------- | -------- |
+air   | G#4------- | -------- | -------- | .------- | A4------- | -------- | B4------- | -------- |
+motes | _ | .--- G#5---? | _ | .- E6--- .- | _ | .--- F#5---? | _ | .- B5--- .- |
+harp  | C#3 G#3 E4 B4---- | _ | _ | _ | E2 B2 F#3 A3---- | _ | _ | _ |
+
+# outro: Dmaj9 returns, then thins to the bare D-A-E of the intro and lets it ring out.
+pattern outro
+low   | D2+A2------- | -------- | -------- | -------- | D2+A2-------? | -------- | -------- | -------- |
+pad   | D3+A3+C#4+E4+F#4------- | -------- | -------- | -------- | D3+A3+E4-------? | -------- | -------- | -------- |
+air   | _ | _ | A4-------? | -------- | _ | _ | _ | _ |
+motes | _ | .--- A5---? | _ | _ | _ | .--- E6---?? | _ | _ |
+harp  | D3 A3 E4 F#4----? | _ | _ | _ | _ | _ | _ | _ |
+
+play intro A1 A2 B A1 outro

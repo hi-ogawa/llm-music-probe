@@ -1,0 +1,48 @@
+title    Seven Eighths Fusion
+composer Claude
+about    A 4-bar fusion loop in 7/8, phrased 2+2+3, over Dm11, Bbmaj13#11, Gm9 and an altered A7.
+
+# Tempo choice: "about 120 bpm" is read as quarter = 120, so the eighth-note
+# beat is 240. Seven eighth beats with 2 steps each gives 14 sixteenth steps
+# per bar, grouped 2+2+3 eighths = 4+4+6 steps (group starts at steps 0, 4, 8).
+tempo    240
+beats    7
+steps    2
+swing    0
+
+# Electric piano: main comping part with explicit rootless voicings, so the
+# extensions (9, 11, #11, 13, altered tones) are always on top.
+voice keys epiano vol=0.75 pan=-0.25
+# String pad: a soft two-note common-tone pedal (E5+A5) that is the 9/5 of Dm,
+# the #11/maj7 of Bb, and the 13/9 of Gm, then bends to F5+Bb5 (b13/b9) on A7alt.
+voice pad strings vol=0.35 pan=0.3
+# Fingered electric bass: roots on every group start, fills inside the 3-group.
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.55
+voice crash crash vol=0.6
+
+pattern A
+# Keys comp: stabs on steps 0, 4, 8 (the three group starts), plus one extra
+# stab at step 12 so the long 3-group is audibly longer than the 2-groups.
+# Bar 4 holds Gm9 through the two 2-groups, then lands A7alt (G C# F Bb C:
+# b7 3 b13 b9 #9) on the 3-group, which resolves by half steps into Dm11
+# (F C E G A) at the loop point.
+keys | F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4- .- F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4- | A3+D4+E4+G4-- . A3+D4+E4+G4- .- A3+D4+E4+G4-- . A3+D4+E4+G4- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5!----- |
+# Pad: tied common tones for three bars, moving only for the altered dominant.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: root on each group start (0, 4, 8), the 2-groups as root + fifth,
+# and the 3-group as root, b7, fifth for a rolling feel. Bar 4 puts A1 on
+# the 3-group with E2 G2 climbing back toward the D at the loop point.
+bass | D2-- . A2-? .- D2- C3? . A2- | Bb1-- . F2-? .- Bb1- A2? . F2- | G1-- . D2-? .- G1- F2? . D2- | G1-- . D2-? .- A1!--- E2? G2 |
+# Drums: kick on the first 2-group and the 3-group, snare backbeat on the
+# second 2-group. Inside the 3-group the kick hits step 11, splitting it 3+3
+# sixteenths so it never sounds like another 2-group. Hat accents sit exactly
+# on the 2+2+3 group starts.
+kick  | x... .... x..x.. | % | % | x... .... x..x.x |
+snare | ..o. X... ..o..o | % | % | ..o. X... XoxoXX |
+hat   | X.x. X.x. X.x.x. | % | % | X.x. X.x. X..... |
+crash | X... .... ...... | _ | _ | _ |
+
+loop A

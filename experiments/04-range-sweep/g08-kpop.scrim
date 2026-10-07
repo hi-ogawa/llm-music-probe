@@ -1,0 +1,50 @@
+title    Neon Loop
+composer Claude
+about    An 8-bar K-pop chorus loop on the four-chord vi-IV-I-V progression in C major (Am F C G), driven by an eighth-note synth bass and four-on-the-floor drums.
+tempo    120
+beats    4
+steps    4
+
+# Harmony plan: one chord per bar, Am | F | C | G, played twice.
+# The vi-IV-I-V order gives the bittersweet minor-start lift typical of K-pop choruses.
+
+# pad: sustained wash an octave above the bass. Voicings sit in G3..B4 and move
+# by step so the chords glide; upper extensions (9ths, maj7) over the bass root
+# give the glossy "Am9 / Fmaj9" colour without crowding the low end.
+voice pad   pad      vol=0.55 pan=-0.25
+# stab: bright saw chord stabs in a 3-3-4-3-3 syncopated rhythm, the rhythmic hook
+# of the chorus. Close triads in E4..C5, above the pad, panned opposite it.
+voice stab  saw      vol=0.5  pan=0.3  gate=0.7
+# bass: the driving synth bass. Straight eighths with octave pops and a 16th push
+# in the middle of each bar; short gate so each note punches. Roots stay A1..C2.
+voice bass  synbass  vol=1.0  gate=0.75
+# drums: four-on-the-floor kick, clap+snare backbeat, 16th closed hats with
+# ghosted steps, open hat on every offbeat eighth for the dance-pop pulse.
+voice kick  kick     vol=1.1
+voice clap  clap     vol=0.8
+voice snare snare    vol=0.55
+voice hat   hat      vol=0.45
+voice ohat  ohat     vol=0.4
+voice crash crash    vol=0.6
+
+pattern chorus
+# Am9 (over A bass)         Fmaj9 (over F)           C                        Gsus4 -> G
+pad   | C4+E4+G4+B4--------------- | A3+C4+E4+G4--------------- | G3+C4+E4+G4--------------- | G3+C4+D4+G4------- G3+B3+D4+G4------- |
+pad   | C4+E4+G4+B4--------------- | A3+C4+E4+G4--------------- | G3+C4+E4+G4--------------- | G3+C4+D4+G4------- G3+B3+D4+G4------- |
+stab  | E4+A4+C5- . E4+A4+C5- . E4+A4+C5- .. E4+A4+C5- . E4+A4+C5- . | F4+A4+C5- . F4+A4+C5- . F4+A4+C5- .. F4+A4+C5- . F4+A4+C5- . | E4+G4+C5- . E4+G4+C5- . E4+G4+C5- .. E4+G4+C5- . E4+G4+C5- . | D4+G4+B4- . D4+G4+B4- . D4+G4+B4- .. D4+G4+B4- . D4+G4+B4- . |
+# second half: last stab of bar 8 climbs to D5 on top to pull back into the loop
+stab  | E4+A4+C5- . E4+A4+C5- . E4+A4+C5- .. E4+A4+C5- . E4+A4+C5- . | F4+A4+C5- . F4+A4+C5- . F4+A4+C5- .. F4+A4+C5- . F4+A4+C5- . | E4+G4+C5- . E4+G4+C5- . E4+G4+C5- .. E4+G4+C5- . E4+G4+C5- . | D4+G4+B4- . D4+G4+B4- . D4+G4+B4- .. G4+B4+D5- . G4+B4+D5-! . |
+# bass: root eighths, octave pop on beat 2-and, 16th push, and a fifth/approach at the end
+bass  | A1-! A1- A2- A1 A1 .- A1-! A2- E2- | F1-! F1- F2- F1 F1 .- F1-! F2- C2- | C2-! C2- C3- C2 C2 .- C2-! C3- G2- | G1-! G1- G2- G1 G1 .- G1-! G2- D2- |
+# bar 8 bass walks G-A-B up into the Am downbeat
+bass  | A1-! A1- A2- A1 A1 .- A1-! A2- E2- | F1-! F1- F2- F1 F1 .- F1-! F2- C2- | C2-! C2- C3- C2 C2 .- C2-! C3- G2- | G1-! G1- G2- G1 G1 .- G1-! A1- B1- |
+kick  | X... x... X... x... | % | % | % | % | % | % | X... x... X... x.x. |
+clap  | .... X... .... X... | % | % | % | % | % | % | % |
+# snare doubles the clap, then a short roll in bar 8 as the turnaround fill
+snare | .... x... .... x... | % | % | % | % | % | % | .... x... ..x. xXxX |
+hat   | xo.o xo.o xo.o xo.o | % | % | % | % | % | % | % |
+ohat  | ..x. ..x. ..x. ..x. | % | % | % | % | % | % | % |
+# crash marks the top of each four-bar phrase
+crash | X... .... .... .... | _ | _ | _ | X... .... .... .... | _ | _ | _ |
+
+loop chorus

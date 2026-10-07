@@ -1,0 +1,75 @@
+title    Late Lamp
+composer Claude
+about    Ballad comping in F over an 8-bar standard-style progression, played twice with a short tag. Rootless piano voicings move by half and whole steps from chord to chord.
+
+# Ballad tempo. Four beats in triplet steps, so every bar has 12 steps and the swung
+# "and" of each beat is the third triplet: beats fall on steps 0, 3, 6, 9 and the
+# swung offbeats on steps 2, 5, 8, 11. Triplet steps swing the eighths for real,
+# which a sixteenth-note swing setting would not do.
+tempo    58
+beats    4
+steps    3
+
+# Progression (two bars per line of thought, like the A section of a standard):
+# | Fmaj9 | Em7b5 A7alt | Dm9 G13 | Cm9 F13 | Bbmaj9 | Bbm9 Eb13 | Am9 D7b9 | Gm9 C7alt |
+# I, then a ii-V into vi, a ii-V into IV via a ii-V of IV (Cm9 F13), the IV to iv
+# "backdoor" minor color (Bbm9 Eb13), then iii-VI-ii-V back home.
+
+# Piano is the comping voice and the focus. Every voicing before the tag is a four-note rootless
+# stack between D3 and G4, so it sits above the bass and does not muddy the low end.
+# Voicings are picked for voice leading: from chord to chord at most one or two
+# inner notes move, mostly by half step (for example Bbm9 to Eb13 changes only Ab to G).
+voice keys piano vol=0.85 pan=-0.15
+# Upright bass supplies the roots the piano leaves out. Two-feel in the first pass,
+# then quarter-note walking with chromatic approaches in the second pass.
+voice bass upright vol=0.8 pan=0.1
+# Light drums as a stand-in for brushes: a quiet ride and hi-hat foot on 2 and 4.
+voice ride ride vol=0.3
+voice hat hat vol=0.28
+
+# First pass: sparse comping. Chords mostly land on beat 1 or anticipate the next
+# chord on the swung "and" (steps 5 or 11) and ring, leaving room around them like a
+# pianist accompanying a singer. The top voice stays between C4 and E4 and moves by
+# step, a slow inner line instead of a melody that would compete with a soloist.
+pattern A
+# Bars 1-4: Fmaj9 (7 9 3 5), anticipating Em7b5 on the "and" of 4. Em7b5 tied over,
+# then A7 with b13 and b9 (G Bb C# F) pushed onto the "and" of 2. Dm9 then G13
+# (F A B E): only C moves to B. Cm9 to F13: only Bb moves to A. Bbmaj9 is
+# anticipated on the "and" of 4 and ties into bar 5.
+keys | E3+G3+A3+C4-------- .- E3+G3+Bb3+D4 | ---- . F3+G3+Bb3+C#4------ | F3+A3+C4+E4---- F3+A3+B3+E4------ | Eb3+G3+Bb3+D4---- . Eb3+G3+A3+D4--- . D3+F3+A3+C4 |
+# Bars 5-8: Bbmaj9 rings, then F moves to G on beat 4 for a 6/9 color. Bbm9 to Eb13:
+# Ab to G only. Am9 then D7b9 (F# A C Eb) on the "and" of 2. Gm9 then C7 with b9 and
+# b13, which resolves down by half steps into the Fmaj9 that starts the next pass.
+keys | -------- . D3+G3+A3+C4-- | Db3+F3+Ab3+C4---- . Db3+F3+G3+C4----- | E3+G3+B3+C4---- F#3+A3+C4+Eb4------ | F3+A3+Bb3+D4---- . E3+Ab3+Bb3+Db4----- |
+bass | F2----- C2----- | E2----- A1----- | D2----- G1----- | C2----- F2----- |
+bass | Bb1----- D2----- | Bb1----- Eb2----- | A1----- D2----- | G1----- C2----- |
+ride | x.. o.o x.. o.o | % | % | % | % | % | % | % |
+hat  | ... x.. ... x.. | % | % | % | % | % | % | % |
+
+# Second pass: a little more motion. The piano moves up to A-form voicings at the top
+# (Fmaj9 as A C E G), adds soft repeated hits (marked ?) on offbeats, and swaps some
+# dominants for altered versions (G7 with b9 b13, F7 with b9 b13) for more tension
+# before each resolution. The bass walks quarter notes on beats 3 and 4 with
+# chromatic approach notes into the next root.
+pattern B
+# Bars 1-4: Fmaj9 high, soft echo on the "and" of 3, Em7b5 anticipated. A7alt on the
+# "and" of 2. Dm9 to G7alt (F Ab B Eb): no note moves more than a whole step.
+# Cm9 to F7alt (Eb Gb A Db) on the "and" of 2.
+keys | A3+C4+E4+G4----- .- A3+C4+E4+G4?-- G3+Bb3+D4+E4 | ---- . G3+Bb3+C#4+F4------ | F3+A3+C4+E4----- F3+Ab3+B3+Eb4---- . | Eb3+G3+Bb3+D4---- Eb3+Gb3+A3+Db4----- . |
+# Bars 5-8: Bbmaj9 then a quartal Bb6/9 (D G C F) on the "and" of 3. Bbm9 in a higher
+# position with a soft echo, Eb13 on beat 3, and Am9 anticipated on the "and" of 4
+# and tied. D7b9 on beat 3. Last bar: Gm9, C13, then C7alt as a soft pickup into the tag.
+keys | D3+F3+A3+C4----- .- D3+G3+C4+F4--- | Ab3+C4+Db4+F4---- Ab3+C4+Db4+F4? G3+C4+Db4+F4---- G3+B3+C4+E4 | ------ F#3+A3+C4+Eb4----- | F3+A3+Bb3+D4----- E3+A3+Bb3+D4-- E3+Ab3+Bb3+Db4?-- |
+bass | F2----- G2-- F2-- | E2----- A1-- C#2-- | D2----- G1-- Db2-- | C2----- F2-- B1-- |
+bass | Bb1----- D2-- C2-- | Bb1----- Eb2-- Bb1-- | A1----- D2-- Ab1-- | G1----- C2-- Gb1-- |
+ride | x.. x.x x.. x.x | % | % | % | % | % | % | % |
+hat  | ... x.. ... x.. | % | % | % | % | % | % | % |
+
+# Tag: one held Fmaj9#11 (A C E G B over a low F) left to ring, with a single soft
+# ride note, so the piece ends on an open, unresolved-sounding lydian color.
+pattern tag
+keys | A3+C4+E4+G4+B4----------- | = |
+bass | F1----------- | = |
+ride | o.. ... ... ... | _ |
+
+play A B tag

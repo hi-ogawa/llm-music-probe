@@ -1,0 +1,55 @@
+title    Small Quartet in G Minor
+composer Claude
+about    A 16-bar slow minuet-like piece for string quartet in G minor, two 8-bar phrases, the second rising to a climax and closing on a G major chord (Picardy third).
+tempo    80      # quarter = 80, an unhurried 3/4
+beats    3       # 3/4
+steps    2       # counted in eighths, 6 steps per bar
+
+# Seating: violins on the left, viola and cello on the right, like a concert quartet.
+# Levels: the first violin carries the tune, so the inner voices sit a little lower.
+voice vln1  violin vol=0.85 pan=-0.5
+voice vln2  violin vol=0.65 pan=-0.2
+voice vla   viola  vol=0.6  pan=0.25
+voice vc    cello  vol=0.8  pan=0.5
+
+# Harmonic plan
+#   Phrase A (bars 1-8):  Gm | Cm/Eb | D7/F# | Gm | Eb | Cm | Gm/D -> D | D        (half cadence)
+#   Phrase B (bars 9-16): Gm | Cm | Eb | Am7b5/C | Gm/D | D7 | Gm (4-3 suspension) | G major
+#
+# vln1: the melody. Phrase A climbs from D5 to C6 and sinks back to F#5 on the half cadence.
+#       Phrase B starts a sixth higher and rises step by step (D6, Eb6, G6) to the peak in bar 11,
+#       then descends to a C6 suspension that resolves to Bb5 and finally to B natural (Picardy third).
+# vln2: harmonic support. Sustained chord tones in bars 1-4, then shadows vln1 in parallel sixths
+#       and thirds so the tune sounds doubled in harmony without competing rhythmically.
+# vla:  the motor. Steady broken-chord eighths that keep the slow tempo moving and fill the middle
+#       register; it relaxes to longer notes at each cadence (bars 8, 15, 16).
+# vc:   the foundation. One bass note per bar in phrase A (with inversions for a smooth stepwise bass:
+#       G-Eb-F#-G), a walking-up pickup into phrase B, then a rising bass C-D-Eb under the climax
+#       and a drop to low D2 for the dominant before the final cadence.
+# All parts stay in comfortable ranges: vln1 D5-G6, vln2 A4-C6, viola F#3-F#4, cello D2-Eb3.
+
+pattern A
+# bars 1-4: statement, quiet
+vln1 | D5--? G5 A5 Bb5     | C6--- Bb5 A5        | A5--- G5 F#5        | G5-----             |
+vln2 | Bb4--? D5--         | Eb5-- G5--          | C5-- D5--           | Bb4-----            |
+vla  | G3? D4 Bb3 D4 Bb3 D4 | G3 C4 Eb4 C4 Eb4 C4 | A3 C4 D4 C4 D4 A3  | G3 Bb3 D4 Bb3 D4 Bb3 |
+vc   | G2-----?            | Eb2-----            | F#2-----            | G2-----             |
+# bars 5-8: answer in parallel sixths, ending on the dominant
+vln1 | G5-- Bb5- Eb6       | Eb6--- D6 C6        | Bb5- A5- G5-        | F#5-----            |
+vln2 | Bb4-- Eb5- G5       | G5--- F5 Eb5        | D5- C5- Bb4-        | A4-----             |
+vla  | G3 Bb3 Eb4 Bb3 Eb4 Bb3 | G3 C4 Eb4 C4 Eb4 C4 | G3 Bb3 D4 F#3 A3 D4 | F#3--- A3-        |
+vc   | Eb2-----            | C2-----             | D2-----             | D2- F#2- A2-        |
+
+pattern B
+# bars 9-12: second phrase, higher and louder, climbing to G6 in bar 11
+vln1 | D6-- C6- Bb5        | C6-- Eb6- D6        | Eb6--! G6-! F6      | Eb6--- D6 C6        |
+vln2 | Bb5-- A5- G5        | Eb5-- G5- F5        | G5-- Bb5- Ab5       | G5--- F5 Eb5        |
+vla  | Bb3 D4 G4 D4 G4 D4  | C4 Eb4 G4 Eb4 G4 Eb4 | Bb3 Eb4 G4 Eb4 G4 Eb4 | A3 C4 Eb4 C4 Eb4 C4 |
+vc   | G2-----             | C3--- D3-           | Eb3-----!           | C3-----             |
+# bars 13-16: cadential 6-4, dominant seventh, suspension, Picardy close
+vln1 | Bb5--- A5 G5        | F#5-- A5 C6-        | -- Bb5---           | B5-----?            |
+vln2 | D5--- C5 Bb4        | D5-- F#5 A5-        | -- G5---            | D5-----?            |
+vla  | Bb3 D4 G4 D4 G4 D4  | A3 C4 F#4 C4 F#4 A3 | D4-----             | G3-----?            |
+vc   | D3-----             | D2-----             | G2-----             | G2-----?            |
+
+play A B

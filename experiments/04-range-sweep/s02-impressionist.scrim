@@ -1,0 +1,54 @@
+title    Reflets sur l'eau lente
+composer Claude
+about    An impressionist piano miniature in D-flat. Pentatonic planing over a held tonic pedal, a chromatic slide of parallel ninth chords, a whole-tone haze over a dominant pedal, then a return that dissolves into a held 6/9 chord.
+tempo    56      # slow, so held sonorities have time to bloom
+beats    4
+steps    2       # 4/4 in eighths, 8 steps per bar
+
+# The piano is split into four voices for clarity. All are the same instrument.
+# bass:    low open fifths held for whole bars, standing in for the sustain pedal.
+# chords:  explicit middle-register stacks that move in parallel (planing), the harmonic color.
+# melody:  a sparse top line, mostly pentatonic or whole-tone, often doubling chord tops an octave up.
+# shimmer: very soft high dyads/triads that add overtone sparkle on weak beats.
+voice bass    piano vol=0.7  pan=-0.2
+voice chords  piano vol=0.5  pan=0
+voice melody  piano vol=0.8  pan=0.15
+voice shimmer piano vol=0.35 pan=0.3
+
+# A: D-flat pentatonic (Db Eb F Ab Bb) over a Db-Ab pedal.
+# Chords are add9 / quartal-flavored stacks that plane within the pentatonic set,
+# so there is no leading-tone pull, only color. Bar 3 tilts to Gbmaj7 (IV) for warmth.
+pattern A
+bass    | Db1+Ab1------- | = | Gb1+Db2------- | Db1+Ab1------- |
+chords  | Ab3+Db4+Eb4+F4--- Bb3+Eb4+F4+Ab4--- | Db4+F4+Ab4+Bb4--- Bb3+Eb4+F4+Ab4- Ab3+Db4+Eb4+F4- | Gb3+Bb3+Db4+F4------- | Ab3+Db4+Eb4+F4------- |
+melody  | .--- Ab5- Bb5- | Db6--- Bb5- Ab5- | F5----- Eb5- | Ab5------- |
+shimmer | _ | .----- Db7+Ab7-?? | _ | .--- Eb7+Bb7---?? |
+
+# B: Debussy-style parallel dominant ninths sliding down by semitones over a held Gb pedal.
+# Stacks are rootless ninth voicings (3, 5, b7, 9) of Gb9, F9, E9, Eb9; the Gb in the bass
+# makes the passing ones rub. The melody doubles the top of each stack an octave higher,
+# so the whole block moves as one parallel sonority. Bar 4 settles on a rootless Gbmaj9.
+pattern B
+bass    | Gb1+Db2------- | = | = | Gb1+Db2------- |
+chords  | Bb3+Db4+E4+Ab4--- A3+C4+Eb4+G4--- | Ab3+B3+D4+F#4--- G3+Bb3+Db4+F4--- | Ab3+B3+D4+F#4- A3+C4+Eb4+G4- Bb3+Db4+E4+Ab4--- | Bb3+Db4+F4+Ab4------- |
+melody  | Ab5--- G5--- | F#5--- F5--- | F#5- G5- Ab5--- | Bb5------- |
+shimmer | _ | _ | _ | .--- F7+Bb7---?? |
+
+# C: whole-tone haze (Ab Bb C D E F#) over a held Ab pedal, which is also the dominant of Db.
+# Four-note whole-tone stacks plane up and down by whole steps: tonally ambiguous, no
+# functional pull. Bar 4 leaves the whole-tone set for Ebm7 over Ab (Ab9sus), preparing the return.
+pattern C
+bass    | Ab1------- | = | = | Ab1+Eb2------- |
+chords  | Bb3+D4+F#4+C5--- C4+E4+Ab4+D5--- | D4+F#4+Bb4+E5--- C4+E4+Ab4+D5--- | Bb3+D4+F#4+C5- C4+E4+Ab4+D5- D4+F#4+Bb4+E5--- | Gb3+Bb3+Db4+Eb4------- |
+melody  | .--- E5- F#5- | Ab5--- F#5- E5- | D5- E5- F#5--- | Eb5------- |
+shimmer | _ | .--- Bb6+D7+F#7---?? | _ | _ |
+
+# Coda: Gbmaj7 to Db add9, then a long Db 6/9 chord held two bars over the tonic pedal,
+# letting the sonority ring like a fully depressed sustain pedal.
+pattern coda
+bass    | Db1+Ab1------- | = | = |
+chords  | Gb3+Bb3+Db4+F4--- Ab3+Db4+Eb4+F4--- | F3+Ab3+Bb3+Db4+Eb4------- | = |
+melody  | Eb6- Db6- Bb5- Ab5- | F5------- | = |
+shimmer | _ | .--- Db7+F7+Ab7---?? | _ |
+
+play A B C A coda

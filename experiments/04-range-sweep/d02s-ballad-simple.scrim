@@ -1,0 +1,39 @@
+title    Late Light
+composer Claude
+about    Eight bars of jazz ballad comping in Eb major. Sustained rootless voicings with smooth voice leading, over a two-feel upright and soft ride.
+tempo    60      # slow ballad, one beat per second
+beats    4
+steps    2       # eighth notes are the finest rhythm needed
+swing    0.3     # soft triplet lilt on the ride and the one anticipation
+
+# Progression (one chord per bar unless noted):
+# | Ebmaj9 | Cm9 | Fm9 | Bb13 | Abmaj9 | Gm9 C7b9 | Fm9 Bb13 | Eb6/9 |
+# A I-vi-ii-V into IV, then a ii-V to the ii, and ii-V home: standard-ballad harmony.
+
+# keys: the focus. Four-note rootless voicings (3rd/7th plus 9th/13th colors),
+# because the bass carries the roots. They sit between D3 and G4, the warm middle
+# of the piano, and each voice moves by step or common tone into the next chord.
+# Bars 6-7 descend by half steps in every voice (C7b9 -> Fm9 -> Bb13).
+# Rhythm is deliberately plain: chords on beat 1 (and 3 when the harmony changes)
+# held long, so the ballad breathes. The only push is the Abmaj9 anticipated on
+# the "and" of 4 in bar 4, which marks the arrival on the IV chord.
+voice keys piano vol=0.75 pan=-0.15
+
+# bass: half-note two-feel, root then fifth or a chromatic approach, so the
+# rootless voicings have a clear foundation without busy motion.
+voice bass upright vol=0.9 pan=0.1
+
+# drums: very soft ride time plus hi-hat foot on 2 and 4, just enough pulse
+# to hold the slow tempo together. No kick or snare to stay out of the way.
+voice ride ride vol=0.35
+voice hat hat vol=0.3
+
+pattern A
+keys | G3+Bb3+D4+F4------- | G3+Bb3+D4+Eb4------- | Ab3+C4+Eb4+G4------- | Ab3+C4+D4+G4----- . G3+Bb3+C4+Eb4 |
+keys | = | F3+A3+Bb3+D4--- E3+A3+Bb3+Db4--- | Eb3+G3+Ab3+C4--- D3+G3+Ab3+C4--- | G3+Bb3+C4+F4------- |
+bass | Eb2--- Bb1--- | C2--- G1--- | F1--- C2--- | Bb1--- A1--- |
+bass | Ab1--- Eb2--- | G1--- C2--- | F1--- Bb1--- | Eb2--- Bb1--- |
+ride | x.xx x.xx | % | % | % | % | % | % | % |
+hat  | ..x. ..x. | % | % | % | % | % | % | % |
+
+loop A

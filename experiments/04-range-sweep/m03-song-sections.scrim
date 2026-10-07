@@ -1,0 +1,135 @@
+title    Lanterns on the Water
+composer Claude
+about    A folk-pop song in D minor that opens into F major for the chorus, darkens into G minor for a half-time bridge, and returns lifted a whole step to G major before a quiet outro.
+tempo    88
+beats    4
+steps    4
+
+# Overall plan:
+# intro (4)  : nylon guitar alone in D minor, flute hints at the chorus hook.
+# verse (8)  : D minor, flute low and conversational, sparse kit (kick + rim + shaker).
+# chorus (8) : relative major F, flute jumps an octave up, piano takes over the rhythm, full kit.
+# bridge (8) : G minor, half time, cello takes the melody, flute becomes a high counterline,
+#              ends on D7 which pulls the song up a whole step.
+# lift (8)   : chorus again played +2 (G major) with cello countermelody and guitar back in.
+# outro (4) + ending (3, slower): intro figure in G (Em C G D), hook remembered softly, final G.
+
+voice flute   flute   vol=1.0  pan=0.05   # lead melody for the whole song
+voice cello   cello   vol=0.85 pan=-0.15  # bridge melody, then countermelody in the lift
+voice guitar  guitar  vol=0.6  pan=-0.35  # arpeggio bed for intro, verse, lift, outro
+voice piano   piano   vol=0.55 pan=0.2    # explicit stacks; rhythmic engine of the chorus
+voice strings strings vol=0.42 pan=0.3    # sustained pad, only where the song opens up
+voice bass    ebass   vol=0.75
+voice kick    kick    vol=0.7
+voice snare   snare   vol=0.6
+voice rim     rim     vol=0.45
+voice hat     hat     vol=0.4
+voice ride    ride    vol=0.4
+voice crash   crash   vol=0.5
+voice shaker  shaker  vol=0.35
+
+# INTRO: guitar arpeggiates i-VI-III-VII in D minor. Bars 3-4 the flute plays the
+# first notes of the chorus hook (C F A ... G) softly, so the chorus later feels like
+# a promise kept. Bar 4 is Csus4 resolving to C to lean into the verse.
+pattern intro
+guitar | D3- A3- D4- F4- A4- F4- D4- A3- | Bb2- F3- Bb3- D4- F4- D4- Bb3- F3- | F2- C3- F3- A3- C4- A3- F3- C3- | C3- G3- C4- F4- G4- E4- C4- G3- |
+flute  | _ | _ | .------- C5?- F5?- A5?--- | G5?------- .------- |
+shaker | _ | _ | x.x. x.x. x.x. x.x. | x.x. x.x. x.x. x.X. |
+
+# VERSE: flute stays in D4-D5, stepwise, starting after rests like speech.
+# Second half (bars 5-8) develops: the line climbs to D5, piano enters with soft
+# close stacks, and bar 8 turns C into C7 (Bb in guitar, piano and the flute pickup
+# A4 Bb4) so the verse points straight at F major.
+pattern verse
+flute  | .--- A4- A4- F4- E4- D4--- | .- D4- F4- Bb4--- A4- F4--- | .--- A4- A4- C5- A4- G4- F4- | E4----------- .--- |
+flute  | .--- A4- A4- F4- A4- D5--- | .- D5- C5- Bb4--- A4- F4--- | .- G4- Bb4- D5--- C5- Bb4- A4- | G4------- .--- A4- Bb4- |
+guitar | D3- A3- D4- F4- A4- F4- D4- A3- | Bb2- F3- Bb3- D4- F4- D4- Bb3- F3- | F2- C3- F3- A3- C4- A3- F3- C3- | C3- G3- C4- E4- G4- E4- C4- G3- |
+guitar | D3- A3- D4- F4- A4- F4- D4- A3- | Bb2- F3- Bb3- D4- F4- D4- Bb3- F3- | G2- D3- G3- Bb3- D4- Bb3- G3- D3- | C3- G3- C4- F4- G4- E4- C4- Bb3- |
+piano  | _ | _ | _ | _ |
+piano  | A3+D4+F4?--------------- | Bb3+D4+F4?--------------- | Bb3+D4+G4?--------------- | Bb3+F4+G4?------- Bb3+E4+G4------- |
+bass   | D2------- A2------- | Bb1------- F2------- | F2------- C2------- | C2------- G2------- |
+bass   | D2------- A2------- | Bb1------- F2------- | G1------- D2------- | C2------- G2--- E2--- |
+kick   | x... .... x... .... | % | % | % | % | % | % | x... .... x... .... |
+rim    | .... x... .... x... | % | % | % | % | % | % | .... x... .... .... |
+snare  | _ | _ | _ | _ | _ | _ | _ | .... .... x.x. xXXX |
+shaker | x.x. x.x. x.x. x.x. | % | % | % | % | % | % | x.x. x.x. .... .... |
+
+# CHORUS: relative major F. The flute leaps up an octave (C5 to D6), with longer
+# held notes on the strong beats, the opposite of the verse's short spoken phrases.
+# Guitar drops out so the timbre changes: piano plays wide syncopated stacks
+# (bass note + upper triad), strings hold a pad, bass pulses in eighths with the kick.
+# Bar 6 puts D6 over C/E as a 9th that resolves down. The last bar hangs on G
+# (dominant) and the bass walks C D E F F# up into the bridge's G minor.
+pattern chorus
+flute   | C5- F5- A5--- G5- A5----- | G5- E5- C5--- D5- E5----- | F5- A5- D6--- C6- A5----- | Bb5--- A5- G5- F5--- G5--- |
+flute   | C5- F5- A5--- G5- A5- C6--- | D6--- C6- G5- E5--- C5--- | D6- C6- Bb5- A5- G5--- F5- G5- | E5- F5- G5----------- |
+piano   | F3+C4+F4+A4----- F3+C4+F4+A4- .- F3+C4+F4+A4--- F3+C4+F4+A4- | E3+C4+E4+G4----- E3+C4+E4+G4- .- E3+C4+E4+G4--- E3+C4+E4+G4- | D3+D4+F4+A4----- D3+D4+F4+A4- .- D3+D4+F4+A4--- D3+D4+F4+A4- | Bb2+D4+F4+Bb4----- Bb2+D4+F4+Bb4- .- Bb2+D4+F4+Bb4--- Bb2+D4+F4+Bb4- |
+piano   | F3+C4+F4+A4----- F3+C4+F4+A4- .- F3+C4+F4+A4--- F3+C4+F4+A4- | E3+C4+E4+G4----- E3+C4+E4+G4- .- E3+C4+E4+G4--- E3+C4+E4+G4- | Bb2+D4+F4+Bb4----- Bb2+D4+F4+Bb4- .- Bb2+D4+F4+Bb4--- Bb2+D4+F4+Bb4- | C3+C4+F4+G4----- C3+C4+F4+G4- .- C3+C4+E4+G4--- C3+Bb3+E4+G4- |
+strings | F4+A4+C5--------------- | E4+G4+C5--------------- | F4+A4+D5--------------- | F4+Bb4+D5--------------- |
+strings | F4+A4+C5--------------- | E4+G4+C5--------------- | F4+Bb4+D5--------------- | E4+G4+C5--------------- |
+bass    | F2--- F2- F2- F2--- F2- F2- | E2--- E2- E2- E2--- E2- E2- | D2--- D2- D2- D2--- D2- D2- | Bb1--- Bb1- Bb1- Bb1--- Bb1- Bb1- |
+bass    | F2--- F2- F2- F2--- F2- F2- | E2--- E2- E2- E2--- E2- E2- | Bb1--- Bb1- Bb1- Bb1--- Bb1- Bb1- | C2--- C2- C2- D2- E2- F2- F#2- |
+kick    | x... ..x. x... ..x. | % | % | % | % | % | % | x... ..x. x... x... |
+snare   | .... x... .... x... | % | % | % | % | % | % | .... x... x.x. xxXX |
+hat     | x.x. x.x. x.x. x.x. | % | % | % | % | % | % | x.x. x.x. x.x. .... |
+crash   | X... .... .... .... | _ | _ | _ | x... .... .... .... | _ | _ | _ |
+
+# BRIDGE: G minor, half time. The lead moves to the cello in its middle register
+# with long notes (new color, slower motion); the flute drops out, then returns in
+# bar 5 as a high sustained counterline. Kit thins to ride + half-time snare.
+# Bars 1-4 are bare (piano low open stacks, bass whole notes); bars 5-8 add strings
+# and the line rises, ending Dsus4 -> D7 with a snare build. The flute's pickup
+# A4 B4 C5 lands on D5, the first note of the lifted chorus in G.
+pattern bridge
+cello   | D4------- C4--- Bb3--- | G3----------- .--- | F3--- Bb3--- D4--- F4--- | Eb4------- D4--- C4--- |
+cello   | D4------- G4------- | G4--- F4--- Eb4--- D4--- | Eb4------- D4--- C4--- | A3------- F#3------- |
+flute   | _ | _ | _ | _ |
+flute   | G5?--------------- | G5------- Bb5------- | C6------- Bb5--- A5--- | F#5------- .- A4- B4- C5- |
+piano   | G2+D3+Bb3--------------- | Eb2+Bb2+G3--------------- | Bb2+F3+D4--------------- | F2+C3+A3+Eb4--------------- |
+piano   | G2+D3+Bb3--------------- | Eb2+Bb2+G3--------------- | C3+G3+Eb4--------------- | D3+G3+A3------- D3+F#3+C4------- |
+strings | _ | _ | _ | _ |
+strings | G3+D4+Bb4?--------------- | G3+Eb4+Bb4--------------- | G3+Eb4+C5--------------- | F#3+D4+A4+C5--------------- |
+bass    | G1--------------- | Eb2--------------- | Bb1--------------- | F1--------------- |
+bass    | G1--------------- | Eb2--------------- | C2--------------- | D2------- D2- D2- D2- D2- |
+kick    | x... .... .... .... | % | % | % | % | % | % | x... x... x... x... |
+snare   | .... .... x... .... | % | % | % | % | % | % | x.x. x.x. xxxx XXXX |
+ride    | x... x... x... x... | % | % | % | x.x. x.x. x.x. x.x. | % | % | x... .... .... .... |
+
+# LIFT: the chorus again, but played +2 into G major in the arrangement. It keeps
+# the flute, piano, strings and crash from the chorus and adds: guitar eighths back
+# under the piano, and a cello countermelody that descends in long notes against
+# the flute's rising hook. In its last bar the band stops on beat 3 (a break) and
+# the bass approaches the outro's E minor (C C# D before transposition).
+pattern lift from chorus
+cello  | A3--------------- | G3--------------- | F3--------------- | F3------- D3------- |
+cello  | C4--------------- | C4------- Bb3------- | Bb3------- D4------- | C4------- .------- |
+guitar | F2- C3- F3- A3- C4- A3- F3- C3- | E2- C3- E3- G3- C4- G3- E3- C3- | D3- A3- D4- F4- A4- F4- D4- A3- | Bb2- F3- Bb3- D4- F4- D4- Bb3- F3- |
+guitar | F2- C3- F3- A3- C4- A3- F3- C3- | E2- C3- E3- G3- C4- G3- E3- C3- | Bb2- F3- Bb3- D4- F4- D4- Bb3- F3- | C3- G3- C4- E4- G4------- |
+bass   | F2--- F2- F2- F2--- F2- F2- | E2--- E2- E2- E2--- E2- E2- | D2--- D2- D2- D2--- D2- D2- | Bb1--- Bb1- Bb1- Bb1--- Bb1- Bb1- |
+bass   | F2--- F2- F2- F2--- F2- F2- | E2--- E2- E2- E2--- E2- E2- | Bb1--- Bb1- Bb1- Bb1--- Bb1- Bb1- | C2--- C2- C2- .--- C2- C#2- |
+kick   | x... ..x. x... ..x. | % | % | % | % | % | % | x... ..x. x... .... |
+snare  | .... x... .... x... | % | % | % | % | % | % | .... x... .... .... |
+hat    | x.x. x.x. x.x. x.x. | % | % | % | % | % | % | x.x. x.x. x... .... |
+
+# OUTRO: written directly in G major. The guitar returns to the intro figure, now
+# Em C G D (the intro's shape a whole step higher), so the song closes the frame it
+# opened. The flute remembers the hook in G (D G B ... A B D) softly and sinks back.
+# Only a pad and a quiet bass remain; shaker fades after two bars.
+pattern outro
+guitar  | E3- B3- E4- G4- B4- G4- E4- B3- | C3- G3- C4- E4- G4- E4- C4- G3- | G2- D3- G3- B3- D4- B3- G3- D3- | D3- A3- D4- F#4- A4- F#4- D4- A3- |
+flute   | _ | .------- D5?- G5?- B5?--- | A5?- B5?- D6?----------- | C6?--- B5?--- A5?------- |
+strings | G3+B3+E4?--------------- | G3+C4+E4?--------------- | G3+B3+D4?--------------- | F#3+A3+D4?--------------- |
+bass    | E2?--------------- | C2?--------------- | G1?--------------- | D2?--------------- |
+shaker  | x.x. x.x. x.x. x.x. | x.x. x.x. x... .... | _ | _ |
+
+# ENDING: slower (76) plagal-then-authentic close C - Dsus4/D - G. Guitar slows to
+# quarter notes then strums one wide G chord; flute steps E D | A F# E F# | G.
+pattern ending tempo=76
+flute   | E5------- D5------- | A5------- F#5--- E5- F#5- | G5--------------- |
+guitar  | C3--- G3--- C4--- E4--- | D3--- A3--- D4--- F#4--- | G2+D3+G3+B3+D4+G4--------------- |
+piano   | C3+G3+E4?--------------- | D3+G3+A3?------- D3+F#3+A3?------- | G2+D3+B3+G4?--------------- |
+strings | G3+C4+E4?--------------- | F#3+A3+D4?--------------- | G3+B3+D4+G4?--------------- |
+bass    | C2?--------------- | D2?--------------- | G1?--------------- |
+crash   | _ | _ | o... .... .... .... |
+
+play intro verse chorus bridge lift+2 outro ending

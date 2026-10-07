@@ -1,0 +1,95 @@
+title    Answer Me Back
+composer Claude
+about    A slow 12/8 shuffle blues in G. Tenor sax states phrases, electric guitar answers in the space the sax leaves, and the trading gets tighter as the piece goes on.
+tempo    70      # dotted-quarter pulse, a slow shuffle so the gaps between phrases are long enough to hear
+beats    4
+steps    3       # 12/8: every beat is a triplet, so the shuffle is written as long-short (2+1) pairs
+
+# Form: 4-bar intro (guitar alone over the last four bars of the blues), two 12-bar choruses, a stop-time tag.
+# Changes per chorus: G7 C7 G7 G7 | C7 C7 G7 G7 | D7 C7 G7 D7 (quick change to the IV in bar 2).
+#
+# sax:  the "singer". Phrases are short (four to six beats) and always end with rest, so the answer has room.
+#       Chorus 1 is classic AAB: the same opening call over I and then over IV, and a longer climbing line over V-IV.
+#       Chorus 2 shrinks the exchange to half-bars, and once the sax refuses to stop (bar 3) to build tension.
+# gtr:  the "answer". Panned opposite the sax and pitched above it so the two never blur.
+#       Its fills start where the sax stops, never under a held sax note, and they respond in specific ways:
+#       mirroring the call's contour (sax climbs D-F-G, guitar falls G-F-D), climbing higher each time,
+#       echoing the sax's line back note for note, and in chorus 2 taking over the line the sax played in chorus 1.
+# keys: rootless shell voicings (G13 = F B E, C9 = E Bb D, D9 = F# C E) that move by half-steps between chords.
+#       Comps on beats 2 and 4 and thins out under the guitar fills.
+# bass: walking quarter notes with chromatic approach tones into each chord change.
+# drums: ride shuffle, hi-hat foot on 2 and 4, soft backbeat with ghost notes, feathered kick.
+
+voice sax   tenorsax vol=0.95 pan=-0.25
+voice gtr   eguitar  vol=0.85 pan=0.35
+voice keys  piano    vol=0.5  pan=0.1 gate=0.6
+voice bass  upright  vol=0.9  gate=0.85
+voice ride  ride     vol=0.45
+voice hat   hat      vol=0.35
+voice snare snare    vol=0.45
+voice kick  kick     vol=0.4
+voice crash crash    vol=0.5
+
+# Intro over D7 C7 G7 D7: the guitar alone, establishing itself as a voice before the sax arrives.
+pattern intro
+gtr   | .-- A5- F5 D5- F5 F#5-- | E5- D5 C5- Bb4 G4---- . | .-- .- G4 Bb4- B4 D5- G5 | F#4+C5-- .-- .-- .-- |
+keys  | .-- F#3+C4+E4-- .-- F#3+C4+E4-- | .-- E3+Bb3+D4- E3+Bb3+D4 .-- .-- | .-- F3+B3+E4-- .-- .-- | .-- F#3+C4+E4-- .-- .-- |
+bass  | D2-- F#2-- A2-- B2-- | C3-- Bb2-- A2-- Ab2-- | G2-- B2-- C3-- C#3-- | D3-- C3-- A2-- F#2-- |
+ride  | x.x X.x x.x X.x | % | % | x.x X.x x.x X.. |
+hat   | ... x.. ... x.. | % | % | % |
+snare | ... x.. ... x.. | % | % | ... x.. ..o xoX |
+kick  | x.. ... x.. ... | % | % | % |
+
+# Chorus 1: two-bar call, two-bar answer, with lots of air.
+pattern chorus1
+# bars 1-2 call, 3-4 answer (guitar mirrors the call downward); bars 5-6 call over IV, 7-8 answer climbs higher;
+# bars 9-10 the long B-line from the sax, bar 11 sax lands on G and the guitar takes the turnaround.
+sax   | .-- D4- F4 G4-- Bb4- B4 | C5----- Bb4- G4 .-- | _ | _ |
+sax   | .-- D4- F4 G4-- Bb4- C5 | Eb5- D5 C5-- Bb4- G4 .-- | _ | _ |
+sax   | .- F#4 A4- C5 D5----- | Eb5- D5 C5- Bb4 G4- E4 G4-- | G4----- .----- | _ |
+gtr   | _ | _ | .-- G5- F5 D5- F5 D5-- | Bb4 B4- G4----- .-- |
+gtr   | _ | _ | .-- .- D5 F5- G5 Bb5- B5 | D5+G5-- .- E5 D5- B4 G4-- |
+gtr   | _ | _ | .----- D5- Db5 C5- B4 | Bb4- A4 F#4-- A4+C5+D5-- .-- |
+keys  | .-- F3+B3+E4-- .-- F3+B3+E4-- | .-- E3+Bb3+D4- E3+Bb3+D4 .-- .-- | .-- F3+B3+E4-- .-- .-- | .-- F3+B3+E4-- .-- .-- |
+keys  | .-- E3+Bb3+D4-- .-- E3+Bb3+D4-- | .-- E3+Bb3+D4- E3+Bb3+D4 .-- .-- | .-- F3+B3+E4-- .-- .-- | .-- .-- .-- F3+B3+E4-- |
+keys  | .-- F#3+C4+E4-- .-- F#3+C4+E4-- | .-- E3+Bb3+D4- E3+Bb3+D4 .-- .-- | .-- F3+B3+E4-- .-- .-- | .-- F#3+C4+E4-- .-- F#3+C4+E4-- |
+bass  | G2-- B2-- D3-- Db3-- | C3-- E3-- Bb2-- Ab2-- | G2-- B2-- D3-- F3-- | G3-- F3-- D3-- Db3-- |
+bass  | C3-- E3-- G3-- A3-- | C3-- Bb2-- A2-- Ab2-- | G2-- B2-- D3-- E3-- | G2-- F2-- E2-- Eb2-- |
+bass  | D2-- F#2-- A2-- B2-- | C3-- Bb2-- A2-- Ab2-- | G2-- B2-- C3-- C#3-- | D3-- C3-- A2-- F#2-- |
+ride  | x.x X.x x.x X.x | % | % | % | % | % | % | % | % | % | % | x.x X.x x.x X.. |
+hat   | ... x.. ... x.. | % | % | % | % | % | % | % | % | % | % | % |
+snare | ... x.. ... x.. | % | % | % | % | % | % | ... x.. ..o x.o | ... x.. ... x.. | % | % | ... x.. ..o xoX |
+kick  | x.. ... x.. ... | % | % | % | % | % | % | % | % | % | % | % |
+
+# Chorus 2: the exchange tightens to half-bars, the comping gets busier, and in bars 9-10 the roles swap.
+pattern chorus2 from chorus1
+# bars 1-2: a two-beat riff from the sax, the guitar snaps back in the same bar.
+# bar 3: the sax keeps going instead of leaving space, so the bar-4 answer comes late and short.
+# bar 6: the guitar echoes the sax's bar-5 line note for note. bar 8: guitar climbs to D6 to hand off the peak.
+# bar 9: sax peak. bar 10: the guitar plays the sax's chorus-1 bar-10 line, finishing the thought for it.
+# bar 11: the sax quotes its very first call, a sign the conversation is closing.
+sax   | D5- D5 Bb4- G4 .-- .-- | D5- D5 Bb4- G4 .-- .-- | D5- D5 Bb4- G4 Bb4- B4 D5-- | E5- D5 B4- G4 .-- .-- |
+sax   | .-- G4- Bb4 C5- Eb5 E5-- | C5-- .-- .-- .-- | .-- D5- Bb4 G4- F4 G4-- | _ |
+sax   | A4- C5 D5- F5 D5----- | _ | .-- D4- F4 G4-- Bb4- B4 | C5- B4 A4- F#4 D4----- |
+gtr   | .-- .-- G5- F5 D5+G5-- | .-- .-- Bb4+E5- Bb4+E5 Bb4+E5-- | _ | .-- .-- .- D5+F5 D5+G5-- |
+gtr   | _ | .-- G4- Bb4 C5- Eb5 E5-- | _ | .- D5 F5- G5 Bb5- B5 D6-- |
+gtr   | _ | E5- D5 C5- Bb4 G4- E4 G4-- | _ | _ |
+keys  | .-- F3+B3+E4- F3+B3+E4 .-- F3+B3+E4-- | .-- E3+Bb3+D4- E3+Bb3+D4 .-- E3+Bb3+D4-- | .-- F3+B3+E4- F3+B3+E4 .-- F3+B3+E4-- | .-- F3+B3+E4-- .-- .-- |
+keys  | .-- E3+Bb3+D4- E3+Bb3+D4 .-- E3+Bb3+D4-- | .-- E3+Bb3+D4-- .-- .-- | .-- F3+B3+E4- F3+B3+E4 .-- F3+B3+E4-- | .-- .-- .-- .-- |
+keys  | .-- F#3+C4+E4- F#3+C4+E4 .-- F#3+C4+E4-- | .-- E3+Bb3+D4-- .-- .-- | .-- F3+B3+E4- F3+B3+E4 .-- F3+B3+E4-- | .-- F#3+C4+E4-- .-- F#3+C4+E4-- |
+ride  | x.x X.x x.x X.x | % | % | % | % | % | % | % | X.x X.x X.x X.x | % | x.x X.x x.x X.x | x.x X.x x.x X.. |
+snare | ..o x.. ..o x.o | % | % | % | % | % | % | ... x.o x.o XoX | ..o x.. ..o x.o | % | % | ... x.. ..o xoX |
+
+# Tag in stop time: the band hits once and drops out, so the last call and answer are heard almost bare.
+# A half-step slide in the bass and piano (Ab into G) sets up the final G13 chord.
+pattern tag
+sax   | .-- G4- Bb4 B4- D5 Bb4- G4 | _ | G4----------- | = |
+gtr   | _ | .-- D5- Db5 C5- B4 Bb4- G4 | B4+E5----------- | = |
+keys  | F3+B3+E4 .- .-- .-- .-- | .-- .-- .-- .- F#3+C4+F4 | F3+A3+B3+E4----------- | = |
+bass  | G2 .- .-- .-- .-- | .-- .-- .-- .- Ab2 | G2----------- | = |
+kick  | x.. ... ... ... | _ | x.. ... ... ... | _ |
+snare | X.. ... ... ... | _ | _ | _ |
+ride  | X.. ... ... ... | _ | _ | _ |
+crash | _ | _ | X.. ... ... ... | _ |
+
+play intro chorus1 chorus2 tag

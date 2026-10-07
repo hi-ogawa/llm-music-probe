@@ -1,0 +1,50 @@
+title    Lagos Interlock
+about    A 4-bar afrobeat vamp in D Dorian where a muted single-note guitar and an organ comp fill each other's gaps.
+tempo    105
+beats    4
+steps    4
+swing    0.08    # a light lean on the off-sixteenths, not a shuffle
+
+# Harmony: Dm9 | G13 | Dm9 | G13 (beats 1-2) -> A9 (beats 3-4), a Dorian i-IV vamp
+# with a dominant pull back to Dm at the end of the loop.
+
+# Guitar: the classic afrobeat "tenor" guitar ostinato, single muted notes high
+# and dry (short gate), panned left. It lives on the sixteenth subdivisions
+# (steps 2, 4, 5, 7, 8, 10, 12, 13, 15, 16) and rests on steps 1, 3, 6, 9, 11, 14.
+voice gtr   eguitar vol=0.75 pan=-0.45 gate=0.4
+# Keys: organ comp, panned right, playing rootless four-note voicings that land
+# exactly in the guitar's holes (steps 3, 6, 11, 14). Guitar and organ never
+# strike together, so the two lines lock into one continuous sixteenth grid.
+# Voicings move by step: Dm9 C4+E4+F4+A4 -> G13 B3+E4+F4+A4 (only C moves to B),
+# then A9 C#4+E4+G4+B4 for the turnaround. They sit below the guitar (A4 to E5)
+# and above the bass (top note D3) so the three parts stay in separate registers.
+voice keys  organ   vol=0.6  pan=0.4  gate=0.7
+# Bass: a syncopated riff that leaves space after the downbeat and climbs back
+# with pickups; root on 1 of every bar to anchor the busy top.
+voice bass  ebass   vol=0.95 gate=0.85
+voice kick  kick    vol=1.0
+voice snare snare   vol=0.8
+voice hat   hat     vol=0.55
+voice ohat  ohat    vol=0.5
+voice shk   shaker  vol=0.45
+voice clave clave   vol=0.55
+voice conga conga   vol=0.6
+
+pattern groove
+# Guitar ostinato. Bar 4 shifts up to E5 / C#5 to spell the A9 pull.
+gtr   | . D5 . C5 A4 . C5 D5 . D5 . C5 A4 . G4 A4 | . D5 . B4 G4 . B4 D5 . D5 . B4 G4 . F4 G4 | . D5 . C5 A4 . C5 D5 . D5 . C5 A4 . G4 A4 | . D5 . B4 G4 . B4 D5 . E5 . C#5 A4 . G4 A4 |
+# Organ stabs in the guitar's rests; the last stab of each bar is held two steps and accented to push into the next bar.
+keys  | .- C4+E4+F4+A4 .- C4+E4+F4+A4 .--- C4+E4+F4+A4 .- C4+E4+F4+A4-! . | .- B3+E4+F4+A4 .- B3+E4+F4+A4 .--- B3+E4+F4+A4 .- B3+E4+F4+A4-! . | .- C4+E4+F4+A4 .- C4+E4+F4+A4 .--- C4+E4+F4+A4 .- C4+E4+F4+A4-! . | .- B3+E4+F4+A4 .- B3+E4+F4+A4 .--- C#4+E4+G4+B4 .- C#4+E4+G4+B4-!! . |
+# Bass riff: root, octave pop, b7-5 fall, then a pickup climb into the next bar.
+bass  | D2-! . D3 . C3 A2- . D2 . F2 G2- A2 C3 | G2-! . G3 . F3 D3- . G2 . B2 C3- D3 F3 | D2-! . D3 . C3 A2- . D2 . F2 G2- A2 C3 | G2-! . G3 . F3 D3- A2- . A2 C3 . C#3 . |
+# Drums: sparse syncopated kick, backbeat snare with ghosts, busy hats with an
+# open hat lifting the last eighth, son-style clave as the time line.
+kick  | X... ...x ..x. .... | % | % | X... ...x ..x. x... |
+snare | .... X..o ..o. X.o. | % | % | .... X..o ..o. Xoxx |
+hat   | xoxo xoXo xoxo xo.. | % | % | xoxo xoXo xoxo .... |
+ohat  | .... .... .... ..x. | % | % | .... .... .... .... |
+shk   | xoxo xoxo xoxo xoxo | % | % | % |
+clave | x..x ..x. ..x. x... | % | % | % |
+conga | ..x. ..xo ..x. .xo. | % | % | ..x. ..xo ..x. xxx. |
+
+loop groove

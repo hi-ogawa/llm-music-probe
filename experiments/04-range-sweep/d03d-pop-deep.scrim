@@ -1,0 +1,82 @@
+title    Glass Elevator
+composer Claude
+about    A sophisticated pop chorus in Eb major built on a descending guide-tone line, borrowed and chromatic chords, and an alto sax hook.
+tempo    100
+beats    4
+steps    4
+swing    0.08    # a light lean on the off-sixteenths so the groove breathes instead of quantizing stiffly
+
+# HARMONY (Eb major, two-bar phrases, the chorus starts on IV so it feels lifted rather than settled):
+#   1 Abmaj9 | 2 Gm7  C7b9 | 3 Fm9 | 4 Bb9sus4  Bb7b13 |
+#   5 Abmaj7  Am7b5 | 6 Gm7  Gb7#11 | 7 Fm9  Abm6 | 8 Eb/Bb  Bb9sus4 |
+# Bars 1-4 are a diatonic IV-iii-ii-V with a secondary dominant (C7b9 tonicizes Fm).
+# Bars 5-8 repeat the outline but darken it chromatically, because the repeat needs to go somewhere new:
+#   Am7b5 is a passing #iv between IV and iii, Gb7 is a tritone substitute for C7 sliding into Fm,
+#   and Abm6 is the borrowed minor iv, which gives the bittersweet "minor plagal" sigh before home.
+# The bass descends by semitone into most chord changes (E-F, A-Ab, A-Bb, Gb-F), so the line glides.
+# Bar 8 never lands on a root-position tonic and ends on a sus dominant, so the chorus loops back to IV.
+
+voice lead    altosax  vol=1.0  pan=0.05            # the hook: a smooth-jazz-meets-pop alto, the singer's role
+voice keys    epiano   vol=0.55 pan=-0.25           # rootless four-note voicings, pushed rhythm
+voice str     strings  vol=0.42 pan=-0.4            # two-voice guide-tone counterline, sustained
+voice gtr     eguitar  vol=0.38 pan=0.45 gate=0.35  # clipped upper-structure triads, funk chops
+voice bass    ebass    vol=0.9                      # syncopated root line with chromatic approaches
+voice kick    kick     vol=0.95
+voice snare   snare    vol=0.8
+voice clap    clap     vol=0.4
+voice hat     hat      vol=0.5
+voice ohat    ohat     vol=0.45
+voice shaker  shaker   vol=0.3
+voice crash   crash    vol=0.55
+voice tomhi   tomhi    vol=0.7
+voice tommid  tommid   vol=0.7
+voice tomlo   tomlo    vol=0.75
+
+pattern chorus
+# LEAD. Motif a (bar 1) rises Eb-F-G and leans on G, the maj7 of Abmaj9, so the hook sits on a color tone.
+# Bar 2 answers by sequence on Gm, then outlines the C7b9 diminished shape (Db-Bb-G-E) so E resolves up to F.
+# Bar 3 climbs the Fm9 arpeggio to G, the 9th. Bar 4 descends onto Gb, the b13 of Bb7, a dark pull to Ab.
+# Bars 5-8 restate the hook higher: Bb5 sighs to A5 exactly as the chord moves to Am7b5, bar 6 picks out
+# E and C (the b7 and #11 of Gb7), and bar 7 is the climax: C6 over Fm9 falls a semitone to Cb (B5)
+# as the chord turns to Abm6, so the melody itself spells the borrowed chord. Bar 8 rests on G, the 3rd.
+lead | .- Eb5 F5 G5--- F5- Eb5 C5-- .- | Bb4 C5 D5- F5--- .- Db5- Bb4 G4 E4- | .- F4 G4 Ab4- C5 Eb5 G5------ . | F5- Eb5 C5- Ab4-- Gb4----- Bb4 C5 |
+lead | Eb5- F5 G5 Bb5!--- A5-- G5 Eb5 C5-- | Bb4-- D5 F5--- .- E5- C5 Bb4 Ab4- | F5 G5 Ab5- C6!!--- B5---- Ab5 F5 Eb5 | G5------- .- F5- Eb5? C5? Bb4-? |
+
+# KEYS. Rootless voicings (3-5-7-9 or 7-9-3-5) moved by the smallest steps, so for example
+# Gm11 to C7b9 to Fm9 to Bb9sus changes only one or two notes at a time. Each chord sounds on the
+# downbeat and again on the "and" of its second beat, a pushed comp that leaves the beat to the drums.
+keys | G3+Bb3+C4+Eb4----- G3+Bb3+C4+Eb4- G3+Bb3+C4+Eb4----- G3+Bb3+C4+Eb4- | F3+Bb3+C4+D4----- F3+Bb3+C4+D4- E3+G3+Bb3+Db4----- E3+G3+Bb3+Db4- | Eb3+G3+Ab3+C4----- Eb3+G3+Ab3+C4- Eb3+G3+Ab3+C4----- Eb3+G3+Ab3+C4- | Eb3+F3+Ab3+C4----- Eb3+F3+Ab3+C4- D3+Gb3+Ab3+C4----- D3+Gb3+Ab3+C4- |
+keys | G3+Bb3+C4+Eb4----- G3+Bb3+C4+Eb4- G3+A3+C4+Eb4----- G3+A3+C4+Eb4- | F3+Bb3+C4+D4----- F3+Bb3+C4+D4- E3+Ab3+Bb3+C4----- E3+Ab3+Bb3+C4- | Eb3+G3+Ab3+C4----- Eb3+G3+Ab3+C4- Eb3+F3+Ab3+B3----- Eb3+F3+Ab3+B3- | D3+F3+G3+Bb3----- D3+F3+G3+Bb3- Eb3+F3+Ab3+C4----- Eb3+F3+Ab3+C4- |
+
+# STRINGS. Two sustained lines. The lower one is a slow chromatic descent of guide tones,
+# C-Bb-Ab-G-F-E-Eb-D, one step per chord, which is the hidden spine of the progression.
+# The upper line moves in contrary or oblique motion (Eb-D-Db-C-D-Eb-D-Db-C-B-Bb-C) to keep it from being parallel.
+str  | C5+Eb5--------------- | Bb4+D5------- Bb4+Db5------- | Ab4+C5--------------- | Ab4+C5------- Ab4+D5------- |
+str  | G4+Eb5--------------- | F4+D5------- E4+Db5------- | Eb4+C5------- Eb4+B4------- | D4+Bb4------- Eb4+C5------- |
+
+# GUITAR. Short upper-structure triads on syncopated sixteenths (beat 1 "a", beat 2 "e" and "and").
+# Each triad is chosen for color, not roots: Cm over Ab gives maj9, Cm over F gives m9, Ab over Bb gives 9sus,
+# Bb-C-E over Gb gives the 3rd, #11 and b7. It stays under the sax to avoid masking the hook.
+gtr  | .- C4+Eb4+G4 . . C4+Eb4+G4 C4+Eb4+G4 . .- C4+Eb4+G4 . . C4+Eb4+G4 C4+Eb4+G4 . | .- Bb3+D4+F4 . . Bb3+D4+F4 Bb3+D4+F4 . .- E4+G4+Bb4 . . E4+G4+Bb4 E4+G4+Bb4 . | .- C4+Eb4+G4 . . C4+Eb4+G4 C4+Eb4+G4 . .- C4+Eb4+G4 . . C4+Eb4+G4 C4+Eb4+G4 . | .- Ab3+C4+Eb4 . . Ab3+C4+Eb4 Ab3+C4+Eb4 . .- Ab3+D4+Gb4 . . Ab3+D4+Gb4 Ab3+D4+Gb4 . |
+gtr  | .- C4+Eb4+G4 . . C4+Eb4+G4 C4+Eb4+G4 . .- A3+Eb4+G4 . . A3+Eb4+G4 A3+Eb4+G4 . | .- Bb3+D4+F4 . . Bb3+D4+F4 Bb3+D4+F4 . .- Bb3+C4+E4 . . Bb3+C4+E4 Bb3+C4+E4 . | .- C4+Eb4+G4 . . C4+Eb4+G4 C4+Eb4+G4 . .- B3+Eb4+F4 . . B3+Eb4+F4 B3+Eb4+F4 . | .- Bb3+D4+G4 . . Bb3+D4+G4 Bb3+D4+G4 . .- Ab3+C4+Eb4 . . Ab3+C4+Eb4 Ab3+C4+Eb4 . |
+
+# BASS. Roots on the downbeats, octave pops and fifths in the gaps, and a chromatic approach note
+# at the end of nearly every bar. Bar 8 runs Bb-Eb-C-Bb-A to lead into Ab at the loop.
+bass | Ab1--- .- Ab1 Ab2 .- Eb2- C2- Bb1- | G1--- . G1 D2- C2--- . C2 E2- | F1--- .- F1 F2 .- C2- Eb2 . F2- | Bb1--- .- Bb1 F2 Bb1--- . Bb1 A1- |
+bass | Ab1--- .- Ab1 Eb2 A1--- . C2 A1- | G1--- .- G1 D2 Gb1--- . Db2 Gb1- | F1--- .- F1 C2 Ab1--- .- Ab1 A1 | Bb1--- .- Bb1 Bb2 .-- F2 Eb2 C2 Bb1 A1 |
+
+# DRUMS. A mid-tempo pop backbeat. The kick avoids beat 3 and plays the "a" of 2 and "and" of 3 instead,
+# which locks with the bass syncopation. Snare ghosts, a soft clap doubling, 16th hats with an open hat
+# on the last "and", and a tom fill in bar 8 to set up the loop. Crash only on the very first downbeat.
+kick   | X... ...x ..X. .... | % | % | X... ...x ..X. ..x. | X... ...x ..X. .... | % | % | X... ...x ..x. .... |
+snare  | .... X..o ..o. X... | % | % | .... X..o ..o. X.oo | .... X..o ..o. X... | % | % | .... X..o ..o. .... |
+clap   | .... x... .... x... | % | % | % | % | % | % | .... x... .... .... |
+hat    | x.xo x.xo x.xo x... | % | % | % | % | % | % | x.xo x.xo x.xo .... |
+ohat   | .... .... .... ..x. | % | % | % | % | % | % | _ |
+shaker | oxox oxox oxox oxox | % | % | % | % | % | % | oxox oxox oxox .... |
+crash  | X... .... .... .... | _ | _ | _ | _ | _ | _ | _ |
+tomhi  | _ | _ | _ | _ | _ | _ | _ | .... .... .... xx.. |
+tommid | _ | _ | _ | _ | _ | _ | _ | .... .... .... ..x. |
+tomlo  | _ | _ | _ | _ | _ | _ | _ | .... .... .... ...X |
+
+loop chorus

@@ -1,0 +1,43 @@
+title    Dorian Pocket
+composer Claude
+about    A two-bar D dorian funk vamp built around a sixteenth-note bass line with ghost notes, locked to the kick and answered by sparse keys and guitar stabs.
+tempo    100
+beats    4
+steps    4
+swing    0.08    # a hint of sixteenth swing so the ghost notes sit slightly behind, not a shuffle
+
+# Bass: the featured part. Fingered electric bass, short gate so every note is a clipped pluck
+# and the rests between sixteenths are audible. Accented roots on the downbeats, ?? ghost notes
+# on the "e" and "a" sixteenths, real pitches on the offbeats. Bar 1 leaves beat 3 empty and
+# lands on the "e" of 3. Bar 2 anticipates beat 3 with a tied G2 and ends with B2, the dorian
+# major sixth, as a pickup back to the low D.
+voice bass ebass vol=1.1 gate=0.55
+
+# Keys: electric piano, rootless Dm9 (F A C E) so it stays out of the bass register. Short
+# stabs on the "&" of 1 and 3. Bar 2 moves to a rootless G13 shape (F B E), the dorian IV
+# colour, over the same D pedal in the bass, then back to Dm9 on the loop.
+voice keys epiano vol=0.6 pan=-0.35 gate=0.85
+
+# Guitar: clean electric, very short gate for a scratchy chank. High triads (D minor, then
+# G major for the second half of bar 2 to match the keys) on the "&" and "a" of 2 and 4, a soft one first and a
+# louder one after, so it pushes the backbeat without crowding the bass sixteenths.
+voice gtr eguitar vol=0.55 pan=0.4 gate=0.25
+
+# Drums: kick doubles the bass accents, snare on 2 and 4 with o ghost notes, hats in
+# sixteenths with accents on the eighths, and one open hat at the end of bar 2 to mark the loop.
+voice kick kick vol=1.0
+voice snare snare vol=0.9
+voice hat hat vol=0.55
+voice ohat ohat vol=0.5
+
+pattern groove
+#      1 e & a 2 e & a 3 e & a 4 e & a
+bass | D2-! . D2?? . D2?? A2 C3 . D3?? D3 . C3?? A2 G2 E2 | D2-! . D2?? F2 . D2?? G2- . A2 . C3?? D3- B2 |
+keys | . . F3+A3+C4+E4- .--- . . F3+A3+C4+E4- .--- | . . F3+A3+C4+E4- .--- . . F3+B3+E4--- . . |
+gtr  | .--- . A4+D5+F5? . A4+D5+F5 .--- . A4+D5+F5? . A4+D5+F5 | .--- . A4+D5+F5? . A4+D5+F5 .--- . B4+D5+G5? . B4+D5+G5 |
+kick | X... ..x. ..x. .... | X... ...x ..x. ..x. |
+snare| ...o X..o .o.. X..o | ..o. X..o .o.o X.o. |
+hat  | xoxo xoxo xoxo xoxo | xoxo xoxo xoxo xo.o |
+ohat | _ | .... .... .... ..x. |
+
+loop groove

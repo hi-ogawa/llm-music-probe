@@ -1,0 +1,42 @@
+title    Simple Quartet in D
+composer Claude
+about    A sixteen-bar hymn-like piece for string quartet in D major: one tune, three sustaining parts, two phrases (question ending on the dominant, answer ending on the tonic).
+tempo    72      # slow and calm, so held notes can ring
+beats    4
+steps    2       # 4/4 counted in eighths; the shortest note in the piece is a quarter
+
+# Plan: two 8-bar phrases that start the same way.
+# Phrase A ends on a half cadence (A major), phrase B answers with a full cadence (A7 to D).
+# Harmony is plain diatonic: I IV I V vi IV ii-V V | I IV I vi IV ii V7 I.
+# Every chord change happens on a downbeat (plus one mid-bar change in bar 7), so the ear can follow it easily.
+
+# violin1 carries the only melody. It sits above the others and gets most of the volume.
+voice violin1 violin vol=0.9  pan=-0.4
+# violin2 and viola fill in the chord with long held notes that move by step or not at all,
+# so the harmony is complete without distracting from the tune.
+voice violin2 violin vol=0.6  pan=-0.15
+voice viola   viola  vol=0.6  pan=0.15
+# cello plays chord roots in whole and half notes: the foundation of each harmony.
+voice cello   cello  vol=0.75 pan=0.4
+
+# Phrase A (question). Melody opens with a rising D-major arpeggio, steps down in bar 2,
+# climbs to A5 in bars 3-4, and settles onto C#5 (leading tone) over the A chord, left unresolved.
+pattern A
+#         D             G                  D            A              Bm              G            Em | A          A
+violin1 | A4- D5- F#5--- | G5- F#5- E5- D5- | F#5--- A5--- | A5- G5- E5--- | F#5--- D5- B4- | D5--- G5--- | G5- F#5- E5--- | C#5------- |
+violin2 | F#4-------     | G4-------        | F#4-------   | E4-------     | D4-------      | D4-------   | E4-------      | E4-------  |
+viola   | A3-------      | B3-------        | A3-------    | C#4-------    | B3-------      | B3-------   | B3--- C#4---   | A3-------  |
+cello   | D3-------      | G2-------        | D3-------    | A2-------     | B2-------      | G2-------   | E3--- A2---    | A2-------  |
+
+# Phrase B (answer). Same first three bars, so the listener recognizes the return.
+# Bar 12 reaches the high point (B5 over B minor), then the line descends to D5 through a
+# 3-2-1 cadence (E5, C#5, D5). Violin2 adds the seventh (G4) in bar 15 and resolves it down to F#4;
+# the cello drops to low D2 at the end for a settled, final close.
+pattern B
+#         D             G                  D            Bm             G                  Em              A7            D
+violin1 | A4- D5- F#5--- | G5- F#5- E5- D5- | F#5--- A5--- | B5--- A5- F#5- | G5- F#5- E5- D5- | B4- E5- G5--- | E5--- C#5--- | D5-------! |
+violin2 | F#4-------     | G4-------        | F#4-------   | D4-------      | D4-------        | E4-------     | E4--- G4---  | F#4------- |
+viola   | A3-------      | B3-------        | A3-------    | B3-------      | B3-------        | G3-------     | A3-------    | A3-------  |
+cello   | D3-------      | G2-------        | D3-------    | B2-------      | G2-------        | E3-------     | A2-------    | D2-------  |
+
+play A B

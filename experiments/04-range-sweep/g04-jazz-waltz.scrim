@@ -1,0 +1,51 @@
+title    Bb Waltz Loop
+composer Claude
+about    An 8-bar jazz waltz in Bb with a two-feel upright bass, rootless piano comping, and a light ride pattern.
+tempo    150
+beats    3
+steps    3       # 3/4 on a triplet grid: 9 steps per bar, so swung eighths are written exactly as 2+1 steps
+swing    0       # swing is built into the triplet grid, not applied by the setting
+
+# Form: | Bbmaj9 | G13 | Cm9 | F13 | Dm9 | G7alt | Cm9 | F7b9 | back to the top.
+# A I-VI-ii-V followed by iii-VI-ii-V turnaround, one chord per bar so the waltz pulse stays clear.
+# Grid per bar: beats fall on steps 0, 3, 6; the swung "and" of each beat falls on steps 2, 5, 8.
+
+# Bass: two-feel. Root on beat 1 held for two beats (6 steps), then one quarter on beat 3 that
+# leads by step or half step into the next root. This gives the lilting "ONE ... three" waltz pulse
+# rather than a walking line. Range Bb1 to F2 keeps it low and away from the piano voicings.
+voice bass upright vol=0.95 gate=0.9 pan=-0.1
+
+# Piano: left-hand style rootless voicings (3-5-7-9 or 7-9-3-13) in the C3 to Eb4 range, so they sit
+# above the bass without doubling roots. Voices move by step or common tone from chord to chord.
+# Rhythm avoids beat 1 most of the time (the bass owns it), hitting beats 2 and 3, the swung "and" of 2,
+# and anticipating the next chord on the "and" of 3 in bars 4 and 8.
+voice comp piano vol=0.7 gate=0.85 pan=0.2
+
+# Drums: ride on 1, 2, "and" of 2, 3 (alternating with a 1, 2, 3, "and" of 3 variant), hi-hat foot on
+# beats 2 and 3, a feathered kick on 1, and snare ghost notes that answer the comping.
+voice ride ride vol=0.6
+voice hat hat vol=0.35
+voice kick kick vol=0.35
+voice snare snare vol=0.4
+
+pattern A
+# bars:  Bbmaj9 | G13 | Cm9 | F13
+bass  | Bb1----- F2-- | G1----- B1-- | C2----- G1-- | F1----- C#2-- |
+# bars:  Dm9 | G7alt | Cm9 | F7b9
+bass  | D2----- A1-- | G1----- D2-- | C2----- Eb2-- | F1----- A1-- |
+
+# Voicings: Bbmaj9 D3+F3+A3+C4, G13 F3+A3+B3+E4, Cm9 Eb3+G3+Bb3+D4, F13 Eb3+G3+A3+D4
+comp  | .-- D3+F3+A3+C4- . D3+F3+A3+C4- . | F3+A3+B3+E4- . .- F3+A3+B3+E4--- | .-- Eb3+G3+Bb3+D4- . Eb3+G3+Bb3+D4- . | .-- Eb3+G3+A3+D4- . Eb3+G3+A3+D4- E3+F3+A3+C4 |
+# Voicings: Dm9 E3+F3+A3+C4 (tied in from the bar 4 anticipation), G7alt F3+Ab3+B3+Eb4, Cm9, F7b9 Eb3+Gb3+A3+D4
+comp  | -- .-- E3+F3+A3+C4!--- | F3+Ab3+B3+Eb4-- .- F3+Ab3+B3+Eb4- . . | .-- Eb3+G3+Bb3+D4- . Eb3+G3+Bb3+D4- . | .-- Eb3+Gb3+A3+D4- . Eb3+Gb3+A3+D4- D3+F3+A3+C4 |
+
+ride  | X.. x.x x.. | X.. x.. x.x | X.. x.x x.. | X.. x.. x.x |
+ride  | X.. x.x x.. | X.. x.. x.x | X.. x.x x.. | X.. x.x x.x |
+hat   | ... x.. x.. | % | % | % |
+hat   | ... x.. x.. | % | % | % |
+kick  | o.. ... ... | % | % | o.. ... ..o |
+kick  | o.. ... ... | % | % | o.. ... ..o |
+snare | ... ... ..o | ... ..o ... | ... ... ... | ... ..o ..o |
+snare | ... ... ..o | ..o ... ... | ... ... ..o | ... ..o .xo |
+
+loop A

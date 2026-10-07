@@ -1,0 +1,69 @@
+title    Open Window
+composer Claude
+about    A 16-bar pop chorus in D major. An alto sax carries a syncopated hook that repeats over a stepwise bass descent, first ending open on A and then closing on D.
+tempo    108
+beats    4
+steps    4
+
+# Form: chorus A (8 bars, ends on V, open) then chorus B (8 bars, same start, closes on I).
+# Harmony A: | D | A/C# | Bm | G | D | A/C# | G | A |
+# Harmony B: | D | A/C# | Bm | G | D | A/C# | Em7 A7 | D |
+# The bass walks D-C#-B-G under the hook, the classic pop descent, so the same melodic
+# cell lands on a new chord colour each bar without the melody itself having to move much.
+
+# Lead: alto sax, centred and loudest so the hook sits on top of the band.
+voice lead altosax vol=1.15 pan=0
+# Piano: right-hand triads in a 3-3-2 push, explicit stacks for smooth voice leading
+# (common tones held, other voices move by step). Kept below D4-G4 tops so it never covers the sax.
+voice keys piano vol=0.6 pan=-0.25
+# Strings: sustained whole-bar pads, close voiced between D4 and B4, a soft cushion under the hook.
+voice pad strings vol=0.4 pan=0.3
+# Bass: eighth-note root pulse locked to the piano's 3-3-2 rhythm, octave pop on beat 3-and.
+voice bass ebass vol=0.85
+voice kick kick vol=0.9
+voice snare snare vol=0.8
+voice clap clap vol=0.45
+voice hat hat vol=0.45
+voice crash crash vol=0.6
+
+# Chorus A. The hook is a one-bar cell: two-step rest, then a climb by chord tones to a
+# syncopated peak (held 3 steps across beat 2-and), then a falling tail that resolves on
+# a chord tone at beat 4. Bars 1-2 share the peak A5 over D and A/C#, so the ear hears the
+# same high note re-harmonised. Bar 3 lifts the peak to B5 over Bm, bar 4 breathes on a
+# long D5 over G. Bars 5-6 restate the hook exactly (repetition is the memory device),
+# bar 7 peaks on B5 again over G, and bar 8 hangs on E5, the fifth of A, to pull into chorus B.
+pattern A
+lead  | .- D5- F#5- A5-- F#5 E5- D5--- | .- C#5- E5- A5-- E5 D5- C#5--- | .- D5- F#5- B5-- A5 F#5- D5--- | E5- D5- B4- D5--------- |
+lead  | .- D5- F#5- A5-- F#5 E5- D5--- | .- C#5- E5- A5-- E5 D5- C#5--- | .- D5- G5- B5-- A5 G5- E5--- | F#5- E5- C#5- E5------- .- |
+keys  | A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- | B3+D4+F#4-- B3+D4+F#4-- B3+D4+F#4- B3+D4+F#4-- B3+D4+F#4-- B3+D4+F#4- | B3+D4+G4-- B3+D4+G4-- B3+D4+G4- B3+D4+G4-- B3+D4+G4-- B3+D4+G4- |
+keys  | A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- | B3+D4+G4-- B3+D4+G4-- B3+D4+G4- B3+D4+G4-- B3+D4+G4-- B3+D4+G4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- |
+pad   | D4+F#4+A4--------------- | C#4+E4+A4--------------- | D4+F#4+B4--------------- | D4+G4+B4--------------- |
+pad   | D4+F#4+A4--------------- | C#4+E4+A4--------------- | D4+G4+B4--------------- | C#4+E4+A4--------------- |
+bass  | D2-- D2-- D2- D2-- D3-- D2- | C#2-- C#2-- C#2- C#2-- C#3-- C#2- | B1-- B1-- B1- B1-- B2-- B1- | G1-- G1-- G1- G1-- G2-- G1- |
+bass  | D2-- D2-- D2- D2-- D3-- D2- | C#2-- C#2-- C#2- C#2-- C#3-- C#2- | G1-- G1-- G1- G1-- G2-- G1- | A1-- A1-- A1- A1-- A2-- C#2- |
+kick  | X..x ..x. x..x ..x. | % | % | % | % | % | % | x..x ..x. x.x. x.x. |
+snare | .... x... .... x... | % | % | % | % | % | % | .... x... .... x.xx |
+clap  | .... x... .... x... | % | % | % | % | % | % | % |
+hat   | x.x. x.x. x.x. x.x. | % | % | % | % | % | % | % |
+crash | X... .... .... .... | _ | _ | _ | _ | _ | _ | _ |
+
+# Chorus B. Bars 1-6 repeat chorus A note for note so the hook is heard four times in total.
+# Bar 7 splits into Em7 then A7 (ii-V) to set up the cadence; the melody reuses bar 7 of A
+# (peak B5, now the 9th of A7 on beat 3) and adds C#5 as a leading tone into the final D5.
+# Bar 8 lands the hook's home note D5 on the tonic and holds it, closing the chorus.
+pattern B
+lead  | .- D5- F#5- A5-- F#5 E5- D5--- | .- C#5- E5- A5-- E5 D5- C#5--- | .- D5- F#5- B5-- A5 F#5- D5--- | E5- D5- B4- D5--------- |
+lead  | .- D5- F#5- A5-- F#5 E5- D5--- | .- C#5- E5- A5-- E5 D5- C#5--- | .- D5- G5- B5-- A5 G5- E5- C#5- | D5!----------- .--- |
+keys  | A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- | B3+D4+F#4-- B3+D4+F#4-- B3+D4+F#4- B3+D4+F#4-- B3+D4+F#4-- B3+D4+F#4- | B3+D4+G4-- B3+D4+G4-- B3+D4+G4- B3+D4+G4-- B3+D4+G4-- B3+D4+G4- |
+keys  | A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- A3+D4+F#4-- A3+D4+F#4-- A3+D4+F#4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- | G3+B3+D4+E4-- G3+B3+D4+E4-- G3+B3+D4+E4- G3+A3+C#4+E4-- G3+A3+C#4+E4-- G3+A3+C#4+E4- | A3+D4+F#4!----------- .--- |
+pad   | D4+F#4+A4--------------- | C#4+E4+A4--------------- | D4+F#4+B4--------------- | D4+G4+B4--------------- |
+pad   | D4+F#4+A4--------------- | C#4+E4+A4--------------- | D4+G4+B4------- C#4+E4+G4------- | D4+F#4+A4----------- .--- |
+bass  | D2-- D2-- D2- D2-- D3-- D2- | C#2-- C#2-- C#2- C#2-- C#3-- C#2- | B1-- B1-- B1- B1-- B2-- B1- | G1-- G1-- G1- G1-- G2-- G1- |
+bass  | D2-- D2-- D2- D2-- D3-- D2- | C#2-- C#2-- C#2- C#2-- C#3-- C#2- | E2-- E2-- E2- A1-- A1-- C#2- | D2!----------- .--- |
+kick  | X..x ..x. x..x ..x. | % | % | % | % | % | % | X... .... .... .... |
+snare | .... x... .... x... | % | % | % | % | % | x.x. x.x. xxxx XXXX | .... .... .... .... |
+clap  | .... x... .... x... | % | % | % | % | % | % | _ |
+hat   | x.x. x.x. x.x. x.x. | % | % | % | % | % | % | _ |
+crash | X... .... .... .... | _ | _ | _ | _ | _ | _ | X... .... .... .... |
+
+play A B

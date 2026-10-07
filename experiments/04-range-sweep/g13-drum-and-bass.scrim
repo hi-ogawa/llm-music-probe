@@ -1,0 +1,44 @@
+title    Sub Pressure
+composer Claude
+about    An 8-bar liquid-leaning drum and bass loop in F minor: a chopped amen-style break at 170 bpm over a half-time sub bass and soft rootless chords.
+tempo    170
+beats    4
+steps    4
+swing    0      # straight sixteenths; DnB breaks sit on the grid at this tempo
+
+# Harmony: two-bar chords, Fm9 | Dbmaj9 | Bbm9 | C7sus4 -> C7b9, turning back to Fm.
+# The bass carries the roots, so both harmony parts use rootless voicings that keep
+# Ab, C and Eb as common tones, so the chords drift instead of jumping.
+
+# Bass: half-time feel. One long root lands with the kick on beat 1 and rings for most
+# of the bar, so it moves at half the speed of the drums. Short pickups at the end of
+# each bar lead into the next downbeat. Range F1 to G2 keeps it a sub line.
+voice bass   synbass  vol=1.0
+# Pad: sustained rootless four-note stacks in the Ab3 to G4 register, the bed under the break.
+voice pad    pad      vol=0.45 pan=-0.2
+# Electric piano: sparse offbeat stabs above the pad, to add syncopation against the half-time bass.
+voice keys   epiano   vol=0.5  pan=0.25 gate=0.6
+
+# Drums: a chopped two-step / amen-style break. Kick on 1 and 1-and plus a late kick on
+# the and of 3; snare backbeat on 2 and 4 with ghost notes between, so the break rolls.
+voice kick   kick     vol=1.1
+voice snare  snare    vol=0.95
+voice hat    hat      vol=0.55
+voice ohat   ohat     vol=0.5
+voice crash  crash    vol=0.6
+
+pattern main
+# Fm9 (2 bars) | Dbmaj9 (2 bars) | Bbm9 (2 bars) | C7sus4, then C7b9 to pull back to Fm
+pad   | Ab3+C4+Eb4+G4--------------- | = | Ab3+C4+Eb4+F4--------------- | = | Ab3+C4+Db4+F4--------------- | = | Bb3+C4+F4+G4--------------- | Bb3+Db4+E4+G4--------------- |
+# stabs on the and of 2 and the a of 3 in odd bars, an anticipation on the last eighth in even bars
+keys  | .----- G4+C5+Eb5- .-- G4+C5+Eb5- .-- | .------- .----- G4+C5+Eb5- | .----- F4+C5+Eb5- .-- F4+C5+Eb5- .-- | .------- .----- F4+Ab4+C5- | .----- F4+Ab4+C5- .-- F4+Ab4+C5- .-- | .------- .----- F4+Bb4+C5- | .----- F4+Bb4+C5- .-- F4+Bb4+C5- .-- | .------- .----- E4+Bb4+Db5- |
+# long root on beat 1, then a pickup; second bar of each chord walks up through the chord
+bass  | F1!----------- .- F1 Ab1 | F1------- .--- C2- Eb2- | Db2!----------- .- Db2 F2 | Db2------- .--- Ab1- C2- | Bb1!----------- .- Bb1 Db2 | Bb1------- .--- F1- Ab1- | C2!----------- .- C2 Eb2 | C2------- .--- E2- G2- |
+# break: bars 1-3 main groove, bar 4 small fill, bars 5-7 groove, bar 8 bigger fill into the loop
+kick  | X.x. .... ..x. .... | X.x. .... ..xx .... | X.x. .... ..x. .... | X.x. .... ..x. .... | X.x. .... ..x. .... | X.x. .... ..xx .... | X.x. .... ..x. .... | X.x. .... x... .... |
+snare | .... X..o .o.. X..o | .... X..o .o.. X.o. | .... X..o .o.. X..o | .... X..o .o.x X.xX | .... X..o .o.. X..o | .... X..o .o.. X.o. | .... X..o .o.. X..o | .... X..o xoxo XxXX |
+hat   | x.xo x.xo x.xo x.xo | x.xo x.xo x.xo x... | x.xo x.xo x.xo x.xo | x.xo x.xo x.x. .... | x.xo x.xo x.xo x.xo | x.xo x.xo x.xo x... | x.xo x.xo x.xo x.xo | x.xo x.xo .... .... |
+ohat  | .... .... .... .... | .... .... .... ..x. | .... .... .... .... | .... .... .... .... | .... .... .... .... | .... .... .... ..x. | .... .... .... .... | .... .... .... .... |
+crash | X... .... .... .... | _ | _ | _ | X... .... .... .... | _ | _ | _ |
+
+loop main

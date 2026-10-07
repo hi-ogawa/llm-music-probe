@@ -1,0 +1,158 @@
+title    Lantern Street
+composer Claude
+about    An original 32-bar AABA hard-bop head in F major for trumpet and tenor sax over piano, upright bass, and drums. The A sections are a busy, motivic bebop line, and the bridge jumps to Bb minor with long, high, sustained tones.
+
+# Medium-up swing. Bars are written in eighth notes (8 steps per bar) and the
+# swing value lengthens the downbeat eighth for a relaxed, not shuffled, feel.
+tempo    172
+beats    4
+steps    2
+swing    0.3
+
+# Front line: trumpet lead, tenor an octave below in the A sections (classic
+# hard-bop unison). The tenor voice is declared oct=-1, so every tenor note is
+# WRITTEN one octave above where it sounds, which lets the A-section lines be
+# copied from the trumpet verbatim.
+voice trumpet trumpet  vol=0.9  pan=-0.2
+voice tenor   tenorsax vol=0.7  pan=0.25 oct=-1
+# Rhythm section: piano comps with rootless voicings in the C3-A4 range so it
+# never sits on top of the horns, and the bass owns the roots.
+voice piano   piano    vol=0.55 pan=0.1  gate=0.85
+voice bass    upright  vol=0.95
+voice ride    ride     vol=0.55
+voice hat     hat      vol=0.45
+voice kick    kick     vol=0.4
+voice snare   snare    vol=0.45
+voice crash   crash    vol=0.5
+
+# ---------------------------------------------------------------------------
+# INTRO: four bars of rhythm section on a ii-V turnaround in F, so the head
+# enters with momentum. Bass in two (half notes), piano in short stabs.
+# Changes: | Gm7 C7 | Am7 D7 | Gm7 C7 | Gm7 C7(b9) |
+pattern intro
+piano | F3+A3+Bb3+D4- . E3+A3+Bb3+D4---- | G3+B3+C4+E4- . F#3+B3+C4+E4---- | F3+A3+Bb3+D4- . E3+A3+Bb3+D4---- | F3+A3+Bb3+D4- . E3+A3+Bb3+Db4---- |
+bass  | G2--- C2--- | A2--- D2--- | G2--- C2--- | G2--- C2--- |
+ride  | x.Xx x.Xx | % | % | % |
+hat   | ..x. ..x. | % | % | % |
+kick  | o... o... | % | % | % |
+snare | _ | _ | _ | .... o.ox |
+
+# ---------------------------------------------------------------------------
+# A1: the main theme.
+# Changes: | Fmaj7 | D7b9 | Gm7 | C7b9 | Am7 D7 | Gm7 C7 | Fmaj7 | Gm7 C7 |
+# Melody idea: bar 1 is a rising arpeggio motif (rest, A C E, falling back),
+# bar 2 answers by leaning on the b9 (Eb over D7) and stepping down. Bars 3-4
+# repeat that call/response sequenced up to Gm7 / C7b9 (Db as the b9), so the
+# tune is easy to remember. Bars 5-6 climb to the high point of the A (A5)
+# then cascade down, bar 7 lands on a long A4 (the 3rd of F), and bar 8 is a
+# descending pickup line that leads back into the next A.
+pattern A1
+trumpet | . A4 C5 E5- D5 C5 A4 | Eb5--- D5 C5 A4 F#4 | . Bb4 D5 F5- E5 D5 Bb4 | Db5--- C5 Bb4 G4 E4 |
+trumpet | G5- E5 C5 A5- F#5 D5 | G5- F5 D5 E5 C5 Bb4 G4 | A4----- .- | . D5 C5 Bb4 A4 G4 E4 C4 |
+# Tenor doubles the melody an octave lower (written pitch = trumpet pitch).
+tenor   | . A4 C5 E5- D5 C5 A4 | Eb5--- D5 C5 A4 F#4 | . Bb4 D5 F5- E5 D5 Bb4 | Db5--- C5 Bb4 G4 E4 |
+tenor   | G5- E5 C5 A5- F#5 D5 | G5- F5 D5 E5 C5 Bb4 G4 | A4----- .- | . D5 C5 Bb4 A4 G4 E4 C4 |
+# Piano: rootless voicings with smooth voice leading (Fmaj9 -> D7b9 -> Gm9 ->
+# C7b9 ...). The b9 voicings on D7 and C7 match the Eb and Db in the melody.
+# Rhythm alternates a Charleston figure (beat 1 and the and-of-2) with
+# off-beat stabs, and two-chord bars anticipate the second chord on the and-of-2.
+piano   | A3+C4+E4+G4-- A3+C4+E4+G4---- | .- . F#3+B3+C4+Eb4- . F#3+B3+C4+Eb4- | F3+A3+Bb3+D4-- F3+A3+Bb3+D4---- | .- . E3+A3+Bb3+Db4- . E3+A3+Bb3+Db4- |
+piano   | G3+B3+C4+E4- . F#3+B3+C4+E4---- | F3+A3+Bb3+D4- . E3+A3+Bb3+D4---- | . A3+C4+E4+G4- . . A3+C4+E4+G4-- | F3+A3+Bb3+D4- . E3+A3+Bb3+Db4---- |
+# Bass plays in two (half notes) in the first two A sections, leaving air
+# around the busy melody and saving the walking feel for the bridge.
+bass    | F2--- A2--- | D2--- A2--- | G2--- D2--- | C2--- E2--- |
+bass    | A2--- D2--- | G2--- C2--- | F2--- . C2 C2- | G2--- C2--- |
+# Drums: ride "ding, ding-a" with the hi-hat foot on 2 and 4, feathered kick,
+# snare only for small kicks into the next phrase.
+ride    | x.Xx x.Xx | % | % | % | % | % | % | % |
+hat     | ..x. ..x. | % | % | % | % | % | % | % |
+kick    | o... o... | % | % | % | % | % | % | % |
+snare   | _ | _ | _ | .... ..o. | _ | _ | _ | .... o.ox |
+
+# ---------------------------------------------------------------------------
+# A2: same first six bars; the last two bars change. Bar 7 lands on F5 (an
+# octave above A1's ending, so the second A feels like it has arrived), and
+# bar 8 turns F into F7 to pull toward Bb minor, with the melody ending on
+# A -> Ab, a chromatic step that announces the bridge's darker key.
+# Changes: | Fmaj7 | D7b9 | Gm7 | C7b9 | Am7 D7 | Gm7 C7 | Fmaj7 | F7 |
+pattern A2 from A1
+trumpet | . A4 C5 E5- D5 C5 A4 | Eb5--- D5 C5 A4 F#4 | . Bb4 D5 F5- E5 D5 Bb4 | Db5--- C5 Bb4 G4 E4 |
+trumpet | G5- E5 C5 A5- F#5 D5 | G5- F5 D5 E5 C5 Bb4 G4 | F5----- .- | . C5 Eb5 F5 A5- Ab5- |
+tenor   | . A4 C5 E5- D5 C5 A4 | Eb5--- D5 C5 A4 F#4 | . Bb4 D5 F5- E5 D5 Bb4 | Db5--- C5 Bb4 G4 E4 |
+tenor   | G5- E5 C5 A5- F#5 D5 | G5- F5 D5 E5 C5 Bb4 G4 | F5----- .- | . C5 Eb5 F5 A5- Ab5- |
+piano   | A3+C4+E4+G4-- A3+C4+E4+G4---- | .- . F#3+B3+C4+Eb4- . F#3+B3+C4+Eb4- | F3+A3+Bb3+D4-- F3+A3+Bb3+D4---- | .- . E3+A3+Bb3+Db4- . E3+A3+Bb3+Db4- |
+piano   | G3+B3+C4+E4- . F#3+B3+C4+E4---- | F3+A3+Bb3+D4- . E3+A3+Bb3+D4---- | . A3+C4+E4+G4- . . A3+C4+E4+G4-- | A3+D4+Eb4+G4- . A3+D4+Eb4+G4---- |
+bass    | F2--- A2--- | D2--- A2--- | G2--- D2--- | C2--- E2--- |
+bass    | A2--- D2--- | G2--- C2--- | F2--- . C2 C2- | F2--- A2--- |
+
+# ---------------------------------------------------------------------------
+# B (bridge): the contrast section.
+# Changes: | Bbm7 | Eb7 | Abmaj7 | Abmaj7 | Am7 | D7 | Gm7 | C7b9 |
+# Harmony: drops to the minor iv (Bbm7 - Eb7) and resolves to Abmaj7, a
+# warm, distant key (bIII of F), then climbs back by half step to Am7 - D7
+# and the Gm7 - C7 that sets up the last A.
+# Melody: the opposite of the A sections. Instead of running eighths it is
+# long held tones in the upper register: four-bar phrases that start with a
+# two-beat breath and sit on chord sevenths (Ab over Bbm7, Db over Eb7). The
+# second phrase is the climax of the whole tune: C6 over Am7, then F#5 held
+# over D7, then a descending line back down to the middle register for the
+# last A.
+pattern B
+trumpet | .- F5 Ab5---- | G5--- F5- Db5- | C5------- | .- Eb5 F5 G5- Bb5- |
+trumpet | C6----- B5 A5 | F#5------- | .- D5 F5 A5- G5- | E5--- Db5- Bb4- |
+# Tenor leaves the unison and plays a slow guide-tone counterline in long
+# notes (3rds and 7ths), so the horns become two independent voices here.
+# Written an octave above sounding: Db5 here sounds Db4.
+tenor   | Db5------- | = | C5------- | Eb5--- G5--- |
+tenor   | E5------- | C5------- | Bb4------- | Bb4--- E5--- |
+# Piano switches from short stabs to sustained voicings and half-note
+# pulses, matching the long melody notes.
+piano   | Ab3+C4+Db4+F4------- | G3+C4+Db4+F4--- . . G3+C4+Db4+F4- | G3+Bb3+C4+Eb4------- | . . . C4+Eb4+G4+Bb4---- |
+piano   | G3+B3+C4+E4------- | F#3+B3+C4+E4--- . . F#3+B3+C4+E4- | F3+A3+Bb3+D4------- | E3+A3+Bb3+Db4--- . . E3+Ab3+Bb3+Db4- |
+# Bass starts walking in quarter notes for the first time, with chromatic
+# approach notes into each new chord. This lifts the energy under the
+# slower melody.
+bass    | Bb1- Db2- F2- E2- | Eb2- G2- Bb2- A2- | Ab2- G2- F2- Eb2- | Ab1- C2- Eb2- Ab2- |
+bass    | A2- G2- E2- Eb2- | D2- F#2- A2- Ab2- | G2- D2- Bb1- B1- | C2- E2- G2- Gb2- |
+# Drums: crash marks each four-bar phrase, the snare starts comping, and the
+# kick feathers every beat.
+crash   | X....... | _ | _ | _ | X....... | _ | _ | _ |
+ride    | x.Xx x.Xx | % | % | % | % | % | % | % |
+hat     | ..x. ..x. | % | % | % | % | % | % | % |
+kick    | o.o. o.o. | % | % | % | % | % | % | % |
+snare   | ..o. ...o | .o.. ..o. | ..o. ...o | .... o.x. | ..o. ...o | .o.. ..o. | ..o. ...o | .... oxox |
+
+# ---------------------------------------------------------------------------
+# A3: the last A. The melody returns unchanged for six bars, but the bass
+# keeps walking from the bridge so the return feels stronger than A1. Bar 7
+# rises (A C D F) instead of holding, and bar 8 ends on Db over C7, which
+# resolves by half step into the coda's Gbmaj7.
+# Changes: | Fmaj7 | D7b9 | Gm7 | C7b9 | Am7 D7 | Gm7 C7 | F6/9 | Gm7 C7b9 |
+pattern A3 from A1
+trumpet | . A4 C5 E5- D5 C5 A4 | Eb5--- D5 C5 A4 F#4 | . Bb4 D5 F5- E5 D5 Bb4 | Db5--- C5 Bb4 G4 E4 |
+trumpet | G5- E5 C5 A5- F#5 D5 | G5- F5 D5 E5 C5 Bb4 G4 | A4--- . C5 D5 F5 | G5- F5 D5 E5- Db5- |
+tenor   | . A4 C5 E5- D5 C5 A4 | Eb5--- D5 C5 A4 F#4 | . Bb4 D5 F5- E5 D5 Bb4 | Db5--- C5 Bb4 G4 E4 |
+tenor   | G5- E5 C5 A5- F#5 D5 | G5- F5 D5 E5 C5 Bb4 G4 | A4--- . C5 D5 F5 | G5- F5 D5 E5- Db5- |
+piano   | A3+C4+E4+G4-- A3+C4+E4+G4---- | .- . F#3+B3+C4+Eb4- . F#3+B3+C4+Eb4- | F3+A3+Bb3+D4-- F3+A3+Bb3+D4---- | .- . E3+A3+Bb3+Db4- . E3+A3+Bb3+Db4- |
+piano   | G3+B3+C4+E4- . F#3+B3+C4+E4---- | F3+A3+Bb3+D4- . E3+A3+Bb3+D4---- | A3+D4+E4+G4-- A3+D4+E4+G4---- | F3+A3+Bb3+D4- . E3+A3+Bb3+Db4---- |
+bass    | F2- A2- C2- C#2- | D2- F#2- A2- Ab2- | G2- A2- Bb2- B2- | C3- Bb2- G2- Bb2- |
+bass    | A2- E2- D2- F#2- | G2- D2- C2- E2- | F2- A2- C3- A2- | G2- D2- C2- Db2- |
+kick    | o.o. o.o. | % | % | % | % | % | % | % |
+snare   | _ | ..o. ...o | _ | .... ..o. | _ | ..o. ...o | _ | .... oxox |
+
+# ---------------------------------------------------------------------------
+# CODA: a slower tag. Gbmaj7 (a half step above the tonic) resolves to
+# Fmaj9. The trumpet holds F5 through both chords: it is the major 7th of
+# Gb and then the root of F, so the color changes under one sustained note.
+# The tenor moves Bb -> A (the 3rd of each chord) underneath it.
+pattern coda tempo=132
+trumpet | F5------- | -------- | ----- .-- |
+tenor   | Bb4------- | A4------- | ----- .-- |
+piano   | F3+Ab3+Bb3+Db4------- | E3+G3+A3+C4------- | ----- .-- |
+bass    | Gb1------- | F1------- | ----- .-- |
+crash   | X....... | ........ | ........ |
+ride    | x.Xx x.Xx | x....... | ........ |
+kick    | X....... | x....... | ........ |
+
+# Full form: intro, then A A B A (32 bars), then the tag.
+play intro A1 A2 B A3 coda

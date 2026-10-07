@@ -1,0 +1,64 @@
+# Two-part invention in D minor, in the manner of Bach's two-part inventions.
+# Plan: exposition (Dm, Am), episode 1 (falling sequence to F major),
+# middle entries (F major), episode 2 (voices swapped, back to D minor),
+# recapitulation (Dm), coda with cadence and a Picardy third.
+# Subject (1 bar): rising sixteenth head "rest D E F G E F D" (tonic area),
+# then eighths "C# A D E" (dominant, leaning into the next bar).
+# Countersubject: held F, then E D in eighths, then a falling sixteenth run.
+# It is written to be invertible at the octave (mostly 3rds/6ths against the
+# subject, fifths only on weak sixteenths), so the hands can trade it.
+
+title    Invention in D minor
+composer Claude
+about    An original two-part invention: a one-bar subject with an invertible countersubject, traded between the hands through D minor, A minor and F major.
+tempo    72
+beats    4
+steps    4
+
+# Each hand is one voice. Slight panning separates them so the imitation is audible.
+voice rh harpsichord vol=0.85 pan=0.25
+voice lh harpsichord vol=0.85 pan=-0.25
+
+# Bars 1-4: exposition. Bar 1 RH states the subject alone. Bar 2 LH imitates at
+# two octaves below while RH plays the countersubject. Bars 3-4 repeat the
+# exchange in A minor (dominant), with the countersubject inverted into the LH first.
+pattern expo
+rh | . D5 E5 F5 G5 E5 F5 D5 C#5- A4- D5- E5- | F5--- E5- D5- A5 G5 F5 E5 F5 A5 G5 E5 | . A4 B4 C5 D5 B4 C5 A4 G#4- E4- A4- B4- | C5--- B4- A4- E5 D5 C5 B4 C5 E5 D5 B4 |
+lh | _ | . D3 E3 F3 G3 E3 F3 D3 C#3- A2- D3- E3- | C3--- B2- A2- E3 D3 C3 B2 C3 E3 D3 B2 | . A2 B2 C3 D3 B2 C3 A2 G#2- E2- A2- B2- |
+
+# Bars 5-6: episode 1. RH sequences the subject head down by step
+# (Am Dm | Gm C7 | F Bb) while LH walks root-and-third eighths in falling fifths,
+# then a short cadence C7 -> F lands in the relative major.
+pattern ep1
+rh | . C5 D5 E5 F5 D5 E5 C5 . Bb4 C5 D5 E5 C5 D5 Bb4 | . A4 Bb4 C5 D5 Bb4 C5 A4 G4 Bb4 A4 G4 F4--- |
+lh | A2- C3- D3- F3- G2- Bb2- C3- E3- | F2- A2- Bb2- D3- E3- C3- F2--- |
+
+# Bars 7-8: middle entries in F major. RH leads with the subject over the
+# countersubject in LH; then LH answers with the subject and RH takes the
+# countersubject above (the same invertible pair, now in a major key).
+pattern mid
+rh | . F5 G5 A5 Bb5 G5 A5 F5 E5- C5- F5- G5- | A5--- G5- F5- C6 Bb5 A5 G5 A5 C6 Bb5 G5 |
+lh | A3--- G3- F3- C4 Bb3 A3 G3 A3 C4 Bb3 G3 | . F3 G3 A3 Bb3 G3 A3 F3 E3- C3- F3- G3- |
+
+# Bars 9-10: episode 2 is episode 1 with the hands swapped: LH now carries the
+# subject head in a falling sequence (Dm Gm | Cm F7 | Bb Eb), RH the eighths.
+# The second half of bar 10 turns the music back toward D minor via E dim to A major.
+pattern ep2
+rh | D5- F5- G5- Bb5- C5- Eb5- F5- A5- | Bb5- D5- Eb5- G5- Bb5 A5 G5 E5 C#5- E5- |
+lh | . F3 G3 A3 Bb3 G3 A3 F3 . Eb3 F3 G3 A3 F3 G3 Eb3 | . D3 Eb3 F3 G3 Eb3 F3 D3 G2- Bb2- A2--- |
+
+# Bars 11-12: recapitulation in the tonic. RH subject over the inverted
+# countersubject (its first beat reshaped to land on the tonic D in the bass),
+# then LH subject under RH countersubject, as in bar 2.
+pattern recap
+rh | . D5 E5 F5 G5 E5 F5 D5 C#5- A4- D5- E5- | F5--- E5- D5- A5 G5 F5 E5 F5 A5 G5 E5 |
+lh | D3--- C#3- D3- A3 G3 F3 E3 F3 A3 G3 E3 | . D3 E3 F3 G3 E3 F3 D3 C#3- A2- D3- E3- |
+
+# Bars 13-15: coda. RH keeps the subject head (on F, then on E) against a bass
+# moving Dm Gm | Edim A7; bar 14 is a cadence with a 4-3 suspension (D over A
+# resolving to C#), and the piece ends on a D major chord (Picardy third).
+pattern coda
+rh | . F5 G5 A5 Bb5 G5 A5 F5 . E5 F5 G5 A5 F5 G5 E5 | F5 A5 D5 F5 E5 G5 C#5 E5 D5--- C#5--- | A4+D5+F#5--------------- |
+lh | D3- F3- G3- D3- Bb2- G2- C#3- A2- | D3- F3- G3- A3- A2------- | D2+D3--------------- |
+
+play expo ep1 mid ep2 recap coda

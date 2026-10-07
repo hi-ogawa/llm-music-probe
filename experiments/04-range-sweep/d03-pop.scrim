@@ -1,0 +1,60 @@
+title    Open Window
+composer Claude
+about    An 8-bar pop chorus in E major on the I-V-vi-IV loop, with an alto sax singing the hook over piano, pad, bass, and a four-on-the-floor-leaning backbeat.
+tempo    120     # mid-up pop tempo, danceable without feeling rushed
+beats    4
+steps    4       # sixteenth grid so the lead and piano can push off the beat
+
+# Harmony plan (one chord per bar):
+#   | E | B/D# | C#m | A | E | B | A | Bsus4 -> B |
+# The first four bars are the classic I-V-vi-IV loop with a stepwise bass (E D# C#).
+# The second half swaps vi for IV->V so bar 8 ends on a half cadence that pulls back into the top.
+
+# Lead: alto sax as the "singer". It sits in a vocal range (E4 to F#5) so it reads as a sung chorus.
+voice lead   altosax  vol=1.05 pan=0
+# Piano: rhythmic chord stabs in a 3+3+2 push, the main harmonic engine of a pop band.
+voice keys   piano    vol=0.6  pan=-0.25
+# Pad: sustained string chords underneath to glue the harmony and add chorus-lift width.
+voice pad    strings  vol=0.4  pan=0.3
+# Bass: driving eighth-note roots, slightly short so the groove stays tight.
+voice bass   ebass    vol=0.85 gate=0.8
+# Drums: one voice per sound.
+voice kick   kick     vol=0.9
+voice snare  snare    vol=0.8
+voice clap   clap     vol=0.45   # layered with the snare on 2 and 4 for a modern pop backbeat
+voice hat    hat      vol=0.45
+voice ohat   ohat     vol=0.4
+voice crash  crash    vol=0.6
+
+pattern chorus
+# Lead melody. Bars 1 and 5 share the same pickup-style hook (rest, then G#-B rising),
+# so the ear hears a repeat, but bar 5 climbs higher to E5-F#5 for the chorus peak.
+# Bar 2 and 6 hold a long note to let the hook breathe; bar 8 rests on B (the 5th) as an open ending.
+lead  | .- G#4- B4- C#5-- B4- G#4- F#4-- | F#4------- .- B4- A4- G#4- | G#4--- C#5- C#5- E5--- D#5- C#5- | C#5----- B4- A4------- |
+lead  | .- G#4- B4- E5-- D#5- E5- F#5-- | F#5------- .- E5- D#5- B4- | C#5--- E5--- C#5- B4- A4- B4- | B4----------- .--- |
+
+# Piano: close voicings around E4, kept below the lead so the melody stays on top.
+# 3+3+2 rhythm gives the pop "push" feel against the straight drums.
+keys  | B3+E4+G#4-- B3+E4+G#4-- B3+E4+G#4- B3+E4+G#4-- B3+E4+G#4-- B3+E4+G#4- | B3+D#4+F#4-- B3+D#4+F#4-- B3+D#4+F#4- B3+D#4+F#4-- B3+D#4+F#4-- B3+D#4+F#4- | C#4+E4+G#4-- C#4+E4+G#4-- C#4+E4+G#4- C#4+E4+G#4-- C#4+E4+G#4-- C#4+E4+G#4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- |
+keys  | B3+E4+G#4-- B3+E4+G#4-- B3+E4+G#4- B3+E4+G#4-- B3+E4+G#4-- B3+E4+G#4- | B3+D#4+F#4-- B3+D#4+F#4-- B3+D#4+F#4- B3+D#4+F#4-- B3+D#4+F#4-- B3+D#4+F#4- | A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- A3+C#4+E4-- A3+C#4+E4-- A3+C#4+E4- | B3+E4+F#4------- B3+D#4+F#4!------- |
+
+# Pad: whole-bar chords an octave lower than the piano, so it fills space without clashing with the lead.
+pad   | E3+G#3+B3--------------- | D#3+F#3+B3--------------- | C#3+E3+G#3--------------- | C#3+E3+A3--------------- |
+pad   | E3+G#3+B3--------------- | D#3+F#3+B3--------------- | C#3+E3+A3--------------- | D#3+F#3+B3--------------- |
+
+# Bass: eighth-note roots with an octave pop at the end of each bar for motion; bar 8 walks up B-C#-D# into the E of the repeat.
+# Bar 2 plays D# (first inversion) so the bass walks down E-D#-C#-A under the loop.
+bass  | E2- E2- E2- E2- E2- E2- E3- E2- | D#2- D#2- D#2- D#2- D#2- D#2- D#3- D#2- | C#2- C#2- C#2- C#2- C#2- C#2- C#3- C#2- | A1- A1- A1- A1- A1- A1- A2- A1- |
+bass  | E2- E2- E2- E2- E2- E2- E3- E2- | B1- B1- B1- B1- B1- B1- B2- B1- | A1- A1- A1- A1- A1- A1- A2- A1- | B1- B1- B1- B1- B1- B2- C#2- D#2- |
+
+# Drums: kick on 1 and 3 with anticipations, snare+clap on 2 and 4, steady eighth hats,
+# open hat lifting into each 4-bar half, crash marking the downbeats of bars 1 and 5,
+# and a snare fill in bar 8 to launch the repeat.
+kick  | X... ..x. x.x. .... | % | % | x... ..x. x.x. ..x. | X... ..x. x.x. .... | % | % | x... ..x. x... x... |
+snare | .... X... .... X... | % | % | % | % | % | % | .... X... ..x. xxXX |
+clap  | .... x... .... x... | % | % | % | % | % | % | .... x... .... x... |
+hat   | x.x. x.x. x.x. x.x. | % | % | x.x. x.x. x.x. x... | x.x. x.x. x.x. x.x. | % | % | x.x. x.x. .... .... |
+ohat  | .... .... .... .... | % | % | .... .... .... ..x. | .... .... .... .... | % | % | .... .... .... .... |
+crash | X... .... .... .... | _ | _ | _ | X... .... .... .... | _ | _ | _ |
+
+loop chorus

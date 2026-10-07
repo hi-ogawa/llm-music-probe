@@ -1,0 +1,42 @@
+title    Dusty Crate Loop
+composer Claude
+about    A 4-bar boom-bap loop in C minor. A chopped electric-piano sample over a heavy, sparse bass and a swung kit.
+tempo    88
+beats    4
+steps    4
+swing    0.18    # lazy 16th swing, the MPC feel boom-bap relies on
+
+# Harmony: Cm9 | Abmaj9 | Fm9 | G7(#5b9), one chord per bar, i - VI - iv - V.
+# Each new chord is pushed in early on the last eighth of the previous bar,
+# like a chopped sample that is triggered a little ahead of the downbeat.
+
+# keys: the "sample". Rootless four-note stacks in the C4 area, so the bass owns the roots.
+# Voice leading is mostly by step, and the G7 voicing (B Eb F Ab) slides down a half step
+# in every voice into the Cm9 voicing (Bb D Eb G) when the loop repeats.
+# Rhythm per bar: a long hit, a softer re-hit on the "a" of beat 2, then the push.
+voice keys epiano vol=0.9 pan=-0.15
+
+# pad: a quiet string dyad sitting above the keys, like the background layer of a
+# record sample. It moves with the keys' pushes so it never clashes with them, and drops
+# out under the keys' little fill in bar 4.
+voice pad strings vol=0.3 pan=0.25
+
+# bass: heavy and sparse. Low roots held long, one hit on the kick at step 11,
+# and a push into the next chord with the keys. Only 3 attacks per bar.
+voice bass ebass vol=1.15
+
+# drums: classic boom-bap kick (1, the "a" of 2, the "and" of 3, plus the push),
+# hard backbeat snare with a couple of ghost notes, quiet swung 8th hats.
+voice kick kick vol=1.1
+voice snare snare vol=0.95
+voice hat hat vol=0.5
+
+pattern loop
+keys  | Bb3+D4+Eb4+G4----- . Bb3+D4+Eb4+G4----? .- C4+Eb4+G4+Bb4- | ----- .- C4+Eb4+G4+Bb4----? .- Ab3+C4+Eb4+G4- | ----- .- Ab3+C4+Eb4+G4----? .- B3+Eb4+F4+Ab4- | ----- .- B3+Eb4+F4+Ab4--- . Ab4? . G4-? |
+pad   | Bb4+D5------------- G4+C5- | -------------- Ab4+C5- | -------------- Ab4+B4- | ---------- .----- |
+bass  | C2------! .-- G1-- . Ab1- | ------ .--- Eb2-- . F1- | ------ .--- C2-- . G1- | ------ .--- G2-- . D2-? |
+kick  | X... ...x ..x. ..x. | X... ...x ..x. ..x. | X... ...x ..x. ..x. | X... ...x ..x. .... |
+snare | .... X... .... X... | .... X..o .... X... | .... X... .... X... | .... X..o .... X.oo |
+hat   | x.x. x.xo x.x. x.x. | x.x. x.x. x.xo x.x. | x.x. x.xo x.x. x.x. | x.x. x.x. x.xo x.o. |
+
+loop loop

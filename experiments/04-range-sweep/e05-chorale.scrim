@@ -1,0 +1,55 @@
+title    Chorale in G
+composer Claude
+about    A four-phrase chorale in G major for SATB choir, written as strict common-practice voice leading: half cadence, cadence in the dominant, cadence in the relative minor, and a final authentic cadence.
+tempo    66
+beats    4
+steps    2      # quarter note = 2 steps, so passing eighths are possible
+
+# Each part is its own choir voice so the lines stay independent.
+# Ranges: soprano D4-E5, alto B3-B4, tenor E3-F#4, bass E2-G3.
+# Adjacent upper voices stay within an octave; tenor-bass may be wider.
+# Every chord change was checked for parallel fifths and octaves.
+# Hidden octaves into the outer voices occur only with the soprano moving by step.
+# Leading tones rise to the tonic, chord sevenths fall by step.
+voice S choir vol=0.9 pan=-0.3   # soprano: carries the chorale tune, mostly stepwise
+voice A choir vol=0.7 pan=-0.1   # alto: fills the middle, mostly common tones and steps
+voice T choir vol=0.7 pan=0.1    # tenor: completes chords, resolves leading tones and sevenths
+voice B choir vol=0.85 pan=0.3   # bass: harmonic foundation, root motion by fourth and fifth at cadences
+
+# Phrase 1: I V6 I IV | vi ii6 V. Half cadence on D.
+# Bass G-F#-G neighbour figure under a soprano that holds D5, then IV-vi-ii6-V.
+# Into V the upper three voices fall while the bass rises, avoiding parallels.
+pattern p1
+S | D5- D5- B4- C5- | B4- C5- A4--- |
+A | G4- A4- G4- G4- | G4- A4- F#4--- |
+T | B3- A3- D4- E4- | E4- E4- D4--- |
+B | G2- F#2- G2- C3- | E3- C3- D3--- |
+
+# Phrase 2: modulates to D major. G Em A D | Em6 A7 D.
+# Em is the pivot (vi in G, ii in D); A is V of D with C# as new leading tone.
+# Cadence: A7 to D, C# rises to D in the tenor, the seventh G falls to F# in the alto.
+pattern p2
+S | B4- B4- C#5- D5- | E5- E5- D5--- |
+A | G4- G4- A4- A4- | B4- G4- F#4--- |
+T | D4- E4- E4- F#4- | E4- C#4- D4--- |
+B | G2- E3- A2- D3- | G2- A2- D3--- |
+
+# Phrase 3: back to G, then to E minor. G C D Em | Am B7 Em.
+# D to Em is a deceptive motion in G with the third doubled; it becomes iv-V7-i in E minor.
+# The leading tone D# rises to E in the alto, the seventh A falls to G in the soprano.
+pattern p3
+S | D5- E5- D5- B4- | C5- A4- G4--- |
+A | G4- G4- F#4- G4- | E4- D#4- E4--- |
+T | B3- C4- A3- G3- | A3- F#3- E3--- |
+B | G2- C3- D3- E3- | A2- B2- E2--- |
+
+# Phrase 4: final authentic cadence in G. I6 V6/4 I IV | I6/4 V7 I.
+# Bar 7 is a voice exchange: bass B-A-G against soprano G-A-B, with a passing six-four.
+# Cadential six-four over D resolves to V7, then the seventh C falls to B and F# rises to G.
+pattern p4
+S | G4- A4- B4- C5- | B4- A4- G4--- |
+A | D4- D4- D4- E4- | D4- C4- B3--- |
+T | G3- F#3- G3- G3- | G3- F#3- G3--- |
+B | B2- A2- G2- C3- | D3- D3- G2--- |
+
+play p1 p2 p3 p4

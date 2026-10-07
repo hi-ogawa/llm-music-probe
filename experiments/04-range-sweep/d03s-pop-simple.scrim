@@ -1,0 +1,34 @@
+title    Simple Pop Chorus
+about    An 8-bar pop chorus in C major over the I-V-vi-IV progression, kept as plain as possible.
+tempo    104     # mid-tempo pop pulse
+beats    4
+steps    2       # eighth-note grid is enough, nothing here needs sixteenths
+
+# Lead: alto sax carries the hook. It is a clear, singable timbre in General MIDI
+# and sits above the piano without clashing.
+voice lead  altosax vol=1.0
+# Harmony: piano block chords, close voicings with smooth voice leading
+# (C4+E4+G4 -> B3+D4+G4 -> A3+C4+E4 -> A3+C4+F4) so the chords move by step.
+voice keys  piano   vol=0.6 pan=-0.2
+# Bass: electric bass on chord roots in steady quarters, the simplest solid foundation.
+voice bass  ebass   vol=0.8
+# Drums: the standard pop backbeat, kick on 1 and 3, snare on 2 and 4, eighth hats.
+voice kick  kick    vol=0.9
+voice snare snare   vol=0.8
+voice hat   hat     vol=0.45
+voice crash crash   vol=0.6
+
+pattern chorus
+# Chords: C | G | Am | F | C | G | F G | C
+# The first four bars state the hook, the second four repeat its opening and then
+# climb (D E F) before stepping down E D C to land on the tonic.
+# Bar 1 and bar 5 are identical so the hook is easy to remember.
+lead  | E5--- G5- E5- | D5----- .- | C5- C5- D5- E5- | C5----- .- | E5--- G5- E5- | D5- D5- E5- F5- | E5--- D5--- | C5------- |
+keys  | C4+E4+G4--- C4+E4+G4--- | B3+D4+G4--- B3+D4+G4--- | A3+C4+E4--- A3+C4+E4--- | A3+C4+F4--- A3+C4+F4--- | C4+E4+G4--- C4+E4+G4--- | B3+D4+G4--- B3+D4+G4--- | A3+C4+F4--- B3+D4+G4--- | C4+E4+G4------- |
+bass  | C2- C2- C2- C2- | G1- G1- G1- G1- | A1- A1- A1- A1- | F1- F1- F1- F1- | C2- C2- C2- C2- | G1- G1- G1- G1- | F1- F1- G1- G1- | C2------- |
+kick  | x. .. x. .. | % | % | % | % | % | % | x. .. .. .. |
+snare | .. x. .. x. | % | % | % | % | % | % | .. .. .. .. |
+hat   | xx xx xx xx | % | % | % | % | % | % | x. .. .. .. |
+crash | x. .. .. .. | _ | _ | _ | x. .. .. .. | _ | _ | x. .. .. .. |
+
+play chorus

@@ -1,0 +1,73 @@
+title    Montuno en C
+composer Claude
+about    An 8-bar salsa loop in 2-3 son clave over a I-IV-V-IV montuno in C, with a G7 turnaround in the last bar.
+tempo    180
+beats    4
+steps    4     # sixteenths, so the guiro can scrape in 16ths; everything else moves in eighths
+swing    0     # salsa is straight
+
+# Harmony, two chords per bar, 2-bar cycle: | C . F . | G7 . F . |, repeated 4 times,
+# except bar 8 is G7 for the whole bar so the loop turns around into C on its downbeat.
+
+# Clave: 2-3 son clave. Bar 1 (odd bars) is the 2-side, beats 2 and 3. Bar 2 (even bars) is
+# the 3-side: beat 1, the "and" of 2, and beat 4. Loud and centered because everything locks to it.
+voice clave   clave   vol=1.0
+# Bongocero's hand bell (campana): quarter notes with the "and" of 2 and 4, accents on 1 and 3.
+voice bell    cowbell vol=0.55
+# Conga tumbao: heel-toe ghosts, slap on 2, open tones on 4 and 4-and. On the 3-side bar the
+# second open tone moves to the low drum (tumba), the classic two-drum tumbao.
+voice conga   conga   vol=0.75
+voice tumba   tumba   vol=0.8
+# Guiro: long scrape on each beat, two short scrapes after it, keeps the sixteenth-note motor.
+voice guiro   guiro   vol=0.45
+# Timbale: silent except a short fill in bar 8 that kicks the loop back to the top.
+voice timbal  timbale vol=0.7
+
+# Tumbao bass: never plays on the downbeat (except to restart the loop). It plays on the
+# "and" of 2, anticipating the chord of beat 3, and on beat 4, anticipating the next bar's
+# chord, and each note rings through to the next one. This anticipation is what makes it salsa.
+voice bass    upright vol=1.1 gate=0.95
+
+# Piano montuno, right hand: syncopated eighths alternating an octave-doubled melody note
+# (with chord tones inside the octave) and a lighter inner dyad. The "and" of 2 and the
+# "and" of 4 anticipate the next chord and tie over, matching the bass anticipations.
+# Top line over two bars: E G | F . A G | (G) F | A . F E, a small wave that resolves to E.
+voice pno     piano   vol=0.8 pan=0.15 gate=0.9
+# Piano left hand: doubles the montuno melody two octaves below the right-hand top note,
+# in the same rhythm, the typical salsa pianist's hands-in-octaves sound. Rests on the dyads.
+voice pnolh   piano   vol=0.55 pan=-0.1 gate=0.9
+
+pattern montuno
+clave  | .... x... x... .... | x... ..x. .... x... | .... x... x... .... | x... ..x. .... x... |
+clave  | .... x... x... .... | x... ..x. .... x... | .... x... x... .... | x... ..x. .... x... |
+bell   | X... x.x. X... x.x. | % | % | % | % | % | % | % |
+conga  | o.o. X.o. o.o. x.x. | o.o. X.o. o.o. x... | o.o. X.o. o.o. x.x. | o.o. X.o. o.o. x... |
+conga  | o.o. X.o. o.o. x.x. | o.o. X.o. o.o. x... | o.o. X.o. o.o. x.x. | o.o. X.o. o.o. x... |
+tumba  | _ | .... .... .... ..x. | _ | .... .... .... ..x. | _ | .... .... .... ..x. | _ | .... .... .... ..x. |
+guiro  | X.oo x.oo X.oo x.oo | % | % | % | % | % | % | % |
+timbal | _ | _ | _ | _ | _ | _ | _ | .... .... x.xx x.X. |
+
+# Bass. Bar 1 strikes C on the downbeat only to restart the loop. Odd bars: F on 2-and,
+# G on 4 (heading to G7). Even bars: F on 2-and, C on 4 (heading back to C).
+# Bar 8 (G7): D on 2-and, low G on 4, so the loop's downbeat C lands as a resolution.
+bass   | C2----- F2----- G2--- | ------ F2----- C2--- | ------ F2----- G2--- | ------ F2----- C2--- |
+bass   | ------ F2----- G2--- | ------ F2----- C2--- | ------ F2----- G2--- | ------ D2----- G1--- |
+
+# Montuno right hand. Bar 1 voicings: C = E4+G4+C5+E5 / G4+C5+E5+G5, F = F4+A4+C5+F5 / A4+C5+F5+A5,
+# G7 = G4+B4+D5+G5 / F4+B4+D5+F5 (root left to the bass, 7th on top). Odd bars after bar 1
+# start by tying the C stack that was anticipated on the 4-and of the bar before.
+pno    | E4+G4+C5+E5- G4+C5- G4+C5+E5+G5- F4+A4+C5+F5--- A4+C5- A4+C5+F5+A5- G4+B4+D5+G5- |
+pno    | -- B4+D5- F4+B4+D5+F5- A4+C5+F5+A5--- C5+F5- F4+A4+C5+F5- E4+G4+C5+E5- |
+pno    | -- G4+C5- G4+C5+E5+G5- F4+A4+C5+F5--- A4+C5- A4+C5+F5+A5- G4+B4+D5+G5- |
+pno    | -- B4+D5- F4+B4+D5+F5- A4+C5+F5+A5--- C5+F5- F4+A4+C5+F5- E4+G4+C5+E5- |
+pno    | -- G4+C5- G4+C5+E5+G5- F4+A4+C5+F5--- A4+C5- A4+C5+F5+A5- G4+B4+D5+G5- |
+pno    | -- B4+D5- F4+B4+D5+F5- A4+C5+F5+A5--- C5+F5- F4+A4+C5+F5- E4+G4+C5+E5- |
+pno    | -- G4+C5- G4+C5+E5+G5- F4+A4+C5+F5--- A4+C5- A4+C5+F5+A5- G4+B4+D5+G5- |
+# Bar 8, G7 turnaround: same rhythm, but the last eighth is a rest so the C stack on the
+# loop's downbeat is a fresh attack instead of a tie.
+pno    | -- B4+D5- F4+B4+D5+F5- D4+G4+B4+D5--- F4+B4- G4+B4+D5+G5- .- |
+
+pnolh  | E3- .- G3- F3--- .- A3- G3- | -- .- F3- A3--- .- F3- E3- | -- .- G3- F3--- .- A3- G3- | -- .- F3- A3--- .- F3- E3- |
+pnolh  | -- .- G3- F3--- .- A3- G3- | -- .- F3- A3--- .- F3- E3- | -- .- G3- F3--- .- A3- G3- | -- .- F3- D3--- .- G3- .- |
+
+loop montuno

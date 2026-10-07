@@ -1,0 +1,106 @@
+title    The Ridge
+composer Claude
+about    Film cue. A climber crosses a corniced ice ridge at night while the snowpack above begins to give way. It moves from stillness to an avalanche and ends in the hush after it.
+tempo    72
+beats    4
+steps    4
+
+# Plan: D minor throughout, 4/4 in sixteenths. Six sections, about 26 bars.
+#   still   (72 bpm)  celesta, low pedal, heartbeat timpani: the empty night
+#   creep   (80 bpm)  pizz ostinato and the horn motif: the climber moves
+#   strain  (88 bpm)  string chords pulse, snare ghosts, harmony climbs to the dominant
+#   rush    (96 bpm)  violin sixteenths, brass stabs, toms; played three times, each a semitone higher
+#   peak    (88 bpm)  full tutti, deceptive arrival on Bb major, A7b9, then D minor with gong
+#   after   (60 bpm)  everything drops out; cello, celesta and an open fifth with an unresolved Eb
+# Orchestration grows by layering: bells and bass, then plucked strings and horn,
+# then bowed strings and drums, then violins and brass, then choir on top.
+
+voice celesta    celesta    vol=0.6  pan=0.35   # the "night air" motif, high and fragile
+voice pizz       pizz       vol=0.7  pan=-0.25  # walking-feet ostinato in creep and strain
+voice violin     violin     vol=0.8  pan=-0.4   # sixteenth-note panic figure in rush and peak
+voice strings    strings    vol=0.7  pan=-0.1   # sustained chord bed, exact voicings
+voice cello      cello      vol=0.75 pan=0.25   # countermelody, then drive, then the lone voice after
+voice contrabass contrabass vol=0.8  pan=0.1    # pedal point that anchors the tension
+voice horn       horn       vol=0.85 pan=0.2    # main motif: D up to A, then the minor-second rub on Bb
+voice trombone   trombone   vol=0.75 pan=0.3    # doubles the motif an octave down in rush, bass fifths at peak
+voice brass      brass      vol=0.8  pan=0.0    # stabs in rush, sustained tutti chords at peak
+voice choir      choir      vol=0.7  pan=0.0    # enters only in rush and peak, for scale
+voice timpani    timpani    vol=0.85 pan=0.0    # heartbeat that speeds up across sections
+voice snare      snare      vol=0.6
+voice tomlo      tomlo      vol=0.8
+voice crash      crash      vol=0.7
+voice gong       gong       vol=0.9
+
+# STILL: sparse and quiet. The cello's half-step lean from A to Bb in bar 3 is the first hint of unease.
+pattern still tempo=72
+celesta    | .--- A5- F5- .------- | .--- A5- F5- E5--- .--- | .--- A5- F5- Bb5------- | A5---------------? |
+cello      | .------- A2-------? | A2---------------? | Bb2---------------? | A2---------------? |
+contrabass | D2---------------? | = | = | = |
+strings    | _ | _ | D5+A5---------------?? | = |
+timpani    | D2-? . D2?? .----------- | % | % | % |
+
+# CREEP: the pizz ostinato starts the motion. The horn states the motif: D up to A, then Bb grinding against A.
+# The cello descends F E D C# so the bass line underneath slowly sinks toward the dominant.
+pattern creep tempo=80
+pizz       | D3- A3- F3- A3- D3- A3- E3- A3- | % | D3- Bb3- F3- Bb3- D3- Bb3- E3- Bb3- | C#3- A3- E3- A3- C#3- A3- E3- G3- |
+horn       | D4----- A4- Bb4------- | A4------- .------- | D4----- A4- Bb4--- C5--- | A4--------------- |
+cello      | F3--------------- | E3--------------- | D3--------------- | C#3--------------- |
+contrabass | D2---------------? | % | Bb1---------------? | A1---------------? |
+timpani    | D2--- .--- A1--- .--- | % | % | % |
+celesta    | _ | _ | .------- .--- Bb6?--- | _ |
+
+# STRAIN: bowed strings take over as quarter-note pulses. Chords climb Dm, Eb over D (flat-nine rub), C# dim7, A7b9.
+# The horn motif moves up a fourth. Snare ghosts grow into a full roll; timpani shift to a galloping figure.
+pattern strain tempo=88
+strings    | D4+F4+A4+D5--- D4+F4+A4+D5--- D4+F4+A4+D5--- D4+F4+A4+D5--- | Eb4+G4+Bb4+Eb5--- Eb4+G4+Bb4+Eb5--- Eb4+G4+Bb4+Eb5--- Eb4+G4+Bb4+Eb5--- | E4+G4+Bb4+C#5--- E4+G4+Bb4+C#5--- E4+G4+Bb4+C#5--- E4+G4+Bb4+C#5--- | A3+C#4+G4+Bb4+E5--- A3+C#4+G4+Bb4+E5--- A3+C#4+G4+Bb4+E5--- A3+C#4+G4+Bb4+E5---! |
+pizz       | D3- A3- D4- A3- D3- A3- D4- A3- | D3- Bb3- Eb4- Bb3- D3- Bb3- Eb4- Bb3- | C#3- G3- Bb3- G3- C#3- G3- Bb3- G3- | A2- E3- G3- E3- A2- E3- G3- Bb3- |
+horn       | A4----- D5- Eb5------- | D5------- .------- | A4----- D5- Eb5--- E5--- | E5---------------! |
+cello      | D3------- F3------- | Eb3------- G3------- | E3------- G3------- | A3--------------- |
+contrabass | D2--------------- | = | = | A1--------------- |
+timpani    | D2- . D2 D2- . D2 D2- . D2 D2- D2- | % | % | A1- . A1 A1- . A1 A1 A1 A1 A1 A1- A1- |
+snare      | .... .... .... oooo | % | oooo oooo oooo oooo | xxxx xxxx xxxx XXXX |
+
+# RUSH: the avalanche starts. Violins churn in sixteenths (groups of three against the beat), the brass section stabs,
+# horn and trombone carry the motif in octaves, choir adds weight. The arrangement plays this three times, each a
+# semitone higher, so the pressure ratchets up while the drums stay fixed.
+pattern rush tempo=96
+violin     | D5 E5 F5 D5 E5 F5 D5 E5 F5 D5 E5 F5 G5 F5 E5 D5 | D5 E5 F5 D5 E5 F5 D5 E5 F5 G5 A5 G5 F5 G5 A5 Bb5 |
+strings    | D4+F4+A4--------------- | Eb4+G4+Bb4------- E4+G4+Bb4+C#5------- |
+brass      | D4+F4+A4! .-- D4+F4+A4! .-- .------- | Eb4+G4+Bb4! .-- Eb4+G4+Bb4! .-- Eb4+G4+Bb4-! Eb4+G4+Bb4-! E4+G4+Bb4+C#5---! |
+horn       | D4----- A4- Bb4------- | A4----- G4- F4--- E4--- |
+trombone   | D3----- A3- Bb3------- | A3----- G3- F3--- E3--- |
+choir      | D4+A4--------------- | Eb4+Bb4------- E4+Bb4------- |
+cello      | D3- D3- D3- D3- D3- D3- D3- D3- | Eb3- Eb3- Eb3- Eb3- E3- E3- E3- E3- |
+contrabass | D2- D2- D2- D2- D2- D2- D2- D2- | Eb2- Eb2- Eb2- Eb2- E2- E2- E2- E2- |
+timpani    | D2 D2 D2 D2 .--- D2 D2 D2 D2 .--- | A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1! |
+snare      | x.x. x.x. x.x. xxxx | xxxx xxxx xxxx XXXX |
+tomlo      | X... .... X... .... | X... X... X... XXXX |
+crash      | X... .... .... .... | _ |
+
+# PEAK: everyone at once. The arrival is deceptive: Bb major instead of D, which feels like the ground giving way.
+# Then Ebmaj7, a held A7b9 over a timpani roll, and finally D minor at full force with gong.
+# The horn sings the motif's notes in long values over the top; violins flare upward on each new chord.
+pattern peak tempo=88
+violin     | Bb4 D5 F5 Bb5 D6----------- | Eb5 G5 Bb5 D6------------ | Bb5 A5 Bb5 A5 Bb5 A5 Bb5 A5 C#6 Bb5 C#6 Bb5 E6 C#6 E6 G6 | D6---------------! |
+strings    | Bb4+D5+F5+Bb5--------------- | Eb4+G4+Bb4+D5--------------- | G4+Bb4+C#5+E5--------------- | D4+F4+A4+D5+F5---------------! |
+brass      | Bb3+D4+F4+Bb4---------------!! | Eb3+G3+Bb3+D4---------------! | A3+C#4+G4+Bb4---------------! | D4+F4+A4+D5---------------!! |
+horn       | D5------- F5------- | D5--------------- | C#5------- E5------- | D5---------------!! |
+trombone   | Bb2+F3---------------! | Eb3+Bb3---------------! | A2+E3---------------! | D3+A3---------------!! |
+choir      | Bb3+F4+Bb4+D5--------------- | Eb4+Bb4+D5--------------- | E4+G4+C#5--------------- | D4+A4+D5+F5---------------! |
+cello      | Bb2--------------- | Eb3--------------- | A2--------------- | D3---------------! |
+contrabass | Bb1---------------! | Eb2--------------- | A1--------------- | D1+D2---------------!! |
+timpani    | Bb1!--- .--- .------- | Eb2!--- .--- .------- | A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1 A1! | D2!!--- .--- .------- |
+snare      | _ | _ | xxxx xxxx xxxx XXXX | X... .... .... .... |
+tomlo      | X... .... .... .... | X... .... .... .... | .... .... X.X. XXXX | X... .... .... .... |
+crash      | X... .... .... .... | X... .... .... .... | _ | X... .... .... .... |
+gong       | _ | _ | _ | X... .... .... .... |
+
+# AFTER: sudden quiet. A lone cello recalls the motif slowly, the celesta returns from the opening,
+# and the strings hold a bare D-A fifth. The celesta's last note is Eb, the motif's rub, so the cue ends unresolved.
+pattern after tempo=60
+contrabass | D2---------------?? | = | = | = |
+cello      | D3------- A3--- Bb3---? | A3---------------? | F3------- E3-------? | D3---------------?? |
+strings    | _ | D4+A4---------------?? | = | = |
+celesta    | _ | .--- A5?- F5?- .------- | _ | .------- Eb6??------- |
+
+play still creep strain rush rush+1 rush+2 peak after

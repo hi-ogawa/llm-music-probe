@@ -1,0 +1,133 @@
+title    Twelve Doors
+composer LLM probe s03
+about    A twelve-note marimba cell set against a copy of itself that slips one sixteenth ahead every four bars until it comes back into unison, with an additive vibraphone line and a slow three-chord bass motion underneath.
+tempo    104
+beats    3
+steps    4
+
+# PROCESS OVERVIEW
+# The piece is one twelve-note cell in D major (pitches D A E F# B only) in 3/4 sixteenths, 12 steps per bar.
+# Process 1, phasing: marimba_a always plays the cell unchanged. marimba_b starts in unison, then each
+#   section of 4 bars rotates its copy one step further ahead (shift 1, 2, ... 11). Reich's continuous
+#   phasing cannot be written on a step grid, so it is done as discrete "locked" phase positions, which is
+#   what a listener hears as the stable stations in Piano Phase anyway. Each shift creates a new composite
+#   melody from the same 12 notes. After shift 11 the next step is shift 12 = unison again, closing the circle.
+# Process 2, additive: the vibraphone line grows by one eighth note per section (Glass-style addition,
+#   1, 2, 3 ... 6 notes) and then shrinks back, so its density traces an arch over the phase cycle.
+# Process 3, harmony: the cello pedal moves very slowly, D (shifts 1-4), B (5-8), G (9-11), back to D at the
+#   return to unison. The cell itself never changes, so the same notes are reheard as I, vi, and IV colours.
+# Strings add a soft sustained voicing of that pedal from shift 3 onward to thicken the middle of the arch.
+# Marimbas are panned hard apart so the two copies of the cell can be told apart as they drift.
+
+voice marimba_a marimba vol=0.85 pan=-0.7   # fixed reference cell, never changes
+voice marimba_b marimba vol=0.85 pan=0.7    # the phasing copy, rotated one step per section
+voice vibes     vibes   vol=0.6  pan=0.15 gate=0.9  # additive line, grows then shrinks
+voice cello     cello   vol=0.55 pan=-0.1  # slow pedal: D, then B, then G, then D
+voice strings   strings vol=0.35 pan=0.2   # soft sustained harmony under the middle of the arch
+
+# Intro: the reference cell alone, so the ear learns it before anything moves.
+pattern intro
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+
+# Unison: the second marimba enters exactly in step. It should sound like one louder, wider marimba.
+pattern unison
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+cello     | D2----------- | = | = | = |
+
+# Shift 1: marimba_b is 1 sixteenth(s) ahead. Pedal D. Vibes plays 0 note(s) of its line.
+pattern shift1
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 D5 | % | % | % |
+cello     | D2----------- | = | = | = |
+
+# Shift 2: marimba_b is 2 sixteenth(s) ahead. Pedal D. Vibes plays 0 note(s) of its line.
+pattern shift2
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 D5 A4 | % | % | % |
+cello     | D2----------- | = | = | = |
+
+# Shift 3: marimba_b is 3 sixteenth(s) ahead. Pedal D. Vibes plays 1 note(s) of its line.
+pattern shift3
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | F#5 A4 D5 B4 E5 A4 F#5 D5 B4 D5 A4 E5 | % | % | % |
+vibes     | F#5- .--------- | % | % | % |
+cello     | D2----------- | = | = | = |
+strings   | D3+A3+F#4----------- | = | = | = |
+
+# Shift 4: marimba_b is 4 sixteenth(s) ahead. Pedal D. Vibes plays 2 note(s) of its line.
+pattern shift4
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | A4 D5 B4 E5 A4 F#5 D5 B4 D5 A4 E5 F#5 | % | % | % |
+vibes     | F#5- A5- .------- | % | % | % |
+cello     | D2----------- | = | = | = |
+strings   | D3+A3+F#4----------- | = | = | = |
+
+# Shift 5: marimba_b is 5 sixteenth(s) ahead. Pedal B. Vibes plays 3 note(s) of its line.
+pattern shift5
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | D5 B4 E5 A4 F#5 D5 B4 D5 A4 E5 F#5 A4 | % | % | % |
+vibes     | F#5- A5- E5- .----- | % | % | % |
+cello     | B1----------- | = | = | = |
+strings   | B2+F#3+D4----------- | = | = | = |
+
+# Shift 6: marimba_b is 6 sixteenth(s) ahead. Pedal B. Vibes plays 4 note(s) of its line.
+pattern shift6
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | B4 E5 A4 F#5 D5 B4 D5 A4 E5 F#5 A4 D5 | % | % | % |
+vibes     | F#5- A5- E5- D5- .--- | % | % | % |
+cello     | B1----------- | = | = | = |
+strings   | B2+F#3+D4----------- | = | = | = |
+
+# Shift 7: marimba_b is 7 sixteenth(s) ahead. Pedal B. Vibes plays 5 note(s) of its line.
+pattern shift7
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | E5 A4 F#5 D5 B4 D5 A4 E5 F#5 A4 D5 B4 | % | % | % |
+vibes     | F#5- A5- E5- D5- B4- .- | % | % | % |
+cello     | B1----------- | = | = | = |
+strings   | B2+F#3+D4----------- | = | = | = |
+
+# Shift 8: marimba_b is 8 sixteenth(s) ahead. Pedal B. Vibes plays 6 note(s) of its line.
+pattern shift8
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | A4 F#5 D5 B4 D5 A4 E5 F#5 A4 D5 B4 E5 | % | % | % |
+vibes     | F#5- A5- E5- D5- B4- C#5- | % | % | % |
+cello     | B1----------- | = | = | = |
+strings   | B2+F#3+D4----------- | = | = | = |
+
+# Shift 9: marimba_b is 9 sixteenth(s) ahead. Pedal G. Vibes plays 5 note(s) of its line.
+pattern shift9
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | F#5 D5 B4 D5 A4 E5 F#5 A4 D5 B4 E5 A4 | % | % | % |
+vibes     | F#5- A5- E5- D5- B4- .- | % | % | % |
+cello     | G1----------- | = | = | = |
+strings   | G2+D3+B3----------- | = | = | = |
+
+# Shift 10: marimba_b is 10 sixteenth(s) ahead. Pedal G. Vibes plays 4 note(s) of its line.
+pattern shift10
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | D5 B4 D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 | % | % | % |
+vibes     | F#5- A5- E5- D5- .--- | % | % | % |
+cello     | G1----------- | = | = | = |
+strings   | G2+D3+B3----------- | = | = | = |
+
+# Shift 11: marimba_b is 11 sixteenth(s) ahead. Pedal G. Vibes plays 2 note(s) of its line.
+pattern shift11
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | B4 D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 | % | % | % |
+vibes     | F#5- A5- .------- | % | % | % |
+cello     | G1----------- | = | = | = |
+strings   | G2+D3+B3----------- | = | = | = |
+
+# Return: shift 12 equals unison. The pedal is back on D and the vibes drop out, so the circle closes on the opening sound.
+pattern home
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+marimba_b | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | % | % |
+cello     | D2----------- | = | = | = |
+
+# Coda: the reference cell alone again for two bars, then it ends on a held D.
+pattern coda
+marimba_a | D5 A4 E5 F#5 A4 D5 B4 E5 A4 F#5 D5 B4 | % | D5+A4----------- |
+cello     | D2----------- | = | = |
+
+play intro unison shift1 shift2 shift3 shift4 shift5 shift6 shift7 shift8 shift9 shift10 shift11 home coda

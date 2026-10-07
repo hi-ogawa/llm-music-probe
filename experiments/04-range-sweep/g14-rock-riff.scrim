@@ -1,0 +1,54 @@
+title    Locked Groove
+composer Claude
+about    An 8-bar E minor rock loop built on one syncopated power-chord riff that the kick and bass hit in unison.
+tempo    120
+beats    4
+steps    4
+swing    0
+
+# Intent: one riff cell drives everything. Every bar of the riff uses the same
+# rhythm template (in 16ths): stab(2) mute(2) stab(3) stab(3) mute(2) mute(2) stab(2),
+# so stabs land on steps 0, 4, 7, 14 with muted chugs between. The kick plays
+# steps 0, 7, 10, 14 to push the syncopated stabs, the snare holds a plain
+# backbeat on 2 and 4, and the bass doubles the guitar roots an octave down.
+# Bars 1-4 sit on E (with a C to B turnaround in bar 4), bars 5-6 lift the same
+# shape to C and D, bar 7 returns home, and bar 8 lands on a held B power chord
+# (the V) that pulls back to E when the loop repeats.
+
+# Main riff: distorted guitar, explicit power chords (root, fifth, octave) so
+# General MIDI distortion stays clear instead of muddy. "?" marks palm-muted chugs.
+voice riff  distguitar vol=0.95 pan=-0.25 gate=0.9
+# Bass: fingered electric, doubles riff roots an octave below, same rhythm, so
+# bass, kick, and guitar read as one instrument.
+voice bass  ebass vol=1.0
+# Organ: sustained triads above the guitar (E3 to G4 range) for harmonic glue,
+# kept quiet and panned right so it fills space without blurring the riff.
+voice organ organ vol=0.45 pan=0.3
+
+voice kick  kick  vol=1.0
+voice snare snare vol=0.9
+voice hat   hat   vol=0.6
+voice crash crash vol=0.7
+
+# Bars 1-4: home key riff on E, turnaround C to B in bar 4.
+pattern A
+riff  | E2+B2+E3- E2?- G2+D3+G3-- A2+E3+A3-- E2?- E2?- D2+A2+D3- | E2+B2+E3- E2?- G2+D3+G3-- A2+E3+A3-- E2?- E2?- D2+A2+D3- | E2+B2+E3- E2?- G2+D3+G3-- A2+E3+A3-- E2?- E2?- D2+A2+D3- | E2+B2+E3- E2?- G2+D3+G3-- A2+E3+A3-- C3+G3+C4-- B2+F#3+B3-- |
+bass  | E1- E1?- G1-- A1-- E1?- E1?- D2- | E1- E1?- G1-- A1-- E1?- E1?- D2- | E1- E1?- G1-- A1-- E1?- E1?- D2- | E1- E1?- G1-- A1-- C2-- B1-- |
+organ | E3+B3+E4+G4--------------- | = | = | E3+B3+E4+G4--------- C4+E4+G4-- B3+D#4+F#4-- |
+kick  | X... ...x ..x. ..x. | x... ...x ..x. ..x. | x... ...x ..x. ..x. | x... ...x ..x. .x.. |
+snare | .... X... .... X... | .... X... .... X... | .... X... .... X... | .... X... .... X.xx |
+hat   | x.x. x.x. x.x. x.x. | % | % | x.x. x.x. x.x. .... |
+crash | X... .... .... .... | _ | _ | _ |
+
+# Bars 5-8: the same riff shape moved to C and D, back to E, then a held B (V)
+# so the loop restarts with a strong resolution on E.
+pattern B
+riff  | C3+G3+C4- C3?- D3+A3+D4-- E3+B3+E4-- C3?- C3?- D3+A3+D4- | D3+A3+D4- D3?- E3+B3+E4-- G2+D3+G3-- D3?- D3?- C3+G3+C4- | E2+B2+E3- E2?- G2+D3+G3-- A2+E3+A3-- E2?- E2?- D2+A2+D3- | E2+B2+E3- E2?- G2+D3+G3-- A2+E3+A3-- B2+F#3+B3!----- |
+bass  | C2- C2?- D2-- E2-- C2?- C2?- D2- | D2- D2?- E2-- G1-- D2?- D2?- C2- | E1- E1?- G1-- A1-- E1?- E1?- D2- | E1- E1?- G1-- A1-- B1!----- |
+organ | C3+G3+C4+E4--------------- | D3+A3+D4+F#4--------------- | E3+B3+E4+G4--------------- | E3+B3+E4+G4--------- B3+D#4+F#4----- |
+kick  | X... ...x ..x. ..x. | x... ...x ..x. ..x. | x... ...x ..x. ..x. | x... ...x ..x. .... |
+snare | .... X... .... X... | .... X... .... X... | .... X... .... X... | .... X... ..o. xxXX |
+hat   | x.x. x.x. x.x. x.x. | % | % | x.x. x.x. x... .... |
+crash | X... .... .... .... | _ | _ | .... .... ..X. .... |
+
+loop A B

@@ -1,0 +1,36 @@
+title    One Drop Loop
+composer Claude
+about    A 4-bar roots reggae one-drop loop in A minor over Am, D, Am, Em (a dorian-flavoured i-IV-i-v) built around an offbeat guitar skank, an organ bubble, and a melodic bass that leaves space.
+tempo    75
+beats    4
+steps    4      # sixteenths, 16 steps per bar
+swing    0.15   # light lilt on the off-sixteenths so the hats and bubble do not feel stiff
+
+# skank: clean electric guitar chopping tight upper-register triads on beats 2 and 4 only.
+# Short gate makes it a dry "chk" instead of a sustained chord, which is the core of the groove.
+voice skank  eguitar vol=0.75 pan=0.35 gate=0.35
+# bubble: organ under the skank, quiet, playing the offbeat-eighth "bubble" (beat 2 and its "and", beat 4 and its "and").
+# Voiced an octave below the skank so the two harmony parts sit in separate registers.
+voice bubble organ   vol=0.42 pan=-0.35 gate=0.55
+# bass: fingered electric, the melodic lead of the riddim. Long root on the downbeat, then a short phrase and real rests.
+voice bass   ebass   vol=1.0
+# drums: one drop. No kick on beat 1; kick and rim cross-stick land together on beat 3.
+voice kick   kick    vol=1.0
+voice rim    rim     vol=0.8
+voice hat    hat     vol=0.5
+
+pattern A
+# Skank: rest on 1, chord on 2, rest on 3, chord on 4. Explicit close triads around A4-E5 so it cuts above bass and organ.
+# Am = A4 C5 E5, D = A4 D5 F#5 (common A keeps the top line smooth), Em = G4 B4 E5.
+skank  | .--- A4+C5+E5-! .- .--- A4+C5+E5- .- | .--- A4+D5+F#5-! .- .--- A4+D5+F#5- .- | .--- A4+C5+E5-! .- .--- A4+C5+E5- .- | .--- G4+B4+E5-! .- .--- G4+B4+E5- .- |
+# Bubble: eighth-note offbeat pairs, first of each pair a touch louder, second softer, so it pulses under the skank.
+bubble | .- .- E3+A3+C4- E3+A3+C4-? .- .- E3+A3+C4- E3+A3+C4-? | .- .- F#3+A3+D4- F#3+A3+D4-? .- .- F#3+A3+D4- F#3+A3+D4-? | .- .- E3+A3+C4- E3+A3+C4-? .- .- E3+A3+C4- E3+A3+C4-? | .- .- E3+G3+B3- E3+G3+B3-? .- .- E3+G3+B3- E3+G3+B3-? |
+# Bass: each bar states the root on 1, answers with a short climb through chord tones, then drops out for a full beat
+# around beat 3 (where the one-drop lands) before a pickup. Bar 2 walks F#2-A2-B2-C3 back to A; bar 4 ends on G2 leading home to A2.
+bass   | A2--- .. C3 E3-- .--- D3 C3 | D2--- .. F#2 A2-- .--- B2 C3 | A2--- .. E2 A2-- .-- C3 B2 A2 | E2--- .. G2 B2-- . D3 B2 G2-- |
+# Drums: the drop on beat 3 (kick + rim together), nothing on beat 1. Hats in eighths with ghosted offbeat sixteenth texture.
+kick   | .... .... X... .... | % | % | % |
+rim    | .... .... x... .... | % | % | .... .... x... .o.x |
+hat    | x.o. x.o. x.o. x.o. | % | % | x.o. x.o. x.o. x.x. |
+
+loop A

@@ -1,0 +1,52 @@
+title    Late Shift
+about    An 8-bar A minor house loop: syncopated organ bass, offbeat piano stabs, a soft string bed, and four-on-the-floor drums.
+tempo    124
+beats    4
+steps    4
+swing    0.06   # a touch of push on the sixteenths so hats and bass don't feel quantized stiff
+
+# Harmony: two bars each of Am9 | Fmaj9 | Dm9 | Em7, a classic deep-house minor cycle (i - VI - iv - v).
+# The minor v (Em7, not E7) keeps it moody rather than resolving hard.
+
+# organ: the lead bass. GM organ in octave 2 cuts through like an M1-style organ bass.
+# It plays mostly off the kick (steps 2, 6, 7, 10, 13, 15) so the kick owns the downbeats,
+# with an octave-stacked hit (R1+R2) for weight and octave jumps for bounce.
+# The last note of every second bar is a passing tone into the next root.
+voice obass organ vol=1.0 gate=0.75
+
+# piano: the chord stabs. Rootless four-note voicings between A3 and B4 (the bass supplies roots),
+# chosen so common tones hold and other voices move by step: C-E-G-B -> A-C-E-G -> C-E-F-A -> D-E-G-B.
+# Short gate makes them percussive stabs. Rhythm hits steps 2, 6, 8, 12: offbeat, then a syncopated push.
+voice stab piano vol=0.9 gate=0.35 pan=0.15
+
+# strings: a quiet sustained bed above the stabs (upper extensions only) to glue the loop.
+voice pad strings vol=0.35 pan=-0.25
+
+# Drums: four-on-the-floor kick, clap on 2 and 4, open hat on every offbeat eighth,
+# closed hats filling the sixteenths around it with ghost notes, crash marking the top of the loop.
+voice kick kick vol=1.1
+voice clap clap vol=0.8
+voice hat hat vol=0.5
+voice ohat ohat vol=0.55
+voice crash crash vol=0.5
+voice shaker shaker vol=0.35
+
+pattern loop8
+obass | .- A1+A2- .- A3 A2 .- A2- . A3 . A2 | .- A1+A2- .- A3 A2 .- A2- . A3 . G2 |
+obass | .- F1+F2- .- F3 F2 .- F2- . F3 . F2 | .- F1+F2- .- F3 F2 .- F2- . F3 . E2 |
+obass | .- D1+D2- .- D3 D2 .- D2- . D3 . D2 | .- D1+D2- .- D3 D2 .- D2- . D3 . D#2 |
+obass | .- E1+E2- .- E3 E2 .- E2- . E3 . E2 | .- E1+E2- .- E3 E2 .- E2- . E3 . G#2 |
+stab  | .- C4+E4+G4+B4- .- C4+E4+G4+B4 . C4+E4+G4+B4- .- C4+E4+G4+B4- .- | .- C4+E4+G4+B4- .- C4+E4+G4+B4 . C4+E4+G4+B4- .- C4+E4+G4+B4- .- |
+stab  | .- A3+C4+E4+G4- .- A3+C4+E4+G4 . A3+C4+E4+G4- .- A3+C4+E4+G4- .- | .- A3+C4+E4+G4- .- A3+C4+E4+G4 . A3+C4+E4+G4- .- A3+C4+E4+G4- .- |
+stab  | .- C4+E4+F4+A4- .- C4+E4+F4+A4 . C4+E4+F4+A4- .- C4+E4+F4+A4- .- | .- C4+E4+F4+A4- .- C4+E4+F4+A4 . C4+E4+F4+A4- .- C4+E4+F4+A4- .- |
+# last bar: final stab moves to step 15 as an Am9 pickup into the loop restart
+stab  | .- D4+E4+G4+B4- .- D4+E4+G4+B4 . D4+E4+G4+B4- .- D4+E4+G4+B4- .- | .- D4+E4+G4+B4- .- D4+E4+G4+B4 . D4+E4+G4+B4- .- D4+E4+G4+B4- . C4+E4+G4+B4! |
+pad   | G4+B4+E5--------------- | = | A4+C5+E5--------------- | = | F4+A4+E5--------------- | = | G4+B4+D5--------------- | = |
+kick  | X... x... X... x... | % | % | % | % | % | % | X... x... X... x... |
+clap  | .... x... .... x... | % | % | % | % | % | % | .... x... .... x.xX |
+hat   | ox.x ox.x ox.x ox.x | % | % | % | % | % | % | ox.x ox.x ox.x xxxx |
+ohat  | ..x. ..x. ..x. ..x. | % | % | % | % | % | % | ..x. ..x. ..x. .... |
+crash | x... .... .... .... | _ | _ | _ | _ | _ | _ | _ |
+shaker | .o.x .o.x .o.x .o.x | % | % | % | % | % | % | % |
+
+loop loop8

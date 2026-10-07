@@ -1,0 +1,75 @@
+title    Little Boat
+composer Claude
+about    A rocking 3/4 lullaby in F major: flute sings an AABA tune over a harp that rocks like a cradle, with one new color added per section and nothing else.
+tempo    76      # slow enough to breathe, quick enough that the 3/4 still rocks
+beats    3       # waltz-like 3/4, the classic cradle meter
+steps    2       # eighth notes, 6 steps per bar; nothing finer is needed
+
+# Plan: the simplicity is deliberate. Every part has one job, and the form
+# adds exactly one layer at a time, so the listener can feel each arrival.
+#   intro  harp alone, two bars of the rocking figure
+#   A      flute tune, ends on a half cadence (question)
+#   A2     same opening, rises to F5 and closes on the tonic (answer)
+#   B      moves to D minor, reaches the high point G5, cello enters
+#   A3     the answer again, a music box doubles the tune an octave up
+#   coda   slower, the last phrase fragment settles onto F and fades
+
+# Melody: flute, kept in C5 to G5 so it sits clearly above the harp.
+voice flute flute vol=0.8 pan=0.1
+# Accompaniment: harp plays one broken chord per bar, root-fifth-octave-tenth
+# and back down. The same shape on every chord keeps the rocking even.
+voice harp harp vol=0.55 pan=-0.2
+# Cello: a soft held root, only from B on, to deepen the floor without motion.
+voice cello cello vol=0.38 pan=-0.35 gate=0.95
+# Music box: doubles the final verse an octave up, a toy-like shimmer.
+# Kept very quiet because General MIDI music box is bright.
+voice box musicbox vol=0.28 pan=0.4 oct=1
+
+# Two bars of the cradle figure alone, to set the rocking before anyone sings.
+pattern intro
+harp | F2 C3 F3 A3 F3 C3 | % |
+
+# A: four-bar question repeated with a small change, both halves ending on G4
+# over C, so the phrase stays open. Harmony is only I, IV, I, V.
+pattern A
+flute | C5--- A4- | D5--- Bb4- | C5-- A4 G4 F4 | G4---- . |
+flute | C5--- A4- | D5--- Bb4- | A4-- F4 G4 A4 | G4---- . |
+harp  | F2 C3 F3 A3 F3 C3 | Bb2 F3 Bb3 D4 Bb3 F3 | F2 C3 F3 A3 F3 C3 | C3 G3 C4 E4 C4 G3 |
+harp  | F2 C3 F3 A3 F3 C3 | Bb2 F3 Bb3 D4 Bb3 F3 | F2 C3 F3 A3 F3 C3 | C3 G3 C4 E4 C4 G3 |
+
+# A2: same opening, then the second half leaps to F5 and steps down through
+# C7 to land on the tonic. This is the "answer" the first verse withheld.
+pattern A2
+flute | C5--- A4- | D5--- Bb4- | C5-- A4 G4 F4 | G4---- . |
+flute | C5--- A4- | D5--- F5- | E5-- C5 Bb4 G4 | F4---- . |
+harp  | F2 C3 F3 A3 F3 C3 | Bb2 F3 Bb3 D4 Bb3 F3 | F2 C3 F3 A3 F3 C3 | C3 G3 C4 E4 C4 G3 |
+harp  | F2 C3 F3 A3 F3 C3 | Bb2 F3 Bb3 D4 Bb3 F3 | C3 G3 Bb3 E4 Bb3 G3 | F2 C3 F3 A3 F3 C3 |
+
+# B: the only contrast. D minor, a rising pickup figure, the peak G5 in bar 6,
+# and an A major chord (C# in the harp) for a brief wistful turn. The last bar
+# walks down C5-Bb4-A4-G4 over C7 so the return of A feels inevitable.
+# The cello enters here, holding roots, as the one added layer.
+pattern B
+flute | A4-- D5 E5 F5 | F5--- D5- | Bb4-- C5 D5 Bb4 | A4---- . |
+flute | A4-- D5 E5 F5 | G5--- F5 D5 | Bb4--- D5- | C5-- Bb4 A4 G4 |
+harp  | D3 A3 D4 F4 D4 A3 | Bb2 F3 Bb3 D4 Bb3 F3 | G2 D3 G3 Bb3 G3 D3 | A2 E3 A3 C#4 A3 E3 |
+harp  | D3 A3 D4 F4 D4 A3 | G2 D3 G3 Bb3 G3 D3 | Bb2 F3 Bb3 D4 Bb3 F3 | C3 G3 Bb3 E4 Bb3 G3 |
+cello | D3----- | Bb2----- | G2----- | A2----- |
+cello | D3----- | G2----- | Bb2----- | C3----- |
+
+# A3: the answering verse again, with the music box doubling the tune an
+# octave higher (the voice has oct=1) and the cello still holding roots.
+pattern A3 from A2
+box   | C5--- A4- | D5--- Bb4- | C5-- A4 G4 F4 | G4---- . |
+box   | C5--- A4- | D5--- F5- | E5-- C5 Bb4 G4 | F4---- . |
+cello | F2----- | Bb2----- | F2----- | C3----- |
+cello | F2----- | Bb2----- | C3----- | F2----- |
+
+# Coda: slower, the opening motif once more, then sinking to F4. The harp
+# stops rocking and rests on one held F major chord, as if the child is asleep.
+pattern coda tempo=62
+flute | C5--- A4-? | G4-----? | F4-----?? | = |
+harp  | F2 C3 F3 A3 F3 C3 | C3 G3 Bb3 E4 Bb3 G3 | F2+C3+F3+A3+C4-----? | = |
+cello | F2----- | C3----- | F2-----? | = |
+
+play intro A A2 B A3 coda

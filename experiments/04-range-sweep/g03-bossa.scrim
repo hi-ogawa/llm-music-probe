@@ -1,0 +1,53 @@
+title    Bossa Loop in C
+composer Claude
+about    An 8-bar bossa nova loop built around a clave-shaped nylon guitar comp and a root-fifth upright bass.
+tempo    130
+beats    4
+steps    4       # sixteenth-note grid, 16 steps per bar
+swing    0       # bossa is played straight, not swung
+
+# Harmony, one chord per bar (ii-V heavy, as in most bossa tunes):
+# | Cmaj9 | Am7 | Dm9 | G13 | Em7 | A7b13 | Dm9 | G13 G7b9 |
+# The A7b13 is a secondary dominant back into Dm9, and G7b9 pulls back to Cmaj9 at the loop point.
+
+# Guitar: nylon string, the only harmony part. Rootless or 4-note voicings kept between E3 and A4
+# so they sit above the bass and never fight it. Voicings are chosen for smooth voice leading,
+# with most voices moving by a step or staying put (for example A7b13 G3 C#4 F4 A4 -> Dm9 F3 C4 E4 A4).
+# Short gate so each hit is a plucked chord with air between hits, which is what makes the rhythm read.
+voice gtr guitar vol=0.85 pan=-0.2 gate=0.8
+
+# Bass: upright, root on beat 1 held for a dotted quarter, fifth picked up on the "and" of 2
+# and re-struck on 3, then a root pickup on the "and" of 4. This is the classic surdo-derived
+# bossa bass figure, kept low (E1 to E2) and strictly to roots and fifths.
+voice bass upright vol=0.95 pan=0.1
+
+# Drums: brushes-kit feel with cross-stick, soft kick doubling the bass rhythm, and a shaker
+# carrying the straight sixteenths.
+voice kick kick vol=0.55
+voice rim rim vol=0.7
+voice shk shaker vol=0.45
+
+pattern A
+# Guitar comp: a two-bar cell that follows the 3-2 bossa clave.
+# Odd bars hit on 1, the "and" of 2, and 4 (steps 0, 6, 12).
+# Even bars add a soft hit on 1 so the new chord is heard, then hit on 2 and the "and" of 3 (steps 0, 4, 10).
+gtr | E3+B3+D4+G4- .--- E3+B3+D4+G4-! .--- E3+B3+D4+G4- .- | G3+C4+E4+A4-? .- G3+C4+E4+A4- .--- G3+C4+E4+A4-! .--- |
+gtr | F3+C4+E4+A4- .--- F3+C4+E4+A4-! .--- F3+C4+E4+A4- .- | F3+B3+E4+A4-? .- F3+B3+E4+A4- .--- F3+B3+E4+A4-! .--- |
+gtr | G3+B3+D4+E4- .--- G3+B3+D4+E4-! .--- G3+B3+D4+E4- .- | G3+C#4+F4+A4-? .- G3+C#4+F4+A4- .--- G3+C#4+F4+A4-! .--- |
+# Bar 8 splits G13 into G7b9 on the last hit (E4 -> D4, A4 -> Ab4), so Ab4 resolves to G4 and F3 to E3 in the Cmaj9 of bar 1.
+gtr | F3+C4+E4+A4- .--- F3+C4+E4+A4-! .--- F3+C4+E4+A4- .- | F3+B3+E4+A4-? .- F3+B3+E4+A4- .--- F3+B3+D4+Ab4-! .--- |
+
+# Bass: R (dotted quarter), 5 (eighth pickup), 5 (dotted quarter), R (eighth pickup).
+bass | C2----- G1- G1----- C2- | A1----- E1- E1----- A1- | D2----- A1- A1----- D2- | G1----- D2- D2----- G1- |
+bass | E2----- B1- B1----- E2- | A1----- E1- E1----- A1- | D2----- A1- A1----- D2- | G1----- D2- D2----- G1- |
+
+# Kick shadows the bass rhythm (steps 0, 6, 8, 14) quietly, as a surdo would.
+kick | x... ..x. x... ..x. | % | % | % | % | % | % | % |
+
+# Cross-stick plays the 3-2 bossa clave, matching the guitar's accents.
+rim  | X... ..x. .... x... | .... x... ..x. .... | X... ..x. .... x... | .... x... ..x. .... | X... ..x. .... x... | .... x... ..x. .... | X... ..x. .... x... | .... x... ..x. .... |
+
+# Shaker: steady sixteenths, accented on the eighths.
+shk  | xoxo xoxo xoxo xoxo | % | % | % | % | % | % | % |
+
+loop A

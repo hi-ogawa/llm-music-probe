@@ -1,0 +1,79 @@
+title    Late Lamplight
+composer Claude
+about    Ballad comping in Eb over an original 8-bar standard-style progression, played twice and tagged with a minor-iv plagal ending.
+tempo    58
+beats    4
+steps    3       # triplet grid: a ballad's eighths are swung, so steps 0 and 2 of each beat are the long and short eighth
+
+# Progression (two chords per bar, Misty-like opening, then a chain of tritone substitutions):
+#  1 Ebmaj13 | Bbm9 Eb13b9      ii-V into IV
+#  2 Abmaj9#11 | Db13#11        IV, then the backdoor bVII7 that leans home
+#  3 Gm11 | C7alt               iii as tonic substitute, V of ii
+#  4 Fm11 | Bb13b9              ii-V
+#  5 Gm9 | Gb13#11              deceptive iii, then the tritone sub of C7 sliding down to Fm
+#  6 Fm11 | E13#11              ii, then the tritone sub of Bb7 sliding down to Eb
+#  7 Ebmaj13 | C13b9            I, V of ii
+#  8 Fm9 | Bb13sus Bb7alt       turnaround, sus first and altered last
+#
+# The piano is split into two voices so the hands can have independent rhythm.
+# lh plays two-note shells (3rd and 7th, or 7th and 3rd) between E3 and D4, voice-led so each
+# change moves by half or whole steps. It stays on the beat as the anchor.
+# rh plays two- to three-note upper structures (9ths, 11ths, 13ths, altered tones) above it,
+# so every lh+rh stack is a full rootless voicing and the bass supplies roots.
+# The top note of rh is written as its own inner melody: C5 D5 Eb5 D5 Eb5 C5 B4 across the
+# first four bars, rising then falling by step so the comping sings without stepping on a soloist.
+# Note the twin voicings: C7alt (E Bb | Ab Db Eb) and Gb13#11 (E Bb | Ab C Eb) share all but
+# one note, which makes the tritone relationship audible as a single moving voice.
+
+voice lh   piano    vol=0.55 pan=-0.2
+voice rh   piano    vol=0.6  pan=0.2
+voice fill piano    vol=0.5  pan=0.3    # short melodic answers at phrase ends, chorus 2 only
+voice bass upright  vol=0.85
+voice ride ride     vol=0.3
+voice hat  hat      vol=0.25
+
+# Chorus 1: sparse. Chords mostly land on the beat and ring, with only a few one-triplet
+# anticipations in rh (bars 2, 4, 6) so the pushes feel like breathing rather than drive.
+# Bass plays a two-feel with occasional triplet pickups. Ride is ghost-quiet.
+pattern A
+lh   | G3+D4----- Ab3+Db4-- G3+Db4-- | G3+C4----- F3+B3----- | F3+Bb3----- E3+Bb3----- | Eb3+Ab3----- D3+Ab3----- |
+lh   | F3+Bb3----- E3+Bb3----- | Eb3+Ab3----- D3+G#3----- | D3+G3----- E3+Bb3----- | Eb3+Ab3-------- D3+Ab3-- |
+# rh bar 1 holds F Bb C across Ebmaj13 and Bbm9 (common tones), only the lh shell moves.
+rh   | F4+Bb4+C5?-------- E4+Bb4+C5?-- | Eb4+Bb4+D5---- G4+Bb4+Eb5------ | . A4+C5+D5?---- Ab4+Db5+Eb5----- | G4+Bb4+C5---- G4+B4------ |
+# Bar 6 rh is an F# major triad over the E7 shell (upper structure II = 9, #11, 13).
+rh   | A4+C5+D5?----- Ab4+C5+Eb5----- | G4+C5+Eb5---- F#4+A#4+C#5------ | F4+Bb4+C5?----- A4+Db5----- | G4+C5-------- Gb4+B4-- |
+bass | Eb2---- A1 Bb1-- Eb2-- | Ab1----- Db2---- Ab1 | G1----- C2----- | F1----- Bb1---- Ab1 |
+bass | G1----- Gb1----- | F1----- E1----- | Eb2----- C2----- | F1----- Bb1----- |
+ride | o.. o.o o.. o.o | % | % | % | % | % | % | % |
+hat  | ... o.. ... o.. | % | % | % | % | % | % | % |
+
+# Chorus 2: same harmony, more conversation.
+# rh now anticipates by a triplet ("a" of 2 and of 3) and in bars 3 and 5 enters late on the
+# swung "and" of 1, so it pushes and lays back around the steady lh.
+# Bar 1 recolours the tonic as Ebmaj13#11 (F major triad over the shell), and bar 7 moves the
+# top voice C5 D5 Db5 to lead chromatically into the turnaround.
+# fill adds two short answers: a half-whole diminished line over Bb13b9 (bar 4) resolving to
+# D5 on Gm, and a sus-to-altered line over the turnaround (bar 8) resolving into the tag.
+# Bass walks in quarter notes with chromatic triplet pickups into each new root.
+pattern B from A
+rh   | F4+A4+C5---- F4+Bb4+C5-- E4+Bb4+C5--- | Eb4+Bb4+D5-- . . G4+Bb4+Eb5------ | .- A4+C5+D5--- Ab4+Db5+Eb5----- | G4+Bb4+C5---- G4+B4------ |
+rh   | .- A4+C5+D5--- Ab4+C5+Eb5----- | G4+C5+Eb5-- . . F#4+A#4+C#5------ | F4+Bb4+C5-- F4+Bb4+D5-- A4+Db5----- | G4+C5---- . G4+C5-- Gb4+B4-- |
+fill | _ | _ | _ | .------ Ab5? G5? F5 E5 Db5 |
+fill | D5 .---------- | _ | _ | .----- C6? Ab5? F5 Gb5 D5 Db5 |
+bass | Eb2-- G2-- Bb1-- Eb2- A1 | Ab1-- C2-- Db2-- F2- Ab1 | G1-- D2-- C2-- Bb1- Gb1 | F1-- Ab1-- Bb1-- D2- Ab1 |
+bass | G1-- Bb1-- Gb1-- Db2- E1 | F1-- Ab1-- E1-- B1- E2 | Eb2-- D2-- C2-- G1- Gb1 | F1-- C2-- Bb1-- F2- E2 |
+ride | x.. x.x x.. x.x | % | % | % | % | % | % | % |
+hat  | ... x.. ... x.. | % | % | % | % | % | % | % |
+
+# Tag: Ebmaj9 to Abm13 (borrowed minor iv, Ab dorian) and home to Ebmaj9#11.
+# The fill's last D5 resolves to the top of the first chord, and the ending lydian A natural
+# leaves the tonic open. A soft high D6 rings on beat 2 of the final bar like a last thought.
+pattern end
+lh   | G3+D4----- Gb3+B3----- | G3+D4----------- |
+rh   | F4+Bb4+D5----- F4+Bb4+Eb5----- | F4+A4+C5----------- |
+fill | _ | .-- D6?-------- |
+bass | Eb2----- Ab1----- | Eb2----------- |
+ride | o.. ... o.. ... | o.. ... ... ... |
+hat  | ... o.. ... o.. | _ |
+
+play A B end

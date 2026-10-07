@@ -1,0 +1,74 @@
+title    Lament and Return
+about    A 16-bar G minor string quartet movement built on a chromatic lament bass, a turn to B-flat major, a circle-of-fifths sequence into Neapolitan and German sixth chords, and a varied reprise ending on a Picardy third.
+tempo    66      # slow, so the suspensions and chromatic inner lines can register
+beats    4
+steps    4       # 4/4 in sixteenths, so the first violin can ornament
+
+# Form (4 + 4 + 4 + 4):
+#   A  bars 1-4   G minor. Theme in violin 1 over a descending chromatic lament bass
+#                 (G F# F E Eb D), ending on a half cadence (V7 with the 7th in the bass).
+#   B  bars 5-8   The theme head moves to the viola, transposed so it pivots to B-flat major
+#                 (relative). A deceptive cadence (F7 to Gm) in bar 6 delays the arrival,
+#                 then a real cadence (IV, cadential 6/4, V7, I) lands in bar 8. Bb7/Ab pivots onward.
+#   C  bars 9-12  Development. Circle of fifths with 7th chords (Ebmaj7 Am7b5 D7 Gm7 Cm7),
+#                 then the Neapolitan (Ab/C), German sixth (Eb G Bb C#), cadential 6/4 and V.
+#   D  bars 13-16 Reprise. The lament bass returns twice as fast (quarter notes) under a viola
+#                 line that rises against it (a wedge), then a deceptive Eb, a vii7 of V, and a
+#                 slower final cadence where the 7th C in violin 1 resolves to B natural (Picardy third).
+#
+# Voice-leading choices: 7ths resolve down, suspensions are prepared (bar 5 to 6 in violin 1,
+# bar 15 in viola), chromatic notes resolve by half step (C# to D in violin 2 at the German
+# sixth). The German sixth goes through the 6/4 to avoid the parallel fifths of a direct resolution.
+
+voice vln1  violin vol=0.9  pan=-0.45   # melody and ornamented descant, the narrative voice
+voice vln2  violin vol=0.7  pan=-0.15   # sustained inner voice: suspensions and chromatic leading tones
+voice viola viola  vol=0.75 pan=0.2     # counter-line in A, theme in B, pulsing harmony in C, rising wedge in D
+voice cello cello  vol=0.85 pan=0.45    # harmonic foundation: lament bass, then circle-of-fifths bass
+
+# A: theme over the lament bass. Violin 1's G5 over D/F# in bar 1 is a 4-3 suspension.
+# The viola enters on the offbeat to answer the theme's rising fourth with its own arpeggio.
+pattern A
+vln1  | D5---? G5----- F#5 G5 A5--- | C6----- Bb5 A5 G5--- E5- G5- | Eb6---! D6- C6- Bb5--- A5 G5 A5- | C6--- Bb5- A5- G5- F#5- E5- F#5- |
+vln2  | .--- Bb4---? A4------- | A4----- C5 Bb4 G4------- | G4--- C5--- G4------- | F#4----------- A4--- |
+viola | .- G3-? Bb3- D4- A3--- D4--- | F4--- C4- A3- G3--- C4--- | C4--- Eb4- C4- D4------- | D4--- C4--- A3--- D4--- |
+cello | G2------- F#2------- | F2------- E2------- | Eb2------- D2------- | D2------- D3--- C3--- |
+
+# B: viola carries the theme head (F up to Bb, the motif now in B-flat). Violin 1 holds
+# Bb5 into the F7 harmony as a prepared 4-3 suspension. Bar 6 resolves deceptively to Gm,
+# bar 7 gives violin 1 the motif in augmented sweep, and bar 8 cadences in B-flat.
+pattern B
+vln1  | G5----------- Bb5--- | Bb5--- A5--- Bb5--- D6--- | G5--- Eb6----- D6 C6 Bb5- A5- | Bb5----- C6 D6 F6---! Ab5--- |
+vln2  | D5------- Eb5------- | Eb5------- D5------- | Eb5------- D5--- C5--- | Bb4--------------- |
+viola | F4--- Bb4-----! A4 Bb4 C5--- | C5----- Bb4 A4 G4--- D4- G4- | G4------- F4--- Eb4--- | D4--------------- |
+cello | Bb2------- Eb3--- C3--- | F2------- G2------- | Eb2------- F2------- | Bb2------- Ab2------- |
+
+# C: sequence. The viola pulses in eighths, alternating its chord tone with a common tone
+# (Eb, then D, then C) so the circle of fifths sounds anchored. Violin 2 holds long notes.
+# Violin 1 descends through the sequence (D6 C6 C6 Bb5 Bb5 Ab5 G5), embellished in sixteenths.
+# Bar 11b is the Neapolitan, bar 12a the German sixth (C# in violin 2 rises to D).
+pattern C
+vln1  | G5- Bb5- D6- Eb6 D6 C6--- A5 C6 Eb6 D6 | C6----- Bb5 C6 Bb5--- G5 A5 Bb5 C6 | Bb5--- Eb6! D6 C6 Bb5 Ab5--- C6- Bb5 Ab5 | G5----- Bb5- G5--- F#5 A5 G5 E5 |
+vln2  | Eb5--------------- | D5--------------- | Eb5------- C5------- | C#5-------! D5------- |
+viola | Bb3- Eb4- Bb3- Eb4- C4- Eb4- C4- Eb4- | A3- D4- A3- D4- Bb3- D4- Bb3- D4- | C4- Eb4- C4- Eb4- Eb4- C4- Eb4- C4- | Bb3- G3- Bb3- G3- Bb3- G3- A3- F#3- |
+cello | G2--- G3--- A2--- A3--- | F#2--- F#3--- G2--- G3--- | C3--- C2--- C3--- C2--- | Eb2---! Eb3--- D3--- D2--- |
+
+# D (first half): the lament bass returns in quarter notes, one harmony per beat
+# (Gm, D/F#, Bb/F, Em7b5 | Cm/Eb, D7, deceptive Eb, C#dim7/E). The viola rises G A Bb
+# against it, and violin 1 turns the theme into a climbing line that peaks at the C#-D
+# leading tone into bar 15.
+pattern D1
+vln1  | D5- G5- A5--- Bb5--- D6 C6 Bb5 A5 | C6---! Bb5 A5 F#5 A5 G5--- Bb5 A5 G5 C#6 |
+vln2  | Bb4--- D5----------- | C5------- Bb4------- |
+viola | G3--- A3--- Bb3------- | G3--- A3--- G3--- G3--- |
+cello | G2--- F#2--- F2--- E2--- | Eb2--- D2--- Eb2--- E2--- |
+
+# D (cadence): slightly slower. Cadential 6/4 (violin 1 D6 with an Eb upper neighbour,
+# viola G3 suspended over D falling to F#3), then V7. The last chord is G major, open voiced
+# (G2 G3 D5 B5): the 7th C6 resolves to B natural, the Picardy third.
+pattern D2 tempo=56
+vln1  | D6----- Eb6 D6 C6--- A5 F#5 A5 C6 | B5---------------? |
+vln2  | Bb4------- A4------- | D5---------------? |
+viola | G3------- F#3------- | G3---------------? |
+cello | D3------- D2------- | G2---------------? |
+
+play A B C D1 D2

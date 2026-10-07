@@ -1,0 +1,56 @@
+title    Sunday Evening Turnaround
+composer Claude
+about    An 8-bar gospel ballad loop in Ab major, 12/8 at 60, built around rich rootless voicings and passing chords.
+tempo    60      # dotted-quarter pulse, so each bar is four slow triplet beats
+beats    4
+steps    3       # 12/8: 12 steps per bar, each chord half-bar is 6 steps
+
+# Harmony plan, two chords per bar, the second half often split into two passing chords:
+#  1 Abmaj9          | Gm7b5   C7#9b13   (iii-ish approach into vi via its own ii-V)
+#  2 Fm9             | Ebm9    Ab13      (ii-V into IV)
+#  3 Dbmaj9          | Dbm9    Gb13      (borrowed iv minor, Gb13 is the backdoor colour)
+#  4 Cm11            | F7#9    F7b9      (iii into V/ii, altered tensions sliding down)
+#  5 Bbm9            | Bdim7   Ab/C      (chromatic bass climb Bb B C)
+#  6 Dbmaj9          | Ddim7   Ab/Eb     (keeps climbing Db D Eb into the cadential 6/4)
+#  7 Eb13sus4        | Eb13    Eb7b9     (sus resolves, then the b9 darkens the dominant)
+#  8 Ab6/9           | Bbm9    A13       (A13 is the tritone sub that slides down to Abmaj9)
+
+# piano: the main voicing part. Rootless left-hand-plus-right-hand stacks in C3 to Ab4,
+# chosen so inner voices move by step and the top voice mostly holds or moves a half step.
+# Each 6-step chord is struck on the downbeat and re-touched softly on the last triplet as a pickup.
+voice piano piano vol=0.85 pan=-0.15
+# organ: sustained pad on the top three notes of each voicing, soft, so the colour tones
+# (9ths, 13ths, altered notes) keep ringing after the piano decays. Classic gospel piano+organ pair.
+voice organ organ vol=0.38 pan=0.25
+# bass: roots on the downbeat, triplet pickups and chromatic walks that make the passing chords audible.
+voice bass ebass vol=0.9
+# drums: slow 12/8 ballad groove. Kick on 1 with a triplet push, backbeat on beats 2 and 4,
+# hat ticking the triplets with the beat accented, a tom fill in bar 8 to turn the loop around.
+voice kick kick vol=0.8
+voice snare snare vol=0.65
+voice hat hat vol=0.4
+voice tom tomlo vol=0.6
+voice tomh tommid vol=0.55
+voice crash crash vol=0.4
+
+pattern A
+piano | C3+G3+Bb3+Eb4+G4---- C3+G3+Bb3+Eb4+G4? Db3+F3+Bb3+F4-- E3+Bb3+Eb4+Ab4-- | Eb3+Ab3+C4+G4---- Eb3+Ab3+C4+G4? Db3+Gb3+Bb3+F4-- C3+Gb3+Bb3+F4-- | F3+C4+Eb4+Ab4---- F3+C4+Eb4+Ab4? E3+B3+Eb4+Ab4-- E3+Bb3+Eb4+Ab4-- | Eb3+Bb3+D4+F4---- Eb3+Bb3+D4+F4? Eb3+A3+C4+Ab4-- Eb3+A3+C4+Gb4-- |
+piano | Db3+Ab3+C4+F4---- Db3+Ab3+C4+F4? D3+Ab3+B3+F4-- Eb3+Ab3+C4+Ab4-- | F3+C4+Eb4+Ab4---- F3+C4+Eb4+Ab4? F3+B3+D4+Ab4-- Ab3+C4+Eb4+Ab4-- | Db3+Ab3+C4+F4+Ab4----- Db3+G3+C4+F4-- Db3+G3+Bb3+E4-- | C3+F3+Bb3+Eb4---- C3+F3+Bb3+Eb4? Db3+Ab3+C4+F4-- C#3+G3+B3+F#4-- |
+organ | Bb3+Eb4+G4----- F3+Bb3+F4-- Bb3+Eb4+Ab4-- | Ab3+C4+G4----- Gb3+Bb3+F4-- Gb3+Bb3+F4-- | C4+Eb4+Ab4----- B3+Eb4+Ab4-- Bb3+Eb4+Ab4-- | Bb3+D4+F4----- A3+C4+Ab4-- A3+C4+Gb4-- |
+organ | Ab3+C4+F4----- Ab3+B3+F4-- Ab3+C4+Ab4-- | C4+Eb4+Ab4----- B3+D4+Ab4-- C4+Eb4+Ab4-- | C4+F4+Ab4----- G3+C4+F4-- G3+Bb3+E4-- | F3+Bb3+Eb4----- Ab3+C4+F4-- G3+B3+F#4-- |
+bass  | Ab1---- Eb2 G1-- C2-- | F1---- C2 Eb2-- Ab1-- | Db2---- Ab1 Db2-- Gb1-- | C2---- G1 F1-- F2 Eb2 C2 |
+bass  | Bb1---- F2 B1-- C2-- | Db2---- Ab1 D2-- Eb2-- | Eb2----- Eb1-- F1- G1 | Ab1---- Eb2 Bb1-- A1-- |
+kick  | X.. ... x.x ... | X.. ... x.. ..x | X.. ... x.x ... | X.. ... x.. ..x |
+kick  | X.. ... x.x ... | X.. ... x.. ..x | X.. ... x.x ... | X.. ... x.. ... |
+snare | ... X.. ..o X.. | ... X.. ... X.o | ... X.. ..o X.. | ... X.. ... X.o |
+snare | ... X.. ..o X.. | ... X.. ... X.o | ... X.. ..o X.. | ... X.. ... ... |
+hat   | xoo xoo xoo xoo | % | % | % |
+hat   | xoo xoo xoo xoo | % | % | xoo xoo xoo ... |
+tom   | _ | _ | _ | _ |
+tom   | _ | _ | _ | ... ... ... ..X |
+tomh  | _ | _ | _ | _ |
+tomh  | _ | _ | _ | ... ... ... xx. |
+crash | x.. ... ... ... | _ | _ | _ |
+crash | _ | _ | _ | _ |
+
+loop A

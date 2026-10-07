@@ -1,0 +1,157 @@
+title    Hitsville Stomp
+composer Claude
+about    A Motown-style instrumental in F major. Tenor sax sings the verse like a lead vocal, and the full five-piece horn section carries the chorus hook in drop-2 harmony.
+tempo    116
+beats    4
+steps    4
+swing    0.06   # a hair of 16th lean, mostly straight like a Detroit rhythm section
+
+# FORM (56 bars, about 1:56)
+#   intro (4)  horn riff in octaves, then band hits Bb6 / C7sus and holds C7
+#   A1 A2 (8)  verse: tenor sax melody, brass answers in the gaps
+#   B1 B2 (8)  chorus: full section hook, snare on all four beats, organ pad
+#   verse and chorus again, the intro riff returns as a break, chorus, then a tag ending on F6/9
+#
+# INTERLOCK PLAN (16th-note grid, steps 1-16 per bar)
+#   kick   1, 7 (and of 2), 9, sometimes 15
+#   bass   lands with the kick on 1, 7, 9 and fills 12-16 with chromatic approach notes to the next root (Jamerson habit)
+#   snare  2 and 4 in the verse, all four quarters in the chorus (the Motown "four on the snare" lift)
+#   tamb   doubles the backbeat in the verse and plays eighths in the chorus
+#   guitar short chops on 2 and 4 only, high triads, so it sits in the snare's slot and never meets the piano
+#   piano  verse hits on 1, the and of 2, and the and of 3: the gaps the guitar leaves; chorus pounds quarters under the horns
+#   horns  verse answers enter only where the tenor melody rests (call and response); chorus hook rhythm sits on 1, 3, the e of 2, 3 and the and of 3
+#
+# HORN VOICING
+#   trumpets are one voice with two-note stacks (lead plus second). Tenor is the third voice, trombone the fourth,
+#   bari sax doubles roots and fifths an octave under the bass guitar's register.
+#   Chorus chords are close four-way voicings under the lead with the second voice dropped an octave (drop-2):
+#   lead -> tpt1, third -> tpt2, fourth -> tenor, second-down-8va -> trombone. This spreads the section to about
+#   an octave and a half so it sounds wide and punchy instead of clustered, and it keeps the trombone in its singing middle range.
+
+voice kick   kick     vol=1.0
+voice snare  snare    vol=0.85
+voice hat    hat      vol=0.4
+voice tamb   tamb     vol=0.55
+voice crash  crash    vol=0.55
+voice bass   ebass    vol=1.0
+voice gtr    eguitar  vol=0.6  pan=-0.5 gate=0.35   # gate keeps the chops short and percussive
+voice piano  piano    vol=0.6  pan=0.3  gate=0.6
+voice organ  organ    vol=0.28 pan=0.15             # quiet glue pad, chorus and tag only
+voice tpt    trumpet  vol=0.75 pan=0.35 gate=0.9    # two trumpets as stacks
+voice tenor  tenorsax vol=0.8  pan=-0.15 gate=0.92  # verse lead "singer", third voice in the section
+voice bone   trombone vol=0.75 pan=-0.3 gate=0.9
+voice bari   barisax  vol=0.7  pan=0.1  gate=0.9
+
+# INTRO: bars 1-2 are a unison riff spread over three octaves (trumpets top, tenor and trombone middle, bari and bass bottom),
+# the classic Motown "everyone on the line" opener. Bars 3-4 harmonize: Bb6 hits on 1 and the and of 2, a C7sus push
+# on the and of 3, then a held C7 (drop-2: G5 C5 / Bb4 / E4 / C3) while the snare fills into the verse.
+pattern intro
+tpt   | C5- D5- F5- .- A5-- G5 F5- D5- | F5--- .- C5 D5 .- F5- .--- | D5+G4- .---- F5+Bb4- .- F5+Bb4-- .- | G5+C5-----------! .--- |
+tenor | C4- D4- F4- .- A4-- G4 F4- D4- | F4--- .- C4 D4 .- F4- .--- | F4- .---- G4- .- G4-- .- | Bb4-----------! .--- |
+bone  | C4- D4- F4- .- A4-- G4 F4- D4- | F4--- .- C4 D4 .- F4- .--- | Bb3- .---- D4- .- C4-- .- | E4-----------! .--- |
+bari  | C3- D3- F3- .- A3-- G3 F3- D3- | F3--- .- C3 D3 .- F3- .--- | Bb2- .---- Bb2- .- C3-- .- | C3----------- .--- |
+bass  | C2- D2- F2- .- A2-- G2 F2- D2- | F2--- .- C2 D2 .- F2- .--- | Bb1- .---- Bb1- .- C2-- .- | C2----------- .--- |
+gtr   | .--- C4+F4+A4 .-- .--- C4+F4+A4 .-- | % | D4+F4+Bb4- .---- D4+F4+Bb4- .- C4+F4+Bb4-- .- | E4+G4+Bb4----------- .--- |
+piano | _ | _ | F3+Bb3+D4- .---- F3+Bb3+D4- .- C3+F3+Bb3-- .- | E3+G3+Bb3+C4----------- .--- |
+organ | _ | _ | _ | E4+Bb4+D5----------- .--- |
+kick  | x... ..x. x... .... | % | X... ..X. ..X. .... | X... .... .... .... |
+snare | .... X... .... X... | % | X... ..X. ..X. .... | .... .... ..o. XoXX |
+hat   | X.x. X.x. X.x. X.x. | % | _ | _ |
+tamb  | .... X... .... X... | % | _ | _ |
+crash | X... .... .... .... | _ | X... ..X. ..X. .... | X... .... .... .... |
+
+# VERSE A1: F | Bb | F | C7
+# Tenor melody stays in F major pentatonic like a vocal line, phrased in two-bar sentences that leave the back half
+# of bars 2 and 4 open. The brass (trumpets, trombone, bari) answers only in those holes: two rising Bb6 stabs in bar 2,
+# and a soft C7 pad (Bb4+E5 / E3 / C3) under the tenor's held G in bar 4. Tenor sits between the pad notes on purpose.
+pattern A1
+tenor | .- C4 D4 F4- F4 G4- A4 G4 F4 D4- .- | F4--- D4- C4 Bb3- .------ | .- C4 D4 F4- A4- C5-- A4 G4- F4- | G4------- .- E4 F4 G4 Bb4 .- |
+tpt   | _ | .--------- D5+G4 . F5+Bb4- .- | _ | Bb4+E5-------? .------- |
+bone  | _ | .--------- Bb3 . D4- .- | _ | E3-------? .------- |
+bari  | _ | .--------- Bb2 . Bb2- .- | _ | C3-------? .------- |
+bass  | F2-- F2 .- C3- F2-- A2 C3- C3 A2 | Bb2-- Bb2 .- F2- Bb2-- D3 F3- C3 E2 | F2-- F2 .- C3- F2-- A2 C3- D3 Db3 | C3-- C3 .- G2- C3-- Bb2 A2- G2 E2 |
+gtr   | .--- C4+F4+A4 .-- .--- C4+F4+A4 .-- | .--- D4+F4+Bb4 .-- .--- D4+F4+Bb4 .-- | .--- C4+F4+A4 .-- .--- C4+F4+A4 .-- | .--- E4+G4+Bb4 .-- .--- E4+G4+Bb4 .-- |
+piano | F3+A3+C4- .--- F3+A3+C4- .- F3+A3+C4- .--- | F3+Bb3+D4- .--- F3+Bb3+D4- .- F3+Bb3+D4- .--- | F3+A3+C4- .--- F3+A3+C4- .- F3+A3+C4- .--- | E3+G3+Bb3- .--- E3+G3+Bb3- .- E3+G3+Bb3- .--- |
+kick  | x... ..x. x... .... | x... ..x. x... ..x. | x... ..x. x... .... | x... ..x. x.x. .... |
+snare | .... X... ..o. X... | % | % | .... X... ..o. X..o |
+hat   | X.x. X.x. X.x. X.x. | % | % | % |
+tamb  | .... X... .... X... | % | % | % |
+
+# VERSE A2: F | Bb | Gm7 C7 | F7
+# The tenor gets busier, so the brass backs off to very soft sustained pads (Bb4+D5 / F3, then Gm7 to C7 moving only
+# the top trumpet D5 -> E5 and trombone F3 -> E3 by step). Bar 4 is F7 with a blue Eb in the tenor pickup and a short
+# brass F7 stab (Eb5+A4 / C4 / F2) on beat 4 that kicks the band into the chorus. Snare fill on the last beat.
+pattern A2
+tenor | .- C4 D4 F4- F4 G4- A4 G4 F4 D4- .- | F4--- D4- F4 G4- Bb4-- G4 F4 D4- | F4- D4 F4- G4 Bb4- A4-- G4 E4 G4-- | F4------- .- C4 Eb4 F4- A4- |
+tpt   | _ | Bb4+D5---------------?? | Bb4+D5-------?? Bb4+E5-------?? | .----------- A4+Eb5- .- |
+bone  | _ | F3---------------?? | F3-------?? E3-------?? | .----------- C4- .- |
+bari  | _ | _ | _ | .----------- F2- .- |
+bass  | F2-- F2 .- C3- F2-- A2 C3- C3 A2 | Bb2-- Bb2 .- F2- Bb2-- D3 F3- A2 F#2 | G2-- G2 .- D3 F3 C3-- C3 G2 Bb2 G2 E2 | F2-- F2 .- C3- F2-- A2 Eb3- C3 A2 |
+gtr   | .--- C4+F4+A4 .-- .--- C4+F4+A4 .-- | .--- D4+F4+Bb4 .-- .--- D4+F4+Bb4 .-- | .--- D4+F4+Bb4 .-- .--- E4+G4+Bb4 .-- | .--- C4+Eb4+A4 .-- .--- C4+Eb4+A4 .-- |
+piano | F3+A3+C4- .--- F3+A3+C4- .- F3+A3+C4- .--- | F3+Bb3+D4- .--- F3+Bb3+D4- .- F3+Bb3+D4- .--- | F3+Bb3+D4- .--- F3+Bb3+D4- E3+G3+Bb3- .--- E3+G3+Bb3- | Eb3+A3+C4- .--- Eb3+A3+C4- .- Eb3+A3+C4- .--- |
+kick  | x... ..x. x... .... | x... ..x. x... ..x. | x... ..x. x... ..x. | x... ..x. x... .... |
+snare | .... X... ..o. X... | % | % | .... X... ..oo XoXX |
+hat   | X.x. X.x. X.x. X.x. | % | % | X.x. X.x. X... .... |
+tamb  | .... X... .... X... | % | % | .... X... .... .... |
+
+# CHORUS B1: Bb | C | Am7 | Dm7
+# The hook. Every horn note is a drop-2 chord under the trumpet lead, e.g. lead G5 on Bb6 = G5+D5 / Bb4 / F4.
+# Bars 1 and 2 are a sequence (same rhythm, lead D-F-G-F-D then E-G-A-G-E a step up), bar 2 ends with an
+# anticipated Am7 on the and of 4 tied over the bar line, and bar 4 is a long Dm7 that steps down D minor to hand off.
+# The horns' rhythm (1, 3, e of 2, 3, and of 3) avoids the guitar's 2 and 4, while the piano and snare pound quarters
+# underneath, so the brass reads as syncopation against a steady floor. Bari plays roots and fifths on the hook rhythm.
+pattern B1
+tpt   | D5+G4- F5+Bb4 .- G5+D5-- F5+Bb4 D5+G4-- .--- | E5+A4- G5+C5 .- A5+E5-- G5+C5 E5+A4-- .- C5+G4- | - E5+A4- C5+G4 .- E5+A4- G5+C5-- E5+A4 .--- | F5+C5------- E5+A4- D5+A4- C5+F4- A4+D4- |
+tenor | F4- G4 .- Bb4-- G4 F4-- .--- | G4- A4 .- C5-- A4 G4-- .- E4- | - G4- E4 .- G4- A4-- G4 .--- | A4------- F4- F4- D4- C4- |
+bone  | Bb3- D4 .- F4-- D4 Bb3-- .--- | C4- E4 .- G4-- E4 C4-- .- A3- | - C4- A3 .- C4- E4-- C4 .--- | D4------- C4- C4- A3- F3- |
+bari  | Bb2- F2 .- Bb2-- F2 Bb2-- .--- | C3- G2 .- C3-- G2 C3-- .- A2- | - A2- E2 .- A2- E2-- A2 .--- | D3------- A2- D3- A2- F2- |
+bass  | Bb2-- Bb2 .- F2- Bb2-- D3 F3- G3 B2 | C3-- C3 .- G2- C3-- E3 G3- G2 G#2 | A2-- A2 .- E3- A2-- C3 E3- D3 C#3 | D3-- D3 .- A2- D3-- C3 A2- G2 F#2 |
+gtr   | .--- D4+F4+Bb4 .-- .--- D4+F4+Bb4 . D4+F4+Bb4 . | .--- E4+G4+C5 .-- .--- E4+G4+C5 . E4+G4+C5 . | .--- E4+G4+C5 .-- .--- E4+G4+C5 . E4+G4+C5 . | .--- F4+A4+C5 .-- .--- F4+A4+C5 . F4+A4+C5 . |
+piano | F3+Bb3+D4- .- F3+Bb3+D4- .- F3+Bb3+D4- .- F3+Bb3+D4- .- | E3+G3+C4- .- E3+G3+C4- .- E3+G3+C4- .- E3+G3+C4- .- | E3+G3+C4- .- E3+G3+C4- .- E3+G3+C4- .- E3+G3+C4- .- | F3+A3+C4- .- F3+A3+C4- .- F3+A3+C4- .- F3+A3+C4- .- |
+organ | D4+F4+Bb4--------------- | E4+G4+C5--------------- | E4+G4+A4--------------- | F4+A4+C5--------------- |
+kick  | x... ..x. x... ..x. | % | % | % |
+snare | x... X... x... X... | % | % | % |
+hat   | x.x. x.x. x.x. x.x. | % | % | % |
+tamb  | x.x. X.x. x.x. X.x. | % | % | % |
+crash | X... .... .... .... | _ | _ | _ |
+
+# CHORUS B2: Gm7 | C7 | F | F (stop)
+# Bar 1 climbs the Gm7 chord in drop-2 (Bb4 -> G5 lead). Bar 2 holds a wide C7 (G5+C5 / Bb4 / E4 / C3), then a
+# sus4 neighbour F5 over C7 resolves down. Bar 3 is the peak: lead A5 on F6 accented, stepping down G-F-D-C.
+# Bar 4 is a stop-time hit: everyone plays one F6 chord on the downbeat, then silence except a snare fill and a
+# bass pickup C-D-E that leads back to F, the call-and-response moment between drums and bass.
+pattern B2
+tpt   | .- Bb4+F4 D5+G4 F5+Bb4- G5+D5- .- F5+Bb4 D5+G4 .- F5+Bb4- | G5+C5------- .- E5+Bb4- F5+Bb4 E5+Bb4 C5+G4- | A5+D5-------! G5+C5- F5+C5- D5+A4- C5+F4- | F5+C5---! .----------- |
+tenor | .- D4 F4 G4- Bb4- .- G4 F4 .- G4- | Bb4------- .- G4- G4 G4 E4- | C5------- A4- A4- F4- D4- | A4--- .----------- |
+bone  | .- G3 Bb3 D4- F4- .- D4 Bb3 .- D4- | E4------- .- C4- C4 C4 Bb3- | F4------- D4- D4- C4- A3- | D4--- .----------- |
+bari  | .- G2 Bb2 D3- G2- .- D3 Bb2 .- G2- | C3------- .- G2- A2 Bb2 C3- | F2------- .------- | F2--- .----------- |
+bass  | G2-- G2 .- D3- G2-- Bb2 D3- C3 B2 | C3-- C3 .- G2- C3-- Bb2 A2- G2 E2 | F2-- F2 .- C3- F2-- A2 C3- D3 C3 | F2--- .-------- C3 D3 E3 |
+gtr   | .--- D4+F4+Bb4 .-- .--- D4+F4+Bb4 . D4+F4+Bb4 . | .--- E4+G4+Bb4 .-- .--- E4+G4+Bb4 . E4+G4+Bb4 . | .--- C4+F4+A4 .-- .--- C4+F4+A4 . C4+F4+A4 . | C4+F4+A4--- .----------- |
+piano | F3+Bb3+D4- .- F3+Bb3+D4- .- F3+Bb3+D4- .- F3+Bb3+D4- .- | E3+G3+Bb3- .- E3+G3+Bb3- .- E3+G3+Bb3- .- E3+G3+Bb3- .- | F3+A3+C4- .- F3+A3+C4- .- F3+A3+C4- .- F3+A3+C4- .- | F3+A3+D4--- .----------- |
+organ | F4+Bb4+D5--------------- | E4+Bb4+D5--------------- | F4+A4+C5--------------- | F4+A4+C5--- .----------- |
+kick  | x... ..x. x... ..x. | % | % | X... .... .... .... |
+snare | x... X... x... X... | % | % | .... .... ..o. XoXX |
+hat   | x.x. x.x. x.x. x.x. | % | % | X... .... .... .... |
+tamb  | x.x. X.x. x.x. X.x. | % | % | X... .... .... .... |
+crash | _ | _ | _ | X... .... .... .... |
+
+# TAG: Gm7 | C7 | F6/9 held two bars.
+# Same climb as B2 bar 1 and the C7 bar, then the final chord voiced wide from the bottom up:
+# F1 bass, F2 bari, A3 trombone, G4 tenor, D5+A5 trumpets, so the 6th and 9th sit on top and ring like a big-band button.
+pattern tag
+tpt   | .- Bb4+F4 D5+G4 F5+Bb4- G5+D5- .- F5+Bb4 D5+G4 .- F5+Bb4- | G5+C5------- .- E5+Bb4- F5+Bb4 E5+Bb4 C5+G4- | A5+D5---------------! | -------- .------- |
+tenor | .- D4 F4 G4- Bb4- .- G4 F4 .- G4- | Bb4------- .- G4- G4 G4 E4- | G4--------------- | -------- .------- |
+bone  | .- G3 Bb3 D4- F4- .- D4 Bb3 .- D4- | E4------- .- C4- C4 C4 Bb3- | A3--------------- | -------- .------- |
+bari  | .- G2 Bb2 D3- G2- .- D3 Bb2 .- G2- | C3------- .- G2- A2 Bb2 C3- | F2--------------- | -------- .------- |
+bass  | G2-- G2 .- D3- G2-- Bb2 D3- C3 B2 | C3-- C3 .- G2- C3-- Bb2 G2- E2 C2 | F1--------------- | -------- .------- |
+gtr   | .--- D4+F4+Bb4 .-- .--- D4+F4+Bb4 . D4+F4+Bb4 . | .--- E4+G4+Bb4 .-- .--- E4+G4+Bb4 . E4+G4+Bb4 . | A3+D4+G4--------------- | -------- .------- |
+piano | F3+Bb3+D4- .- F3+Bb3+D4- .- F3+Bb3+D4- .- F3+Bb3+D4- .- | E3+G3+Bb3- .- E3+G3+Bb3- .- E3+G3+Bb3- .- E3+G3+Bb3- .- | F2+C3+G3+A3+D4--------------- | -------- .------- |
+organ | F4+Bb4+D5--------------- | E4+Bb4+D5--------------- | A3+D4+G4+C5--------------- | -------- .------- |
+kick  | x... ..x. x... ..x. | x... ..x. x... .... | X... .... .... .... | _ |
+snare | x... X... x... X... | x... X... ..o. XoXX | X... .... .... .... | _ |
+hat   | x.x. x.x. x.x. x.x. | % | _ | _ |
+tamb  | x.x. X.x. x.x. X.x. | % | X... .... .... .... | _ |
+crash | _ | _ | X... .... .... .... | _ |
+
+# The intro riff returns as a break before the last choruses, and the final chorus swaps B2 for the tag.
+play intro A1 A2 B1 B2 A1 A2 B1 B2 intro B1 B2 B1 tag
