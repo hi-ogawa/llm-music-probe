@@ -1,0 +1,55 @@
+title    Night Line
+composer Claude
+about    A late-night neo-soul loop in D-flat. A gospel IV-iii-ii-V, then the same road taken darker through an altered dominant.
+tempo    84
+beats    4
+steps    4
+swing    0.18          # a lazy 16th pocket
+
+voice keys  epiano vol=0.6 pan=-0.15
+voice bass  ebass  vol=0.95
+voice kick  kick   vol=0.85
+voice snare snare  vol=0.55
+voice hat   hat    vol=0.35 pan=0.25
+voice ohat  ohat   vol=0.3  pan=0.25
+
+# Harmony, one chord per bar, two in bar 8:
+#   Gbmaj9  Fm11  Ebm9  Ab13sus4 | Gbmaj9  F7#9b13  Bbm9  Abm9 Db13
+# Bars 1-4 are the gospel IV-iii-ii-V in D-flat. Bars 5-8 start the same way,
+# then swerve: F7 altered pulls to Bbm9 (vi), and a ii-V to Gb (IV) turns the loop around.
+#
+# Keys are rootless and move by half and whole steps. The top voice falls
+# chromatically Ab G Gb F over bars 1-4, then Ab Ab F Eb over bars 5-8:
+#   Gbmaj9    Bb3 Db4 F4  Ab4
+#   Fm11      Bb3 C4  Eb4 G4     (11 5 b7 9, a quartal sound)
+#   Ebm9      Bb3 Db4 F4  Gb4    (5 b7 9 b3, the F-Gb rub on top)
+#   Ab13sus4  Gb3 Bb3 Db4 F4     (b7 9 11 13)
+#   F7#9b13   A3  Db4 Eb4 Ab4    (3 b13 b7 #9)
+#   Bbm9      Ab3 C4  Db4 F4     (b7 9 b3 5)
+#   Abm9      Gb3 Bb3 B3  Eb4    (b7 9 b3 5)
+#   Db13      F3  Bb3 B3  Eb4    (3 13 b7 9, only Gb3 moves to F3)
+
+pattern A
+# Keys: each chord arrives on the last 16th of the bar before and rings through its own bar.
+# Bar 4 breaks the pattern with dotted-8th re-hits, a hint of three against four.
+keys  | Bb3+Db4+F4+Ab4--------- . . Bb3+Db4+F4+Ab4?- . Bb3+C4+Eb4+G4 | ---------- . . Bb3+C4+Eb4+G4?- . Bb3+Db4+F4+Gb4 |
+keys  | ---------- . . Bb3+Db4+F4+Gb4?- . Gb3+Bb3+Db4+F4 | ---- . . Gb3+Bb3+Db4+F4?-- Gb3+Bb3+Db4+F4?-- . . . Bb3+Db4+F4+Ab4 |
+keys  | ---------- . . Bb3+Db4+F4+Ab4?- . A3+Db4+Eb4+Ab4 | ---------- . . A3+Db4+Eb4+Ab4?- . Ab3+C4+Db4+F4 |
+keys  | ---------- . . Ab3+C4+Db4+F4?- . Gb3+Bb3+B3+Eb4 | ------- . F3+Bb3+B3+Eb4--- . F3+Bb3+B3+Eb4?- . |
+
+# Bass: root on the one, a ghosted dead note, then chord tones, and every bar ends
+# with a half-step approach into the next root (Gb>F, E>Eb, A>Ab, G>Gb, B>Bb).
+# Bar 2 states the minor third Ab. Bar 6 spells the altered chord: b7 3 #9 b13.
+bass  | Gb1--- . Gb1?? Db2- F2- Gb2 . Db2- Bb1 Gb1? | F1--- . F1?? C2- Eb2- F2 . Ab2 F2 E2- |
+bass  | Eb2--- . Eb2?? Bb1- Db2- Eb2 . Gb2- Bb1 A1 | Ab1----- . Ab1?? Eb2-- Gb2- . Ab1 G1 |
+bass  | Gb1--- . Gb1?? Db2- Ab2- Gb2 . F2- Db2 Gb1 | F1--- . F1?? Eb2- A2- Ab2 . Db2- F2 B1 |
+bass  | Bb1--- . Bb1?? F2- Ab2- Bb2 . Db2- C2 A1 | Ab1-- Ab1?? Eb2- Gb2- Db2-- . F2 B1- G1 |
+
+kick  | x... ...x ..x. .... | x..x ...x ..x. .x.. | x... ...x ..x. .... | x..x ...x ..x. .x.. |
+kick  | x... ...x ..x. .... | x..x ...x ..x. .x.. | x... ...x ..x. .... | x... ...x x.x. .... |
+snare | .... x..o .o.. x... | .... x..o .o.. x..o | % | % |
+snare | .... x..o .o.. x... | .... x..o .o.. x..o | .... x..o .o.. x... | .... x..o .o.o X.oo |
+hat   | x.xo x.xo x.xo x.xo | % | % | % | % | % | % | x.xo x.xo x.x. .... |
+ohat  | _ | _ | _ | _ | _ | _ | _ | .... .... .... x... |
+
+loop A
