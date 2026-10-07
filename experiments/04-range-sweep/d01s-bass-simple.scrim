@@ -1,0 +1,25 @@
+title    Fixed Changes
+tempo    92
+beats    4
+steps    4
+
+voice pad   epiano vol=0.5 center=E4
+voice kick  kick
+voice snare snare
+voice hat   hat vol=0.4
+# Bass: fingered electric bass, slightly short gate so the repeated root re-articulates cleanly.
+voice bass  ebass vol=0.9 gate=0.9
+
+pattern A
+pad   | [Am7]--------------- | [D7]--------------- | [Gmaj7]--------------- | [Cmaj7]--------------- |
+kick  | x... ..x. x... .... | % | % | % |
+snare | .... x... .... x... | % | % | % |
+hat   | x.x. x.x. x.x. x.x. | % | % | % |
+# Intent: roots only, one per chord, so the harmony is unambiguous and nothing competes with the pad.
+# Each bar plays the root on the downbeat and restrikes it on the "and" of beat 2 (step 7),
+# exactly where the kick plays its syncopated hit, so bass and kick act as one groove.
+# The roots alternate down a fifth and up a fourth (A1 D2 G1 C2), the natural cycle-of-fifths
+# motion of these changes, keeping the line in the low register; C2 falls a third back to A1 on the loop.
+bass  | A1----- A1--------- | D2----- D2--------- | G1----- G1--------- | C2----- C2--------- |
+
+loop A

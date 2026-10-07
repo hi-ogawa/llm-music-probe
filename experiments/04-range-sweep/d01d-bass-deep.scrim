@@ -1,0 +1,31 @@
+title    Fixed Changes
+tempo    92
+beats    4
+steps    4
+
+voice pad   epiano vol=0.5 center=E4
+voice kick  kick
+voice snare snare
+voice hat   hat vol=0.4
+# Bass: acoustic upright, slightly short gate so the syncopated 16ths articulate
+# instead of smearing, and enough level to sit under the epiano pad (voiced near E4).
+voice bass  upright vol=0.95 gate=0.85
+
+pattern A
+pad   | [Am7]--------------- | [D7]--------------- | [Gmaj7]--------------- | [Cmaj7]--------------- |
+kick  | x... ..x. x... .... | % | % | % |
+snare | .... x... .... x... | % | % | % |
+hat   | x.x. x.x. x.x. x.x. | % | % | % |
+# Bass intent (ii-V-I-IV in G):
+# - Every downbeat states the root low (A1, D2, G1, C2) and lands with the kick on step 1;
+#   the kick's syncopated hits on the "a" of beat 2 and on beat 3 also get bass notes,
+#   so bass and kick act as one rhythmic unit, with ghosted notes filling the gap.
+# - The second half of each bar is a 16th-note run that outlines the chord (3rds, 7ths)
+#   and ends one half step from the next root, so each bar line is a chromatic resolution:
+#   Eb2->D2 (from above), Ab2->G (tritone-sub colour on D7, resolving by half step in pitch class, then dropping to the deep G1), B1->C2 (leading tone),
+#   Bb1->A1 (from above, closing the loop).
+# - Colour tones: G2 (b7) leaps over Am7, a passing Eb3 (b9) on D7 hinting D7b9,
+#   F#2 and B2 (major 7ths) placed on kick hits in the Gmaj7 and Cmaj7 bars.
+bass  | A1---! . A1?? G2- E2- C3 B2- A2 G2 Eb2 | D2-- . D2?? . A1- F#2- A2 C3 Eb3? D3 C3 Ab2 | G1---! . D2?? F#2- G2- B2 D3- B2 G2 B1 | C2--- . G2?? B2- E2- G2 E2 D2 C2 B1 Bb1 |
+
+loop A

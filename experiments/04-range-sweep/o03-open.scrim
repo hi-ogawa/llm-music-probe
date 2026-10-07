@@ -1,0 +1,95 @@
+# What I would write with no constraints: a small, unhurried chamber nocturne.
+# My taste leans toward modal minor harmony with added ninths and sharp elevenths
+# (Ravel, Fauré, a bit of film-scoring restraint), a singing melody that breathes
+# in clear phrases, and a texture where every chord tone is placed on purpose.
+#
+# Form: intro (4) | A1 (8, ends on a half cadence) | A2 (8, closes in E minor)
+#       | B (8, relative G major, clarinet takes the tune) | A3 (8, melody an octave
+#       up with a clarinet counterline, closing on E MAJOR as a Picardy turn)
+#       | coda (4, minor iv6 to E major add9, slower). 40 bars of 3/4.
+# Meter 3/4 in eighths (6 steps per bar) at a slow 66, so it sways rather than waltzes.
+# Key: E minor (Aeolian with Dorian-flavoured colour chords), brief move to G major.
+
+title    Lantern Hours
+composer Claude
+about    A short nocturne in E minor for violin, clarinet, harp, and strings, built on ninth chords and a melody that rises an octave on its return before settling in E major.
+tempo    66
+beats    3
+steps    2
+
+# Melody. Carries the tune in A sections; silent in B so its return an octave higher feels like a lift.
+voice vln     violin   vol=0.85 pan=-0.25
+# Second melodic colour. Owns the B section tune, then becomes a counterline under the violin in A3.
+voice cl      clarinet vol=0.75 pan=0.25
+# Inner harmony pad: three-note stacks voiced in the G3 to F#4 band, holding the 7ths, 9ths and #11s
+# that give the harmony its colour, kept quiet so it glows rather than thickens.
+voice inner   strings  vol=0.45
+# Bass line: one sustained root per bar, mostly; it splits only where the harmony changes mid-bar.
+voice vc      cello    vol=0.6  pan=0.1
+# Harp arpeggios split across two voices: harpA plays eighths 1, 3, 5 and harpB plays 2, 4, 6,
+# each held two eighths, so successive notes overlap and ring like a real harp instead of being cut off.
+# Each bar's six notes form one rise-and-fall contour through the chord, staying below the melody.
+voice harpA   harp     vol=0.55 pan=-0.35
+voice harpB   harp     vol=0.5  pan=0.35
+
+# Intro: Em9 against Cmaj7#11, twice. Establishes the sound world (the F#
+# over C is the sharp-eleven shimmer that returns later in the melody).
+pattern intro
+vc    | E2----- | C3----- | E2----- | C3----- |
+inner | G3+D4+F#4----- | B3+E4+F#4----- | G3+D4+F#4----- | B3+E4+F#4----- |
+harpA | E3- D4- D4- | C3- B3- F#4- | E3- D4- D4- | C3- B3- F#4- |
+harpB | . B3- F#4- B3 | . G3- E4- E4 | . B3- F#4- B3 | . G3- E4- E4 |
+
+# A1: Em9 Cmaj7 Am9 B7sus4-B7 | Em9 Cmaj7#11 Am7-D9 B7.
+# Violin antecedent: a falling, sighing line that ends on the dominant. Bar 5 leaps
+# up a minor sixth to G5 for the emotional peak; bar 6 sits on F#5, the #11 over C.
+pattern a1
+vln   | B4---- D5 | E5--- D5 B4 | C5-- B4 A4 G4 | A4-- F#4 B4- | G5-- F#5 E5 D5 | F#5---- E5 | E5-- D5 C5 A4 | B4----- |
+vc    | E2----- | C2----- | A2----- | B2----- | E2----- | C3----- | A2-- D3-- | B2----- |
+inner | G3+D4+F#4----- | G3+B3+E4----- | G3+C4+E4----- | F#3+A3+E4-- F#3+A3+D#4-- | B3+D4+F#4----- | B3+E4+F#4----- | G3+C4+E4-- F#3+C4+E4-- | A3+D#4+F#4----- |
+harpA | E3- D4- D4- | C3- B3- B3- | A2- G3- G3- | B2- E4- A3- | E3- D4- D4- | C3- B3- F#4- | A2- G3- A3- | B2- A3- A3- |
+harpB | . B3- F#4- B3 | . G3- E4- G3 | . E3- B3- E3 | . F#3- B2- D#4 | . B3- F#4- B3 | . G3- E4- E4 | . E3- D3- C4 | . F#3- D#4- F#3 |
+
+# A2: same opening, then D7 Gmaj7 Am7 B7 Em(add9): a consequent that closes in the tonic.
+# The melody now reaches G5 in bar 2 and steps down to rest on E4 with the 9th (F#) above it.
+pattern a2
+vln   | B4---- D5 | E5--- G5 F#5 | E5-- D5 C5 B4 | A4-- C5 B4 A4 | B4- D5 F#5- E5 | C5-- B4 A4 G4 | A4-- G4 F#4 D#4 | E4----- |
+vc    | E2----- | C2----- | A2----- | D3----- | G2----- | A2----- | B2----- | E2----- |
+inner | G3+D4+F#4----- | G3+B3+E4----- | G3+C4+E4----- | F#3+A3+C4----- | F#3+B3+D4----- | G3+C4+E4----- | D#3+F#3+A3----- | G3+B3+F#4----- |
+harpA | E3- D4- D4- | C3- B3- B3- | A2- G3- G3- | D3- C4- C4- | G2- F#3- F#3- | A2- G3- G3- | B2- A3- A3- | E3- F#4- F#4- |
+harpB | . B3- F#4- B3 | . G3- E4- G3 | . E3- B3- E3 | . A3- E4- A3 | . D3- B3- D3 | . E3- C4- E3 | . F#3- D#4- F#3 | . B3- G4- B3 |
+
+# B: relative major. Gmaj7 Cmaj9 Bm7 Em9 | Am7 D7sus4-D7 G/B B7.
+# Clarinet sings a warmer, more rising tune (up to A5 in bar 3) while the violin rests.
+# The last bar turns to B7 with D#5 on top, pulling back to E minor.
+pattern b
+cl    | F#5--- E5 D5 | E5---- B4 | D5-- E5 F#5 A5 | F#5---- E5 | E5-- C5 A4 B4 | C5-- G4 A4 F#4 | G4-- B4 D5 G5 | F#5---- D#5 |
+vc    | G2----- | C3----- | B2----- | E2----- | A2----- | D3----- | B2----- | B2----- |
+inner | F#3+B3+D4----- | G3+B3+D4----- | F#3+A3+D4----- | G3+D4+F#4----- | G3+C4+E4----- | G3+A3+C4-- F#3+A3+C4-- | G3+B3+D4----- | A3+D#4+F#4----- |
+harpA | G2- F#3- D4- | C3- B3- E4- | B2- A3- A3- | E3- D4- G4- | A2- G3- E4- | D3- C4- F#3- | B2- G3- D4- | B2- A3- F#4- |
+harpB | . D3- B3- B3 | . G3- D4- D4 | . F#3- D4- F#3 | . B3- F#4- F#4 | . E3- C4- C4 | . G3- D3- C4 | . D3- B3- G3 | . F#3- D#4- D#4 |
+
+# A3: the A2 harmony again, but the violin sings an octave higher (the climax of the piece)
+# and the clarinet adds a slow counterline in the gap below it, moving mostly in contrary
+# motion or in tenths. The final chord turns to E major: G#3 in the strings, G#4 in the
+# clarinet and harp, while the violin lands on E5.
+pattern a3
+vln   | B5---- D6 | E6--- G6 F#6 | E6-- D6 C6 B5 | A5-- C6 B5 A5 | B5- D6 F#6- E6 | C6-- B5 A5 G5 | A5-- G5 F#5 D#5 | E5----- |
+cl    | G4----- | G4-- E4 G4 B4 | A4----- | F#4----- | G4----- | E4-- F#4 G4 E4 | F#4-- E4 D#4 F#4 | G#4----- |
+vc    | E2----- | C2----- | A2----- | D3----- | G2----- | A2----- | B2----- | E2----- |
+inner | G3+D4+F#4----- | G3+B3+E4----- | G3+C4+E4----- | F#3+A3+C4----- | F#3+B3+D4----- | G3+C4+E4----- | D#3+F#3+A3----- | G#3+B3+F#4----- |
+harpA | E3- D4- D4- | C3- B3- B3- | A2- G3- G3- | D3- C4- C4- | G2- F#3- F#3- | A2- G3- G3- | B2- A3- A3- | E3- F#4- F#4- |
+harpB | . B3- F#4- B3 | . G3- E4- G3 | . E3- B3- E3 | . A3- E4- A3 | . D3- B3- D3 | . E3- C4- E3 | . F#3- D#4- F#3 | . B3- G#4- B3 |
+
+# Coda, slower: Cmaj7#11, then Am6 (the minor iv with its F#, a plagal sigh), then E major add9 held.
+# Violin C5 falls a half step to B4 over the final chord; clarinet holds the major third G#4.
+# The harp's last chord is spread across its two voices so it sounds slightly rolled.
+pattern coda tempo=58
+vln   | F#5-- E5 B4 G4 | C5----- | B4----- | = |
+cl    | E4----- | A4----- | G#4----- | = |
+vc    | C3----- | A2----- | E2----- | = |
+inner | B3+E4+F#4----- | F#3+C4+E4----- | G#3+B3+F#4----- | = |
+harpA | C3- B3- F#4- | A2- F#3- E4- | E3- F#4- F#4- | E2+B2+G#3----- |
+harpB | . G3- E4- E4 | . E3- C4- C4 | . B3- G#4- B3 | . B3+F#4+G#4---- |
+
+play intro a1 a2 b a3 coda

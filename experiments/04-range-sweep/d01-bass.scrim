@@ -1,0 +1,29 @@
+title    Fixed Changes
+tempo    92
+beats    4
+steps    4
+
+voice pad   epiano vol=0.5 center=E4
+voice kick  kick
+voice snare snare
+voice hat   hat vol=0.4
+# Fingered electric bass, slightly short gate so the repeated rhythm stays
+# articulated against the sustained pad instead of blurring into it.
+voice bass  ebass vol=0.9 gate=0.85
+
+pattern A
+pad   | [Am7]--------------- | [D7]--------------- | [Gmaj7]--------------- | [Cmaj7]--------------- |
+kick  | x... ..x. x... .... | % | % | % |
+snare | .... x... .... x... | % | % | % |
+hat   | x.x. x.x. x.x. x.x. | % | % | % |
+# Bass intent: lock to the kick. Every bar uses the same rhythm, with notes on
+# steps 1, 7 and 9 (the three kick hits) plus two eighth notes at the end of
+# the bar. The root lands on beat 1 with the kick, the 5th answers the kick
+# pickup on the "and" of beat 2, and a chord tone (3rd or 7th) sits on beat 3.
+# The last eighth of each bar is a half-step approach into the next root
+# (Eb->D, F#->G, B->C, G#->A), so the ii-V-I-IV in G walks smoothly and the
+# loop back to Am7 is prepared. Range stays in E2-C3, under the pad (centered
+# on E4) so the two never collide.
+bass  | A2--- .. E2- G2--- E2- Eb2- | D2--- .. A2- C3--- A2- F#2- | G2--- .. D2- F#2--- A2- B2- | C3--- .. G2- E2--- G2- G#2- |
+
+loop A

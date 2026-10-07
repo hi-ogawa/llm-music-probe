@@ -1,0 +1,67 @@
+title    Late Lamp
+composer Claude
+about    A short nocturne for clarinet, cello, and piano in E-flat major, in a slow 3/4. Lyrical melody over a pedaled piano arpeggio, with borrowed minor-mode chords (Db, Abm6, Cb) for the bittersweet turns.
+
+# Form: intro (2) | A (8, half cadence) | A2 (8, full cadence) | B (8, flat side, cello leads) | A' (8, cello sings the tune, clarinet countermelody) | coda (4, slower)
+# 3/4 at 63 bpm, counted in sixteenths: 12 steps per bar. Eighth = 2 steps, quarter = 4, dotted half = 12.
+# I lean toward intimate chamber writing: one singing line, harmony that colors rather than drives, and modal mixture for the ache.
+tempo    63
+beats    3
+steps    4
+
+# Clarinet: the main singer in A and A2, then echoes the cello in B and becomes the high countermelody in A'.
+voice clar    clarinet vol=0.8  pan=-0.25
+# Cello: tenor-register melody in B, the tune itself an octave down in A', then a quiet pedal in the coda.
+voice cello   cello    vol=0.75 pan=0.25
+# Piano is split in three voices to fake the sustain pedal that General MIDI does not give us:
+# pbass holds the bass note for the whole bar, parp plays the broken-chord eighths over it, prh only plays the final chord.
+voice pbass   piano    vol=0.6  pan=-0.05
+voice parp    piano    vol=0.45 pan=0.05
+voice prh     piano    vol=0.5
+# Strings: a soft high pad only in B, written as explicit three- and four-note stacks of color tones (3rds, 7ths, 9ths), no roots.
+voice pad     strings  vol=0.35 pan=0.1
+
+# Piano alone sets up the rocking figure: Ebmaj9 then Ab(add9) over an Eb pedal.
+pattern intro
+pbass | Eb2----------- | Eb2----------- |
+parp  | .- Bb2- F3- G3- D4- G3- | .- Ab2- Eb3- Bb3- C4- Eb3- |
+
+# A: the tune. Eb | Ab/Eb | Cm9 | Bb7sus4-Bb7 | Abmaj7 | Gm7-C7b9 | Fm9 | Bb7sus4-Bb (half cadence on F5).
+# Melody leans on color tones: D5 as the 9th of Cm, C5 as the 9th of Bb, G5 as the 7th of Abmaj7, Db5 as the b9 of C7.
+pattern A
+clar  | .--- Bb4- C5- D5- Eb5- | F5----- Eb5- C5--- | D5------- Eb5- D5- | C5----- Bb4- Ab4--- | .- C5- Eb5- G5--- F5- | F5--- D5- Bb4- Db5--- | C5------- Eb5- G5- | F5----------- |
+pbass | Eb2----------- | Eb2----------- | C2----------- | Bb1----------- | Ab1----------- | G1------- C2--- | F1----------- | Bb1----------- |
+parp  | .- Bb2- F3- G3- D4- G3- | .- Ab2- Eb3- Bb3- C4- Eb3- | .- G2- Eb3- Bb3- D4- Bb3- | .- F2- C3- Eb3- D3- Ab3- | .- Eb2- C3- G3- C4- G3- | .- D2- Bb2- F3- E3- Bb2- | .- C2- Ab2- Eb3- G3- Eb3- | .- F2- C3- Eb3- D3- F3- |
+
+# A2: same opening, then the line climbs higher (Ab5, G5) and the harmony borrows from minor:
+# Dbmaj7 (bVII) and Abm6 (minor iv, Cb5 in the melody) before the plain authentic cadence home.
+pattern A2
+clar  | .--- Bb4- C5- D5- Eb5- | Ab5----- G5- F5--- | G5------- F5- Eb5- | F5----- Eb5- C5- Ab4- | Bb4------- C5- Eb5- | F5----- Eb5- Cb5--- | Bb4------- C5- D5- | Eb5----------- |
+pbass | Eb2----------- | Eb2----------- | C2----------- | Db2----------- | Ab1----------- | Ab1----------- | Bb1----------- | Eb2----------- |
+parp  | .- Bb2- F3- G3- D4- G3- | .- Ab2- Eb3- Bb3- C4- Eb3- | .- G2- Eb3- Bb3- D4- Bb3- | .- Ab2- F3- C4- Ab3- F3- | .- Eb2- C3- G3- C4- G3- | .- Eb2- Cb3- F3- Ab3- F3- | .- G2- Eb3- G3- D3- Ab3- | .- Bb2- G3- Bb3- Eb4- Bb3- |
+
+# B: the flat side. Cbmaj7 (bVI) | Abm9 | Gbmaj7 | Fm7-Bb7 | Gm7 | Cm9 | Fm9-F7 | Bb7sus4-Bb7b9.
+# Cello takes a new tenor melody; clarinet only answers in the gaps; the string pad adds a halo above.
+pattern B
+cello | Eb4----- Db4- Cb4- Bb3- | Cb4------- Bb3- Ab3- | Bb3----- Db4- F4--- | Eb4------- D4--- | D4----- F4- Bb4--- | G4------- F4- Eb4- | Ab4----- G4- Eb4--- | Bb4------- Ab4--- |
+clar  | _ | .------- Eb5-? Gb5-? | Bb5-----------? | Ab5----- G5- F5- D5- | _ | .------- G4- Bb4- | C5----- Bb4- A4--- | Ab4------- Cb5--- |
+pad   | Gb4+Bb4+Eb5----------- | Gb4+Bb4+Cb5----------- | F4+Bb4+Db5----------- | Ab4+C5+Eb5------- Ab4+C5+D5--- | F4+Bb4+D5----------- | Bb4+D5+Eb5----------- | Ab4+C5+Eb5+G5------- A4+C5+Eb5--- | Ab4+C5+Eb5------- Ab4+Cb5+D5--- |
+pbass | Cb2----------- | Ab1----------- | Gb1----------- | F1------- Bb1--- | G1----------- | C2----------- | F1----------- | Bb1----------- |
+parp  | .- Gb2- Db3- Eb3- Bb3- Eb3- | .- Eb2- Cb3- Gb3- Bb3- Gb3- | .- Db2- Bb2- F3- Ab3- F3- | .- C2- Ab2- Eb3- D3- Ab2- | .- D2- Bb2- F3- A3- F3- | .- G2- Eb3- Bb3- D4- Bb3- | .- C2- Ab2- Eb3- A2- Eb3- | .- F2- Eb3- Ab3- D3- Ab3- |
+
+# A': return with roles swapped. Cello sings the A2 tune an octave lower (warmer, more inward);
+# clarinet resolves its Cb5 to Bb4 and then holds a slow countermelody above, mostly 3rds, 5ths, and 9ths.
+pattern Ap from A2
+cello | .--- Bb3- C4- D4- Eb4- | Ab4----- G4- F4--- | G4------- F4- Eb4- | F4----- Eb4- C4- Ab3- | Bb3------- C4- Eb4- | F4----- Eb4- Cb4--- | Bb3------- C4- D4- | Eb4----------- |
+clar  | Bb4----------- | C5------- Eb5--- | D5----- Eb5- D5- C5- | C5------- Ab4--- | G4----- Ab4- Bb4- C5- | Eb5----- F5- Eb5- Cb5- | G4------- Ab4--- | G4----------- |
+
+# Coda, slower: Eb pedal under Ab, then Abm6 (the minor iv one last time), then rest on Ebmaj9.
+# Clarinet traces the descending fourth C5-G4, sighs Cb5 to Bb4, and holds the 5th on top of the final chord.
+pattern coda tempo=54
+clar  | .--- C5- Bb4- Ab4- G4- | Cb5------- Bb4--- | Bb4----------- | = |
+cello | Eb3-----------? | = | G3-----------? | = |
+pbass | Eb2----------- | Eb2----------- | Eb2----------- | Eb1+Eb2----------- |
+parp  | .- Ab2- C3- Eb3- Ab3- C4- | .- Ab2- Cb3- F3- Ab3- Cb4- | .- Bb2- F3- G3- Bb3- F4- | _ |
+prh   | _ | _ | _ | Bb2+G3+D4+F4+G4----------- |
+
+play intro A A2 B Ap coda

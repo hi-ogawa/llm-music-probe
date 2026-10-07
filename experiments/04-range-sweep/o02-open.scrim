@@ -1,0 +1,63 @@
+title    Late Ferry
+composer Claude
+about    A small nocturne for clarinet, cello and piano in 6/8. A lyrical E-flat major tune with Lydian colour, a darker C minor middle where the cello sings, and a return with the voices traded.
+tempo    52      # counts dotted quarters, so the eighths flow slowly like water
+beats    2
+steps    3       # 6/8, six eighths per bar
+
+# Ensemble: a piano trio with clarinet in place of violin. I like the warmth of
+# clarinet and cello against each other, and the piano as the "water" underneath.
+voice rh  piano    vol=0.7  pan=0.1    # right hand: melody in A1, soft offbeat chords in A2, final chord
+voice lhb piano    vol=0.55 pan=-0.1   # left hand bass: root+fifth held through each bar, the hull of the boat
+voice lha piano    vol=0.45 pan=-0.05  # left hand arpeggio: five eighths after the bass, the rocking motion
+voice cl  clarinet vol=0.72 pan=0.35
+voice vc  cello    vol=0.75 pan=-0.35
+
+# A1: piano alone. Harmony Ebmaj9 - Abmaj7#11 - Gm9 - Cm9 - Fm9 - Bb9 - Eb/G - Abm6.
+# The Lydian D over Ab in bar 2 and the borrowed Abm6 (Cb) in bar 8 are the two
+# colours the whole piece hangs on: brightness, then a shadow before home.
+pattern A1
+rh  | D4+G4-- Bb4 C5 D5 | G4+Eb5---- D5 | F4+D5-- Bb4- A4 | G4+Eb5-- D5 C5 Bb4 | Eb4+C5---- Ab4 | D4+Bb4-- Ab4 G4 F4 | D4+G4---- Bb4 | F4+Cb5--- Bb4- |
+lhb | Eb2+Bb2----- | Ab2+Eb3----- | G2+D3----- | C2+G2----- | F2+C3----- | Bb1+F2----- | G2+D3----- | Ab2+Eb3----- |
+lha | . F3 G3 D4 Bb3 G3 | . G3 C4 D4 C4 G3 | . F3 A3 Bb3 A3 F3 | . Eb3 Bb3 D4 Bb3 G3 | . Eb3 G3 Ab3 G3 Eb3 | . Ab2 C3 D3 C3 Ab2 | . Eb3 Bb3 D4 Bb3 G3 | . F3 Cb4 Eb4 Cb4 F3 |
+
+# A2: the clarinet takes the tune. The right hand drops to quiet offbeat chords
+# on the second dotted beat so it never sits on the melody's attacks. The cello
+# enters with a slow tenor countermelody that mostly moves when the tune holds.
+pattern A2 from A1
+rh  | .-- Bb3+D4+F4--? | .-- C4+D4+G4--? | .-- A3+D4+F4--? | .-- Bb3+D4+Eb4--? | .-- Ab3+Eb4+G4--? | .-- Ab3+C4+D4--? | .-- Bb3+D4+G4--? | .-- Cb4+Eb4+F4--? |
+cl  | G4-- Bb4 C5 D5 | Eb5---- D5 | D5-- Bb4- A4 | Eb5-- D5 C5 Bb4 | C5---- Ab4 | Bb4-- Ab4 G4 F4 | G4---- Bb4 | Cb5--- Bb4- |
+vc  | .-- Bb3 C4 D4 | Eb4---- C4 | Bb3---- A3 | G3-- Bb3 C4 D4 | Eb4---- C4 | D4-- C4 Bb3 Ab3 | G3----- | Ab3-- Cb4- Bb3 |
+
+# B: relative minor, a little faster. Cm(add9) - Abmaj7 - Fm9 - G7 - Cm/Eb -
+# Dm7b5 - Dbmaj7 - Bb9. The cello gets the long-breathed tune in its singing
+# register; the clarinet answers from above, entering after each cello downbeat.
+# The right hand rests so the trio texture stays clear. Bars 6 and 7 share their
+# upper arpeggio while the bass slides D to Db, a small chromatic lean.
+pattern B tempo=56
+lhb | C2+G2----- | Ab1+Eb2----- | F2+C3----- | G1+D2----- | Eb2+Bb2----- | D2+Ab2----- | Db2+Ab2----- | Bb1+F2----- |
+lha | . D3 Eb3 G3 Eb3 D3 | . C3 Eb3 G3 Eb3 C3 | . Eb3 G3 Ab3 G3 Eb3 | . B2 F3 Ab3 F3 B2 | . G3 C4 D4 C4 G3 | . C3 F3 Ab3 F3 C3 | . C3 F3 Ab3 F3 C3 | . Ab2 C3 D3 C3 Ab2 |
+vc  | G3-- C4 D4 Eb4 | G4---- Eb4 | Ab4-- G4 F4 Eb4 | D4---- B3 | C4-- D4 Eb4 F4 | Ab4---- G4 | F4-- Eb4 Db4 C4 | Bb3---- . |
+cl  | .-- G5-- | C5----- | .-- C5 Bb4 Ab4 | F5----- | Eb5----- | .-- F5- C5 | Ab4---- C5 | Ab4--- G4- |
+
+# A3: the return with roles traded. The cello sings the opening tune an octave
+# below the clarinet's version, and the clarinet plays the old cello counterline
+# an octave up, moving in contrary motion. The right hand stays out, because the
+# cello now lives in its register.
+pattern A3 from A2
+mute rh
+vc  | G3-- Bb3 C4 D4 | Eb4---- D4 | D4-- Bb3- A3 | Eb4-- D4 C4 Bb3 | C4---- Ab3 | Bb3-- Ab3 G3 F3 | G3---- Bb3 | Cb4--- Bb3- |
+cl  | .-- Bb4 C5 D5 | C5---- D5 | Bb4---- A4 | G4-- Bb4 C5 D5 | Eb5---- C5 | D5-- C5 Bb4 Ab4 | G4----- | Ab4-- Cb5- Bb4 |
+
+# Coda, slower: Ebmaj9 - Abm6 - Ebmaj9 held. The clarinet quotes the opening
+# motif once more and sinks through Cb to Bb, the cello leans on the same
+# Cb-Bb sigh, and the piano ends on an open Ebmaj9 with D and G on top, so the
+# piece closes bright but unresolved, like lights on the far shore.
+pattern coda tempo=46
+lhb | Eb2+Bb2----- | Ab2+Eb3----- | Eb1+Eb2+Bb2----- | = |
+lha | . F3 G3 D4 Bb3 G3 | . F3 Cb4 Eb4 Cb4 F3 | G3+D4----- | = |
+rh  | _ | _ | F4+Bb4+D5+G5-----? | = |
+cl  | G4-- Bb4 C5 D5 | Eb5---- Cb5 | Bb4----- | = |
+vc  | Bb3----- | Cb4----- | Bb3----- | = |
+
+play A1 A2 B A3 coda
