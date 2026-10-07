@@ -73,5 +73,8 @@ These looked like principles at first, but they fail as independent principles. 
 - Should the model write in passes, from a chart to a realization, the way musicians often do, or in one notation that mixes levels?
   - Working hypothesis: writing order does not matter. A capable agent drafts, edits surgically, and rewrites with scripts, the same way it iterates on one large HTML file for an image or animation. Simon's transcript shows the same pattern: tracks written, checked, then edited in place. The order of writing is a workflow detail, not a property of the medium.
 - One notation with optional layers, or separate notations per layer (a chart, a part, an expression track) that refer to each other?
+  - Working hypothesis: it does not matter for presenting ideas. Splitting into layers or files adds no room for any idea, because the same content fits in one notation, and an agent works across several files as easily as one. Like writing order, it is a workflow detail.
 - How much should a renderer decide by default, and how should a score say "this part is deliberate, do not change it"?
+  - Working hypothesis: a renderer default is exactly where room is lost, as with chord names voiced by Scrimshaw's renderer. Every decision that can carry intent should be writable explicitly, and defaults should apply only where the score says nothing. An explicit value is then deliberate by definition, so no separate mark is needed.
 - Does intent survive translation between notations? If the same idea comes out well in several notations, the intuition sits above any one of them.
+  - Moved: this asks about the model rather than the notation, and it is now the "Robustness across notations" direction in [directions.md](directions.md).
