@@ -134,6 +134,21 @@ Read from the scores and the subagents' reports, not judged by ear:
 - Bass ladder: d01s plays only roots, re-struck with the kick. d01 plays roots, fifths, and chord tones with a half-step approach into each next root. d01d adds ghost notes, 16th-note runs through 3rds and 7ths, a b9 over D7, and a hint of tritone substitution. Complexity rises with the request in rhythm and harmony.
 - Open brief: all three runs chose a slow chamber nocturne with clarinet and cello, two in E-flat major and one in E minor, two of them titled "Late ..." and one "Lantern Hours". Two split the piano's left hand to imitate a sustain pedal, two end on a major 9 chord, and all three describe their taste as intimate chamber writing. With an identical open brief, sampling variance was small. The model has a strong default when unconstrained, and it differs from the neo-soul choices in 03, where the conversation's context shaped the pick.
 
+## Waves A and B
+
+The remaining 37 cells ran in two waves of fresh subagents with the same shared brief. e03 (string quartet) was skipped, because d04 in the depth ladder is the same brief. All 43 scores pass `check` and are rendered in `.tmp/04-range-sweep/`, with loop-only pieces repeated to about a minute. g14 and s05 clipped at the default gain and were rendered with `--gain 0.3`.
+
+### Results
+
+Read from the scores and the subagents' reports, not judged by ear:
+
+- **Depth ladders change on paper in every brief.** Bass: roots only, then chord tones with approaches, then ghost notes, runs, and altered tones. Ballad comping: even the simple version keeps 9th and 13th voicings and simplifies the rhythm instead, while the deep version splits the hands, adds upper structures, tritone substitutions, and a diminished run. Pop chorus: triads and one hook cell, then a peaking hook, then IV-iii-ii-V with chromatic substitutions and a melody on color tones. Quartet: a diatonic hymn, then a lyrical minor piece with a Picardy ending, then a lament bass, Neapolitan, and German sixth.
+- **Genre idioms are placed where they belong.** Examples: a one-drop with the kick on 3, a 2-3 son clave locking the salsa percussion and a tumbao bass that anticipates chords, guitar and organ in afrobeat interlocking so they never strike together, 7/8 accents on 2+2+3, Motown guitar on 2 and 4 with the snare on all four beats in the chorus, drop-2 horn voicings, and 4-way close big band sections.
+- **Free choices converge on a default.** Whenever style or title was left open, the model drifted to the same imagery and genre. Titles include "Late Lamp" twice (o01 and d02), "Late Ferry", "Lantern Hours", "Lantern Street", and "Lanterns on the Water". Open briefs and the solo piano cell all chose a nocturne.
+- **The model works around limits of the medium and says so.** Two cells wrote swing as 2+1 triplets because `swing` does nothing on a 3-step grid. s03 used Reich's discrete locked phase positions because continuous drift cannot be written on a grid. Several split the piano's left hand to imitate a sustain pedal.
+- **Some subagents built their own tools.** s03 and e04 generated their scores with scripts. e05 wrote a script to check all 28 chords for parallel fifths and octaves and voice crossing, which is the computed pseudo-ear idea from the original discussion, unprompted.
+- **Execution errors stayed execution errors.** 13 of 43 cells needed fixes before passing `check`, nearly all miscounted bars, and the validator caught every one. One was a parser bug: a `|` inside `about` text was read as a music line, which is now fixed. One subagent misdiagnosed its own error, blaming dynamic marks between dashes, which the parser counts correctly.
+
 ## Judgment
 
 Pending the sweep.
