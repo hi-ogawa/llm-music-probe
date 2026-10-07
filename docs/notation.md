@@ -28,6 +28,13 @@ Scrimshaw's comments carry the model's reasons inline: "the standoff: both duell
 
 Some intent only exists for one instrument. Tab carries string and fret, which encode playability and hand position. Other examples are bowing, breath marks, and pedaling. These should be optional layers on top of the shared notation.
 
+## Rejected as principles
+
+These looked like principles at first because Scrimshaw has them, but they fail the test of whether a feature gives the medium room for an idea it could not otherwise carry.
+
+- **Give each layer of decision its own words.** The example was `pattern A2 from A` for "A with a counter-line". Only `from` is notation, and it means copy A's voices and let voices written in A2 replace or add parts. "With a counter-line" comes from a comment. So the functional part is copy-and-override, the same as the next item.
+- **Make repetition and variation first-class.** Copy-and-override, `%`, `*2`, and transposition add no room for any idea, because a flat note list expresses exactly the same music. They only save tokens and ease editing, which is workflow, and a capable agent copies, scripts, and edits anything (see the writing-order hypothesis below).
+
 ## Open questions
 
 - Should the model write in passes, from a chart to a realization, the way musicians often do, or in one notation that mixes levels?
