@@ -118,6 +118,14 @@ Every subagent gets the same material:
 4. Render every score to `.tmp/04-range-sweep/`, looping short pieces to roughly a minute of audio.
 5. Hiroshi listens, ideally without knowing which run produced which file for o01 to o03, or which depth produced which file in each ladder.
 
+## Batch 1
+
+The first batch tests the setup on six cells: the bass ladder (d01s, d01, d01d) and the three open-brief runs (o01, o02, o03).
+
+- In the bass ladder, the tempo (92), pad, kick, snare, and hat are fixed in a base score handed to every run, and the subagent writes only the bass. Otherwise differences between bass lines could not be separated from differences in everything else.
+- The open-brief runs get an identical prompt: "if nothing were specified and you were to show your own musical taste, what would you write?", with every choice left to the model.
+- Each subagent is told to read only [score-format.md](../../docs/score-format.md), and not other docs or scores, so its choices stay independent.
+
 ## Judgment
 
 Pending the sweep.
