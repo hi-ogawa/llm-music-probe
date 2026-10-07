@@ -110,6 +110,8 @@ Every subagent gets the same material:
 2. Its cell's brief from the tables, in plain words.
 3. Instructions to write explicit note stacks where voicing matters, to write its intent in comments, to save the score at a given path, and to run `pnpm cli check` until it passes. It is told that it cannot listen and that the output is rendered through General MIDI.
 
+The exact prompts and the design choices behind them are in [prompts.md](prompts.md). The narration in every score comes from one line of the prompt, "Write your intent as comments in the score: what each part does and why", and its form was not seeded by any example.
+
 ## Procedure
 
 1. Add the missing instruments to the tool.
