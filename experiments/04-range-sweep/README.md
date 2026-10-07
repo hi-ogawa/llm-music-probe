@@ -126,6 +126,14 @@ The first batch tests the setup on six cells: the bass ladder (d01s, d01, d01d) 
 - The open-brief runs get an identical prompt: "if nothing were specified and you were to show your own musical taste, what would you write?", with every choice left to the model.
 - Each subagent is told to read only [score-format.md](../../docs/score-format.md), and not other docs or scores, so its choices stay independent.
 
+### Batch 1 results
+
+Read from the scores and the subagents' reports, not judged by ear:
+
+- All six passed `check`. Three needed fixes first: o02 had one bar with 7 steps instead of 6, o03 had four, and o01 moved two dynamic marks before its first check.
+- Bass ladder: d01s plays only roots, re-struck with the kick. d01 plays roots, fifths, and chord tones with a half-step approach into each next root. d01d adds ghost notes, 16th-note runs through 3rds and 7ths, a b9 over D7, and a hint of tritone substitution. Complexity rises with the request in rhythm and harmony.
+- Open brief: all three runs chose a slow chamber nocturne with clarinet and cello, two in E-flat major and one in E minor, two of them titled "Late ..." and one "Lantern Hours". Two split the piano's left hand to imitate a sustain pedal, two end on a major 9 chord, and all three describe their taste as intimate chamber writing. With an identical open brief, sampling variance was small. The model has a strong default when unconstrained, and it differs from the neo-soul choices in 03, where the conversation's context shaped the pick.
+
 ## Judgment
 
 Pending the sweep.
