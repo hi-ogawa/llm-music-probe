@@ -1,0 +1,23 @@
+{
+  "name": "llm-music-probe",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "vp config",
+    "typecheck": "tsc -b",
+    "lint": "vp check --fix && pnpm typecheck",
+    "lint-check": "vp check && pnpm typecheck",
+    "test": "vitest",
+    "cli": "node src/cli.ts"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vite-plus": "1.0.0-rc.0",
+    "vitest": "^4.1.11"
+  }
+}
