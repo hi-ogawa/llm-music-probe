@@ -164,8 +164,10 @@ The first test of musician feedback driving a revision.
 
 By ear (Hiroshi), after listening to all renders:
 
-- Everything except melody sounds convincing: harmony, voicing, bass, groove, genre idioms, form, and arrangement. The model has good musical intuition in these layers.
-- Melody sounds off across the sweep. What exactly is off is not yet characterized, and it may be quantifiable from the scores.
+- Rhythmic and harmonic intent feel complete and natural: harmony, voicing, groove, genre idioms, form, and arrangement. The model has good musical intuition in these layers.
+- Melodic intent, in a general sense, is noticeably more awkward. This covers any line meant to be heard as a line: lead melodies, melodic bass lines, and melodic lines in the comping such as brass. They often sound not quite right.
+- Vaguer melodic material sounds reasonable: piano figures, ambient textures, the chorale, and arpeggiated lines.
+- The cause is hard to tell. It may be the notes, the default sounds, or the missing performance techniques a DAW user would apply to a line, such as shaping volume across a phrase.
 
 Expectations stated alongside the judgment, not yet tested:
 
