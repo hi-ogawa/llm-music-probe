@@ -1,6 +1,6 @@
 # Playing scores in toy-midi
 
-What toy-midi (`../toy-midi`) needs to play General MIDI files the way our renderer does. Tracked in [toy-midi #731](https://github.com/hi-ogawa/toy-midi/issues/731). The reference is `fluidsynth`, which `src/midi/render.ts` uses to turn MIDI into WAV. It is not what our export happens to write today, because the export will grow: slides need pitch bend, and feel and phrasing need controller changes over time.
+What toy-midi (`../toy-midi`) needs to play General MIDI files the way our renderer does. Tracked in [toy-midi #734](https://github.com/hi-ogawa/toy-midi/issues/734), under the integration tracking issue [toy-midi #731](https://github.com/hi-ogawa/toy-midi/issues/731). The reference is `fluidsynth`, which `src/midi/render.ts` uses to turn MIDI into WAV. It is not what our export happens to write today, because the export will grow: slides need pitch bend, and feel and phrasing need controller changes over time.
 
 This comes from reading code on 2026-10-08: toy-midi, the synth wrapper it vendors, and the oxisynth fork behind it. Nothing has been tried in the browser yet.
 
