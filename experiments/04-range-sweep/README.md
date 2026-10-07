@@ -136,7 +136,7 @@ Read from the scores and the subagents' reports, not judged by ear:
 
 ## Waves A and B
 
-The remaining 37 cells ran in two waves of fresh subagents with the same shared brief. e03 (string quartet) was skipped, because d04 in the depth ladder is the same brief. All 43 scores pass `check` and are rendered in `.tmp/04-range-sweep/`, with loop-only pieces repeated to about a minute. g14 and s05 clipped at the default gain and were rendered with `--gain 0.3`.
+The remaining 37 cells ran in two waves of fresh subagents with the same shared brief. e03 (string quartet) was not run. Its brief duplicated the depth ladder's d04, which asks for a 16-bar string quartet three times, and the d04 run with no depth instruction is effectively e03. The quartet results are in d04s, d04, and d04d. All 43 scores pass `check` and are rendered in `.tmp/04-range-sweep/`, with loop-only pieces repeated to about a minute. g14 and s05 clipped at the default gain and were rendered with `--gain 0.3`.
 
 ### Results
 
