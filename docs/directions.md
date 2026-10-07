@@ -43,6 +43,20 @@ Steps, in order:
 
 Do subagents that fan out composition ideas improve quality or the range of choices? Much of the gain may just be sampling variance, which shrinks as models improve, so this is one angle rather than a main direction. Fan-out mostly buys exploration: picking the best variant needs a judge, and taste has no automatic checker, so in practice the judge is the human ear, for example four grooves generated and one picked. A second form splits the work by role, such as a bass agent and a drums agent, which ComposerX tried with symbolic critics.
 
+## Fast decision models
+
+Decision models are a new class of model that cannot generate. They take a state (text, JSON, and for Clef also images) and answer typed questions about it, such as yes or no, pick one of these options, or a score on a scale, returning a probability for each answer in one pass. As of October 2026:
+
+- **Jev** from TypeSafe AI, released 2026-09-15 and API only, with a 32k context and reported latency of roughly 150 to 500 ms
+- **Clef** and **Clef-flash** from Cloudflare, released 2026-10-01 with open weights under Apache 2.0, a 64k context, and median latency of 209 ms and 39 ms. They come with an RL fine-tuning service.
+
+Neither has published anything on music, so these are untested ideas. Each needs the state, questions, and options designed well, which is part of the experiment:
+
+- **A judge for fan-out.** Score variants from a generating model, for example "Does the bass lock with the kick?" on a scale of 1 to 4. Whether a decision model has any musical judgment is itself the question.
+- **Live arrangement.** A generating model writes a vocabulary of patterns and fills ahead of time, and a fast model picks the next one each bar from the recent bars as state. This fits the beat-making practice companion, which could react to the player.
+- **Encoding probes at scale.** The discrimination probes from the original discussion, such as which of two voicings is muddier, map directly onto choice questions with probabilities. Calibrated probabilities show how sure the model is, not only what it picks.
+- **A taste checker.** Fine-tuning a decision model on one listener's ratings could give the "checker for taste" that the original discussion said music lacks. This is the most speculative idea.
+
 ## Generality across media
 
 Does the pattern hold beyond visuals and music? Choreography, lighting cues, sound design, and game level design all have or could have text notations. If intuition carries into each of them, that says something about language itself, which is the original interest.
