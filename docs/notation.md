@@ -54,6 +54,23 @@ From the Coarse and Missing rows, the ideas Scrimshaw has no room for:
 - Sound over time: parameter changes such as a filter sweep
 - Vocals and lyrics
 
+## Performance techniques from DAW practice
+
+How a DAW user makes a programmed line sound played, compared with what our format can write and what our General MIDI render through fluidsynth can play. From general knowledge of DAW practice and the SoundFont default modulators, not checked against sources. Every technique here can be rendered by the current setup, so each gap is in the format, not in General MIDI. A gap can be closed by adding notation the model writes, or by an automatic pass at export, the way a DAW's humanize and legato functions work.
+
+| Technique                                                    | Why it matters                                                                                  | Our format                                         | Renderable                                                                                  |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Velocity shaped across a phrase, never identical repeats     | Flat velocities sound mechanical                                                                | Coarse: `!` and `?`, three levels, written by hand | Yes                                                                                         |
+| Expression swells (CC11) and dynamics on held notes          | Velocity shapes only the attack, so a held wind, brass, or string note without CC sounds static | None                                               | Yes, CC11 is a default modulator                                                            |
+| Legato overlap or detached length, per note                  | Connected versus separated lines, and breath gaps for winds                                     | One `gate` per voice                               | Partly. Overlap connects the sound, but General MIDI patches have no true legato transition |
+| Vibrato through the mod wheel (CC1)                          | Life on long notes, often with delayed onset                                                    | None                                               | Yes, CC1 drives vibrato by default                                                          |
+| Pitch bend for scoops, falls, and slides                     | Idiom for sax, guitar, and bass                                                                 | `~` parsed, not rendered                           | Yes, with the bend range set by RPN 0                                                       |
+| Sustain pedal (CC64)                                         | Piano resonance. Several sweep scores split the piano's left hand into voices to fake it        | None                                               | Yes                                                                                         |
+| Micro-timing: pushing, laying back, small humanizing offsets | Feel per part                                                                                   | One `swing` value per pattern                      | Yes                                                                                         |
+| Articulation switching: staccato, marcato, legato patches    | Realism in sample libraries                                                                     | None                                               | Barely. General MIDI only has separate programs, such as `pizz` versus `strings`            |
+
+Hypothesis from the range sweep judgment: lines meant to be heard as lines sound awkward while harmony-driven figures sound reasonable, because sustained lines depend on the first three rows and short, attack-driven figures do not.
+
 ## Candidate principles
 
 ### Reuse notation that already exists as text
