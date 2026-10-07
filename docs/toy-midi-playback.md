@@ -43,7 +43,8 @@ This comes from reading code on 2026-10-08: toy-midi, the synth wrapper it vendo
 1. Import tracks separately with their programs, play channel 10 as a drum kit by selecting a bank 128 preset, and apply the first tempo and time signature. This is enough to hear the six Scrimshaw tracks.
 2. Add per-track pan as a `StereoPannerNode` on each track's channel strip. toy-midi already runs one synth per track, so static pan and volume need no wrapper change.
 3. Expose MIDI events in the wrapper, and add pitch bend, sustain, and controller events over time to the app, when our export starts writing slides, feel, or phrasing. These change during a note or over time, so they have to go through the synth rather than the mixer. A channel argument is not needed while each track has its own synth.
-4. Add a tempo map, for tempo changes within a song, and loading by URL or CLI, so an agent can put a score into toy-midi without a manual upload.
+4. Add loading by URL or CLI, so an agent can put a score into toy-midi without a manual upload. This matters as soon as we iterate on scores with an agent.
+5. Add a tempo map, for tempo changes within a song. None of the six Scrimshaw tracks need it.
 
 Fixing the importer is preferred over having our tool write toy-midi's project JSON directly, because the JSON route would still need the drum and wrapper work, and an importer fix helps with any General MIDI file.
 
