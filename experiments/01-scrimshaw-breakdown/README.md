@@ -1,6 +1,6 @@
 # 01-scrimshaw-breakdown
 
-- Probe: P0 in [probe-plan.md](../../docs/probe-plan.md)
+- Direction: baseline for all of [directions.md](../../docs/directions.md)
 - Date: 2026-10-07
 - Model ID: Claude Opus 5.5, as stated in the post
 - Output format: Scrimshaw score format

@@ -1,6 +1,6 @@
 # <nn>-<slug>
 
-- Probe: P<n> in [probe-plan.md](../../docs/probe-plan.md)
+- Direction: which section of [directions.md](../../docs/directions.md)
 - Date:
 - Model ID:
 - Output format:

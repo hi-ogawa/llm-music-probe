@@ -19,7 +19,7 @@ The question that matters is whether an encodable medium exists: a form an LLM c
 3. **The agent workflow from coding and visuals carries over.** Discuss the composition at a high level, let the agent drill down to notes, rhythms, and chords, then adjust together, the way agents already work on code, visualizations, and video. Scrimshaw shows the first half: scene-level briefs such as "the villain's ship" became keys, progressions, bass lines, and instrument choices, with the high-level idea kept in comments. The adjustment loop is not shown, because Simon gave no musical feedback, so that half rests on the analogy for now.
 4. **Working assumption: depth and breadth will follow from training.** This is plausible given how other domains have gone, but not demonstrated. The one caveat from the discussion is that taste has no automatic checker, so improvement would rely on preference data, as it has for prose and design.
 
-What remains open is which layers of musical intuition have an encodable medium at all, which [probe-plan.md](probe-plan.md) now targets.
+What remains open is collected in [directions.md](directions.md). Depth, meaning which layers of musical intuition have an encodable medium, is one direction among several.
 
 ## How the discussion got here (2026-10-06)
 
@@ -58,7 +58,7 @@ Follow-up: the scores, the format, and the shared conversation are broken down i
 | Note-level vocabulary is locked in audio ("no GitHub for music") | Refuted at this level | Named idioms are written down in theory teaching and symbolic notation |
 | Artistic music will stay end-to-end | Refuted for presenting ideas | Aesthetic music produced symbolically. Production quality such as timbre and vocals is a separate question |
 | Depth and breadth will follow from training | Working assumption | Track record in other domains, with the taste-signal caveat |
-| Voicing, groove, and timbre each have an encodable medium | Open | [probe-plan.md](probe-plan.md) |
+| Voicing, groove, and timbre each have an encodable medium | Open | [directions.md](directions.md) |
 
 ## Sources from the discussion
 

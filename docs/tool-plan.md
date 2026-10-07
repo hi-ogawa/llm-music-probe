@@ -7,7 +7,7 @@ Our own small, readable tool for turning a text score into sound, so experiments
 Text score → note events → MIDI file → WAV.
 
 - The note events are the core. Once a score is a list of events, everything else is plumbing, and new notation ideas from the Coarse and Missing rows in [notation.md](notation.md) become new fields on an event.
-- MIDI export makes the output open in a DAW or toy-midi, which covers the DAW round-trip idea in [ideas.md](ideas.md).
+- MIDI export makes the output open in a DAW or toy-midi, so the model's output can be opened, edited, and played in real tools.
 - Rendering uses `fluidsynth` with the FluidR3 General MIDI soundfont, both already installed. There is no synth code of our own. Timbre is plainer than Scrimshaw's, which is fine because timbre is not what we study.
 
 ## Non-goals
