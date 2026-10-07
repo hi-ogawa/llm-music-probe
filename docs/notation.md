@@ -4,6 +4,42 @@ What makes musical intent encodable, and presentable by an LLM through a medium.
 
 The central hypothesis is that exact syntax matters little, because a capable model can learn and use any reasonable format, and that what matters is whether the medium has room for an idea. If it does not, a probe can fail because the idea could not get out, not because it was missing.
 
+## Scrimshaw's capabilities
+
+What the format can write, from its spec ([composing prompt](../experiments/01-scrimshaw-breakdown/source/composing-prompt.md)), classified by the room test:
+
+- **Core**: gives room for an idea that nothing else in the format can carry
+- **Shorthand**: expressible another way in the same format, so it adds no room
+- **Coarse**: gives room, but at low resolution
+- **Missing**: no way to write it
+
+| Area | Capability | Syntax | Class |
+| --- | --- | --- | --- |
+| Time | Meter: beats per bar 1 to 16, steps per beat 1 to 12, changeable per pattern | `beats 4` `steps 4`, `pattern X steps=3` | Core |
+| Time | Duration on the step grid, rests, ties across bars | `D5---`, `.---`, lone `-` | Core |
+| Time | Tempo, fixed per pattern | `tempo 100` | Core |
+| Time | Swing, one value delaying every other step | `swing 0.12` | Coarse |
+| Time | Tuplets off the grid, per-note timing offsets, tempo curves | none | Missing |
+| Pitch | Note name with accidentals and octave, 12-tone equal temperament | `F#4`, `Bbb3` | Core |
+| Pitch | Simultaneous notes, so explicit voicings | `C4+E4+G4` | Core |
+| Pitch | Chord names voiced near a center, optional slash bass | `[Dm7]`, `[C/E]`, `center=A4` | Shorthand |
+| Pitch | Voice-wide transposition | `oct=-1`, `trans=3` | Shorthand |
+| Pitch | Slide into a note | `~A2`, `glide=0.1` | Coarse |
+| Pitch | Bends, vibrato, microtones | none | Missing |
+| Dynamics | Per-note accent or softening, stackable | `D5!!`, `A2??` | Coarse |
+| Dynamics | Crescendo, hairpins, continuous velocity | none, approximated by stepping marks | Missing |
+| Articulation | Note length as a fraction, per voice only | `gate=0.5` | Coarse |
+| Articulation | Per-note staccato, legato, and instrument-specific marks such as tab, bowing, pedal | none | Missing |
+| Drums | One sound per lane, hit, accent, or ghost per step | `x..X ..o.` | Core |
+| Timbre | Instrument from a fixed list of about 60 | `voice lead flute` | Core |
+| Timbre | Static level, pan, reverb, brightness, attack, release per voice | `vol=0.8 pan=-0.3 bright=1.5` | Coarse |
+| Timbre | Parameter changes over time | none | Missing |
+| Form | Patterns, copy-and-override, mute, repeat, transposed repeat, bar repeat, silent and held bars | `pattern A2 from A`, `B*2`, `A+2`, `%`, `_`, `=` | Shorthand |
+| Form | Intro played once, then a loop | `play intro`, `loop A B` | Shorthand |
+| Intent | Title, description, comments | `about ...`, `# ...` | Core |
+
+Comments count as core because they are the only place to state why, and nothing else in the format carries it. Lyrics and vocals are missing entirely.
+
 ## Candidate principles
 
 ### Reuse notation that already exists as text
