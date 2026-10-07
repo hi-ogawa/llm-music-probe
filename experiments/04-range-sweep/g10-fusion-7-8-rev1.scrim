@@ -1,0 +1,58 @@
+title    Seven Eighths Fusion rev1
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop, felt as 2 + 2 + 1.5 + 1.5 eighths, over Dm11, Bbmaj13#11, Gm9 and an altered A7.
+
+# Revision note. Listener feedback: "fusion 7/8 wants 2 2 1.5 + 1.5 like beat".
+# Reading: the 3-eighth group should not tick along in eighths. It should be
+# split into two equal pulses of 1.5 eighths (3 sixteenths each), so the bar
+# feels like four uneven pulses: long, long, short, short (4+4+3+3 sixteenths).
+# In the original only the kick split the 3-group at step 11, while the hi-hat
+# (accents on 8, 10, 12), the keys (stab at 12) and the bass (notes at 10 and
+# 12) all divided it into eighths, so the 3+3 split was smeared. In this
+# revision every part moves together on the four pulses at steps 0, 4, 8 and
+# 11, and nothing lands on steps 10 or 12. Harmony, voicings and tempo are
+# unchanged.
+
+# Same grid as the original: quarter = 120, so the eighth beat is 240, with
+# 14 sixteenth steps per bar. Pulse starts are at steps 0, 4, 8 and 11.
+tempo    240
+beats    7
+steps    2
+swing    0
+
+# Electric piano: same rootless voicings, now stabbing on all four pulses.
+voice keys epiano vol=0.75 pan=-0.25
+# String pad: unchanged common-tone pedal E5+A5, moving to F5+Bb5 for A7alt.
+voice pad strings vol=0.35 pan=0.3
+# Fingered electric bass: one note per pulse.
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.55
+voice crash crash vol=0.6
+
+pattern A
+# Keys: stabs at 0, 4, 8 and 11. The stab at 8 is cut short (2 steps plus a
+# rest) so the stab at 11 sounds as a fresh pulse, not as a continuation.
+# Bar 4: Gm9 on the two long pulses, then A7alt struck on both short pulses,
+# louder on the second, so the dominant itself states the 1.5 + 1.5 split
+# before resolving by half steps into Dm11 at the loop point.
+keys | F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4- .- F3+C4+E4+G4+A4- . F3+C4+E4+G4+A4-- | A3+D4+E4+G4-- . A3+D4+E4+G4- .- A3+D4+E4+G4- . A3+D4+E4+G4-- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- Bb3+D4+F4+A4- . Bb3+D4+F4+A4-- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5- . G3+C#4+F4+Bb4+C5--! |
+# Pad: unchanged, because its long tones do not affect the pulse.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: root on 0, fifth on 4, root on 8, and the b7 (or 3 on Bb) on 11.
+# The original's eighth-note fill inside the 3-group is gone. In bar 4, A1
+# takes the first short pulse, and E2 on the second short pulse with a G2
+# pickup at step 13 leads back to D.
+bass | D2-- . A2-? .- D2-- C3--? | Bb1-- . F2-? .- Bb1-- A2--? | G1-- . D2-? .- G1-- F2--? | G1-- . D2-? .- A1!-- E2-? G2 |
+# Drums: kick on the two pulses that start each half (0 and 8, with a push at
+# 6 into 8). The snare backbeat moves from one hit per bar to two, at 4 and 11,
+# so the pattern reads kick-snare-kick-snare on the four uneven pulses. The
+# hi-hat accents exactly 0, 4, 8 and 11. Bar 4 fills the short pulses as two
+# matching 3-step cells (X o o, X o o).
+kick  | x... ..x. x..... | % | % | x... ..x. x..x.. |
+snare | ..o. X..o .o.X.. | % | % | ..o. X..o XooXoo |
+hat   | X.x. X.x. X..X.. | % | % | X.x. X.x. X..... |
+crash | X... .... ...... | _ | _ | _ |
+
+loop A

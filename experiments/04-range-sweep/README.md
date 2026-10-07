@@ -149,6 +149,15 @@ Read from the scores and the subagents' reports, not judged by ear:
 - **Some subagents built their own tools.** s03 and e04 generated their scores with scripts. e05 wrote a script to check all 28 chords for parallel fifths and octaves and voice crossing, which is the computed pseudo-ear idea from the original discussion, unprompted.
 - **Execution errors stayed execution errors.** 13 of 43 cells needed fixes before passing `check`, nearly all miscounted bars, and the validator caught every one. One was a parser bug: a `|` inside `about` text was read as a music line, which is now fixed. One subagent misdiagnosed its own error, blaming dynamic marks between dashes, which the parser counts correctly.
 
+### Adjustment loop: g10 fusion
+
+The first test of musician feedback driving a revision.
+
+- **Feedback (by ear, Hiroshi):** "fusion 7/8 wants 2 2 1.5 + 1.5 like beat", meaning the last 3-eighth group should split into two dotted-eighth pulses.
+- **Diagnosis (measured from the note events):** the original subagent's report claimed this split, but only the kick played it, at sixteenths 8 and 11. Keys hit 8 and 12, and bass and hat hit 8, 10, and 12, so most parts phrased the group as three eighths. The report described intent that the notes did not carry.
+- **Revision:** the note was sent verbatim to the same subagent, without the diagnosis. It read the note the same way, found its own mismatch, and wrote [g10-fusion-7-8-rev1.scrim](g10-fusion-7-8-rev1.scrim). In bars 1 to 3, keys, bass, kick, and hat now all land on sixteenths 0, 4, 8, and 11, and the snare backbeat moved to 4 and 11. Harmony, voicings, and tempo are unchanged.
+- **Pending:** whether the revision sounds like the feel Hiroshi meant.
+
 ## Judgment
 
 Pending the sweep.
