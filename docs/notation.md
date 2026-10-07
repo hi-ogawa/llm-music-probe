@@ -40,38 +40,33 @@ What the format can write, from its spec ([composing prompt](../experiments/01-s
 
 Comments count as core because they are the only place to state why, and nothing else in the format carries it. Lyrics and vocals are missing entirely.
 
+## What a richer medium would need
+
+From the Coarse and Missing rows, the ideas Scrimshaw has no room for:
+
+- Feel and groove: per-note timing offsets, tuplets, tempo curves
+- Phrasing: continuous dynamics, per-note articulation
+- Instrument idiom: tab, bowing, pedaling, bends, vibrato
+- Sound over time: parameter changes such as a filter sweep
+- Vocals and lyrics
+
 ## Candidate principles
 
 ### Reuse notation that already exists as text
 
-The model's musical vocabulary was learned from what people write down: chord symbols, note names with octaves, roman numerals, drum grids, tab, lead sheets, ABC tunes, tracker files. A notation close to those taps that vocabulary directly. Scrimshaw's model designed its own format and chose exactly this, which suggests the model knows where its vocabulary lives.
-
-### Let the level of abstraction match the intent
-
-An abstract symbol delegates the decision to the renderer. `[Dm]` says "D minor here" and leaves the voicing to a default. That is right when the voicing does not matter, and wrong when it is the idea. A notation should let the writer stay abstract or become concrete per spot, for example a chord name with an optional explicit realization. Scrimshaw allows both (`[Dm]` or `D3+F3+A3+C4`), but its six tracks mostly used names, which is why voicing was not shown.
-
-### Make time visible and alignable
-
-Writing duration as token length on a step grid makes rhythm countable and lets parts line up bar by bar, like a tracker or drum tab. The cost is counting errors. Scrimshaw's composing prompt, written by the model, warns that a miscounted bar is "the most common mistake", but the transcript shows no such error in the final tracks. That cost belongs to execution, so a validator in the loop handles it. It does not limit what ideas can be expressed.
-
-### Express feel in words a musician would use, with numbers available
-
-Expression can be named ("accent", "ghost note", "slide", "laid back", "swing") or numeric (velocity 0 to 127, a timing offset in milliseconds). Named marks match how musicians talk and how the vocabulary was learned. Numbers match how a DAW stores it. A useful notation probably accepts named marks and lets numbers be written where precision is the point. Scrimshaw only has named marks and one global swing value, which is the main reason groove could not show up.
-
-### Keep the intent next to the notes
-
-Scrimshaw's comments carry the model's reasons inline: "the standoff: both duellists circle, nobody blinks". That makes a score reviewable by a human, because the reader sees the what and the why together. It is also the closest thing to the "narrated music" data the original discussion said was scarce.
-
-### Allow instrument-specific detail
-
-Some intent only exists for one instrument. Tab carries string and fret, which encode playability and hand position. Other examples are bowing, breath marks, and pedaling. These should be optional layers on top of the shared notation.
+The model's musical vocabulary was learned from what people write down: chord symbols, note names with octaves, roman numerals, drum grids, tab, lead sheets, ABC tunes, tracker files. A notation close to those taps that vocabulary directly. Scrimshaw's model designed its own format and chose exactly this, which suggests the model knows where its vocabulary lives. This is in tension with the central hypothesis that any reasonable format works, which is what makes it worth testing.
 
 ## Rejected candidates
 
-These looked like principles at first because Scrimshaw has them, but by our reasoning they fail the test of whether a feature gives the medium room for an idea it could not otherwise carry.
+These looked like principles at first, but they fail as independent principles. Either they add no room for an idea, or they restate the room test for one area, which the capability table already covers.
 
 - **Give each layer of decision its own words.** The example was `pattern A2 from A` for "A with a counter-line". Only `from` is notation, and it means copy A's voices and let voices written in A2 replace or add parts. "With a counter-line" comes from a comment. So the functional part is copy-and-override, and it is rejected for the reason below.
 - **Make repetition and variation first-class.** Copy-and-override, `%`, `*2`, and transposition add no room for any idea, because a flat note list expresses exactly the same music. What they do provide is cheap repetition and editing: write a variation without rewriting the whole part. But a modern agent already gets that from its harness. It copies blocks, transforms parts with scripts, and edits one passage surgically, the same way it iterates on one large HTML file for an image or animation. So the harness already covers what the feature offers, and the feature adds nothing to what the model can present.
+- **Let the level of abstraction match the intent.** The point was that `[Dm]` hands the voicing to the renderer, while `D3+F3+A3+C4` keeps it. That is the room test applied to voicing. In the table, chord names are shorthand because explicit stacks carry the same thing, so choosing the abstraction level adds nothing beyond the table.
+- **Make time visible and alignable.** The useful part is room for timing, which the Time rows cover. "Visible and alignable" is about how easy the format is to write, so it falls to the same harness argument as repetition and variation. A validator catches miscounted bars, and the model's composing prompt warned that a miscounted bar is "the most common mistake", though the transcript shows none in the final tracks.
+- **Express feel in words a musician would use, with numbers available.** Room for feel is real, and it is the Coarse and Missing rows for swing, dynamics, and timing. Preferring named marks such as "laid back" over numbers is a syntax claim with no support.
+- **Keep the intent next to the notes.** The Intent row covers this. The original argument was that a human can review the what and the why together, which is the human-facing angle, not whether the model can present an idea.
+- **Allow instrument-specific detail.** Tab, bowing, and pedaling are the room test applied to instrument idiom, and the Missing rows cover them.
 
 ## Open questions
 
