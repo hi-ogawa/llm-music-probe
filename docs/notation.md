@@ -8,10 +8,6 @@ What makes musical intent encodable, and presentable by an LLM through a medium.
 
 The model's musical vocabulary was learned from what people write down: chord symbols, note names with octaves, roman numerals, drum grids, tab, lead sheets, ABC tunes, tracker files. A notation close to those taps that vocabulary directly. Scrimshaw's model designed its own format and chose exactly this, which suggests the model knows where its vocabulary lives.
 
-### Give each layer of decision its own words
-
-Musicians decide in layers: form, harmony, line, rhythm, expression, orchestration. When each layer has its own construct, the model can state an idea at the layer where it lives. "A2 is A with a counter-line" is one line of form, not a rewrite of every note. Scrimshaw does this with `pattern A2 from A`, chord names, note tokens, drum lanes, accent marks, and voice declarations.
-
 ### Let the level of abstraction match the intent
 
 An abstract symbol delegates the decision to the renderer. `[Dm]` says "D minor here" and leaves the voicing to a default. That is right when the voicing does not matter, and wrong when it is the idea. A notation should let the writer stay abstract or become concrete per spot, for example a chord name with an optional explicit realization. Scrimshaw allows both (`[Dm]` or `D3+F3+A3+C4`), but its six tracks mostly used names, which is why voicing was not shown.
@@ -19,10 +15,6 @@ An abstract symbol delegates the decision to the renderer. `[Dm]` says "D minor 
 ### Make time visible and alignable
 
 Writing duration as token length on a step grid makes rhythm countable and lets parts line up bar by bar, like a tracker or drum tab. The cost is counting errors, which were Scrimshaw's most common failure. That cost belongs to execution, so a validator in the loop handles it. It does not limit what ideas can be expressed.
-
-### Make repetition and variation first-class
-
-Music is mostly repetition with variation. Constructs for repeat, copy-and-modify, and transposition keep scores short and mirror how musicians think about form. Scrimshaw has `%`, `from`, `*2`, and `+2`.
 
 ### Express feel in words a musician would use, with numbers available
 
