@@ -34,7 +34,7 @@ C repeats the 04 note because the 04 revision ran in the original subagent's con
 ### Batches
 
 - **Batch 1, open.** The prompt said only to keep the harmony and tempo unless the note required otherwise, as in the 04 revision. Instruments, texture, and style were left open. Files: `a1-vague.scrim` to `c3-spelled.scrim`.
-- **Batch 2, groove only.** The intended question was about the groove alone: can the groove be changed to feel like Mehldau's 7? Batch 1 did not isolate it, because the B runs rewrote the whole texture (see results). Batch 2 adds one paragraph to the prompt that allows only rhythm changes and keeps instruments, voicings, harmony, tempo, and meter. Files: `g-a1-vague.scrim` to `g-c3-spelled.scrim`.
+- **Batch 2, groove only.** The intended question was about the groove alone: can the groove be changed to feel like Mehldau's 7? Batch 1 did not isolate it, because the B runs rewrote the whole texture (see results). Batch 2 puts the scope into the note itself, in a musician's words, "keep everything, just the groove", with the prompt otherwise unchanged. A and B run three times each, and C is reused from batch 1 because its note and prompt would be identical. Files: `g-a1-vague.scrim` to `g-b3-ref.scrim`.
 
 ### Knowledge check
 
@@ -49,11 +49,11 @@ The exact prompts are in [prompts.md](prompts.md).
 - **Measured:** onsets per voice within each bar, on a grid of 14 steps per bar, which is sixteenths of the original 7/8. This scale is relative to the bar, so it works even if a revision changes the written meter or tempo. The target is 0 4 8 11 (4+4+3+3). The original's last group subdivides evenly in eighths at 8 10 12. [onsets.ts](onsets.ts) prints the table.
 - **Measured:** side effects, such as a changed meter, tempo, harmony, swing, or texture.
 - **Recorded verbatim:** each subagent's reply and the interpretation in its comments.
-- **By ear (Hiroshi):** the batch 2 revisions are rendered with shuffled numeric names, listened to blind, and each is marked for whether it has the intended feel. The key is revealed afterwards.
+- **By ear (Hiroshi):** the batch 2 revisions and batch 1's C runs are rendered with shuffled numeric names, listened to blind, and each is marked for whether it has the intended feel. The key is revealed afterwards.
 
 ## Raw output
 
-- Scores: batch 1 `a1-vague.scrim` to `c3-spelled.scrim`, batch 2 `g-a1-vague.scrim` to `g-c3-spelled.scrim`
+- Scores: batch 1 `a1-vague.scrim` to `c3-spelled.scrim`, batch 2 `g-a1-vague.scrim` to `g-b3-ref.scrim`
 - Replies: [replies.md](replies.md)
 - Onset tables: [onsets.txt](onsets.txt)
 
