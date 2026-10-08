@@ -155,10 +155,10 @@ Read from the scores and the subagents' reports, not judged by ear:
 
 The first test of musician feedback driving a revision.
 
-- **Feedback (by ear, Hiroshi):** "fusion 7/8 wants 2 2 1.5 + 1.5 like beat", meaning the last 3-eighth group should split into two dotted-eighth pulses.
-- **Original (measured from the note events):** the original was written as 2+2+3 eighths, and its comments and report match its notes. Hat accents and keys land on the group starts 0, 4, and 8. Keys add a stab at 12, and the bass plays root, b7, and fifth on 8, 10, and 12, so most parts divide the 3-group into eighths. Only the kick splits it at 11, which the original described as keeping the 3-group from sounding like a third 2-group, not as a 1.5+1.5 feel. The feedback asked for a different feel, not a fix for a mismatch.
-- **Revision:** the note was sent verbatim to the same subagent, without any analysis. It read the note the same way, identified which parts still divided the 3-group into eighths, and wrote [g10-fusion-7-8-rev1.scrim](g10-fusion-7-8-rev1.scrim). In bars 1 to 3, keys, bass, kick, and hat now all land on sixteenths 0, 4, 8, and 11, and the snare backbeat moved to 4 and 11. Harmony, voicings, and tempo are unchanged.
-- **Result (by ear, Hiroshi):** the revision has the feel the note asked for. One round of plain-language feedback was enough.
+- **Original (by ear, Hiroshi):** a 2 2 1 1 1 groove. Its comments call the bar 2+2+3 eighths (4+4+6 sixteenths), and the notes show why it still sounded like 2 2 1 1 1 (measured): in the last group, the bass plays a new note on every eighth and the hat keeps straight eighths. Only the kick splits that group in two, at sixteenths 8 and 11, which the comments explain as keeping the long group from sounding like a third 2-group.
+- **Feedback (Hiroshi):** "fusion 7/8 wants 2 2 1.5 + 1.5 like beat". The reason, left unstated in the note, was that 2 2 1 1 1 sounded lame and fusion obviously wants the last group as two even pulses.
+- **Revision:** the note was sent verbatim to the same subagent. It wrote [g10-fusion-7-8-rev1.scrim](g10-fusion-7-8-rev1.scrim), whose comments read the note as 4+4+3+3 sixteenths. In bars 1 to 3, keys, bass, kick, and hat now all land on sixteenths 0, 4, 8, and 11 (measured). Harmony, voicings, and tempo are unchanged.
+- **Result (by ear, Hiroshi):** the revision has the 2 2 1.5 1.5 groove. One round of plain-language feedback was enough.
 
 ## Judgment
 
