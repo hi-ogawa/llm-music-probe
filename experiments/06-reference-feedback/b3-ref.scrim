@@ -1,0 +1,71 @@
+title    Seven Eighths Fusion, Trio Seven
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop toward the Brad Mehldau trio "All the Things You Are" 7 feel: same Dm11, Bbmaj13#11, Gm9, A7alt changes, recast as a swinging piano trio.
+
+# Feedback: "fusion 7 feels lame. make it like mehldau all the things we are 7 feel?"
+#
+# How I read the note (inferred, not heard): the complaint is about feel, not
+# harmony. The original was a stiff fusion groove: straight sixteenths, backbeat
+# snare, epiano stabs repeated on the same steps every bar, and a string pad.
+# Mehldau's trio take on All the Things You Are is in 7 played as acoustic
+# trio jazz: swung subdivision, walking upright bass, ride cymbal time with
+# brushy snare comping and feathered kick, and piano comping that anticipates
+# chord changes and phrases lines across the bar line, so the odd meter flows
+# instead of chopping. That recording is in 7/4; here the bar length stays the
+# same and each eighth-note beat of the old 7/8 is treated as the walking
+# pulse, so the 7 count is felt beat by beat like a 7/4 trio groove.
+#
+# Kept: tempo 240 (the same bar length as before), 7 beats x 2 steps,
+# the harmony Dm11 | Bbmaj13#11 | Gm9 | Gm9 -> A7alt on the 3-group, and the
+# same piano voicings. The 2+2+3 grouping (group starts at steps 0, 4, 8) is
+# still marked, but by bass accents, ride and foot hat rather than stabs.
+tempo    240
+beats    7
+steps    2
+# Changed: swing on. Light-to-medium swing because the pulse is fast.
+swing    0.22
+
+# Changed: epiano -> acoustic piano, split into a left-hand comp (rootless
+# voicings from the original) and a sparse right-hand line, replacing the
+# string pad, which read as fusion texture.
+voice comp  piano vol=0.65 pan=-0.15
+voice line  piano vol=0.75 pan=-0.15
+# Changed: ebass -> upright, walking quarter-note pulse instead of a riff.
+voice bass  upright vol=1.0 pan=0.1
+# Changed: drum kit rebuilt as jazz time. Ride carries the time, snare only
+# ghosts and comps (standing in for brushes, which General MIDI lacks here),
+# kick feathers quietly, foot hat marks the second beat of each group.
+voice ride  ride vol=0.6
+voice hat   hat vol=0.3
+voice snare snare vol=0.45
+voice kick  kick vol=0.5
+
+pattern A
+# Comp: same voicings as the original (Dm11 F C E G A, Bbmaj13#11 A D E G,
+# Gm9 Bb D F A, A7alt G C# F Bb C), but the rhythm changes every bar and
+# lands mostly on offbeats. Bars 1-3 end with the next chord pushed onto the
+# last swung eighth and tied over the bar line, the anticipation that makes
+# trio comping feel like it leans forward. Bar 4 pushes A7alt onto the "and"
+# of beat 4, ahead of the 3-group, then leaves space before the loop.
+comp | . F3+C4+E4+G4+A4--- .-- F3+C4+E4+G4+A4- .-- A3+D4+E4+G4 | - .- A3+D4+E4+G4 .---- A3+D4+E4+G4-- . Bb3+D4+F4+A4 | - .- Bb3+D4+F4+A4 .--- Bb3+D4+F4+A4- . Bb3+D4+F4+A4-- | .- Bb3+D4+F4+A4- .-- G3+C#4+F4+Bb4+C5----! .- |
+# Line: a single right-hand phrase that runs through all four bars instead
+# of restarting each bar. Bar 1 opens on E4 (the 9 of Dm), resolving the Eb4
+# (b5 of A7alt) that ends the loop. Bar 2 sits on E5 and A5 to sound the
+# #11 and maj7 of Bb lydian, bar 3 holds the 7 of Gm then climbs, and bar 4
+# descends through altered tones (C#, Bb, G, F, Eb) over A7alt.
+line | E4- .- E5 F5 A5-- G5 E5 D5 C5 A4 | .- D5 E5 G5- A5---- G5 E5 D5 | F5------ .-- Bb4 D5 F5 A5 | Bb5--- A5 F5 D5 C#5-- Bb4 G4 F4 Eb4 |
+# Bass: walking quarters, one note per beat, accented on the group starts
+# (beats 1, 3, 5) so 2+2+3 is still heard, with a chromatic approach into
+# each next root (B1 -> Bb1, F#2 -> G, Eb2 -> D at the loop point).
+bass | D2-! A1- D2-! F2- A2-! G2- B1- | Bb1-! F2- Bb1-! D2- E2-! F2- F#2- | G1-! Bb1- D2-! F2- G2-! F2- D2- | G1-! A1- Bb1-! B1- A1-! G2- Eb2- |
+# Ride: "ding, ding-ga" per group (x.xx in each 2-group, x.x.xx in the
+# 3-group), accent on each group start. Bar 4 accents the A7alt push on step
+# 7 and drops the downbeat of the 3-group, matching the piano.
+ride  | X.xx X.xx X.x.xx | % | % | X.xx X.xX ..x.xx |
+hat   | ..x. ..x. ..x... | % | % | % |
+# Snare: ghosted comping that changes bar to bar, no backbeat. Bar 4 kicks
+# the A7alt push with the kick and fills lightly into the loop point.
+snare | ...o .... ..o..o | ..o. ...o .o.... | ...o .... ..o..o | .o.o ...X .o.ooo |
+kick  | o... o... o..... | % | % | o... ...x ...... |
+
+loop A

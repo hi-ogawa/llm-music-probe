@@ -1,0 +1,59 @@
+title    Seven Eighths Fusion (2+2+1.5+1.5)
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop. Same harmony (Dm11, Bbmaj13#11, Gm9, altered A7) and tempo, re-phrased so the 3-eighth group splits into two equal 1.5-eighth pulses.
+
+# Revision note. Listener feedback, verbatim: "fusion 7/8 wants 2 2 1.5 + 1.5
+# like beat". Read as: the bar should be felt as four pulses, two of 2 eighths
+# and two of 1.5 eighths (2+2+1.5+1.5 = 7). In sixteenth steps that is 4+4+3+3,
+# so the pulses fall on steps 0, 4, 8 and 11.
+#
+# The original already put one kick on step 11, but every other part ignored
+# it: the hats and the keys sat on step 12 (an even eighth grid), and the bass
+# rolled root, b7, fifth on eighths. So the 3-group still felt like 3 eighths,
+# with step 11 heard as a syncopation rather than a beat.
+#
+# What changed:
+# - Drums: a four-pulse kick/snare cycle, kick on 0 and 8, backbeat snare on
+#   4 and 11, so the two short pulses read as a compressed "1 2" after the
+#   two long ones. Hat accents sit on all four pulses (0, 4, 8, 11), with the
+#   in-between hats at 2, 6, 10, 13 (the midpoint of each 2-group, and the
+#   last sixteenth of each 1.5-group).
+# - Keys: the stab that was on step 12 moves to step 11, so the comping
+#   rhythm is four strikes, one per pulse. In bar 4 the A7alt is struck on
+#   8 and re-struck on 11 instead of held for 6 steps.
+# - Bass: a note on every pulse start. The 3-group is now two 3-step notes
+#   (root on 8, b7 or approach tone on 11) instead of root, b7, fifth.
+# - Harmony, voicings, pad, tempo and the 7/8 meter are unchanged.
+#
+# Tempo: quarter = 120, so eighth beat = 240, with 14 sixteenth steps per bar.
+tempo    240
+beats    7
+steps    2
+swing    0
+
+voice keys epiano vol=0.75 pan=-0.25
+voice pad strings vol=0.35 pan=0.3
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.55
+voice crash crash vol=0.6
+
+pattern A
+# Keys: strikes on 0 (3 steps), 4 (2), 8 (2) and 11 (3), one per pulse.
+# Voicings unchanged: Dm11 (F C E G A), Bbmaj13#11 (A D E G over Bb bass),
+# Gm9 (Bb D F A over G bass), then A7alt (G C# F Bb C) on the two short
+# pulses of bar 4.
+keys | F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4- .- F3+C4+E4+G4+A4- . F3+C4+E4+G4+A4-- | A3+D4+E4+G4-- . A3+D4+E4+G4- .- A3+D4+E4+G4- . A3+D4+E4+G4-- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- Bb3+D4+F4+A4- . Bb3+D4+F4+A4-- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5!-- G3+C#4+F4+Bb4+C5-- |
+# Pad unchanged: common tones tied for three bars, F5+Bb5 on the A7alt.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: a note on each pulse start (0, 4, 8, 11). Bar 4 lands A1 on step 8,
+# then E2 on 11 and G2 leading back to D at the loop point.
+bass | D2-- . A2-? .- D2-- C3-- | Bb1-- . F2-? .- Bb1-- A2-- | G1-- . D2-? .- G1-- F2-- | G1-- . D2-? .- A1!-- E2- G2 |
+# Drums, grouped 4 4 3 3 to show the pulses.
+kick  | x... .... x.. ... | % | % | x... .... x.. x.. |
+snare | ..o. X... ... X.o | % | % | ..o. X... XoX XoX |
+hat   | X.x. X.x. X.x X.x | % | % | X.x. X.x. X.. X.. |
+crash | X... .... ... ... | _ | _ | _ |
+
+loop A

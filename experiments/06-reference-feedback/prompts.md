@@ -22,6 +22,14 @@ Run `pnpm cli check experiments/06-reference-feedback/{file}` from the repositor
 Reply with the final check result and three to five sentences on how you interpreted the note and what you changed.
 ```
 
+## Groove-only paragraph (batch 2)
+
+Batch 2 uses the same template with `{file}` prefixed by `g-`, and one paragraph inserted after "Revise the piece to answer that note. ...":
+
+```
+Change only the rhythm: where notes start, accents, and note lengths. Keep the instruments, voicings, harmony, tempo, and meter, and keep each part's role. The feedback is about the groove.
+```
+
 ## Knowledge check
 
 ```

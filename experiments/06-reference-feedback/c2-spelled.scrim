@@ -1,0 +1,63 @@
+title    Seven Eighths Fusion (2+2+1.5+1.5)
+composer Claude
+about    A 4-bar fusion loop in 7/8 over Dm11, Bbmaj13#11, Gm9 and an altered A7, revised so the bar pulses as four uneven beats, 2+2+1.5+1.5 eighths.
+
+# Revision for the listener note "fusion 7/8 wants 2 2 1.5 + 1.5 like beat".
+# Reading: the bar should feel like four beats of unequal length, two quarter
+# notes followed by two dotted eighths (4+4+3+3 sixteenth steps), rather than
+# 2+2+3 with the long 3-group sitting as one undivided span. The original only
+# split the 3-group with a single kick on step 11, while the hats, keys and bass
+# still played straight eighths through it (steps 8, 10, 12), so the 1.5+1.5
+# split was buried. Now every part marks the four pulse starts at steps
+# 0, 4, 8, 11:
+# - Drums: kick on pulses 1 and 3 (steps 0, 8), snare backbeat on pulses 2 and
+#   4 (steps 4, 11), hat accents on all four pulses with nothing on step 10 or 12.
+# - Keys: the fourth stab moves from step 12 to step 11, so the stabs fall on
+#   0, 4, 8, 11, each of the last two ringing a full dotted eighth.
+# - Bass: the 3-group becomes two dotted eighths, root then fifth, instead of
+#   root, b7, fifth in straight eighths.
+# Harmony, voicings, tempo and the pad are unchanged.
+
+# Tempo: quarter = 120, so the eighth-note beat is 240. Seven eighth beats with
+# 2 steps each gives 14 sixteenth steps per bar, felt as 4+4+3+3 steps.
+tempo    240
+beats    7
+steps    2
+swing    0
+
+# Electric piano: main comping part with explicit rootless voicings, so the
+# extensions (9, 11, #11, 13, altered tones) are always on top.
+voice keys epiano vol=0.75 pan=-0.25
+# String pad: a soft two-note common-tone pedal (E5+A5) that is the 9/5 of Dm,
+# the #11/maj7 of Bb, and the 13/9 of Gm, then bends to F5+Bb5 (b13/b9) on A7alt.
+voice pad strings vol=0.35 pan=0.3
+# Fingered electric bass: roots on the pulse starts.
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.55
+voice crash crash vol=0.6
+
+pattern A
+# Keys comp: stabs on steps 0, 4, 8, 11 (changed: last stab was on step 12).
+# The two dotted-eighth stabs are each held 3 steps so they read as equal halves.
+# Bar 4 holds Gm9 through the two quarter pulses, then lands A7alt (G C# F Bb C:
+# b7 3 b13 b9 #9) on step 8 and restrikes it on step 11, resolving by half steps
+# into Dm11 (F C E G A) at the loop point.
+keys | F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4- .- F3+C4+E4+G4+A4-- F3+C4+E4+G4+A4-- | A3+D4+E4+G4-- . A3+D4+E4+G4- .- A3+D4+E4+G4-- A3+D4+E4+G4-- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- Bb3+D4+F4+A4-- Bb3+D4+F4+A4-- | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5!-- G3+C#4+F4+Bb4+C5-- |
+# Pad: unchanged, tied common tones for three bars, moving only for the altered dominant.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: root + fifth on the two quarter pulses as before. Changed: the 3-group
+# is now two dotted eighths (root on step 8, fifth on step 11). Bar 4 puts A1
+# on step 8 and E2 on step 11, with a G2 pickup on step 13 toward the D.
+bass | D2-- . A2-? .- D2-- A2-- | Bb1-- . F2-? .- Bb1-- F2-- | G1-- . D2-? .- G1-- D2-- | G1-- . D2-? .- A1!-- E2- G2? |
+# Drums, grouped 4+4+3+3 steps. Changed: snare backbeat added on step 11 (the
+# fourth pulse), the old step-11 kick and step-13 snare ghost removed, and the
+# hats now accent step 11 instead of playing eighths on steps 10 and 12.
+# Bar 4 adds a snare pickup on step 13 into the loop point.
+kick  | x... .... x.. ... | % | % | x... .... x.. ... |
+snare | ..o. X... ..o X.. | % | % | ..o. X... ..o XoX |
+hat   | X.x. X.x. X.. X.. | % | % | X.x. X.x. X.. X.. |
+crash | X... .... ... ... | _ | _ | _ |
+
+loop A

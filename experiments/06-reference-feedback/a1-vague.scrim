@@ -1,0 +1,59 @@
+title    Seven Eighths Fusion (revised)
+composer Claude
+about    A 4-bar fusion loop in 7/8, phrased 2+2+3, over Dm11, Bbmaj13#11, Gm9 and an altered A7. Revised for more push and groove.
+
+# Revision note. Feedback was "fusion 7 feels lame". Read as: the loop was
+# stiff and static rather than wrong. In the original, every part hit only the
+# three group starts, all three bars were identical copies (drums were `%`),
+# the hats were plain eighths, the bass was quiet and polite, and the only
+# motion was the bar 4 turnaround. Harmony, voicings, and tempo are unchanged.
+# What changed, part by part:
+# - Keys: syncopated comping instead of block stabs on every group start. The
+#   second-group stab enters one sixteenth early (step 3) and the 3-group gets a
+#   late offbeat stab (step 12 or 11), with accents and ghosted stabs so the
+#   comp has dynamics. Bar 2 anticipates Gm9 on its last sixteenth and ties it
+#   over the bar line, the classic fusion "push", with bass, kick and open hat.
+# - Bass: louder and busier, with octave ghost notes, a pickup into each group,
+#   and chromatic approach notes into the next root (C2 to Bb1, Bb1-A1 to G1,
+#   C#2 to D2 at the loop point).
+# - Drums: sixteenth hats with accents on 2+2+3 group starts and ghosted
+#   in-between notes, a ghost kick on the "and" of the second group, snare
+#   backbeat on group two plus a snare hit at step 11 splitting the 3-group
+#   3+3 sixteenths (keeps the 3-group from sounding like another 2-group),
+#   bar 3 drops the downbeat kick because the push landed early, and bar 4
+#   hits the two A7alt stabs together with kick, snare and open hat.
+# - Pad: unchanged common-tone strings, as glue under the busier parts.
+
+# Tempo kept: quarter = 120, eighth beat = 240, 14 sixteenth steps per bar,
+# grouped 2+2+3 eighths = 4+4+6 steps (group starts at steps 0, 4, 8).
+tempo    240
+beats    7
+steps    2
+swing    0
+
+voice keys epiano vol=0.8 pan=-0.25
+voice pad strings vol=0.35 pan=0.3
+voice bass ebass vol=1.05
+voice kick kick vol=1.0
+voice snare snare vol=0.85
+voice hat hat vol=0.55
+voice ohat ohat vol=0.5
+voice crash crash vol=0.6
+
+pattern A
+# Voicings as before: Dm11 F3+C4+E4+G4+A4, Bbmaj13#11 A3+D4+E4+G4 (over Bb
+# bass), Gm9 Bb3+D4+F4+A4 (over G bass), A7alt G3+C#4+F4+Bb4+C5.
+# Bar 3 starts with a tie because Gm9 was pushed in at the end of bar 2.
+# Bar 4 splits the A7alt into two hits (steps 8 and 11) locked to the drums.
+keys | F3+C4+E4+G4+A4-! . F3+C4+E4+G4+A4--- . F3+C4+E4+G4+A4-! .- F3+C4+E4+G4+A4-? | A3+D4+E4+G4-! . A3+D4+E4+G4--- . A3+D4+E4+G4-! .- . Bb3+D4+F4+A4! | - . Bb3+D4+F4+A4? . Bb3+D4+F4+A4-- . Bb3+D4+F4+A4-! . Bb3+D4+F4+A4- . | Bb3+D4+F4+A4-! . Bb3+D4+F4+A4--- . G3+C#4+F4+Bb4+C5-! . G3+C#4+F4+Bb4+C5!-- |
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: root on each group start, octave ghosts, and approach notes on the
+# last sixteenth. Bar 2 pushes G1 early with the keys and ties it into bar 3.
+bass | D2-! . D3? A2- D2? . D2-! C3? A2 D3? C2 | Bb1-! . Bb2? F2- Bb1? . Bb1-! A2? F2 Bb2? G1! | - . G2? D2- G1? . G1-! F2? D2 G2? Bb1 A1? | G1-! . G2? D2- G1? . A1-! E2? G2 E2? C#2 |
+kick  | X... ..x. X..... | X... ..x. X....X | .... ..x. X..... | X... ..x. X..X.. |
+snare | ..o. X..o .o.X.o | ..o. X..o .o.X.. | .o.o X..o .o.X.o | ..o. X..o ...XoX |
+hat   | Xoxo Xoxo Xoxoxo | Xoxo Xoxo Xoxox. | .oxo Xoxo Xoxoxo | Xoxo Xoxo ...... |
+ohat  | _ | .... .... .....X | _ | .... .... X..X.. |
+crash | X... .... ...... | _ | _ | _ |
+
+loop A

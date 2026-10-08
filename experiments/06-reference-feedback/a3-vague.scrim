@@ -1,0 +1,57 @@
+title    Seven Eighths Fusion (revised)
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop (2+2+3) over Dm11, Bbmaj13#11, Gm9 and an altered A7, rewritten to groove harder.
+
+# Feedback: "fusion 7 feels lame". The note names no specific fault, so it is
+# read as "the groove has no life". The original was stiff in specific ways:
+#   - the drums repeated one bar four times (%), with eighth-note hats only;
+#   - the keys hit the same block chord on the same four steps in every bar;
+#   - the bass played the same root-fifth figure transposed, on the beat;
+#   - nothing anticipated a bar line, so every downbeat arrived flat.
+# Changes, keeping the harmony and tempo:
+#   - hats move to sixteenths with ghosted offbeats, accented on the group
+#     starts (0, 4, 8) and on step 11, so the 3-group audibly splits 3+3;
+#   - kick on 0 and 8, snare backbeat on 4 (the 2-group), kick 11 for the
+#     3+3 split, and kick on step 13 wherever the keys push the next chord;
+#   - each drum bar differs, and bar 4 gets an accented fill under the A7alt;
+#   - keys push the chord of bars 2 and 3 a sixteenth early (step 13, tied
+#     over the bar line), the standard fusion anticipation, and re-hit on
+#     step 11 inside the 3-group;
+#   - bass becomes a syncopated sixteenth line with octave ghost notes and
+#     chromatic or stepwise approach notes into each next root;
+#   - light swing (0.08) to loosen the sixteenths a little;
+#   - pad turned down slightly so the long string tone does not blur the hits.
+tempo    240
+beats    7
+steps    2
+swing    0.08
+
+# Electric piano with the same rootless voicings as the original.
+voice keys epiano vol=0.8 pan=-0.25 gate=0.9
+# String pad: the same common-tone pedal (E5+A5 then F5+Bb5 on A7alt), quieter.
+voice pad strings vol=0.28 pan=0.3
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.5
+voice ohat ohat vol=0.45
+voice crash crash vol=0.6
+
+pattern A
+# Keys. Bars 1 and 2 end with the next chord struck on step 13 and tied into
+# the bar line. Bar 3 does not push, because bar 4 keeps the same Gm9 voicing.
+# Bar 4 lands A7alt (G C# F Bb C) hard on the 3-group and re-hits it on step
+# 11, then resolves by half steps into Dm11 at the loop point, on the beat.
+keys | F3+C4+E4+G4+A4!-- . F3+C4+E4+G4+A4- .- F3+C4+E4+G4+A4-- C4+E4+G4+A4+D5 . A3+D4+E4+G4! | -- .- A3+D4+E4+G4- .- A3+D4+E4+G4-- A3+D4+E4+G4? . Bb3+D4+F4+A4! | -- .- Bb3+D4+F4+A4- . Bb3+D4+F4+A4? Bb3+D4+F4+A4-- . C4+D4+F4+A4 . | Bb3+D4+F4+A4!-- . Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5!!-- G3+C#4+F4+Bb4+C5!-- |
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass. Accented root on each bar's downbeat, octave ghost note right after,
+# fifth on the 2nd group, root again on the 3-group, and the last sixteenth
+# approaches the next root: A2 to Bb1, A1 to G1, C#2 to D2.
+bass | D2!- D3? . A2- . C3? D2- . D3? C3 A2 | Bb1!- Bb2? . F2- . A2? Bb1- . Bb2? F2 A1 | G1!- G2? . D2- . F2? G1- . G2? F2 D2 | G1!- G2? . D2- . F2? A1!- A2? G2 F2 C#2 |
+kick  | X... .... x..x.x | X..x .... x..x.x | X... ..x. x..x.. | X... .... X..X.. |
+snare | ..o. X..o .oo.o. | ..o. X.o. .o..o. | ..o. X..o .oo.o. | ..o. X... XooXoX |
+hat   | Xoxo Xoxo XoxXox | Xoxo Xoxo XoxXox | Xoxo Xoxo XoxXo. | Xoxo Xoxo X..... |
+ohat  | .... .... ...... | .... .... ...... | .... .... .....x | .... .... ...... |
+crash | X... .... ...... | _ | _ | _ |
+
+loop A

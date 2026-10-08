@@ -1,0 +1,55 @@
+title    Seven Eighths Fusion (2+2+1.5+1.5)
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop over Dm11, Bbmaj13#11, Gm9 and an altered A7, re-phrased so the bar pulses 2+2+1.5+1.5 eighths instead of 2+2+3.
+
+# Revision for the listener note "fusion 7/8 wants 2 2 1.5 + 1.5 like beat".
+# Reading: the 3-eighth group should not be felt as one long beat (or as
+# 2+1 eighths), but split into two equal dotted-eighth halves. The bar then
+# has four uneven pulses, 2 + 2 + 1.5 + 1.5 eighths, which in sixteenth steps
+# is 4 + 4 + 3 + 3, landing on steps 0, 4, 8, 11. Every part now marks those
+# four pulses, and nothing marks steps 10 or 12, which spelled the old
+# eighth-note subdivision of the 3-group.
+#
+# Harmony, voicings, tempo, and form are unchanged from the original.
+# Tempo: quarter = 120, so eighth = 240. 7 beats x 2 steps = 14 steps per bar.
+tempo    240
+beats    7
+steps    2
+swing    0
+
+voice keys epiano vol=0.75 pan=-0.25
+voice pad strings vol=0.35 pan=0.3
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.55
+voice crash crash vol=0.6
+
+pattern A
+# Keys: same rootless voicings. Stabs move from steps 0, 4, 8, 12 to
+# 0, 4, 8, 11, so the last two stabs are a dotted eighth apart (each a
+# short dotted-eighth stab: 2 steps sounding, 1 rest). In bar 4 the A7alt
+# (G C# F Bb C) now enters on step 8 and is re-struck, accented, on step 11
+# instead of one long 6-step hold, so the dominant also speaks in 1.5 + 1.5.
+keys | F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4- .- F3+C4+E4+G4+A4- . F3+C4+E4+G4+A4- . | A3+D4+E4+G4-- . A3+D4+E4+G4- .- A3+D4+E4+G4- . A3+D4+E4+G4- . | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- Bb3+D4+F4+A4- . Bb3+D4+F4+A4- . | Bb3+D4+F4+A4-- . Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5-- G3+C#4+F4+Bb4+C5--! |
+# Pad: unchanged, a sustained common-tone layer under the rhythm.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: the 2-groups are unchanged (root on 0, fifth on 4). The 3-group was
+# root on 8 with b7 on 10 and fifth on 12, an eighth-note roll; it is now
+# root on 8 and b7 on 11 (the two dotted-eighth pulses), with the fifth
+# moved to step 13 as a soft pickup into the next bar. Bar 4: A1 on 8, then
+# E2 on 11 and G2 on 13 climbing back to D.
+bass | D2-- . A2-? .- D2- . C3- A2? | Bb1-- . F2-? .- Bb1- . A2- F2? | G1-- . D2-? .- G1- . F2- D2? | G1-- . D2-? .- A1--! E2- G2? |
+# Drums: a four-pulse backbeat on the uneven beats. Kick on pulses 1 and 3
+# (steps 0 and 8), snare on pulses 2 and 4 (steps 4 and 11). The old kick
+# on step 11 becomes the snare, so the second half of the 3-group is a
+# backbeat rather than a pickup. Drum bars are spaced 4 4 3 3 to show the
+# grouping. Hats accent the four pulses, with one unaccented hit inside
+# each pulse (on 2, 6, 10, 13), so each dotted-eighth half reads as x.x.
+# Bar 4 fill keeps the same 4 4 3 3 shape.
+kick  | x... .... x.. ... | % | % | x... .... x.. x.. |
+snare | ..o. X... .o. X.o | % | % | ..o. X... Xox XoX |
+hat   | X.x. X.x. X.x X.x | % | % | X.x. X.x. X.. X.. |
+crash | X... .... ... ... | _ | _ | _ |
+
+loop A

@@ -1,0 +1,75 @@
+title    Seven Eighths Fusion (Mehldau 7 revision)
+composer Claude
+about    Revision of the 7/8 fusion loop toward the swung, flowing piano-trio 7 of Brad Mehldau's All the Things You Are, over the same Dm11, Bbmaj13#11, Gm9 and altered A7.
+
+# Feedback: "fusion 7 feels lame. make it like mehldau all the things we are 7 feel?"
+# Reading of the note (inferred, from memory of the reference, not checked
+# against the recording): Mehldau's trio plays All the Things You Are in a
+# swung 7 where the bar line is smoothed over. The ride swings, the bass walks
+# a quarter-note line through all seven beats, and the piano comps with
+# anticipations under a lyrical right-hand line that runs across the groups.
+# The original was the opposite: square sixteenths, a snare backbeat, and
+# epiano stabs that chopped every group start, so the 7 sounded counted
+# rather than felt.
+#
+# What changed and why:
+# - Grid and tempo kept: 7 beats of 2 steps at 240, so the bar is the same
+#   1.75 seconds. Each of the 7 beats is now treated as a swung jazz quarter
+#   (walking-bass pulse) instead of an eighth with sixteenth subdivision.
+# - swing 0.33 (near triplet) so the off-beat steps lilt like jazz eighths.
+# - Instruments: epiano + string pad + electric bass + rock kit replaced by a
+#   piano trio (acoustic piano, upright bass, ride / hi-hat foot / brushy
+#   snare ghosts / feathered kick). The pad is dropped, since the reference
+#   is a trio.
+# - 2+2+3 is kept but carried by the ride figure, the bass group-start notes,
+#   and the melodic motif, not by loud stabs on every group start.
+# - Harmony unchanged: same chords per bar and the same rootless voicings
+#   (A7alt drops its top C5, because the right hand plays the #9 as a line).
+tempo    240
+beats    7
+steps    2
+swing    0.33
+
+# Piano left hand: rootless comping with jazz pushes. Chords land on offbeats
+# and anticipate the next bar on the swung "and" of 7, tied over the bar line.
+voice lh piano vol=0.6 pan=-0.15
+# Piano right hand: a lyrical eighth-note line, motif phrased 2+2+3.
+voice rh piano vol=0.8 pan=-0.15
+# Upright bass walking seven quarters per bar.
+voice bass upright vol=1.0 pan=0.1
+voice ride ride vol=0.6
+voice hat hat vol=0.35
+voice snare snare vol=0.45
+voice kick kick vol=0.5
+
+pattern A
+# Right hand. Bars 1 and 2 share a rhythm: a pickup figure into a held note
+# (the two 2-groups), then a falling line across the 3-group. Bar 3 holds D5
+# and climbs to the 9th (A5) inside the 3-group, tied into bar 4. On A7alt
+# the line plays 3, #9, b9, b7, then Bb4, which resolves a half step to A4
+# at the loop point.
+rh   | A4- C5 D5 E5--- F5 E5 D5- C5- | .- E5 F5 A5--- G5 E5 C5- D5- | D5--- .- Bb4 C5 D5 F5 A5--- | -- G5 F5 D5- Bb4- C#5- C5 Bb4 G4 Bb4 |
+# Left hand. Bar 1: Dm11 on the downbeat and the "and" of 5 (inside the
+# 3-group), then Bbmaj13#11 anticipated on the "and" of 7. Bar 2: tie, a push
+# on the "and" of 4, then Gm9 anticipated. Bar 3: tie, Gm9 again with the 3rd
+# moved down (F A Bb D). Bar 4: Gm9 on the "and" of 2, then A7alt pushed onto
+# the "and" of 4, so it arrives just before the 3-group the bass lands on.
+lh   | F3+C4+E4+G4--- .--- .- F3+C4+E4+A4- . A3+D4+E4+G4 | --- .--- A3+D4+E4+G4- .--- Bb3+D4+F4+A4 | -- .-- Bb3+D4+F4+A4- .- . F3+A3+Bb3+D4--- | .- Bb3+D4+F4+A4- .-- G3+C#4+F4+Bb4!---- .- |
+# Walking bass, roots or chord tones on the group starts (beats 1, 3, 5).
+# Bar 2 ends Bb1 A1 Ab1 into G1. Bar 3 climbs to F#2 as a leading tone into
+# G2. Bar 4 walks down Gm, then A1 C#2 Eb2 on A7alt, so the Eb2 approaches D2
+# from a half step above at the loop point.
+bass | D2- E2- F2- G2- A2- C3- B2- | Bb2- A2- F2- D2- Bb1- A1- Ab1- | G1- A1- Bb1- D2- G2- F2- F#2- | G2- F2- D2- Bb1- A1!- C#2- Eb2- |
+# Ride: "ding ding-a" for each 2-group and "ding ding ding-a" for the
+# 3-group, so the skip note always leads into the next group. The bar's
+# first ride note is accented.
+ride  | X.xo x.xo x.x.xo | % | % | % |
+# Hi-hat foot on the second beat of each group (beats 2, 4, 6).
+hat   | ..x. ..x. ..x... | % | % | % |
+# Snare: sparse comping ghosts that move every bar. Bar 4 hits the A7alt
+# push with the left hand and sets up the loop point.
+snare | .... ...o ...... | .... .... .o...o | ..o. .... ...o.. | .... ...x ..o.ox |
+# Kick: feathered on the downbeat, plus one accent with the A7alt push.
+kick  | o... .... ...... | % | % | o... ...x ...... |
+
+loop A
