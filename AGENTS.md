@@ -25,3 +25,4 @@
 - Keep raw model output verbatim in the experiment directory. Put judgments and interpretation in the README, separate from the raw output
 - Mark each claim as measured, judged by ear, or inferred. Do not present an inference as a result
 - Prefer material the model cannot have memorized, such as original or personally transcribed pieces, when the probe is about comprehension rather than recall
+- Referencing known recordings is fine when the probe is about collaboration, because that is how musicians give each other direction
