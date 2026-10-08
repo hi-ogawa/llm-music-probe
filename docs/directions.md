@@ -2,7 +2,7 @@
 
 Open directions for the research, each with probe ideas that serve it. Nothing here is a fixed plan or order. Format design lives in [notation.md](notation.md), and our score-to-sound tool in [tool-plan.md](tool-plan.md).
 
-Judge results by ear, blind where possible. Bass lines and grooves are the strongest targets, because that is where the judge's ear is most reliable.
+Judge results by ear, with renders named by condition so the listener knows what each one is. Blind listening adds a key, shuffled names, and a reveal step, so use it only when a judgment would otherwise lean on knowing the condition and the conditions cannot be told apart by ear. Measure from the scores whatever can be measured, so listening is left for what only the ear can judge. Bass lines and grooves are the strongest targets, because that is where the judge's ear is most reliable.
 
 ## Depth
 

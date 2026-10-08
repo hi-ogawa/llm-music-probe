@@ -49,7 +49,7 @@ The exact prompts are in [prompts.md](prompts.md).
 - **Measured:** onsets per voice within each bar, on a grid of 14 steps per bar, which is sixteenths of the original 7/8. This scale is relative to the bar, so it works even if a revision changes the written meter or tempo. The target is 0 4 8 11 (4+4+3+3). The original's last group subdivides evenly in eighths at 8 10 12. [onsets.ts](onsets.ts) prints the table.
 - **Measured:** side effects, such as a changed meter, tempo, harmony, swing, or texture.
 - **Recorded verbatim:** each subagent's reply and the interpretation in its comments.
-- **By ear (Hiroshi):** the batch 2 revisions and batch 1's C runs are rendered with shuffled numeric names, listened to blind, and each is marked for whether it has the intended feel. The key is revealed afterwards.
+- **By ear (Hiroshi):** the batch 2 revisions and batch 1's C runs are rendered under their own names, and each is marked for whether it has the intended feel. The listen is not blind, because the onsets already measure the grouping and the B runs are recognizable by their ride cymbal and walking bass.
 
 ## Raw output
 
@@ -84,7 +84,7 @@ Inferred: with the scope set by the note, the B runs give the same groove as bat
 
 ## Judgment
 
-Pending the blind listen. The listening set is the six batch 2 runs and batch 1's three C runs, rendered as `.tmp/06-reference-feedback/01.wav` to `09.wav`. The key is in `key.txt` in the same directory, and batch 1's renders are in `batch1/`. The B runs remain recognizable by their ride cymbal and walking bass, so the blind comparison is mainly between A and C.
+Pending the listen. The listening set is in `.tmp/06-reference-feedback/`: the six batch 2 runs and batch 1's three C runs, named by condition, with `original.wav` and `04-rev1.wav` for comparison.
 
 ## Effect on claims
 
