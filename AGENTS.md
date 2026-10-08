@@ -24,3 +24,4 @@
 - Record the exact model ID, prompt, and output format for every run, so results stay comparable across models and formats
 - Keep raw model output verbatim in the experiment directory. Put judgments and interpretation in the README, separate from the raw output
 - Mark each claim as measured, judged by ear, or inferred. Do not present an inference as a result
+- Write listener feedback in a prompt the way a musician talks to a collaborator after listening, not as a precise spec from an agent delegating to a subagent. The probe is whether the model works from human musical interaction, so feedback that names the fix, the scope in technical terms, or the measured target makes the test easier than real use
