@@ -156,8 +156,8 @@ Read from the scores and the subagents' reports, not judged by ear:
 The first test of musician feedback driving a revision.
 
 - **Feedback (by ear, Hiroshi):** "fusion 7/8 wants 2 2 1.5 + 1.5 like beat", meaning the last 3-eighth group should split into two dotted-eighth pulses.
-- **Diagnosis (measured from the note events):** the original subagent's report claimed this split, but only the kick played it, at sixteenths 8 and 11. Keys hit 8 and 12, and bass and hat hit 8, 10, and 12, so most parts phrased the group as three eighths. The report described intent that the notes did not carry.
-- **Revision:** the note was sent verbatim to the same subagent, without the diagnosis. It read the note the same way, found its own mismatch, and wrote [g10-fusion-7-8-rev1.scrim](g10-fusion-7-8-rev1.scrim). In bars 1 to 3, keys, bass, kick, and hat now all land on sixteenths 0, 4, 8, and 11, and the snare backbeat moved to 4 and 11. Harmony, voicings, and tempo are unchanged.
+- **Original (measured from the note events):** the original was written as 2+2+3 eighths, and its comments and report match its notes. Hat accents and keys land on the group starts 0, 4, and 8. Keys add a stab at 12, and the bass plays root, b7, and fifth on 8, 10, and 12, so most parts divide the 3-group into eighths. Only the kick splits it at 11, which the original described as keeping the 3-group from sounding like a third 2-group, not as a 1.5+1.5 feel. The feedback asked for a different feel, not a fix for a mismatch.
+- **Revision:** the note was sent verbatim to the same subagent, without any analysis. It read the note the same way, identified which parts still divided the 3-group into eighths, and wrote [g10-fusion-7-8-rev1.scrim](g10-fusion-7-8-rev1.scrim). In bars 1 to 3, keys, bass, kick, and hat now all land on sixteenths 0, 4, 8, and 11, and the snare backbeat moved to 4 and 11. Harmony, voicings, and tempo are unchanged.
 - **Pending:** whether the revision sounds like the feel Hiroshi meant.
 
 ## Judgment

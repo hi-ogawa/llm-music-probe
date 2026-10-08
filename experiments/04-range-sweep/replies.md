@@ -1,6 +1,6 @@
 # Replies
 
-Each subagent's final reply, verbatim as received by the orchestrating session, in the order they finished. The full subagent transcripts were not kept. The prompts asked for "the final check result and three to five sentences describing what you wrote and why". These are the model's own descriptions of its intent and process. They are not evidence about the notes, which can differ, as the g10 revision showed.
+Each subagent's final reply, verbatim as received by the orchestrating session, in the order they finished. The full subagent transcripts were not kept. The prompts asked for "the final check result and three to five sentences describing what you wrote and why". These are the model's own descriptions of its intent and process. They are not evidence about the notes, so check claims about the music against the scores.
 
 ## Batch 1
 
