@@ -1,0 +1,83 @@
+title    Seven Eighths Fusion (trio 7 feel)
+composer Claude
+about    The same 4-bar loop over Dm11, Bbmaj13#11, Gm9 and an altered A7, regrooved from a straight fusion backbeat into a swung jazz trio 7 feel with walking bass, ride cymbal, and pushed comping.
+
+# Revision for the note "fusion 7 feels lame. keep everything, just make the
+# groove like mehldau all the things we are 7 feel".
+#
+# How the note is read: Mehldau's "All the Things You Are" in 7 is a swinging
+# trio groove, not a fusion groove. The pulse is seven walking quarter notes
+# with swung eighths on a ride cymbal, the bar is felt in long and short
+# groups, and the band pushes chord changes ahead of the beat together.
+# "Keep everything" is read as: keep the harmony, voicings, instruments, bar
+# length, tempo number, and the 2+2+3 phrasing, and change only the groove.
+#
+# What changed and why:
+# - Same tempo and grid (tempo 240, beats 7, steps 2), so every bar lasts
+#   exactly as long as before. The seven 240-bpm beats are now treated as the
+#   walking pulse, and each beat splits into two swung eighths. swing 0.25 is
+#   moderate, because swing flattens at a fast pulse.
+# - Bass: root-fifth fusion figures become a walking line, one note per beat,
+#   with chord tones on the group starts (beats 1, 3, 5) and chromatic
+#   approaches into each next root.
+# - Drums: the hi-hat sixteenths and snare backbeat are gone. A ride cymbal
+#   plays a swung "ding ding-a" pattern bent to 2+2+3, with accents on the
+#   three group starts so the phrasing stays audible. The hat plays only the
+#   second beat of each group, like a hi-hat foot. The kick is feathered
+#   quietly, and the snare plays sparse, different comping ghosts in each bar
+#   instead of a repeated part.
+# - Keys: identical voicings, but the on-grid stabs on every group start
+#   become sparse, varied comping on swung offbeats, leaving beat 1 to the
+#   bass more often.
+# - Bar 4: the whole band pushes the altered A7 one swung eighth early (step 7
+#   instead of step 8), the pad moves with it, and the snare and kick catch
+#   the push. This anticipation is the most trio-like gesture in the loop.
+# - Instruments are unchanged (epiano, strings, ebass) because the note says
+#   to keep everything. The ride voice replaces the hat as timekeeper.
+tempo    240
+beats    7
+steps    2
+swing    0.25
+
+# Electric piano: same rootless voicings as the original, now comped sparsely.
+voice keys epiano vol=0.75 pan=-0.25
+# String pad: unchanged common tones (E5+A5), moving to F5+Bb5 on A7alt.
+voice pad strings vol=0.35 pan=0.3
+# Fingered electric bass, slightly detached so the walking quarters articulate.
+voice bass ebass vol=0.95 gate=0.85
+voice kick kick vol=0.55
+voice snare snare vol=0.6
+voice ride ride vol=0.7
+voice hat hat vol=0.4
+voice crash crash vol=0.5
+
+pattern A
+# Keys comp, steps marked as (step, length).
+# Bar 1 Dm11: (1,2) (7,3) (11,1), off the beat, leaving the downbeat to bass.
+# Bar 2 Bbmaj13#11: (0,1) (3,2) (8,1) (10,4), held through the 3-group.
+# Bar 3 Gm9: (3,2) (6,1) (9,3).
+# Bar 4: Gm9 at (1,2), then A7alt pushed to step 7 and held to the loop point,
+# where it resolves by half steps into Dm11 as before.
+keys | . F3+C4+E4+G4+A4- .... F3+C4+E4+G4+A4-- . F3+C4+E4+G4+A4 .. | A3+D4+E4+G4 .. A3+D4+E4+G4- ... A3+D4+E4+G4 . A3+D4+E4+G4--- | .-- Bb3+D4+F4+A4- . Bb3+D4+F4+A4 .. Bb3+D4+F4+A4-- .. | . Bb3+D4+F4+A4- .... G3+C#4+F4+Bb4+C5------! |
+# Pad: tied common tones, now moving at step 7 with the bar-4 push.
+pad  | E5+A5------------- | -------------- | -------------- | ------- F5+Bb5------ |
+# Bass walk, one note per beat (two steps):
+# Bar 1 D E F G A C B, descending chromatically into Bb.
+# Bar 2 Bb C D E F A Ab, descending chromatically into G.
+# Bar 3 G F D C Bb A Ab, descending into G again.
+# Bar 4 G Bb D, a short C on beat 4, A pushed to step 7 with the band, then
+# E and C# approaching the D at the loop point.
+bass | D2- E2- F2- G2- A2- C2- B1- | Bb1- C2- D2- E2- F2- A1- Ab1- | G2- F2- D2- C2- Bb1- A1- Ab1- | G1- Bb1- D2- C2 A1--! E2- C#2- |
+# Ride: swung "ding ding-a" in 2+2+3, accents on the group starts (0, 4, 8)
+# and a skip note on step 13 that leans into the next downbeat.
+# Bar 4 drops the step-8 accent and hits step 7 instead, with the push.
+ride  | X.xx X.xx X.x.xx | % | % | X.xx x.xX ..x.xx |
+# Hat foot on the second beat of each group (steps 2, 6, 10).
+hat   | ..x. ..x. ..x... | % | % | % |
+# Kick feathered on group starts, with an accent on the bar-4 push.
+kick  | o... o... o..... | % | % | o... o..X ...... |
+# Snare comping: different ghosts in each bar, on swung offbeats.
+snare | .... ...o ...x.. | ...o .... .o...x | .o.. ..o. ...o.. | ...o ...X ...o.x |
+crash | X... .... ...... | _ | _ | _ |
+
+loop A

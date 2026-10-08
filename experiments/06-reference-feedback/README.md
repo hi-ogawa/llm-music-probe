@@ -73,9 +73,18 @@ Inferred:
 
 Batch 1 was rendered but not listened to, because the texture alone gives away the B runs.
 
+## Batch 2 results
+
+Measured from the scores, except where marked. All six pass `check`, and g-a1 needed a fix first for three 15-step bars.
+
+- **A, vague: 0 of 3.** All three keep the voicings, instruments, harmony, and tempo, and rework the rhythm the same way as in batch 1: sixteenth hats, keys moved off the group starts onto offbeat sixteenths, syncopated sixteenth bass lines with ghost notes, drum bars that vary, and in two runs light swing (0.1). None places the bar on 4+4+3+3.
+- **B, reference: 0 of 3, and the scope held.** All three keep the electric piano, string pad, electric bass, voicings, harmony, bar length, and tempo 240, and change only the rhythm. Each turns the groove into a swung walking feel: the bass walks on every beat (0 2 4 6 8 10 12), a new ride voice plays a skip-beat pattern, the hi-hat foot plays 2 6 10, the kick and snare drop the backbeat for ghost notes, and swing is 0.22 to 0.28. Because the tempo number stays 240, the walking pulse is 240 per beat, which g-b1 flagged as fast. As in batch 1, this is 2+2+3 with the last group subdivided evenly, not 2 2 1.5 1.5.
+
+Inferred: with the scope set by the note, the B runs give the same groove as batch 1, without the instrument change. The reference consistently maps to a swung walking 2+2+3 in this model, which matches its knowledge check.
+
 ## Judgment
 
-Pending batch 2 and the blind listen.
+Pending the blind listen. The listening set is the six batch 2 runs and batch 1's three C runs, rendered as `.tmp/06-reference-feedback/01.wav` to `09.wav`. The key is in `key.txt` in the same directory, and batch 1's renders are in `batch1/`. The B runs remain recognizable by their ride cymbal and walking bass, so the blind comparison is mainly between A and C.
 
 ## Effect on claims
 

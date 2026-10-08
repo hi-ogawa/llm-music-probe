@@ -1,0 +1,69 @@
+title    Seven Eighths Fusion (groove revision)
+composer Claude
+about    A 4-bar fusion loop in 7/8, phrased 2+2+3, over Dm11, Bbmaj13#11, Gm9 and an altered A7. Same harmony, voicings and tempo as the original, with the groove rebuilt.
+
+# Revision note. Feedback: "fusion 7 feels lame. keep everything, just the
+# groove". Read as: harmony, voicings, instruments, form and tempo stay; only
+# the rhythmic feel changes. In the original every part hit the same group
+# starts (steps 0, 4, 8) on a bare eighth-note hat, the 3-group had no
+# backbeat, and the keys stabbed squarely on the grid, so the loop sounded
+# stiff. Changes, all rhythmic:
+#  - Hats move from eighths to sixteenths with accents on the 2+2+3 group
+#    starts and ghosts between, plus an open hat on step 7 that lifts into
+#    the long group.
+#  - Snare gets a second backbeat inside the 3-group (step 10, the 6th eighth),
+#    so the bar counts "1 2 3 4 5 6 7" with snare on 3 and 6, plus ghost notes.
+#  - Kick adds sixteenth pushes (step 3 and 11) and locks with the bass.
+#  - Bass keeps its roots, fifths and b7s but plays a syncopated sixteenth line
+#    with ghosted anticipations and an octave pop on step 7.
+#  - Keys keep every voicing but comp off the grid (hits at 0, 6, 9, 12) so they
+#    answer the drums instead of doubling the kick.
+#  - Bar 4 gets a tom fill under the A7alt stab to turn the loop around.
+
+# Tempo unchanged: quarter = 120, eighth beat = 240, 14 sixteenth steps per bar,
+# groups 2+2+3 eighths = 4+4+6 steps (group starts at steps 0, 4, 8).
+tempo    240
+beats    7
+steps    2
+swing    0
+
+voice keys epiano vol=0.75 pan=-0.25
+voice pad strings vol=0.35 pan=0.3
+voice bass ebass vol=0.95
+voice kick kick vol=0.95
+voice snare snare vol=0.8
+voice hat hat vol=0.5
+# Added for the groove: open hat lift and a bar-4 tom fill.
+voice ohat ohat vol=0.45
+voice tomhi tomhi vol=0.7
+voice tommid tommid vol=0.7
+voice tomlo tomlo vol=0.75
+voice crash crash vol=0.6
+
+pattern A
+# Keys: same rootless voicings as the original (Dm11 F C E G A, Bbmaj13#11
+# A D E G, Bbmaj7 color Bb D F A, A7alt G C# F Bb C). Rhythm changed from
+# on-the-group stabs to: short hit on 1, soft push on step 6 (the "and" before
+# the long group), then hits on steps 9 and 12 inside the 3-group, leaving
+# step 8 to the kick and bass. Bar 4 keeps the A7alt landing on step 8.
+keys | F3+C4+E4+G4+A4- .--- F3+C4+E4+G4+A4? .. F3+C4+E4+G4+A4- . F3+C4+E4+G4+A4- | A3+D4+E4+G4- .--- A3+D4+E4+G4? .. A3+D4+E4+G4- . A3+D4+E4+G4- | Bb3+D4+F4+A4- .--- Bb3+D4+F4+A4? .. Bb3+D4+F4+A4- . Bb3+D4+F4+A4- | Bb3+D4+F4+A4- .--- Bb3+D4+F4+A4? . G3+C#4+F4+Bb4+C5!----- |
+# Pad: unchanged.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: same pitches per bar (root, fifth, b7). Root on 0, ghosted root on
+# step 3 with the kick, fifth on the snare, octave pop on step 7 with the open
+# hat, root on the 3-group with the kick, b7 on 10, ghost root on 11 with the
+# kick, fifth on 12. Bar 4 keeps A1 on the 3-group climbing E2 G2 back to D.
+bass | D2- . D2? A2- . D3? D2- C3? D2? A2- | Bb1- . Bb1? F2- . Bb2? Bb1- A2? Bb1? F2- | G1- . G1? D2- . G2? G1- F2? G1? D2- | G1- . G1? D2- . G2? A1!--- E2? G2 |
+# Drums: kick 0, 3, 8, 11 (bar 3 adds a step-13 pickup); snare backbeat on
+# steps 4 and 10 with ghosts; sixteenth hats accented on the group starts.
+kick  | X..x .... X..x.. | % | X..x .... X..x.x | X..x .... X..... |
+snare | ..o. X.o. .oX..o | % | % | ..o. X.o. .....X |
+hat   | Xoxo Xox. Xoxoxo | % | % | Xoxo Xox. ...... |
+ohat  | .... ...x ...... | % | % | .... ...x ...... |
+# Bar 4 fill across the 3-group, under the A7alt stab.
+tomhi  | _ | _ | _ | .... .... Xx.... |
+tommid | _ | _ | _ | .... .... ..Xx.. |
+tomlo  | _ | _ | _ | .... .... ....X. |
+crash | X... .... ...... | _ | _ | _ |
+
+loop A

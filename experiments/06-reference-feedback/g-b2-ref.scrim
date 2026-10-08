@@ -1,0 +1,69 @@
+title    Seven Eighths Fusion (swung seven)
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop. Same chords, voicings, instruments, bar length and tempo, but the groove is re-felt as a swung jazz-trio seven in the spirit of Brad Mehldau's All the Things You Are, phrased 2+2+3.
+
+# Revision note. Feedback: "fusion 7 feels lame. keep everything, just make
+# the groove like mehldau all the things we are 7 feel".
+# Reading: Mehldau's trio plays All the Things You Are in a fast, swinging
+# seven with quarter-note pulse: walking bass, ride cymbal time, hi-hat foot,
+# and comping that floats over the bar line. The original was a straight
+# sixteenth fusion groove with a kick/snare backbeat and stabs locked to the
+# group starts, which is what read as "lame".
+# What stays: harmony (Dm11, Bbmaj13#11, Gm9, Gm9 -> A7alt), every keys and
+# pad voicing, the instruments, the 2+2+3 grouping, the bar length and the
+# tempo number.
+# What changes: the 240 pulse is now felt as swung quarters (a fast 7/4,
+# close to the reference tempo) instead of straight eighths subdivided into
+# straight sixteenths. Each step is now a swung eighth, so the notation grid
+# and bar length are unchanged and only the feel moves.
+tempo    240
+beats    7
+steps    2
+# Swing added: fast swing flattens toward even eighths, so this is moderate.
+swing    0.28
+
+# Keys: same rootless voicings, now comped sparsely on swung upbeats with
+# anticipations that tie into the next bar, instead of stabs on every group.
+voice keys epiano vol=0.75 pan=-0.25
+# Pad: unchanged common-tone pedal.
+voice pad strings vol=0.35 pan=0.3
+# Bass: same instrument, now walking quarters. Shorter gate so the walk
+# articulates like a played line rather than legato fusion bass.
+voice bass ebass vol=0.95 gate=0.85
+# Drums: ride added to carry the time, hat moves to a soft foot-pedal role,
+# kick feathers the group starts, snare only comps.
+voice ride ride vol=0.6
+voice kick kick vol=0.7
+voice snare snare vol=0.65
+voice hat hat vol=0.35
+voice crash crash vol=0.5
+
+pattern A
+# Keys comp. Bar 1 hits beat 1 short, then the upbeat of beat 3, then
+# pushes the Bb chord an eighth early. Bar 2 lands a late hit on the
+# upbeat of beat 5 inside the 3-group. Bar 3 anticipates bar 4. Bar 4
+# pushes A7alt (G C# F Bb C) onto the upbeat of beat 4, an eighth ahead of
+# the 3-group, and lets it ring into Dm11 at the loop point.
+keys | F3+C4+E4+G4+A4- .- . F3+C4+E4+G4+A4-- .--- . A3+D4+E4+G4 | -- .- A3+D4+E4+G4 . .- . A3+D4+E4+G4--- . | Bb3+D4+F4+A4--- .- Bb3+D4+F4+A4- . Bb3+D4+F4+A4-- . Bb3+D4+F4+A4 | - .-- Bb3+D4+F4+A4- . G3+C#4+F4+Bb4+C5!------ |
+# Pad: unchanged.
+pad  | E5+A5------------- | -------------- | -------------- | -------- F5+Bb5----- |
+# Bass: seven walking quarters per bar. Group starts (beats 1, 3, 5) land on
+# chord tones so the 2+2+3 shape is audible in the line, and the last
+# quarter of each bar is a half-step approach to the next root (A1 to Bb1,
+# Ab1 to G1, F#1 to G1, Eb2 to D2 at the loop point).
+bass | D2- A2- C3- A2- D2- F2- A1- | Bb1- F2- A2- E2- Bb1- D2- Ab1- | G2- F2- D2- Bb1- A1- Bb1- F#1- | G1- Bb1- D2- F2- A1-! C#2- Eb2- |
+# Ride: spang-a-lang adapted to 2+2+3. Each 2-group is beat, beat, swung
+# upbeat; the 3-group is beat, beat, beat plus upbeat, accented at each
+# group start. Bar 4 accents the A7alt push on the upbeat of beat 4.
+ride  | X.xx X.xx X.x.xx | % | % | X.xx X..X ..x.xx |
+# Hat foot on the second beat of each group (beats 2, 4, 6).
+hat   | ..x. ..x. ..x... | % | % | % |
+# Kick feathers the group starts softly, and drops a bomb under the A7alt
+# push in bar 4.
+kick  | o... o... o..... | % | % | o... o..X ...... |
+# Snare: sparse ghosted comping on swung upbeats, different each bar, with a
+# setup into the loop point.
+snare | .... ...o ...o.. | .... .o.. ...o.o | ...o .... .o.... | .... ...x .o.o.x |
+crash | x... .... ...... | _ | _ | _ |
+
+loop A

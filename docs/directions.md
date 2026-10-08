@@ -76,3 +76,5 @@ What Scrimshaw showed was mostly choosing the right named idiom for the context.
 ## The adjustment loop
 
 Conclusion 3 in [context.md](context.md) holds that the agent workflow carries over: discuss at a high level, let the agent drill down to notes, then adjust together. Scrimshaw showed only the first half. Probe the second: give musical feedback the way you would to another musician, and see whether revisions follow the intent. Comping is a good first target.
+
+Prompts in this direction should imitate human musical interaction, not an agent delegating a precise task to a subagent. Write the listener's note the way a musician says it to a collaborator after listening, including its scope, as in "keep everything, just the groove". A note that names the fix, states the scope in technical terms, or points at the measured target makes the test easier than real use. [06-reference-feedback](../experiments/06-reference-feedback/README.md) learned this the hard way, because a draft of its batch 2 added a spec-like rule to the prompt.

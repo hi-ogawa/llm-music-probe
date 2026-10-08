@@ -120,3 +120,78 @@ In the revision every part marks step 11 as a pulse:
 - **Bass:** a note starts on every pulse, so the 3-group is now two 3-step notes.
 
 The harmony, voicings, pad, tempo (240 eighths per minute, which is quarter = 120) and the 7/8 meter are unchanged, and comments at the top of the file explain the reading of the note and each change.
+
+## g-a2-vague
+
+The revision is at /home/hiroshi/code/personal/llm-music-probe/experiments/06-reference-feedback/g-a2-vague.scrim. I left the original unchanged and did not commit.
+
+**Check result:** `pnpm -s cli check experiments/06-reference-feedback/g-a2-vague.scrim` printed nothing of its own and exited 0. The only line shown was the script echo `$ node src/cli.ts check ...`, which comes from the script line, not from the checker.
+
+**How I read the note and what changed:** I read "keep everything, just the groove" as keeping the parts, voicings, harmony, tempo (240 eighths, so quarter = 120) and 2+2+3 phrasing, and changing only the rhythmic feel. The original sounded square because every part hit the same three group starts on a straight eighth grid, the hat had no sixteenth motion, and the drums repeated one bar. I added light sixteenth swing (0.1), sixteenth hats with ghost notes, and a snare backbeat on beats 3 and 6 of 7 (steps 4 and 10) with ghosts. I also added syncopated kicks that change from bar to bar (pushes on steps 3 and 13) and a snare fill at the end of bar 4. The bass now uses sixteenth ghost pickups and octave pops, and ends on C#2 as a half-step approach into the D at the loop point. The keys keep every voicing but now hit steps 0, 3, 9 and 12, so they fill the gaps between kick and snare instead of doubling them, and A7alt arrives a sixteenth early in bar 4. The pad, crash and voice list are unchanged, and comments at the top of the file and above each part explain the changes.
+
+## g-a3-vague
+
+The revision is at /home/hiroshi/code/personal/llm-music-probe/experiments/06-reference-feedback/g-a3-vague.scrim. The original file is unchanged and nothing is committed.
+
+Final check result: `pnpm cli check experiments/06-reference-feedback/g-a3-vague.scrim` printed nothing except pnpm's own echo of the command (`$ node src/cli.ts check ...`) and exited 0.
+
+I read "keep everything, just the groove" as an instruction to change only the rhythmic feel. That means the harmony, the exact note stacks, the instruments, the pad part, the form and the tempo (quarter = 120, written as 240 eighths with 14 sixteenth steps per bar) all stay the same. I took "lame" to mean stiff, because in the original every part hit the same group starts over a plain eighth-note hat, and the 3-group had no backbeat. In the revision the hats play sixteenths with accents on the 2+2+3 group starts, and an open hat on step 7 lifts into the long group. The snare now has a second backbeat on the 6th eighth (step 10) plus ghost notes, and the kick adds sixteenth pushes on steps 3 and 11 that line up with a syncopated bass line. That bass line keeps the same roots, fifths and b7s, with ghosted anticipations and an octave pop. The keys keep every voicing but comp off the grid (hits on steps 0, 6, 9 and 12) instead of doubling the kick, the A7alt still lands on step 8 of bar 4, and a new tom fill under it turns the loop around. Adding the open hat and the three toms means four new drum voices, which I counted as part of "the groove", and the comments in the file explain each change.
+
+There is another untracked file, `g-a2-vague.scrim`, in the same directory. I did not create it and did not touch it.
+
+## g-b2-ref
+
+The revision is at /home/hiroshi/code/personal/llm-music-probe/experiments/06-reference-feedback/g-b2-ref.scrim. `pnpm cli check experiments/06-reference-feedback/g-b2-ref.scrim` exits 0 and the checker prints nothing. The only output is pnpm's own `$ node src/cli.ts check ...` echo line. The original g10 file is unchanged and nothing was committed.
+
+The note pointed to Mehldau's trio version of "All the Things You Are" in seven. I took that as a fast, swinging seven counted in quarter notes, with the bass walking, the ride cymbal keeping time, a hi-hat foot, and piano comping that floats over the bar line. That is the opposite of the original's straight-sixteenth fusion beat, where the kick and snare played a backbeat and the keys hit every group start, so I took that beat to be the "lame" part. "Keep everything" meant I left the chords, every keys and pad voicing, the instruments, the 2+2+3 grouping, the bar length and `tempo 240` exactly as they were. The groove now treats the 240 pulse as swung quarters (a fast 7/4) with `swing 0.28`, so the notation grid stays the same and only the feel changes. On top of that the bass walks seven quarters a bar with chord tones on each group start and a half-step lead into the next root, a new ride voice plays spang-a-lang shaped 2+2+3, the hat becomes a soft foot on beats 2, 4 and 6, the kick feathers the group starts, and the snare drops to sparse ghost notes. The keys comp on swung upbeats and come in an eighth early on the next chord, most clearly when A7alt arrives just before the 3-group in bar 4. The comments in the file explain each of these changes.
+
+Two parts of this are inferred and not checked by ear. Reading the reference as quarter = 240 in 7/4 comes from my recollection of the recording, and I could not hear whether 0.28 swing works at this tempo through General MIDI.
+
+## g-a1-vague
+
+The revision passes the check. `pnpm cli check experiments/06-reference-feedback/g-a1-vague.scrim` reports no problems and exits 0. The only line printed is pnpm's own echo of the command (`$ node src/cli.ts check ...`). The first run failed because three keys bars had 15 steps instead of 14, and I fixed those.
+
+The revision is at /home/hiroshi/code/personal/llm-music-probe/experiments/06-reference-feedback/g-a1-vague.scrim. The original at experiments/04-range-sweep/g10-fusion-7-8.scrim is unchanged, and nothing is committed.
+
+How I read the note and what I changed:
+
+I took "keep everything, just the groove" to mean the chords, voicings, instruments, pad, tempo (240 eighths, which is quarter = 120) and 2+2+3 phrasing all stay, and only the rhythm gets reworked. I blamed the "lame" feel on rhythm that never changed: three of the four drum bars were copies of the first, the keys hit the same four spots in every bar, the hi-hat ticked straight eighths, and the bass repeated one figure. Nothing pushed against the 7/8.
+
+- **Feel:** I added light 16th swing (0.1).
+- **Hi-hat:** it now plays 16ths at three loudness levels, and an open hi-hat on the last sixteenth before the 3-group in bars 2 and 3 lifts into it. This needed one new drum voice, `ohat`, which is the only added voice.
+- **Snare:** it gets quiet ghost notes and a second backbeat on the last eighth of the 3-group.
+- **Kick:** it varies from bar to bar but keeps the strong hit at the start of the 3-group and the hit that splits that group 3+3.
+- **Bass:** it is now a syncopated sixteenth line with soft octaves and chromatic approach notes into each bar, still landing roots at the start of the first group and the 3-group.
+- **Keys:** they play the same note stacks, but on offbeat sixteenths instead of on every group start. A7alt still lands on the 3-group in bar 4.
+
+Comments in the file explain each change and why. None of this has been heard, because I could not listen to the render.
+
+The untracked files g-a2-vague, g-a3-vague and g-b2-ref.scrim in experiments/06-reference-feedback were made by other runs. I did not touch or read them.
+
+## g-b1-ref
+
+The check passes. `pnpm cli check experiments/06-reference-feedback/g-b1-ref.scrim` exits 0 with no problems reported. The only line it prints is pnpm's own echo of the command (`$ node src/cli.ts check ...`). The revision is at /home/hiroshi/code/personal/llm-music-probe/experiments/06-reference-feedback/g-b1-ref.scrim. The original g10-fusion-7-8.scrim is unchanged, and I did not commit.
+
+I took the note to mean a swinging jazz-trio feel in 7, the way Mehldau's band plays "All the Things You Are": a walking pulse, swung eighths on the ride cymbal, and the whole band pushing chord changes early. I read "keep everything" as keeping the harmony, the voicings, the instruments (electric piano, strings, electric bass), the bar length, tempo 240 and the 2+2+3 phrasing. So the seven beats at 240 now act as the walking pulse with swing 0.25, and each bar lasts exactly as long as before. The bass now walks one note per beat with chromatic approaches into each root. A ride cymbal plays a swung pattern bent to 2+2+3 and accents the group starts, the hi-hat plays only the second beat of each group, the kick is quiet, and the snare backbeat is replaced by sparse ghost notes that differ in each bar. The piano keeps the same voicings but plays fewer, offbeat stabs instead of hitting every group start, and in bar 4 the band, string pad included, plays the altered A7 one swung eighth early (step 7 instead of 8). Comments in the file explain each change.
+
+I made two judgment calls that the experiment notes should record. First, I kept the General MIDI electric piano and electric bass instead of switching to acoustic piano and upright, because the note says "keep everything". Second, keeping the tempo number means the walking pulse is 240 per beat, which makes the swing quite fast. Neither has been heard, since I couldn't listen to the render.
+
+Other agents' runs had left files in the same directory (replies.md modified, plus g-a1/a2/a3 and g-b2 untracked). I didn't read or touch them.
+
+## g-b3-ref
+
+The check passes: `pnpm cli check experiments/06-reference-feedback/g-b3-ref.scrim` printed nothing and exited 0. The only line in the output was pnpm echoing the script command (`$ node src/cli.ts check ...`). The revision is at /home/hiroshi/code/personal/llm-music-probe/experiments/06-reference-feedback/g-b3-ref.scrim, the original is untouched, and nothing is committed. I can't listen, so none of this is checked by ear.
+
+**How I read the note:** Mehldau's trio plays All the Things You Are as a swung 7/4, with walking bass, a ride cymbal keeping time and sparse pushed comping. The original was a straight-sixteenth 7/8 that hit every group start. I read "keep everything" as keeping the chords, the exact voicings, the instruments, the 4-bar length and the tempo.
+
+**What changed:**
+
+- **Feel:** the settings are the same numbers as before (tempo 240, beats 7, steps 2), plus `swing 0.22`. Each beat is now a swung quarter rather than a straight eighth, so the bar is 7/4 at quarter = 240. The loop and every chord last exactly as long in seconds as before. The 2+2+3 grouping stays, now counted in quarters.
+- **Bass:** the root-and-fifth figure is now a walking line, one note per beat, with a half-step approach into each next root.
+- **Drums:**
+  - A new ride voice plays the swing pattern spread over 2+2+3.
+  - The hi-hat is now a quiet chick on beats 2, 4 and 6.
+  - The snare and kick no longer play a backbeat, only sparse ghost notes and one accent with the bar-4 push.
+- **Keys:** the four even stabs per bar are now off-beat comping with anticipations. Bbmaj13#11 is tied over the bar line, and A7alt comes in an eighth early in bar 4. The pad's move in bar 4 shifts with it.
+
+The comments in the file explain each of these choices.

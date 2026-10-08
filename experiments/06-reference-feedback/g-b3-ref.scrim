@@ -1,0 +1,83 @@
+title    Seven Eighths Fusion (Mehldau 7 feel)
+composer Claude
+about    Revision of the 4-bar 7/8 fusion loop. The chords, voicings, instruments, tempo line and loop length are unchanged, but the groove is now a swung jazz-trio 7 in the spirit of Brad Mehldau's 7/4 "All the Things You Are": walking bass, ride cymbal, sparse pushed comping.
+
+# Revision note. Feedback: "fusion 7 feels lame. keep everything, just make
+# the groove like mehldau all the things we are 7 feel".
+#
+# How the note was read: Mehldau's trio plays All the Things You Are in a
+# swung 7/4, not a choppy straight-sixteenth 7/8. The bass walks in quarter
+# notes, the drummer keeps a ride-cymbal swing pattern instead of a
+# kick/snare backbeat, the piano comps sparsely with off-beat pushes and
+# anticipations, and the odd meter flows across bar lines instead of being
+# hammered on every group start. "Keep everything" is read as: keep the
+# chords, the exact voicings, the instruments, the 4-bar length and the tempo.
+#
+# What changed in the grid: the settings below are the same numbers as the
+# original (tempo 240, beats 7, steps 2), but each beat is now felt as a
+# swung quarter note instead of a straight eighth. Each step is now a swung
+# eighth. So the loop takes exactly as long in seconds as before, every chord
+# lasts exactly as long as before, and the bar becomes 7/4 at quarter = 240.
+# This is a brisk swing tempo, which suits the flowing, fast-moving 7 of the
+# reference. The 2+2+3 grouping is kept, now in quarters (beats 1, 3, 5 start
+# the groups, which are still steps 0, 4, 8).
+#
+# Swing 0.22 rather than a full triplet (0.33), because swing eighths flatten
+# out at fast tempos and a heavy shuffle would sound corny.
+tempo    240
+beats    7
+steps    2
+swing    0.22
+
+# Same instruments and mix as the original. The electric piano keeps its
+# rootless voicings, and the string pad keeps its common-tone pedal.
+voice keys epiano vol=0.75 pan=-0.25
+voice pad strings vol=0.35 pan=0.3
+voice bass ebass vol=0.95
+voice kick kick vol=0.7
+voice snare snare vol=0.6
+voice hat hat vol=0.45
+voice crash crash vol=0.5
+# New: ride cymbal, which carries the time in a jazz trio in place of the
+# straight hi-hat eighths of the fusion version.
+voice ride ride vol=0.7
+
+pattern A
+# Keys: same five voicings in the same bars (Dm11, Bbmaj13#11, Gm9, Gm9 to
+# A7alt). The rhythm changed from four evenly placed stabs per bar to sparse,
+# conversational comping. Bar 1 hits beat 1 and the "and" of 3, then
+# anticipates the Bbmaj13#11 voicing on the "and" of 7, tied over the bar
+# line. Bar 2 answers with pushes on the "and" of 4 and the "and" of 6. Bar 3
+# starts late, on the "and" of 1. Bar 4 pushes the A7alt voicing an eighth
+# early, on the "and" of 4, and holds it to the loop point so it still
+# resolves by half steps into Dm11.
+keys | F3+C4+E4+G4+A4- .-- F3+C4+E4+G4+A4- .----- A3+D4+E4+G4 | -- .---- A3+D4+E4+G4- .- A3+D4+E4+G4 .- | . Bb3+D4+F4+A4-- .---- Bb3+D4+F4+A4- .-- | .-- Bb3+D4+F4+A4- .- G3+C#4+F4+Bb4+C5------! |
+# Pad: unchanged except that its move to F5+Bb5 follows the keys push onto
+# the "and" of 4 in bar 4.
+pad  | E5+A5------------- | -------------- | -------------- | ------- F5+Bb5------ |
+# Bass: a walking line in quarter notes, one per beat, replacing the
+# root-fifth figure. Each bar starts on the root and walks by chord tones and
+# passing tones to a half-step approach into the next root: B1 into Bb1, Ab1
+# into G1, Bb1 into A1 for the altered dominant, and Eb2 into D2 at the loop
+# point. One swung eighth-note skip per bar (bars 1 and 3) keeps it from
+# sounding mechanical. In bar 4 the A1 still lands on beat 5, the start of the
+# 3-group, under the anticipated A7alt.
+bass | D2-! A2- F2- E2 F2 D2- C2- B1- | Bb1- D2- F2- A2- E2- D2- Ab1- | G1- A1- Bb1- D2- F2- E2 D2 C2- | G1- D2- F2- Bb1- A1!- C#2- Eb2- |
+# Ride: the standard swing pattern (quarter, then quarter plus skip note)
+# laid over 2+2+3 quarters, so the skip falls on beats 2, 4 and 6 and beat 7
+# is a plain quarter. Only beat 1 is accented, so the bar flows instead of
+# being chopped at each group. Bar 4 adds a skip on beat 7 to lead into the
+# loop.
+ride  | X. xo x. xo x. xo x. | % | % | X. xo x. xo x. xo xo |
+# Hi-hat: now a quiet foot-style chick on the second beat of each group
+# (beats 2, 4, 6), marking the 2+2+3 grouping softly instead of loudly.
+hat   | .. x. .. x. .. x. .. | % | % | % |
+# Snare: no backbeat. Sparse ghost-note comping that talks back to the
+# piano, then a hit on the "and" of 4 in bar 4 with the A7alt push.
+snare | .. .. .o .. .. .. .. | .. .. .. .. .o .. o. | .. .o .. .. .. .. .o | .. .. .. .X .. .o .o |
+# Kick: soft feathered quarter on beat 1 only, plus a "bomb" on the bar 4
+# push, instead of marking every group start.
+kick  | o. .. .. .. .. .. .. | % | % | o. .. .. .x .. .. .. |
+crash | x. .. .. .. .. .. .. | _ | _ | _ |
+
+loop A
