@@ -1,12 +1,32 @@
 # Notation
 
-What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it has been tested yet.
+What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it had been tested until [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), which gives the central hypothesis its first data point, below.
 
 The central hypothesis is that exact syntax matters little, because a capable model can learn and use any reasonable format, and that what matters is whether the medium has room for an idea. If it does not, a probe can fail because the idea could not get out, not because it was missing.
 
 A renderer default is where room is lost most easily, as with chord names voiced by Scrimshaw's renderer. So every decision that can carry intent should be writable explicitly, with defaults applying only where the score says nothing. An explicit value is then deliberate by definition, and no separate "do not change this" mark is needed.
 
 Whether intent survives translation between notations is a question about the model rather than the notation, so it lives in [directions.md](directions.md) as "Robustness across notations".
+
+## First evidence: writing into a schema (2026-10-10)
+
+In [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), the agent composed straight into toy-midi's project model, which is not a notation: MIDI numbers, beats as decimals, and one object per note. It wrote no score. What it wrote instead, in the script ([session.md](../experiments/07-live-toy-midi-tab/session.md)), had four layers, each symbolic to a different degree:
+
+- **Chart and form:** chord names per bar in arrays, the second pass as an array spread, and the ending as an override. This is the only layer that looks like a notation.
+- **Voicings:** MIDI numbers in a table keyed by chord name. The name is a label, not parsed, so the voicing was chosen without any chord-symbol rule.
+- **Melody:** `[beat, length, MIDI pitch]` triples, with no note names anywhere.
+- **Bass:** a rule over the chart's roots, as root, root, fifth, octave, and an approach from below. It is the most abstract layer, because it states the idea itself.
+
+Measured: there was almost no step converting a notation into the schema, because the agent wrote the schema's numbers directly. Where it abstracted, it did so as code, not as a text notation.
+
+This supports the central hypothesis. Syntax mattered little, because the agent was fluent in a raw numeric schema it had never used. Room decided what got out: tab had a field and was written, while drums and pan had none and were not. Intent such as the chord chart and the reasons behind choices existed in the script, but the project has no place to keep it, which is the Intent row's core room missing. The harness covered repetition and variation, as the rejected candidates below argue.
+
+It does not show that intent survives as well as in a score, because the piece was not judged by ear. That comparison, the same brief written as a score and into the schema, belongs to "Robustness across notations" in [directions.md](directions.md).
+
+Two nuances:
+
+- **Scripting gives room, but also a way around it.** The tab first went through a generic fingering search instead of the bassist's box shape the model knew. Once written as a rule, the idiom came through. So a schema plus scripting can carry an idea, or replace it with a generic algorithm.
+- **Inferred, weak: raw numbers may cost legibility.** The bass was written an octave higher than the agent would have chosen, and the slip sits in `ROOT.Gmaj7 = 43`, where a note name such as G2 would have shown the register. One run cannot separate this from carelessness. It bears on the candidate principle below, reuse notation that already exists as text.
 
 ## Scrimshaw's capabilities
 

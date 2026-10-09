@@ -39,6 +39,10 @@ Tab, in four passes:
 - **Inferred:** the idiom was in the model's vocabulary all along, because it named the box shape and applied it correctly as soon as it was asked. What failed was the default approach. It routed the idea through a generic optimizer, whose costs encoded "few frets and little movement" instead of the shape a bassist would use. So the first tab is evidence about the agent's habit of reaching for a search, not about missing intuition.
 - **Inferred:** two of the remaining awkward spots are in the notes, not the fingering. In bars 4 and 6 the approach from below lands below E1, so the hand jumps from the G string to the B string. The agent pointed this out and proposed approaching from above, which was not tried.
 
+Medium:
+
+- **Measured:** the agent wrote toy-midi's numeric schema directly, with chord names only as labels for hand-chosen voicings, the melody as MIDI numbers, and the bass as a rule over the chart. The analysis is in [notation.md](../../docs/notation.md#first-evidence-writing-into-a-schema-2026-10-10).
+
 Adjustment loop:
 
 - **Measured:** both listener notes were questions, not instructions. Each time the agent explained the cause, proposed a change, and waited for confirmation before rewriting the register. For the tab note it rewrote directly.
@@ -48,4 +52,5 @@ Adjustment loop:
 
 - New row in [context.md](../../docs/context.md): instrument idiom such as tab fingering is in the vocabulary, but was not applied by default. One run, own material.
 - Adjustment loop: two more notes in a musician's words each produced a revision that followed the intent, adding to [06-reference-feedback](../06-reference-feedback/README.md).
+- [notation.md](../../docs/notation.md): first data point for the central hypothesis that syntax matters little and room decides what gets out, with two nuances: scripting can route around an idea, and raw numbers may cost legibility.
 - For [toy-midi-playback.md](../../docs/toy-midi-playback.md): step 2, letting an agent put music into the open toy-midi, works through the WebMCP bridge without any import, and the agent can also play, seek, and loop.
