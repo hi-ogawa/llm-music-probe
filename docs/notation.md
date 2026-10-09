@@ -25,7 +25,7 @@ It does not show that intent survives as well as in a score, because the piece w
 
 Two nuances:
 
-- **Scripting gives room, but also a way around it.** The tab first went through a generic fingering search instead of the bassist's box shape the model knew. Once written as a rule, the idiom came through. So a schema plus scripting can carry an idea, or replace it with a generic algorithm.
+- **Scripting gives room, but also a way around it.** The tab first went through a generic fingering search instead of the bassist's box shape the model knew. Once written as a rule, the named rule came through. So a schema plus scripting can carry an idea, or replace it with a generic algorithm. Both are still solvers, though. Tab exists in training data as ASCII tab, not as a string field on note objects, so whatever fingering intuition the model absorbed from reading tab would come out in that text form, which the schema does not offer. This is the candidate principle below, reuse notation that already exists as text, applied to tab.
 - **Inferred, weak: raw numbers may cost legibility.** The bass was written an octave higher than the agent would have chosen, and the slip sits in `ROOT.Gmaj7 = 43`, where a note name such as G2 would have shown the register. One run cannot separate this from carelessness. It bears on the candidate principle below, reuse notation that already exists as text.
 
 ## Scrimshaw's capabilities

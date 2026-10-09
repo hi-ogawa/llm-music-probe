@@ -36,7 +36,8 @@ Tab, in four passes:
 - **Measured:** the agent never wrote a fingering directly at first. It wrote a generic search and ran it three times with different costs. Greedy nearest-fret drifted up to fret 19. A whole-line search with an open-string discount gave bar 1 as G0 G0 D12 G12. A hand-position search gave the same bar 1 and still reached fret 16.
 - **Measured:** after the octave drop the same search stayed within fret 4, but used open strings in place of the box shape in bars 1, 7, and 15, such as B3 B3 A0 D0.
 - **Measured:** after "isn't tab awkward? or you don't have much intuition?", the agent named the root, fifth, octave box shape, wrote it as a rule, and every bar became the same moving hand shape within fret 5. The listener replied "very cool nontheless."
-- **Inferred:** the idiom was in the model's vocabulary all along, because it named the box shape and applied it correctly as soon as it was asked. What failed was the default approach. It routed the idea through a generic optimizer, whose costs encoded "few frets and little movement" instead of the shape a bassist would use. So the first tab is evidence about the agent's habit of reaching for a search, not about missing intuition.
+- **Inferred:** the model knew the box shape as a named rule, because it named it and applied it correctly as soon as it was asked. What failed first was the default approach. It routed the problem through a generic optimizer, whose costs encoded "few frets and little movement" instead of the shape a bassist would use.
+- **Revised in review:** this was first written up as the idiom being in the model's vocabulary all along. Hiroshi pointed out that recalling a named rule and running it as code is still a heuristic solver. Intuition in the probe's sense would be fret sequences absorbed from reading tab, which would come out as tab written directly as text, without a rule or a script in between. This run never asked for that, so every pass, including the final one, was a solver, and fingering intuition beyond named rules is untested.
 - **Inferred:** two of the remaining awkward spots are in the notes, not the fingering. In bars 4 and 6 the approach from below lands below E1, so the hand jumps from the G string to the B string. The agent pointed this out and proposed approaching from above, which was not tried.
 
 Medium:
@@ -50,7 +51,7 @@ Adjustment loop:
 
 ## Effect on claims
 
-- New row in [context.md](../../docs/context.md): instrument idiom such as tab fingering is in the vocabulary, but was not applied by default. One run, own material.
+- New rows in [context.md](../../docs/context.md): a named fingering rule is known but was not applied by default, from one run on own material, and fingering intuition encoded in tab as text is open.
 - Adjustment loop: two more notes in a musician's words each produced a revision that followed the intent, adding to [06-reference-feedback](../06-reference-feedback/README.md).
 - [notation.md](../../docs/notation.md): first data point for the central hypothesis that syntax matters little and room decides what gets out, with two nuances: scripting can route around an idea, and raw numbers may cost legibility.
 - For [toy-midi-playback.md](../../docs/toy-midi-playback.md): step 2, letting an agent put music into the open toy-midi, works through the WebMCP bridge without any import, and the agent can also play, seek, and loop.
