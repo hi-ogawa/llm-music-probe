@@ -43,6 +43,8 @@ Tab, in four passes:
 Medium:
 
 - **Measured:** the agent wrote toy-midi's numeric schema directly, with chord names only as labels for hand-chosen voicings, the melody as MIDI numbers, and the bass as a rule over the chart. The analysis is in [notation.md](../../docs/notation.md#first-evidence-writing-into-a-schema-2026-10-10).
+- **Measured:** every voicing holds exactly its chord's pitch classes, and every melody note is in D major. The only notes outside the key are the bass's intended chromatic approaches. The one error was register, not pitch class.
+- **Inferred:** the melody and voicings were generated directly as numbers, with no procedure between intent and output, unlike the bass and every tab pass. So the composition's direct layers count as the intrinsic kind despite the numeric form, which fits the reading that the knowledge sits above any one encoding.
 
 Adjustment loop:
 

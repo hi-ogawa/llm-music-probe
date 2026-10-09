@@ -23,6 +23,22 @@ This supports the central hypothesis. Syntax mattered little, because the agent 
 
 It does not show that intent survives as well as in a score, because the piece was not judged by ear. That comparison, the same brief written as a score and into the schema, belongs to "Robustness across notations" in [directions.md](directions.md).
 
+What counts as intuition here is not symbols against numbers. The tab passes were not intuition because a procedure the agent wrote stood between the intent and the output, first a search and then a recalled rule run as code. By that criterion the layers of the piece split differently from how they look:
+
+| Layer             | Written as                                 | Kind                               |
+| ----------------- | ------------------------------------------ | ---------------------------------- |
+| Chord progression | Chord names, generated directly            | Direct, in symbols                 |
+| Voicings          | MIDI numbers per chord, generated directly | Direct, in numbers                 |
+| Melody            | MIDI numbers per note, with no rule        | Direct, in numbers                 |
+| Bass              | A rule over the chart                      | Procedure, like the final tab pass |
+| Tab               | A search, then a recalled rule             | Procedure                          |
+
+So the raw numbers are not evidence against intuition. The melody and voicings are the direct kind, and the bass and tab are where a procedure stood in.
+
+Measured from [project-state.json](../experiments/07-live-toy-midi-tab/project-state.json): every voicing holds exactly its chord's pitch classes, and every melody note is in D major. The only notes outside the key are the bass's chromatic approaches, which its rule intends. The one error was in register, the bass an octave high, not in pitch class.
+
+Inferred: this fits the reading that the model's pitch knowledge sits above any one encoding and projects into note names, chord symbols, or MIDI numbers alike, the way a musician's knowledge projects onto staff, fretboard, solfège, and ear. The projection into numbers was clean for pitch class and slipped only on octave, which is a +12 offset in numbers but explicit in a note name such as G2. The agent's own account of whether it converted names to numbers or worked in numbers is not evidence about the mechanism, so this stays an inference until the robustness probe tests it.
+
 Two nuances:
 
 - **Scripting gives room, but also a way around it.** The tab first went through a generic fingering search instead of the bassist's box shape the model knew. Once written as a rule, the named rule came through. So a schema plus scripting can carry an idea, or replace it with a generic algorithm. Both are still solvers, though. Tab exists in training data as ASCII tab, not as a string field on note objects, so whatever fingering intuition the model absorbed from reading tab would come out in that text form, which the schema does not offer. This is the candidate principle below, reuse notation that already exists as text, applied to tab.

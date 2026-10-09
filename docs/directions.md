@@ -69,6 +69,8 @@ In Simon's transcript, the model designed Scrimshaw's format itself before writi
 
 Is the intuition in the model, or tied to a notation it memorized? Express the same musical intent through different notations, including one invented on the spot. If the music stays good, the intuition sits above any one encoding.
 
+A concrete form from [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md): the same brief written in note names (our score format), in raw MIDI numbers (toy-midi's schema), and in scale degrees, each generated directly with no rule or script in between, and judged by ear. Measure pitch-class errors and register errors separately, because 07 had none of the first and one of the second. If quality holds across all three, the knowledge sits above the encoding. If numbers lose mainly on register, the numeric projection is lossy in that one dimension.
+
 ## Creativity beyond idioms
 
 What Scrimshaw showed was mostly choosing the right named idiom for the context. Whether the model makes good choices that no idiom names is a separate question from depth.
