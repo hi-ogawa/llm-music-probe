@@ -14,7 +14,7 @@ Probe ideas:
 - **Voicing.** The same progression in contrasting characters, such as dark and close against open and airy. The signal is whether spacing, register, low-interval limits, and voice leading change to match the stated intent.
 - **Tension and reharmonization.** A melody and a plain progression, with extended chords available. Check validity mechanically, then judge whether tensions are placed with intent or just added.
 - **Groove.** The same bass line straight, laid back, and pushing, or with ghost notes, using per-note timing offsets and velocities. This is the layer least written down as text, so it is the most likely place where no medium exists in the model's vocabulary.
-- **Instrument idiom.** Bass tab, through the toy-midi JSON format (`../toy-midi`): do the model's string and fret choices make sense for playability and hand position?
+- **Instrument idiom.** Bass tab, through the toy-midi JSON format (`../toy-midi`): do the model's string and fret choices make sense for playability and hand position? First run in [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), through toy-midi's agent interface instead of the JSON format.
 - **Timbre and orchestration.** The same passage orchestrated for different scenes, with synth parameters available. The signal is whether parameters follow the intent rather than staying at defaults.
 
 ## Genre breadth
