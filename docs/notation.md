@@ -73,7 +73,7 @@ What reached the ear:
 
 `snareT = (bar, i) => bar + i / 4 + r(0.03, 0.06)` is both in one expression: a mean drag of +0.045 beats, which is the groove, and ±0.015 of scatter, which is the humanize.
 
-- **Measured:** the systematic offsets came from the prompt, which asked for snares "about +0.03 to +0.06 beats" late. The jitter amounts were the subagent's own.
+- **Measured:** only the snare's range came from the prompt, which asked for snares "about +0.03 to +0.06 beats" late. The prompt asked for kicks "swung and loose" and hats "close to straight with human velocity" without numbers, so the kick swing amount and every jitter amount were the subagent's own.
 - **Inferred, from producer lore rather than evidence here:** Dilla's feel is usually credited to playing an MPC with quantize off, so the drift came from his hands, and such deviations are systematic and correlated with the music. Pure random humanize has a reputation for not sounding human, because players do not scatter at random. If so, the feel in 08 rests on the systematic part, and the jitter is closer to the generic DAW function producers often find unconvincing. Not tested by ear: the same drums with the jitter removed would separate them.
 - **Inferred:** the [DAW practice section](#performance-techniques-from-daw-practice) below frames a performance gap as closed either by notation the model writes or by an automatic pass at export. The agents took a third route. They wrote the pass themselves, inside the notation, and tuned it per part and per instrument.
 
