@@ -62,6 +62,8 @@ What reached the ear:
 - **Judged by the listener, by looking:** the literal rewrite in 09 "didn't explore much". Moving to a literal notation did not by itself make the melody less arbitrary. 08 to 09 also changed numbers to note names and the notation's author, so one run cannot separate these.
 - **Inferred:** the notation also shapes the discussion. 09's producers read a bar-by-bar summary in the same vocabulary and argued in it, as in "The trumpet's C5-A4 starts on 2& and the A4 ends at about 3e".
 
+- **Inferred, revising the 07 criterion:** 09's stacked harmony was written by hand with scripts forbidden, so there was no procedure between intent and output, yet it follows a rule note for note. Carrying out a rule in one's head is still carrying out a rule. So the line between intuition and procedure is not whether code sits between intent and output. It is whether the output goes beyond what a known rule would produce. By that test, 07's directly written melody and voicings are not yet shown to be more than rules either. See the working reading in [context.md](context.md#working-reading-a-rulebook-and-a-trigger-2026-10-11).
+
 ### Groove against humanize
 
 08's timing helpers rebuild two DAW features that are usually separate. In general DAW practice, not checked against sources here:

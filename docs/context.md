@@ -21,6 +21,21 @@ The question that matters is whether an encodable medium exists: a form an LLM c
 
 What remains open is collected in [directions.md](directions.md). Depth, meaning which layers of musical intuition have an encodable medium, is one direction among several.
 
+## Working reading: a rulebook and a trigger (2026-10-11)
+
+Drawn from [07](../experiments/07-live-toy-midi-tab/README.md), [08](../experiments/08-dilla-role-fan-out/README.md), and [09](../experiments/09-top-layer-dialogue/README.md), and inferred, not measured.
+
+Much of what came out convincing is a known rule carried out, not note patterns recalled from listening or playing. 08's Dilla feel is a timing rule, a mean drag plus random scatter, which simulates a groove no one played. 07's bass tab is a recalled box shape run as code. 09's stacked harmony was written note by note with no script, but it follows a rule too: a diatonic third below, a fourth where a third would clash, and none on bends and teases. So an agent can carry out a rule in code or in its head, and writing by hand does not by itself show more than a rule.
+
+That gets far, because much practical musicianship is rule-shaped: groove templates, voicing and voice leading, doubling in thirds and sixths, idiomatic fingerings, call and answer, leaving space. The model recalls these rules from training, which is memory at the level of rules, and carries them out reliably. For the thesis this counts in favor. A rule the model can state and apply is intent that the medium carries, whatever its source.
+
+Two things the rulebook has not supplied so far:
+
+1. **Melody.** It is the least rule-shaped layer, and it keeps falling short: in the range sweep, in 08, and in 09's rewrite. Rules can make a line fit its chords, but not make it memorable.
+2. **When to apply a rule.** In 09 the producers knew stacking and vibes voicings, but did not reach for them in four autonomous turns. The listener's "this sounds thin" was the trigger. 07's box shape waited for a bassist's question the same way.
+
+Predictions this makes: a routine arranging checklist in the prompt should recover most arrangement moves without a listener, melody should stay weak even with it, and a melody judged good by ear would be the first evidence of something beyond a rule.
+
 ## How the discussion got here (2026-10-06)
 
 1. **Starting question.** How deep is LLM music intuition beyond easily symbolized chord progressions, for example voicing, orchestration, tension, and reharmonization, and how would we probe it? This was later clarified as a question about whether such intuition is encodable for an LLM to present, not about measuring a current model's depth.
