@@ -55,6 +55,9 @@ Instruction following:
 Medium:
 
 - **Measured:** drums and a chord chart got out here, through GM drum note numbers in bank 128 kits and chord names used as labels for hand-chosen voicings. 07 recorded both as ideas that did not get out. **Inferred:** the difference is at least partly the request, because a Dilla beat is drum-led. The `toy_midi_eval` description now lists the bank 128 drum kits. Whether it already did during 07 was not checked.
+- **Measured:** each subagent wrote in a small notation it defined on the fly inside its module, an embedded DSL, and then wrote the song in it. In [rhythm.mjs](parts/rhythm.mjs), `kickT`, `snareT`, and `hatT` take a bar and a 16th index and return a time with that instrument's feel built in, such as `snareT = (bar, i) => bar + i / 4 + r(0.03, 0.06)`. A section then reads as usage, for example `brush.add(RIM, snareT(bar, 12), 0.2, 38)` for a rim click on beat 4. In [melody.mjs](parts/melody.mjs), the vocabulary is literal hook phrases (`HOOK_A`) plus operations such as `snapToChord`, which moves a pitch to the nearest tone of the chord under it.
+- **Measured:** these vocabularies are rule-level, not literal. One usage line stands for a rule, and the implementation, often with a random draw, decides the exact note. The laid-back snare is one definition applied to every backbeat. The bridge's hook development is a transposition passed through `snapToChord`, so no one chose those notes one by one.
+- **Inferred:** the listener's split matches this. The rhythm and harmony, judged grounded, are rule-level in a way that suits them, because a groove's feel is itself a systematic tendency. The melody, judged arbitrary, is where a rule stood in for note choices. See [notation.md](../../docs/notation.md#second-evidence-notations-the-agents-invent-2026-10-11).
 
 Listening:
 

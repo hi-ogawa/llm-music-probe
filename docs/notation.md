@@ -1,6 +1,6 @@
 # Notation
 
-What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it had been tested until [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), which gives the central hypothesis its first data point, below.
+What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it had been tested until [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), which gives the central hypothesis its first data point, below, and 08 and 09 add a second on notations the agents invent.
 
 The central hypothesis is that exact syntax matters little, because a capable model can learn and use any reasonable format, and that what matters is whether the medium has room for an idea. If it does not, a probe can fail because the idea could not get out, not because it was missing.
 

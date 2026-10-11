@@ -25,6 +25,19 @@ Everything sits on 08's song, with its drums, bass, Rhodes, strings and organ un
 3. **Mix round.** toy-midi added per-track pan and a project `comment`. The build gained a `pan` command allowed on every track and wrote `comment.md` into the project. Fresh agents in the same two roles read the history from conversation.md, because the earlier agents could not be resumed after a session restart.
 4. **Listener note.** The listener's note was passed word for word to a fresh agent in the Producer A role, with only one constraint added: keep the melody notes.
 
+### Notation
+
+Unlike 08, where each subagent wrote in a JavaScript vocabulary it defined itself, every part here was written in an external text notation. The orchestrating agent designed it during the run, and a script parses it. It is literal: one line is one note, as a bar, a position counted in 16ths with an optional offset in beats, a note name with octave, a length, and a velocity.
+
+```
+track Flute 73 0.75
+5 1&+0.06 C5 1/4 78
+5 1a+0.05 D5 1/4 80
+5 2&+0.07 F5 3/4 84
+```
+
+For the dialogue it gained edit commands over the base song (`edit`, `clear <track> <bars>`, `drop`, `set`, `pan`) and drum names such as `kick` and `ohat`, documented in [dialogue/FORMAT.md](dialogue/FORMAT.md). `summary.md` runs the other way: build.mjs renders the song bar by bar in the same vocabulary, and the producers read it in place of listening.
+
 Reproduce a turn by copying `dialogue/turns/<turn>.arrangement.txt` to `dialogue/arrangement.txt` and running `node dialogue/build.mjs`, which writes `summary.md`, `full.json`, and page scripts next to it. Turns 1-4 ran before `build.mjs` had `pan` and the comment export, and the current version applies their files unchanged.
 
 ## Raw output
@@ -65,6 +78,12 @@ Reproduce a turn by copying `dialogue/turns/<turn>.arrangement.txt` to `dialogue
 - **Judged by ear:** "sounds better."
 - **Judged by ear, by editing:** the listener then raised the flute about 1 dB, lowered the second flute about 2 dB, and moved it from -0.3, just inside the lead, to +0.29, across the stereo field. That overrules the producer's reason, "the section fuses around the lead".
 - **Inferred, from the listener's remark:** "these are also mostly classic quick arrangement cheatsheet so llm could figure out on its own." The producers had these moves. They applied them fluently once named, with chord-aware intervals and reasoned exceptions. But four autonomous turns never proposed one, and pan came up only when the agent was told about the feature. This is the same shape as [07](../07-live-toy-midi-tab/README.md), where the bass box shape was known but applied only after a bassist asked. What is missing is not knowledge or execution but reaching for the standard move unprompted.
+
+### Notation
+
+- **Measured:** going from 08 to this run changed three things together. The notation went from rule-level to literal, from numbers to note names and counted 16ths, and from one each subagent defined to one the orchestrator defined. Whether the notes were chosen one by one changed with the first of these.
+- **Judged by the listener, by looking:** the literal rewrite "didn't explore much". So the literal notation, in which every note is chosen, did not by itself fix what felt arbitrary. One run cannot say which of the three changes mattered, if any.
+- **Inferred:** the producers' messages talk in the summary's vocabulary, note names and counted beats such as "The trumpet's C5-A4 starts on 2& and the A4 ends at about 3e", so the notation also shaped how they discussed the track, not only how they wrote it.
 
 ## Effect on claims
 
