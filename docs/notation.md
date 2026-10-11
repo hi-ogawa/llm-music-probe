@@ -44,6 +44,26 @@ Two nuances:
 - **Scripting gives room, but also a way around it.** The tab first went through a generic fingering search instead of the bassist's box shape the model knew. Once written as a rule, the named rule came through. So a schema plus scripting can carry an idea, or replace it with a generic algorithm. Both are still solvers, though. Tab exists in training data as ASCII tab, not as a string field on note objects, so whatever fingering intuition the model absorbed from reading tab would come out in that text form, which the schema does not offer. This is the candidate principle below, reuse notation that already exists as text, applied to tab.
 - **Inferred, weak: raw numbers may cost legibility.** The bass was written an octave higher than the agent would have chosen, and the slip sits in `ROOT.Gmaj7 = 43`, where a note name such as G2 would have shown the register. One run cannot separate this from carelessness. It bears on the candidate principle below, reuse notation that already exists as text.
 
+## Second evidence: notations the agents invent (2026-10-11)
+
+[08-dilla-role-fan-out](../experiments/08-dilla-role-fan-out/README.md) and [09-top-layer-dialogue](../experiments/09-top-layer-dialogue/README.md) suggest a correction to the 07 reading above. "Where it abstracted, it did so as code, not as a text notation" draws the wrong line. An agent that abstracts in code is defining a notation: a vocabulary of helpers, written on the fly, and then the music written in that vocabulary. It is an embedded DSL, and its implementation sits in the same script.
+
+In 08, the rhythm subagent defined `snareT = (bar, i) => bar + i / 4 + r(0.03, 0.06)`, with `kickT` and `hatT` alongside, and then wrote sections as usage, such as `brush.add(RIM, snareT(bar, 12), 0.2, 38)`. The melody subagent defined literal hook phrases and a `snapToChord` operation. In 09, the orchestrating agent designed an external text notation with its own parser, one line per note, such as `5 2&+0.07 F5 3/4 84`.
+
+The distinction that matters is not code against text, or numbers against names. It is the level of the vocabulary:
+
+- **Rule-level:** a primitive stands for a rule, and its implementation decides the note, often with a random draw. `snareT(bar, 12)` means "the snare on beat 4, laid back", and the exact time is drawn from a range. This is the same thing 07's table calls a procedure, such as its bass rule.
+- **Literal:** one statement is one note. Feel is written out per note, for example as an offset.
+
+What reached the ear:
+
+- **Judged by ear:** in 08, the rhythm and harmony felt grounded, and the melody felt arbitrary.
+- **Inferred:** rule-level fits groove, because a feel such as "snares lay back about 30 ms" is a systematic tendency, so writing it once as a definition loses nothing. It does not fit melody, because each note of a line is a choice, and a rule such as snapping a transposed phrase to the next chord makes notes no one chose. This refines the 07 criterion. A procedure between intent and output is not always a loss of intent, because for some layers the rule is the intent.
+- **Judged by the listener, by looking:** the literal rewrite in 09 "didn't explore much". Moving to a literal notation did not by itself make the melody less arbitrary. 08 to 09 also changed numbers to note names and the notation's author, so one run cannot separate these.
+- **Inferred:** the notation also shapes the discussion. 09's producers read a bar-by-bar summary in the same vocabulary and argued in it, as in "The trumpet's C5-A4 starts on 2& and the A4 ends at about 3e".
+
+This does not revive the rejected candidate "let the level of abstraction match the intent", which was about room. A rule-level and a literal notation can write the same notes, so neither adds room. The level decides where each note gets chosen: by the writer, or by a rule's implementation. That bears on what a probe can call intuition.
+
 ## Scrimshaw's capabilities
 
 What the format can write, from its spec ([composing prompt](../experiments/01-scrimshaw-breakdown/source/composing-prompt.md)), classified by the room test:
