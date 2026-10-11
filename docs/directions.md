@@ -41,7 +41,7 @@ Steps, in order:
 
 ## Fan-out
 
-Do subagents that fan out composition ideas improve quality or the range of choices? Much of the gain may just be sampling variance, which shrinks as models improve, so this is one angle rather than a main direction. Fan-out mostly buys exploration: picking the best variant needs a judge, and taste has no automatic checker, so in practice the judge is the human ear, for example four grooves generated and one picked. A second form splits the work by role, such as a bass agent and a drums agent, which ComposerX tried with symbolic critics. [08-dilla-role-fan-out](../experiments/08-dilla-role-fan-out/README.md) is a first run of the role split, not yet judged by ear.
+Do subagents that fan out composition ideas improve quality or the range of choices? Much of the gain may just be sampling variance, which shrinks as models improve, so this is one angle rather than a main direction. Fan-out mostly buys exploration: picking the best variant needs a judge, and taste has no automatic checker, so in practice the judge is the human ear, for example four grooves generated and one picked. A second form splits the work by role, such as a bass agent and a drums agent, which ComposerX tried with symbolic critics. [08-dilla-role-fan-out](../experiments/08-dilla-role-fan-out/README.md) is a first run of the role split, and [09-top-layer-dialogue](../experiments/09-top-layer-dialogue/README.md) let two agents keep talking about one layer. Both converged rather than varied, so the exploration form is still untested.
 
 ## Fast decision models
 

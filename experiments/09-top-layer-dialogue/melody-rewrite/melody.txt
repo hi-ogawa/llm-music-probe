@@ -1,0 +1,156 @@
+# Hook (2 bars, over Bbmaj9 -> Am11): C5 D5 F5 | E5 D5 C5 A4
+# Bar 1 of hook rises in the gap after the keys' downbeat chop and lands on 2& just after the snare.
+# Bar 2 falls back down to A4 before the keys chop again on 3&/3a.
+# Everything sits 0.04-0.08 beats behind.
+
+track Flute 73 0.75
+
+# --- intro: only the first cell, faint, as if it is buried in the sample
+3 2&+0.08 C5 1/4 50
+3 2a+0.07 D5 3/2 48
+
+# --- verseA: the hook, twice; second time it reaches higher
+5 1&+0.06 C5 1/4 78
+5 1a+0.05 D5 1/4 80
+5 2&+0.07 F5 3/4 84
+6 1e+0.05 E5 1/4 78
+6 1&+0.05 D5 1/2 76
+6 2&+0.06 C5 1/4 74
+6 2a+0.05 A4 1 72
+# bar 7 rests (trumpet answers), bar 8 small pickup back into the hook
+8 4+0.06 G4 1/4 66
+8 4a+0.05 Bb4 1/4 70
+9 1&+0.06 C5 1/4 80
+9 1a+0.05 D5 1/4 82
+9 2&+0.07 F5 1/2 86
+9 3+0.06 A5 1 88
+10 1e+0.05 G5 1/4 80
+10 1&+0.05 E5 1/4 78
+10 1a+0.04 D5 1/4 76
+10 2&+0.06 C5 1/2 76
+10 3+0.06 A4 1/2 72
+# bars 11-12 rest: trumpet answer, then the snare fill has the floor
+
+# --- bridgeB: the hook cell climbs in sequence over the new chords
+13 1&+0.06 D5 1/4 82
+13 1a+0.05 F5 1/4 84
+13 2&+0.07 A5 3/4 88
+# bar 14 is the trumpet's
+15 1&+0.06 C5 1/4 82
+15 1a+0.05 E5 1/4 84
+15 2&+0.07 G5 3/4 88
+# Dbmaj7#11 color: Ab5 falling through the #11
+16 3&+0.06 Ab5 1/4 86
+16 3a+0.05 G5 1/4 82
+16 4+0.06 F5 1/2 80
+17 2&+0.06 D5 1/4 84
+17 2a+0.05 F5 1/4 86
+17 3+0.06 A5 1 90
+18 1e+0.05 G5 1/4 84
+18 1&+0.05 E5 1/4 80
+18 1a+0.04 D5 1/4 78
+18 2&+0.06 C5 1/4 78
+18 2a+0.05 A4 3/4 74
+# bar 19 trumpet, bar 20: bluesy #9 leaning into the 3rd over A7#9
+20 2&+0.06 E5 1/4 84
+20 2a+0.05 C5 1/4 82
+20 3+0.07 Db5 1 80
+
+# --- breakdown: hook head stretched out, alone in the space (swell owns bar 21)
+22 1&+0.08 C5 1/2 58
+22 2+0.08 D5 3/2 56
+23 2&+0.08 F5 1 60
+23 3a+0.06 D5 1/2 54
+# pickup through the bar 24 snare fill into the drop
+24 4+0.06 A4 1/4 66
+24 4a+0.05 Bb4 1/4 72
+
+# --- verseA2: the hook returns fuller, then peaks at C6
+25 1&+0.06 C5 1/4 84
+25 1a+0.05 D5 1/4 86
+25 2&+0.07 F5 1/2 88
+25 3+0.06 A5 1/2 88
+25 4+0.06 G5 1/4 82
+25 4&+0.05 F5 1/2 80
+26 1e+0.05 E5 1/4 84
+26 1&+0.05 D5 1/2 82
+26 2&+0.06 C5 1/4 80
+26 2a+0.05 A4 1 78
+28 4+0.06 G4 1/4 70
+28 4&+0.05 A4 1/4 74
+28 4a+0.05 Bb4 1/4 78
+29 1&+0.06 C5 1/4 86
+29 1a+0.05 D5 1/4 88
+29 2&+0.06 F5 1/4 90
+29 2a+0.05 A5 1/4 92
+29 3+0.06 C6 1 96
+29 4&+0.05 Bb5 1/4 86
+29 4a+0.05 A5 1/2 84
+30 1e+0.05 G5 1/4 86
+30 1&+0.05 E5 1/4 84
+30 1a+0.04 D5 1/4 82
+30 2&+0.06 C5 1/2 82
+30 3+0.06 A4 1 78
+# bars 31-32 rest: trumpet answer, then the snare fill
+
+# --- outro: the hook one last time, softer and slower, then a held D
+33 1&+0.08 C5 1/4 64
+33 1a+0.07 D5 1/4 62
+33 2&+0.08 F5 1 60
+34 1e+0.07 E5 1/4 56
+34 1&+0.06 D5 1/2 54
+34 2&+0.07 C5 1/4 52
+34 2a+0.06 A4 3/2 50
+35 3&+0.08 D5 4 44
+
+track MutedTrumpet 59 0.55
+
+# short vocal-like answers in the end-of-bar gaps, always echoing the hook's falling tail
+# verseA: a two-note sigh, then three
+7 4+0.07 C5 1/4 62
+7 4&+0.06 A4 1/2 58
+11 4+0.07 D5 1/4 64
+11 4&+0.06 C5 1/4 62
+11 4a+0.05 A4 3/4 60
+# bridgeB
+14 3+0.07 D5 1/4 66
+14 3&+0.06 C5 1/4 64
+14 3a+0.05 A4 1/2 62
+14 4&+0.06 G4 1/2 58
+19 3+0.07 D5 1/4 68
+19 3&+0.06 C5 1/4 66
+19 3a+0.05 A4 1/2 64
+# verseA2: same answer, then it climbs before falling
+27 4+0.07 D5 1/4 68
+27 4&+0.06 C5 1/4 66
+27 4a+0.05 A4 3/4 64
+31 3a+0.06 F5 1/4 72
+31 4+0.07 E5 1/4 70
+31 4&+0.06 D5 1/4 68
+31 4a+0.05 C5 1/4 66
+32 1e+0.06 A4 1 62
+# outro: last sigh
+35 2&+0.08 C5 1/4 48
+35 2a+0.07 A4 1/2 44
+
+track Vibes 11 0.4
+
+# verseA2 only: unison shimmer on the hook, the extra layer at the peak
+25 1&+0.06 C5 1/4 70
+25 1a+0.05 D5 1/4 72
+25 2&+0.07 F5 1/2 74
+25 3+0.06 A5 1/2 74
+26 1e+0.05 E5 1/4 70
+26 1&+0.05 D5 1/2 68
+26 2&+0.06 C5 1/4 66
+26 2a+0.05 A4 1 64
+29 1&+0.06 C5 1/4 72
+29 1a+0.05 D5 1/4 74
+29 2&+0.06 F5 1/4 76
+29 2a+0.05 A5 1/4 78
+29 3+0.06 C6 1 80
+30 1e+0.05 G5 1/4 72
+30 1&+0.05 E5 1/4 70
+30 1a+0.04 D5 1/4 68
+30 2&+0.06 C5 1/2 68
+30 3+0.06 A4 1 64

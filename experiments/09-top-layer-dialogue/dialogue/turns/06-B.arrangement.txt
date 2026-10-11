@@ -1,0 +1,64 @@
+# shared edit file. Both producers append to it; it is applied top to bottom on top of base.json.
+
+# --- Turn 1, Producer A ---
+# Voice Swell: replace the retriggered 16th-note A5 "swells" with single held choir notes
+track Voice Swell 54 0.45
+# bar 4, C13 lead-in: 13th + 9th, low and soft
+4 3+0.03 A4 2 40
+4 3+0.05 D5 2 36
+# bar 20, A7#9: 7th + #9, sits right on the Rhodes voicing, tension into the breakdown
+20 3+0.03 G4 2 46
+20 3+0.05 C5 2 42
+# bar 24, C13sus: whole-bar hold under the drum pickup
+24 1+0.04 G4 4 48
+24 1+0.06 D5 4 44
+
+# verseA2: hand the hook to Vibes for 25-26 (flute rests), flute comes back on the bar 28 pickup and owns 29-30
+clear Flute 25 26
+clear Vibes 29 30
+set Vibes gain 0.6
+edit Vibes
+25 4+0.06 G5 1/4 64
+25 4&+0.07 F5 1/2 60
+
+# --- Turn 2, Producer B ---
+# bridgeB: rest the flute in bar 17 so the bridge breathes as call/answer pairs (13/14, 15-16, rest, 18/19, 20)
+clear Flute 17
+# bar 20: choir C5 was a semitone under the flute's C5->C#5 landing in the same register; move the pad down to 5th+7th
+clear Voice Swell 20
+20 3+0.03 E4 2 44
+20 3+0.05 G4 2 40
+
+# --- Turn 3, Producer A ---
+# bar 18: same flute descent and timing, re-entering softer after the empty bar 17 (was v84 -> v74)
+clear Flute 18
+18 1e+0.05 G5 1/4 72
+18 1&+0.05 E5 1/4 68
+18 1a+0.04 D5 1/4 66
+18 2&+0.06 C5 1/4 66
+18 2a+0.05 A4 3/4 63
+# verseA2: vibes carries the hook alone under the crash/clap/organ entry, so lift it
+set Vibes gain 0.75
+
+# --- Turn 5, Producer A (mix) ---
+# center anchor: everything that carries the pulse or the root
+pan Drums Standard 0
+pan Drums Brush 0
+pan Drums 808 Layer 0
+pan Bass Fingered 0
+pan Bass Synth 0
+pan Voice Swell 0
+# harmony: Rhodes just left of center, the sustained beds (strings 13-24, organ 25-32, never overlapping) right, opposite it
+pan Rhodes Keys -0.15
+pan String Bed 0.3
+pan Organ Layer 0.3
+# call and answer across the stereo field: the hook (flute, and vibes when they carry it) left, the trumpet's answers right
+pan Flute -0.4
+pan Vibes -0.4
+pan MutedTrumpet 0.45
+# hand percussion (congas in the bridge, shaker/tamb in verseA2) off to the right of the kit
+pan Perc Shaker/Tamb 0.3
+# --- Turn 6, Producer B (mix) ---
+# hand percussion to the hook side (overrides the +0.3 above): in the bars where the flute rests and the trumpet answers (14, 19, 27, 31-32)
+# or nothing plays on top (17), the congas/shaker keep the left moving, so the answer lands against a steady image instead of tilting the mix right
+pan Perc Shaker/Tamb -0.25

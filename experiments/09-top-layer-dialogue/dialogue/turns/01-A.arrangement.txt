@@ -1,0 +1,22 @@
+# shared edit file. Both producers append to it; it is applied top to bottom on top of base.json.
+
+# --- Turn 1, Producer A ---
+# Voice Swell: replace the retriggered 16th-note A5 "swells" with single held choir notes
+track Voice Swell 54 0.45
+# bar 4, C13 lead-in: 13th + 9th, low and soft
+4 3+0.03 A4 2 40
+4 3+0.05 D5 2 36
+# bar 20, A7#9: 7th + #9, sits right on the Rhodes voicing, tension into the breakdown
+20 3+0.03 G4 2 46
+20 3+0.05 C5 2 42
+# bar 24, C13sus: whole-bar hold under the drum pickup
+24 1+0.04 G4 4 48
+24 1+0.06 D5 4 44
+
+# verseA2: hand the hook to Vibes for 25-26 (flute rests), flute comes back on the bar 28 pickup and owns 29-30
+clear Flute 25 26
+clear Vibes 29 30
+set Vibes gain 0.6
+edit Vibes
+25 4+0.06 G5 1/4 64
+25 4&+0.07 F5 1/2 60

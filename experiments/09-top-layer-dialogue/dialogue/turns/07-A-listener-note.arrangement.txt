@@ -1,0 +1,175 @@
+# shared edit file. Both producers append to it; it is applied top to bottom on top of base.json.
+
+# --- Turn 1, Producer A ---
+# Voice Swell: replace the retriggered 16th-note A5 "swells" with single held choir notes
+track Voice Swell 54 0.45
+# bar 4, C13 lead-in: 13th + 9th, low and soft
+4 3+0.03 A4 2 40
+4 3+0.05 D5 2 36
+# bar 20, A7#9: 7th + #9, sits right on the Rhodes voicing, tension into the breakdown
+20 3+0.03 G4 2 46
+20 3+0.05 C5 2 42
+# bar 24, C13sus: whole-bar hold under the drum pickup
+24 1+0.04 G4 4 48
+24 1+0.06 D5 4 44
+
+# verseA2: hand the hook to Vibes for 25-26 (flute rests), flute comes back on the bar 28 pickup and owns 29-30
+clear Flute 25 26
+clear Vibes 29 30
+set Vibes gain 0.6
+edit Vibes
+25 4+0.06 G5 1/4 64
+25 4&+0.07 F5 1/2 60
+
+# --- Turn 2, Producer B ---
+# bridgeB: rest the flute in bar 17 so the bridge breathes as call/answer pairs (13/14, 15-16, rest, 18/19, 20)
+clear Flute 17
+# bar 20: choir C5 was a semitone under the flute's C5->C#5 landing in the same register; move the pad down to 5th+7th
+clear Voice Swell 20
+20 3+0.03 E4 2 44
+20 3+0.05 G4 2 40
+
+# --- Turn 3, Producer A ---
+# bar 18: same flute descent and timing, re-entering softer after the empty bar 17 (was v84 -> v74)
+clear Flute 18
+18 1e+0.05 G5 1/4 72
+18 1&+0.05 E5 1/4 68
+18 1a+0.04 D5 1/4 66
+18 2&+0.06 C5 1/4 66
+18 2a+0.05 A4 3/4 63
+# verseA2: vibes carries the hook alone under the crash/clap/organ entry, so lift it
+set Vibes gain 0.75
+
+# --- Turn 5, Producer A (mix) ---
+# center anchor: everything that carries the pulse or the root
+pan Drums Standard 0
+pan Drums Brush 0
+pan Drums 808 Layer 0
+pan Bass Fingered 0
+pan Bass Synth 0
+pan Voice Swell 0
+# harmony: Rhodes just left of center, the sustained beds (strings 13-24, organ 25-32, never overlapping) right, opposite it
+pan Rhodes Keys -0.15
+pan String Bed 0.3
+pan Organ Layer 0.3
+# call and answer across the stereo field: the hook (flute, and vibes when they carry it) left, the trumpet's answers right
+pan Flute -0.4
+pan Vibes -0.4
+pan MutedTrumpet 0.45
+# hand percussion (congas in the bridge, shaker/tamb in verseA2) off to the right of the kit
+pan Perc Shaker/Tamb 0.3
+# --- Turn 6, Producer B (mix) ---
+# hand percussion to the hook side (overrides the +0.3 above): in the bars where the flute rests and the trumpet answers (14, 19, 27, 31-32)
+# or nothing plays on top (17), the congas/shaker keep the left moving, so the answer lands against a steady image instead of tilting the mix right
+pan Perc Shaker/Tamb -0.25
+
+# --- Turn 7, Producer A (listener note: stack the single-line melodies, vibes in 2-3 note shapes) ---
+# Flute Harmony: a second flute under the hook, mostly a diatonic 3rd below (a 4th where the 3rd would be an avoid note),
+# written per chord, ~12 velocity under the lead and a hair later, so it reads as a second player in the section, not a doubling.
+# Left single on purpose: the teases (3, 22), the breakdown (23), the pickups (8, 24, 28), the bar 20 C->C# blues landing, and the outro (33-35).
+track Flute Harmony 73 0.6
+# bar 5 Bbmaj9, under C-D-F: A-Bb-D
+5 1&+0.07 A4 1/4 66
+5 1a+0.06 Bb4 1/4 68
+5 2&+0.08 D5 3/4 72
+# bar 6 Am11, under E-D-C-A: C-A-G-E (Am pentatonic, no B or F against the Rhodes' D-E)
+6 1e+0.06 C5 1/4 66
+6 1&+0.06 A4 1/2 64
+6 2&+0.07 G4 1/4 62
+6 2a+0.06 E4 1 60
+# bar 9 Bbmaj9, under C-D-F-A: A-Bb-D-F
+9 1&+0.07 A4 1/4 68
+9 1a+0.06 Bb4 1/4 70
+9 2&+0.08 D5 1/2 74
+9 3+0.07 F5 1 76
+# bar 10 Am11, under G-E-D-C-A: E-C-A-G-E
+10 1e+0.06 E5 1/4 68
+10 1&+0.06 C5 1/4 66
+10 1a+0.05 A4 1/4 64
+10 2&+0.07 G4 1/2 64
+10 3+0.07 E4 1/2 60
+# bar 13 Gm9, under D-F-A: Bb-D-F
+13 1&+0.07 Bb4 1/4 70
+13 1a+0.06 D5 1/4 72
+13 2&+0.08 F5 3/4 76
+# bar 15 Fmaj9, under C-E-G: A-C-E
+15 1&+0.07 A4 1/4 70
+15 1a+0.06 C5 1/4 72
+15 2&+0.08 E5 3/4 76
+# bar 16 Dbmaj7#11, under Ab-G-F: F-Eb-Db (3rds inside Db lydian, lands on the root)
+16 3&+0.07 F5 1/4 74
+16 3a+0.06 Eb5 1/4 70
+16 4+0.07 Db5 1/2 68
+# bar 18 Am7, the soft re-entry: same shape as bar 10, kept under the lead's v72->v63 fall
+18 1e+0.06 E5 1/4 62
+18 1&+0.06 C5 1/4 58
+18 1a+0.05 A4 1/4 56
+18 2&+0.07 G4 1/4 56
+18 2a+0.06 E4 3/4 53
+# bar 29 Bbmaj9, the peak: A-Bb-D-F-A under C-D-F-A-C6, then G-F under Bb-A
+29 1&+0.07 A4 1/4 74
+29 1a+0.06 Bb4 1/4 76
+29 2&+0.07 D5 1/4 78
+29 2a+0.06 F5 1/4 80
+29 3+0.07 A5 1 84
+29 4&+0.06 G5 1/4 74
+29 4a+0.06 F5 1/2 72
+# bar 30 Am11, same as bar 10
+30 1e+0.06 E5 1/4 74
+30 1&+0.06 C5 1/4 72
+30 1a+0.05 A4 1/4 70
+30 2&+0.07 G4 1/2 70
+30 3+0.07 E4 1 66
+
+# Trumpet Harmony: a second muted trumpet under each answer, so the answer is a small muted horn section. Bar 35 stays a single horn.
+track Trumpet Harmony 59 0.4
+# bar 7 Dm9, under C-A: A-F
+7 4+0.08 A4 1/4 52
+7 4&+0.07 F4 1/2 48
+# bar 11 Dm9, under D-C-A: A-G-F
+11 4+0.08 A4 1/4 54
+11 4&+0.07 G4 1/4 52
+11 4a+0.06 F4 3/4 50
+# bar 14 C13sus, under D-C-A-G: Bb-A-F-D
+14 3+0.08 Bb4 1/4 56
+14 3&+0.07 A4 1/4 54
+14 3a+0.06 F4 1/2 52
+14 4&+0.07 D4 1/2 48
+# bar 19 Bbmaj7, under D-C-A: Bb-A-F
+19 3+0.08 Bb4 1/4 58
+19 3&+0.07 A4 1/4 56
+19 3a+0.06 F4 1/2 54
+# bar 27 Dm9, same as bar 11
+27 4+0.08 A4 1/4 58
+27 4&+0.07 G4 1/4 56
+27 4a+0.06 F4 3/4 54
+# bar 31 Dm9, under F-E-D-C: D-C-A-G
+31 3a+0.07 D5 1/4 62
+31 4+0.08 C5 1/4 60
+31 4&+0.07 A4 1/4 58
+31 4a+0.06 G4 1/4 56
+# bar 32 Gm9, under the A4 tail: F4
+32 1e+0.07 F4 1 52
+
+# Vibes: same top notes, now played as 2- and 3-mallet shapes, the added notes under the melody and a little softer
+edit Vibes
+# bar 25 Bbmaj9: dyads on the 16th pickups, three-note shapes on the longer F and A
+25 1&+0.06 A4 1/4 62
+25 1a+0.05 Bb4 1/4 64
+25 2&+0.07 A4 1/2 62
+25 2&+0.07 D5 1/2 66
+25 3+0.06 C5 1/2 62
+25 3+0.06 F5 1/2 66
+25 4+0.06 D5 1/4 56
+25 4&+0.07 A4 1/2 50
+25 4&+0.07 D5 1/2 54
+# bar 26 Am11: dyads down the descent, the held A4 as an open D-G-A
+26 1e+0.05 C5 1/4 62
+26 1&+0.05 A4 1/2 60
+26 2&+0.06 G4 1/4 58
+26 2a+0.05 D4 1 54
+26 2a+0.05 G4 1 56
+
+# placement: each harmony sits just inside its lead, so the lead stays the outer edge of the call/answer image
+pan Flute Harmony -0.3
+pan Trumpet Harmony 0.35

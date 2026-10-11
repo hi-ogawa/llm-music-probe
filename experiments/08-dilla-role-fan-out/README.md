@@ -58,7 +58,8 @@ Medium:
 
 Listening:
 
-- **Not judged by ear:** the listener's only response was "this is fun", which is about the activity, not a judgment of the music. Open questions for a listen: does the late snare and loose kick feel like Dilla or just sloppy; do the parts written without seeing each other fit, especially the flute against the choir chops and the bass against the kick across tracks; does verse A2 feel like the peak; and does the Dbmaj7#11 detour in the bridge work.
+- **Judged by ear, later:** "rhythm, harmony looks desent grounded but melody feels arbitrary." Followed up in [09-top-layer-dialogue](../09-top-layer-dialogue/README.md).
+- **Not judged by ear at first:** the listener's only response was "this is fun", which is about the activity, not a judgment of the music. Open questions for a listen: does the late snare and loose kick feel like Dilla or just sloppy; do the parts written without seeing each other fit, especially the flute against the choir chops and the bass against the kick across tracks; does verse A2 feel like the peak; and does the Dbmaj7#11 detour in the bridge work.
 
 ## Effect on claims
 
