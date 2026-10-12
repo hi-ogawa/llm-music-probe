@@ -2,7 +2,8 @@
 
 Notes and experiments on how much musical intuition a general LLM has in its text vocabulary, and how much of the remaining gap is tooling rather than intuition.
 
-- [docs/context.md](docs/context.md): the thesis, how the discussion got here, and the evidence so far
+- [docs/context.md](docs/context.md): the current thesis, reading, and claim status
+- [docs/history.md](docs/history.md): how the discussion got here, kept as written at the time
 - [docs/notation.md](docs/notation.md): what makes musical intent encodable, and presentable by an LLM through a medium
 - [docs/score-format.md](docs/score-format.md): reference for the score format, written to hand to a model
 - [docs/tool-plan.md](docs/tool-plan.md): plan for our own score-to-sound tool
