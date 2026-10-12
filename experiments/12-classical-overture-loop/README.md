@@ -1,0 +1,44 @@
+# 12 Overture in D minor
+
+- Date: 2026-10-12
+- Model: claude-opus-5-5
+
+## Setup
+
+The listener gave a toy-midi preview URL and asked for "classic-ish" orchestral music with multiple sections, a loop, and build-ups at the section boundaries, leaving the rest to the agent. The agent had no access to the listener's browser in this session, so it took the share-link path from toy-midi's `llms.txt`. It read `llms.txt` and the `SharedProject` type in `/llms/toy-midi.d.ts`, and grepped the app bundle once for the default track height. Then it wrote the whole piece as one Node script that prints a `/draft` link. Playback was toy-midi's in-browser General MIDI synth.
+
+The agent never heard the music. It checked the result only by decoding its own link and printing each track's note count, pitch range and last note end. The first link was the final one, and the listener's verdict was "pretty awesome".
+
+What came out was "Overture in D minor", 40 bars of 4/4 at 112 bpm for 12 tracks and 1,943 notes, about 1:25 per pass, with the loop covering the whole piece and a locator on each section.
+
+## Session
+
+| #   | Listener                                                                                                                                                                                           | Agent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | "can you compose some classic-ish orchstral music https://fix-issue-827-toy-midi.hiro18181.workers.dev/ multiple sections. loop. the section boundary with build up. or anything you think works." | A seven-part form with a classical key plan, D minor → F major → B♭ major → D minor. **A** (bars 1–8) is an 8-bar theme in quiet strings over repeated chord eighths and a quarter-note bass. **Build** (9–10) holds a C pedal, the dominant of F, while violins climb a scale into fast repeated notes and a timpani roll and brass get louder. **B** (11–18) is a loud fanfare in F for trumpets, violins in octaves and flute, over pulsing string eighths, trombone half notes, timpani and cymbals. **C** (19–26) is a quiet pastorale in B♭, with flute melody, oboe answers, harp arpeggios and pizzicato bass. **Build** (27–30) moves G minor → C♯ diminished 7th → A7(♭9) under string arpeggios, a flute trill on A–B♭, a timpani roll on A and a final 16th-note run up to C♯6. **A′** (31–38) is the opening theme for the full orchestra, loud. **Codetta** (39–40) is a loud D minor stab, then a quiet turn to A7 that leads back to bar 1 when the loop wraps. |
+| 2   | "pretty awesome."                                                                                                                                                                                  | No change.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+## Notes
+
+How the agent wrote the music:
+
+- The agent made up a small text format for melodies, space-separated `pitch:duration` tokens such as `"D5:q A4:e D5:e F5:q E5:e D5:e"`, with note names, `r` for rests, and `w h. h q. q e s` for durations. It wrote all three themes, the oboe answers and the build runs in this format, note by note, one bar per string.
+- Harmony was a literal table, one entry per bar or half bar, each with a bass note and a three-note upper voicing written as note names. Chord names appear only in a few section comments, such as `G minor -> C#dim7 -> A7(b9)`. A′ reuses the table by copying A's bars.
+- Every accompaniment part was a rule run over the harmony table. The A section uses an Alberti-like pattern with the low voice on the beat and the upper pair off it, B and A′ use repeated chord eighths, C has a harp arpeggio pattern and pizzicato bass on 1 and 3 with chords on 2 and 4, and the bass plays quarters or eighths with an octave doubling.
+- Toy-midi has no expression controller, so dynamics were velocity functions of the beat. A `ramp` makes the crescendos, a sine arch shapes each phrase, and an accent sits on downbeats. Timpani rolls and string tremolo are 16th notes under a velocity ramp, which made every build the same recipe of a pedal, a rising line, a roll and a crescendo.
+- Doubling was a rule, a theme passed again with `transpose: ±12` and a lower velocity for another section, which is how the tutti sections were orchestrated.
+- The agent checked the melodies against the harmony by hand in its reasoning, bar by bar, accepting passing dissonances such as F over A7. It also counted each bar's durations to make sure every bar summed to four beats, instead of asserting it in code.
+- Every move was textbook: the relative major for the contrasting section, a pedal on the new key's dominant before it, a diminished 7th into V7(♭9) before the return, the theme brought back for the full orchestra, and a codetta ending on V so the loop closes. The agent named the form in the project comment and in the locators.
+
+How the iteration went:
+
+- The brief left key, tempo, instruments and form open and invited "anything you think works". The agent chose all of them without asking and explained the form in its reply as a table of bars and sections.
+- Without the open app the agent could not play anything, so it shipped one link and listed in its reply what it was least sure of: brass covering the violins in B and A′, and the cymbal kit choice. The listener did not pick up either point.
+- The agent changed one thing from memory rather than from the guide. GS's Orchestra kit maps notes 41–53 to timpani, so it moved the cymbals to the Standard kit before generating the link.
+
+## References
+
+- [compose.mjs](compose.mjs): the agent's script, which builds the project and writes the share link to `link.txt` next to itself
+- [shared-project.json](shared-project.json): the `SharedProject` the link carries, decoded
+- [share-link.md](share-link.md): the share link
+- [toy-midi `llms.txt`](https://fix-issue-827-toy-midi.hiro18181.workers.dev/llms.txt): the agent guide the session started from
