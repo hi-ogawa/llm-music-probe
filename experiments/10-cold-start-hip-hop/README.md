@@ -1,12 +1,15 @@
 # 10 Corner Store Thirds
 
-A hip-hop beat built one request at a time.
-
 - Date: 2026-10-12
 - Model: claude-opus-5-5
-- Result: [project-state.json](project-state.json), as the listener saved it. The agent's scripts are in [session.md](session.md)
 
-## Session
+## Setup
+
+The listener asked for a hip-hop beat loop and then shaped it one short request at a time, the way you would steer a producer sitting next to you. The agent wrote the music in toy-midi and never heard it. The listener played it in the browser between requests and saved the result.
+
+The beat started as a plain 4-bar loop. Over nine requests it gained hand percussion, a string pad, a humanized groove, a two-voice lead hook, a 24-bar arrangement, and transitions between sections.
+
+## What happened
 
 | #   | Listener                                                                                           | Agent                                                                                                                                                                                                             |
 | --- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,5 +26,12 @@ A hip-hop beat built one request at a time.
 
 ## Notes
 
-- Every musical move came from a request. The agent added none on its own.
+- Every musical move came from a request. The agent added none on its own, even standard ones such as a percussion layer, humanizing, or harmony in the lead.
+- Once a move was named, the agent carried it out with sensible detail, such as a different lag per drum when humanizing, and choosing between a third and a sixth by the chord underneath when harmonizing.
 - The critique phrased as a question, step 5, was answered as a factual question. The change came only once step 6 named it.
+
+## References
+
+- [project-state.json](project-state.json): the project as the listener saved it, with every note
+- [session.md](session.md): every script the agent ran, in order
+- [share-link.mjs](share-link.mjs): the first version, written as a toy-midi share link

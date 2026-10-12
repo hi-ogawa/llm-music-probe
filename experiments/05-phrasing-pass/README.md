@@ -1,6 +1,5 @@
 # 05-phrasing-pass
 
-- Kind: designed
 - Direction: Depth (groove and phrasing) in [directions.md](../../docs/directions.md)
 - Date: 2026-10-08
 - Model ID: no model output. The lines are range sweep scores by claude-opus-5-5, and the phrasing pass is code

@@ -1,6 +1,5 @@
 # 09-top-layer-dialogue
 
-- Kind: observed
 - Direction: Fan-out and The adjustment loop in [directions.md](../../docs/directions.md), continuing [08-dilla-role-fan-out](../08-dilla-role-fan-out/README.md)
 - Date: 2026-10-11
 - Model ID: claude-opus-5-5 for the orchestrating agent and for every subagent (`general-purpose`), in one Claude Code session that continued from 08

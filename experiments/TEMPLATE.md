@@ -1,37 +1,20 @@
-# <nn>-<slug>
+# <nn> <name>
 
-- Kind: designed, observed, or breakdown
-- Direction: which section of [directions.md](../../docs/directions.md)
 - Date:
-- Model ID:
-- Output format:
-
-## Question
-
-What this experiment is meant to tell, and which claim in [context.md](../../docs/context.md) it affects.
+- Model:
 
 ## Setup
 
-Prompt, input material, and how output is rendered. Note whether the input material could have been memorized.
+Free-form intro, so the README reads on its own: what was asked, how the session went, and what came out, in a few sentences.
 
-## Raw output
+## What happened
 
-Link to the verbatim files in this directory.
+The musical iteration in order. For a session, a table with the listener's request verbatim and the musical change the agent made. Put the listener's own edits and verdicts in as rows too. For a batch run, a short list of what was run.
 
-## Results
+## Notes
 
-### What happened
+Observations on how the iteration went, such as a request the agent misread or a move it never made on its own. Leave the section out if nothing stood out.
 
-Facts read from the log and the project, such as what was written, which notes, and what the agent did.
+## References
 
-### By ear
-
-The listener's verdicts, quoted verbatim, with what they referred to. If nothing was judged by ear, say so.
-
-### Reading
-
-Interpretation, such as patterns across experiments and causes. Each point says what it rests on.
-
-## Effect on claims
-
-Which claim status changes, if any.
+Links to the files in this directory and any outside resources.

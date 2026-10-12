@@ -1,6 +1,5 @@
 # 08-dilla-role-fan-out
 
-- Kind: observed
 - Direction: Fan-out (the role-split form) and Beat making step 3, feel, in [directions.md](../../docs/directions.md)
 - Date: 2026-10-11
 - Model ID: claude-opus-5-5 for the orchestrating agent, in one Claude Code session that started on an unrelated question, and for three `general-purpose` subagents it launched in parallel
