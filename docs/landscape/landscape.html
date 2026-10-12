@@ -1,0 +1,3453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Composition landscape</title>
+    <style>
+      :root {
+        --ink: #0b0b0b;
+        --ink-2: #52514e;
+        --muted: #898781;
+        --line: #e1e0d9;
+        --surface: #fcfcfb;
+        --page: #f4f3ef;
+        --r-C: #4a3aa7;
+        --r-J: #2a78d6;
+        --r-P: #e87ba4;
+        --r-E: #1baf7a;
+        --r-L: #eb6834;
+        --r-U: #898781;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font:
+          14px/1.4 system-ui,
+          sans-serif;
+        color: var(--ink);
+        background: var(--page);
+      }
+      header {
+        padding: 16px 20px 6px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 2px;
+      }
+      header p {
+        margin: 0;
+        color: var(--ink-2);
+      }
+      .controls {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        align-items: center;
+        padding: 8px 20px;
+        background: var(--page);
+        border-bottom: 1px solid var(--line);
+      }
+      .controls input[type="search"] {
+        width: 15em;
+        padding: 4px 6px;
+      }
+      .roots {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .root {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 12px;
+        padding: 2px 9px 2px 7px;
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .root i {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        margin-right: 5px;
+        vertical-align: 0;
+      }
+      .root.off {
+        opacity: 0.35;
+      }
+      .controls label {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+        font-size: 12.5px;
+        cursor: pointer;
+      }
+      #shown {
+        color: var(--muted);
+        margin-left: auto;
+        font-size: 12.5px;
+      }
+      .layer {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 10px;
+        padding: 10px 20px 4px;
+      }
+      .layer-label {
+        padding-top: 8px;
+      }
+      .layer-label b {
+        display: block;
+        font-size: 15px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .layer-label span {
+        display: block;
+        color: var(--muted);
+        font-size: 11.5px;
+        line-height: 1.3;
+      }
+      .layer-areas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 10px;
+      }
+      .area {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 11px 11px;
+      }
+      .area h2 {
+        font-size: 14px;
+        margin: 0 0 4px;
+        display: flex;
+        gap: 6px;
+        align-items: baseline;
+      }
+      .area h2 .icon {
+        font-size: 16px;
+      }
+      .area h2 .n {
+        margin-left: auto;
+        color: var(--muted);
+        font-weight: normal;
+        font-size: 12px;
+      }
+      .mix {
+        display: flex;
+        height: 4px;
+        gap: 1px;
+        margin-bottom: 7px;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .chip {
+        --c: var(--muted);
+        border: 1px solid color-mix(in srgb, var(--c) 30%, white);
+        border-left: 4px solid var(--c);
+        background: color-mix(in srgb, var(--c) 9%, white);
+        color: var(--ink);
+        border-radius: 4px;
+        padding: 2px 7px 2px 6px;
+        font: inherit;
+        font-size: 12.5px;
+        cursor: pointer;
+        text-align: left;
+        transition: opacity 0.12s;
+      }
+      .chip:hover {
+        background: color-mix(in srgb, var(--c) 20%, white);
+      }
+      .chip.genre {
+        font-weight: 600;
+        font-size: 13px;
+        padding: 4px 9px 4px 7px;
+      }
+      .chip.dim {
+        opacity: 0.18;
+      }
+      .chip.lit {
+        background: color-mix(in srgb, var(--c) 28%, white);
+        box-shadow: 0 0 0 2px var(--c);
+      }
+      .chip.selected {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
+      body.tm .chip.tm-approx {
+        border-style: dashed;
+        border-left-style: solid;
+      }
+      body.tm .chip.tm-missing {
+        color: var(--ink-2);
+        background: repeating-linear-gradient(
+          135deg,
+          #fff 0 4px,
+          color-mix(in srgb, var(--c) 14%, white) 4px 6px
+        );
+      }
+      .tmbar {
+        display: none;
+        width: 100%;
+        gap: 6px 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 12px;
+        color: var(--ink-2);
+      }
+      body.tm .tmbar {
+        display: flex;
+      }
+      .tmbar .sw {
+        display: inline-block;
+        width: 22px;
+        height: 12px;
+        border: 1px solid var(--muted);
+        border-radius: 2px;
+        vertical-align: -1px;
+        margin-right: 3px;
+      }
+      .tmbar .sw.approx {
+        border-style: dashed;
+      }
+      .tmbar .sw.missing {
+        background: repeating-linear-gradient(
+          135deg,
+          #fff 0 3px,
+          #d9d8d2 3px 5px
+        );
+      }
+      .gap {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 12px;
+        padding: 1px 8px;
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .gap b {
+        font-weight: 600;
+        color: var(--muted);
+        margin-left: 3px;
+      }
+      .gap.on {
+        background: var(--ink);
+        color: #fff;
+      }
+      #detail {
+        position: sticky;
+        bottom: 0;
+        z-index: 3;
+        background: var(--surface);
+        border-top: 1px solid var(--line);
+        padding: 9px 20px;
+        min-height: 4.4em;
+      }
+      #detail h3 {
+        margin: 0 0 2px;
+        font-size: 15px;
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+      }
+      #detail .tag {
+        font-size: 11.5px;
+        font-weight: normal;
+        padding: 0 7px;
+        border-radius: 9px;
+        color: #fff;
+      }
+      #detail .meta {
+        color: var(--ink-2);
+        font-size: 13px;
+      }
+      #detail .empty {
+        color: var(--muted);
+      }
+      #detail button {
+        font: inherit;
+        font-size: 12px;
+        border: 0;
+        background: none;
+        color: var(--ink-2);
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+      }
+      code {
+        font-size: 12px;
+        background: #eeede8;
+        padding: 0 3px;
+        border-radius: 3px;
+      }
+      header {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      header .about {
+        margin-left: auto;
+        font: inherit;
+        font-size: 13px;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 14px;
+        padding: 4px 12px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .link {
+        font: inherit;
+        font-size: 12px;
+        border: 0;
+        background: none;
+        color: var(--ink-2);
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+      }
+      dialog {
+        width: min(860px, 92vw);
+        max-height: 86vh;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0;
+        background: var(--surface);
+        color: var(--ink);
+      }
+      dialog::backdrop {
+        background: rgb(0 0 0 / 0.3);
+      }
+      dialog .head {
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 20px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+      dialog .head b {
+        font-size: 16px;
+      }
+      dialog .head nav {
+        display: flex;
+        gap: 12px;
+        font-size: 13px;
+      }
+      dialog .head a {
+        color: var(--ink-2);
+      }
+      dialog .head button {
+        margin-left: auto;
+        font: inherit;
+        border: 0;
+        background: none;
+        font-size: 20px;
+        cursor: pointer;
+        line-height: 1;
+      }
+      dialog .body {
+        padding: 4px 20px 18px;
+        font-size: 13.5px;
+      }
+      dialog h3 {
+        font-size: 15px;
+        margin: 18px 0 6px;
+        scroll-margin-top: 64px;
+      }
+      dialog table {
+        width: 100%;
+      }
+      dialog td a {
+        overflow-wrap: anywhere;
+      }
+      dialog td:nth-child(3) {
+        width: 8em;
+      }
+      dialog ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      dialog li {
+        margin: 3px 0;
+      }
+      .swatch-chip {
+        display: inline-block;
+        padding: 0 6px;
+        border-radius: 3px;
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--c);
+        background: color-mix(in srgb, var(--c) 9%, white);
+        font-size: 12px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 8px;
+        background: var(--surface);
+        font-size: 13px;
+      }
+      td,
+      th {
+        border: 1px solid var(--line);
+        padding: 4px 8px;
+        text-align: left;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Composition landscape</h1>
+        <p>
+          225 named techniques, grouped into layers and colored by the tradition
+          they come from. Click a genre to light up its moves, or a technique to
+          see where it's used.
+        </p>
+      </div>
+      <button class="about" data-about="#about">ⓘ About</button>
+    </header>
+    <div class="controls">
+      <input type="search" id="q" placeholder="Search" />
+      <div class="roots" id="roots">
+        <button
+          class="root"
+          data-root="C"
+          title="Click to show only this, click again to show all"
+        >
+          <i style="background: #4a3aa7"></i>Classical and film</button
+        ><button
+          class="root"
+          data-root="J"
+          title="Click to show only this, click again to show all"
+        >
+          <i style="background: #2a78d6"></i>Jazz, soul, and gospel</button
+        ><button
+          class="root"
+          data-root="P"
+          title="Click to show only this, click again to show all"
+        >
+          <i style="background: #e87ba4"></i>Pop and songwriting</button
+        ><button
+          class="root"
+          data-root="E"
+          title="Click to show only this, click again to show all"
+        >
+          <i style="background: #1baf7a"></i>Electronic, hip-hop, and production</button
+        ><button
+          class="root"
+          data-root="L"
+          title="Click to show only this, click again to show all"
+        >
+          <i style="background: #eb6834"></i>Latin and African diaspora</button
+        ><button
+          class="root"
+          data-root="U"
+          title="Click to show only this, click again to show all"
+        >
+          <i style="background: #898781"></i>Universal
+        </button>
+      </div>
+      <label><input type="checkbox" id="tm" /> Can toy-midi play it?</label>
+      <span id="shown"></span>
+      <div class="tmbar">
+        <span><span class="sw"></span>demo now</span
+        ><span><span class="sw approx"></span>approximate</span
+        ><span><span class="sw missing"></span>can't demo yet</span>
+        <span style="margin-left: 8px">Missing in toy-midi:</span
+        ><span id="gaps"></span
+        ><button class="link" data-about="#about-toy-midi">details</button>
+      </div>
+    </div>
+    <main id="map"></main>
+    <div id="detail">
+      <span class="empty"
+        >Click a genre to light up the techniques it uses, or a technique to see
+        what it is and which genres use it.</span
+      >
+    </div>
+    <dialog id="about">
+      <div class="head">
+        <b>About this map</b>
+        <nav>
+          <a href="#about">How to read</a><a href="#about-toy-midi">toy-midi</a
+          ><a href="#about-sources">Sources</a>
+        </nav>
+        <button aria-label="Close" data-close autofocus>×</button>
+      </div>
+      <div class="body">
+        <h3 id="about-read">How to read</h3>
+        <ul>
+          <li>
+            <b>Layers.</b> Genres sit on top. Below them, areas stack the way a
+            track is built: Notes (harmony, voicing, melody), Time (rhythm,
+            drums, bass), Shape (form, arranging), and Sound (synthesis,
+            sampling, mixing, voice).
+          </li>
+          <li>
+            <b>Color is roots</b>, the tradition a technique comes from:
+            <span class="swatch-chip" style="--c: #4a3aa7"
+              >Classical and film</span
+            >
+            <span class="swatch-chip" style="--c: #2a78d6"
+              >Jazz, soul, and gospel</span
+            >
+            <span class="swatch-chip" style="--c: #e87ba4"
+              >Pop and songwriting</span
+            >
+            <span class="swatch-chip" style="--c: #1baf7a"
+              >Electronic, hip-hop, and production</span
+            >
+            <span class="swatch-chip" style="--c: #eb6834"
+              >Latin and African diaspora</span
+            >
+            <span class="swatch-chip" style="--c: #898781">Universal</span>. The
+            thin bar under each area title shows its mix. Click a legend entry
+            to show only that tradition.
+          </li>
+          <li>
+            <b>Lenses.</b> Click a genre to light up the techniques it uses
+            across every area. Click a technique to see what it is and which
+            genres use it. Esc clears.
+          </li>
+          <li>
+            <b>Can toy-midi play it?</b> switches to a demo view: plain chips
+            can be demoed now, dashed ones only approximately, and hatched ones
+            not yet. The pills rank what toy-midi is missing, and clicking one
+            lights up what it blocks.
+          </li>
+          <li>
+            Roots tags and genre links are judgment calls, and one root per
+            technique is a simplification.
+          </li>
+        </ul>
+        <h3 id="about-toy-midi">toy-midi</h3>
+        <p>
+          A side note for picking demos. Checked against
+          <a href="https://github.com/hi-ogawa/toy-midi"
+            >https://github.com/hi-ogawa/toy-midi</a
+          >
+          <code>main</code> at 8da9151 (#810). Notes carry pitch, start,
+          duration, and velocity. Tracks choose a GM preset or one of 9 drum
+          kits (Standard, Room, Power, Electronic, TR-808, Jazz, Brush,
+          Orchestra, SFX) from the bundled soundfont, and have static gain, pan,
+          mute, solo, and up to 8 peaking EQ bands. Audio clips can be imported,
+          moved, trimmed, and gained.
+        </p>
+        <table>
+          <tr>
+            <th>Missing</th>
+            <th>What that means</th>
+          </tr>
+          <tr>
+            <td>Pitch bend</td>
+            <td>Pitch bend, glide, portamento</td>
+          </tr>
+          <tr>
+            <td>Pedal and swells</td>
+            <td>
+              Sustain pedal, mod wheel, expression and volume swells (only
+              per-note velocity exists)
+            </td>
+          </tr>
+          <tr>
+            <td>Tempo changes</td>
+            <td>
+              Tempo or meter changes within a project (one tempo, one time
+              signature)
+            </td>
+          </tr>
+          <tr>
+            <td>Automation</td>
+            <td>Automation of any mix or sound parameter over time</td>
+          </tr>
+          <tr>
+            <td>Effects</td>
+            <td>
+              Time and modulation effects such as reverb, delay, chorus, and
+              sends
+            </td>
+          </tr>
+          <tr>
+            <td>Dynamics</td>
+            <td>
+              Dynamics and saturation such as compression, sidechain, limiting,
+              and distortion (no buses either)
+            </td>
+          </tr>
+          <tr>
+            <td>Filters</td>
+            <td>
+              Low-pass, high-pass, shelf, and resonant filters (track EQ is
+              peaking-only)
+            </td>
+          </tr>
+          <tr>
+            <td>Synth design</td>
+            <td>Designing a patch instead of picking a GM preset</td>
+          </tr>
+          <tr>
+            <td>Audio sampling</td>
+            <td>Slicing, pitching, stretching, or reversing audio</td>
+          </tr>
+          <tr>
+            <td>Vocals</td>
+            <td>Sung or rapped vocals and lyrics</td>
+          </tr>
+        </table>
+        <h3 id="about-sources">Sources</h3>
+        <p>
+          The taxonomy was seeded from these tables of contents and topic lists,
+          using topic names only. Rows no source covered come from general
+          knowledge of the practice and are worth a skeptical read.
+        </p>
+        <table>
+          <tr>
+            <th>Source</th>
+            <th>Seeded</th>
+            <th>Evidence</th>
+          </tr>
+          <tr>
+            <td>
+              Open Music Theory, contents:
+              <a href="https://openmusictheory.github.io/contents.html"
+                >https://openmusictheory.github.io/contents.html</a
+              >
+            </td>
+            <td>
+              Harmony, voice leading, classical form, pop/rock rhythm, harmony,
+              and form
+            </td>
+            <td>TOC read</td>
+          </tr>
+          <tr>
+            <td>
+              Open Music Theory 2e, pop harmonic schemas:
+              <a
+                href="https://viva.pressbooks.pub/openmusictheory/chapter/intro-to-pop-schemas/"
+                >https://viva.pressbooks.pub/openmusictheory/chapter/intro-to-pop-schemas/</a
+              >
+              and
+              <a
+                href="https://viva.pressbooks.pub/openmusictheory/chapter/4-chord-schemas/"
+                >https://viva.pressbooks.pub/openmusictheory/chapter/4-chord-schemas/</a
+              >
+            </td>
+            <td>
+              Doo-wop, singer/songwriter, hopscotch, lament, and blues schemas
+            </td>
+            <td>Search summary</td>
+          </tr>
+          <tr>
+            <td>
+              Mark Levine, _The Jazz Theory Book_, contents:
+              <a
+                href="https://www.img-music.com/links/pdf/FA_0001096164_13004.pdf"
+                >https://www.img-music.com/links/pdf/FA_0001096164_13004.pdf</a
+              >
+            </td>
+            <td>
+              Chord/scale theory, slash chords, outside playing,
+              reharmonization, Coltrane changes, song form, Latin jazz
+            </td>
+            <td>TOC read</td>
+          </tr>
+          <tr>
+            <td>
+              Ted Pease, _Jazz Composition: Theory and Practice_:
+              <a
+                href="https://online.berklee.edu/store/product?product_id=654963&amp;usca_p=t"
+                >https://online.berklee.edu/store/product?product_id=654963&amp;usca_p=t</a
+              >
+            </td>
+            <td>
+              Guide-tone and compound-line melody, constant structure, pedal
+              point, pandiatonicism, harmonic rhythm, song forms
+            </td>
+            <td>Search summary</td>
+          </tr>
+          <tr>
+            <td>
+              Jack Perricone, _Melody in Songwriting_:
+              <a
+                href="https://www.halleonard.com/product/50449419/melody-in-songwriting"
+                >https://www.halleonard.com/product/50449419/melody-in-songwriting</a
+              >
+            </td>
+            <td>
+              Melodic rhythm, contour, symmetry, melody–bass relationships,
+              pedal and sus chords
+            </td>
+            <td>Search summary</td>
+          </tr>
+          <tr>
+            <td>
+              Rimsky-Korsakov, _Principles of Orchestration_, contents:
+              <a
+                href="https://www.gutenberg.org/files/33900/old/rimsky_toc.html"
+                >https://www.gutenberg.org/files/33900/old/rimsky_toc.html</a
+              >
+            </td>
+            <td>
+              Melody and harmony distribution across orchestral groups,
+              combining timbres
+            </td>
+            <td>TOC read (summary level)</td>
+          </tr>
+          <tr>
+            <td>
+              Dennis DeSantis, _Making Music: 74 Creative Strategies_ (Ableton):
+              <a href="https://makingmusic.ableton.com/"
+                >https://makingmusic.ableton.com/</a
+              >
+            </td>
+            <td>
+              Asynchronous loops, linear drumming, contour, parallel harmony,
+              automation humanizing, subtractive arranging, unique events,
+              dramatic arc
+            </td>
+            <td>TOC read</td>
+          </tr>
+          <tr>
+            <td>
+              Rick Snoman, _Dance Music Manual_ 4th ed., publisher preview:
+              <a
+                href="https://api.pageplace.de/preview/DT0400.9780429843907_A36005525/preview-9780429843907_A36005525.pdf"
+                >https://api.pageplace.de/preview/DT0400.9780429843907_A36005525/preview-9780429843907_A36005525.pdf</a
+              >
+            </td>
+            <td>
+              Synthesis, sampling, dynamics, effects, rhythm and drum loops,
+              leads and bass design, dance form, genre chapters, mixing
+            </td>
+            <td>TOC read</td>
+          </tr>
+          <tr>
+            <td>
+              Mike Senior, _Mixing Secrets for the Small Studio_:
+              <a
+                href="https://www.routledge.com/Mixing-Secrets-for-the-Small-Studio/Senior/p/book/9781032840451"
+                >https://www.routledge.com/Mixing-Secrets-for-the-Small-Studio/Senior/p/book/9781032840451</a
+              >
+            </td>
+            <td>
+              Balance, compression, EQ, arrangement and comping in the mix
+            </td>
+            <td>Search summary</td>
+          </tr>
+          <tr>
+            <td>
+              Syntorial lesson coverage:
+              <a
+                href="https://www.syntorial.com/tutorials/ufaqs/what-material-do-the-lessons-cover/"
+                >https://www.syntorial.com/tutorials/ufaqs/what-material-do-the-lessons-cover/</a
+              >
+            </td>
+            <td>Subtractive synthesis parameters</td>
+            <td>Search summary</td>
+          </tr>
+          <tr>
+            <td>
+              Amir Said, _The BeatTips Manual_:
+              <a
+                href="https://www.perlego.com/book/2860775/the-beattips-manual-the-art-of-beatmaking-the-hip-hoprap-music-tradition-and-the-common-composer-pdf"
+                >https://www.perlego.com/book/2860775/the-beattips-manual-the-art-of-beatmaking-the-hip-hoprap-music-tradition-and-the-common-composer-pdf</a
+              >
+            </td>
+            <td>Drum programming, sampling, hip-hop arrangement</td>
+            <td>Search summary</td>
+          </tr>
+          <tr>
+            <td>
+              Kpopalypse, "common song structures in k-pop":
+              <a
+                href="https://kpopalypse.com/2016/09/13/kpopalypse-explains-common-song-structures-in-k-pop/"
+                >https://kpopalypse.com/2016/09/13/kpopalypse-explains-common-song-structures-in-k-pop/</a
+              >
+            </td>
+            <td>K-pop section types and chorus placement variants</td>
+            <td>Page read</td>
+          </tr>
+          <tr>
+            <td>
+              BMI, writing for the J-pop and K-pop markets:
+              <a
+                href="https://www.bmi.com/news/entry/how_to_write_and_pitch_songs_for_the_j_pop_and_k_pop_markets"
+                >https://www.bmi.com/news/entry/how_to_write_and_pitch_songs_for_the_j_pop_and_k_pop_markets</a
+              >
+            </td>
+            <td>K-pop and J-pop writing practice</td>
+            <td>Search result only</td>
+          </tr>
+        </table>
+      </div>
+    </dialog>
+    <script>
+      const LAYERS = [
+        {
+          name: "Styles",
+          hint: "genres as bundles of the moves below, click one to light them up",
+          areas: [
+            {
+              name: "Genre idioms",
+              icon: "🗺️",
+              items: [
+                {
+                  name: "Boom-bap",
+                  what: "Swung drums, chopped soul sample, dusty low-passed loop",
+                  typical: "Tempo 85–95",
+                  roots: "E",
+                  uses: [
+                    "Boom-bap",
+                    "Swing amount",
+                    'Microtiming ("Dilla feel")',
+                    "Chopping",
+                    "Flipping a sample",
+                    "Pitched samples",
+                    "Loop mutation",
+                    "Rap flow",
+                  ],
+                  toyMidi:
+                    "~ drums work, no sample chops or filtering `sampler` `filter`",
+                  gaps: ["sampler", "filter"],
+                  toyMidiText:
+                    "approximate: drums work, no sample chops or filtering · missing audio sampling, filters",
+                },
+                {
+                  name: "Trap",
+                  what: "Half-time snare, hat rolls, 808 sub with glides, minor-loop harmony",
+                  typical: "Tempo 130–150 (half-time)",
+                  roots: "E",
+                  uses: [
+                    "Trap pattern",
+                    "Hi-hat rolls and ratchets",
+                    "808 sub bass",
+                    "808 design",
+                    "Harmonic stasis",
+                    "Half-time and double-time feel",
+                    "Triplet subdivision and triplet flow",
+                    "Rap flow",
+                  ],
+                  toyMidi: "~ beat works, no 808 glides or grit `bend` `dyn`",
+                  gaps: ["bend", "dyn"],
+                  toyMidiText:
+                    "approximate: beat works, no 808 glides or grit · missing pitch bend, dynamics",
+                },
+                {
+                  name: "Lo-fi hip-hop",
+                  what: "Neo-soul 9th chords, Dilla timing, vinyl noise, low-pass",
+                  typical: "Tempo 70–90",
+                  roots: "E",
+                  uses: [
+                    "Neo-soul extended loops",
+                    "Rootless A/B voicings",
+                    'Microtiming ("Dilla feel")',
+                    "Swing amount",
+                    "Chopping",
+                    "Lo-fi degradation",
+                  ],
+                  toyMidi:
+                    "~ harmony and groove work, no lo-fi texture `fx` `filter`",
+                  gaps: ["fx", "filter"],
+                  toyMidiText:
+                    "approximate: harmony and groove work, no lo-fi texture · missing effects, filters",
+                },
+                {
+                  name: "Neo-soul and modern R&B",
+                  what: "Extended and quartal chords, behind-the-beat feel, Rhodes",
+                  typical: "Tempo 70–100",
+                  roots: "J",
+                  uses: [
+                    "Neo-soul extended loops",
+                    "Quartal voicings",
+                    "Clusters and seconds",
+                    "Laid-back vs pushed placement",
+                    'Microtiming ("Dilla feel")',
+                    "Tension-note landing",
+                    "Syncopated funk bass",
+                    "Runs and melisma",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Funk",
+                  what: "16th syncopation, clav and guitar comping, horn stabs, one-chord vamps",
+                  typical: "Tempo 95–115",
+                  roots: "J",
+                  uses: [
+                    "Modal vamp",
+                    "Accent maps and ghost notes",
+                    "Syncopated funk bass",
+                    "Slap and pop",
+                    "Comping patterns",
+                    "Stabs and hits",
+                    "Linear drumming",
+                    "Riff bass",
+                    "Unison hits",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Disco and nu-disco",
+                  what: "Four-on-the-floor, octave bass, string lines, open hats",
+                  typical: "Tempo 110–125",
+                  roots: "E",
+                  uses: [
+                    "Four-on-the-floor",
+                    "Octave bass",
+                    "String ostinato",
+                    "Percussion tops",
+                    "Stabs and hits",
+                    "Filter sweeps",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "House",
+                  what: "Four-on-the-floor, chord stabs, organ bass, sidechain",
+                  typical: "Tempo 120–128",
+                  roots: "E",
+                  uses: [
+                    "Four-on-the-floor",
+                    "Chord stabs",
+                    "Sidechain pumping",
+                    "Filter sweeps",
+                    "Modal vamp",
+                    "Offbeat bass",
+                    "DJ-friendly phrase blocks",
+                    "Percussion tops",
+                  ],
+                  toyMidi: "~ grooves work, no pumping `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText:
+                    "approximate: grooves work, no pumping · missing dynamics",
+                },
+                {
+                  name: "Techno",
+                  what: "Polymeter loops, minimal harmony, evolution through automation",
+                  typical: "Tempo 125–140",
+                  roots: "E",
+                  uses: [
+                    "Four-on-the-floor",
+                    "Polymeter and asynchronous loops",
+                    "Harmonic stasis",
+                    "Rolling 16th bass",
+                    "Filter sweeps",
+                    "Subtractive arranging",
+                    "Loop mutation",
+                    "Acid line",
+                  ],
+                  toyMidi: "~ loops work, no evolving movement `auto` `filter`",
+                  gaps: ["auto", "filter"],
+                  toyMidiText:
+                    "approximate: loops work, no evolving movement · missing automation, filters",
+                },
+                {
+                  name: "Trance",
+                  what: "Offbeat bass, supersaw, Aeolian loops, long builds",
+                  typical: "Tempo 135–140",
+                  roots: "E",
+                  uses: [
+                    "Offbeat bass",
+                    "Supersaw and unison detune",
+                    'Aeolian "epic" loop',
+                    "Break, build, drop",
+                    "Arpeggiation",
+                    "Transition FX",
+                    "Fills and build rolls",
+                  ],
+                  toyMidi: "~ parts work, no supersaw `synth`",
+                  gaps: ["synth"],
+                  toyMidiText:
+                    "approximate: parts work, no supersaw · missing synth design",
+                },
+                {
+                  name: "UK garage",
+                  what: "2-step shuffle, chopped vocals, organ stabs",
+                  typical: "Tempo 130–135",
+                  roots: "E",
+                  uses: [
+                    "UK garage 2-step",
+                    "Vocal chops",
+                    "Chord stabs",
+                    "Swing amount",
+                    "Sidechain pumping",
+                  ],
+                  toyMidi: "~ groove works, no vocal chops `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText:
+                    "approximate: groove works, no vocal chops · missing audio sampling",
+                },
+                {
+                  name: "Drum & bass and jungle",
+                  what: "Breaks at 170, Reese bass, half-time sections",
+                  typical: "Tempo 170–175",
+                  roots: "E",
+                  uses: [
+                    "Breakbeats",
+                    "Reese, wobble, and growl bass",
+                    "Half-time and double-time feel",
+                    "Chopping",
+                    "Resampling",
+                  ],
+                  toyMidi:
+                    "~ programmed breaks only, no Reese bass `sampler` `synth`",
+                  gaps: ["sampler", "synth"],
+                  toyMidiText:
+                    "approximate: programmed breaks only, no Reese bass · missing audio sampling, synth design",
+                },
+                {
+                  name: "Dubstep",
+                  what: "Half-time at 140, wobble and growl bass",
+                  typical: "Tempo 140",
+                  roots: "E",
+                  uses: [
+                    "Half-time and double-time feel",
+                    "Reese, wobble, and growl bass",
+                    "Break, build, drop",
+                    "Wavetable movement",
+                    "Silence before the drop",
+                  ],
+                  toyMidi: "✗ `synth` `auto`",
+                  gaps: ["synth", "auto"],
+                  toyMidiText: "can't demo yet, needs synth design, automation",
+                },
+                {
+                  name: "Future bass",
+                  what: "Supersaw maj7 and 9 chords with pumping, vocal chops",
+                  typical: "Tempo 140–160",
+                  roots: "E",
+                  uses: [
+                    "Supersaw and unison detune",
+                    "Sidechain pumping",
+                    "Vocal chops",
+                    "Sus and add as default color",
+                    "Break, build, drop",
+                    "Transition FX",
+                  ],
+                  toyMidi: "✗ `synth` `dyn` `sampler`",
+                  gaps: ["synth", "dyn", "sampler"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, dynamics, audio sampling",
+                },
+                {
+                  name: "Synthwave",
+                  what: "Gated snare, arpeggios, Juno-style pads",
+                  typical: "Tempo 80–118",
+                  roots: "E",
+                  uses: [
+                    "Arpeggiation",
+                    "Era-signifier timbres",
+                    "Reverb depth",
+                    "Drum-machine kit identity",
+                    "Portamento leads",
+                  ],
+                  toyMidi: "~ parts work, no gated reverb `fx`",
+                  gaps: ["fx"],
+                  toyMidiText:
+                    "approximate: parts work, no gated reverb · missing effects",
+                },
+                {
+                  name: "City pop",
+                  what: 'maj7 and 9 chords, "Just the Two of Us" moves, slap bass, horns, Rhodes and DX EP',
+                  typical: "Tempo 95–120",
+                  roots: "P",
+                  uses: [
+                    '"Just the Two of Us" progression',
+                    "Royal road (王道進行)",
+                    "Slap and pop",
+                    "Sectional soli",
+                    "Era-signifier timbres",
+                    "Tension-note landing",
+                    "Octave bass",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "J-pop and anisong",
+                  what: "Royal road, frequent modulation, fast harmonic rhythm",
+                  typical: "Tempo 120–180",
+                  roots: "P",
+                  uses: [
+                    "Royal road (王道進行)",
+                    "Final-chorus key change",
+                    "Harmonic rhythm control",
+                    "Secondary dominants and tonicization",
+                    "Sequence",
+                    "Register lift",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "K-pop title track",
+                  what: "Section contrast, beat switch, dance break, killing part, final key change",
+                  typical: "Tempo 90–130",
+                  roots: "P",
+                  uses: [
+                    "Verse–pre-chorus–chorus",
+                    "Post-chorus",
+                    "Beat or song switch",
+                    "Dance break",
+                    "Repeated-note chant hook",
+                    "Final-chorus key change",
+                    "Hook language switching",
+                    "Line distribution",
+                    "Delivery shift by section",
+                    "Trap pattern",
+                  ],
+                  toyMidi:
+                    "~ instrumental parts work, no vocals or tempo switch `vox` `tempo`",
+                  gaps: ["vox", "tempo"],
+                  toyMidiText:
+                    "approximate: instrumental parts work, no vocals or tempo switch · missing vocals, tempo changes",
+                },
+                {
+                  name: "Reggaeton",
+                  what: "Dembow, minor loops, sub bass",
+                  typical: "Tempo 88–100",
+                  roots: "L",
+                  uses: [
+                    "Dembow",
+                    "Tresillo (3+3+2)",
+                    "808 sub bass",
+                    "Modal vamp",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Afrobeats",
+                  what: "Syncopated percussion layers, tresillo feel, guitar riffs",
+                  typical: "Tempo 95–115",
+                  roots: "L",
+                  uses: [
+                    "Tresillo (3+3+2)",
+                    "Percussion tops",
+                    "Polyrhythm",
+                    "Harmonic stasis",
+                    "Call and response",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Amapiano",
+                  what: "Log drum, shaker grids, jazzy keys, long builds",
+                  typical: "Tempo 110–115",
+                  roots: "L",
+                  uses: [
+                    "Percussion tops",
+                    "Neo-soul extended loops",
+                    "Loop mutation",
+                    "Energy curve",
+                    "Swing amount",
+                  ],
+                  toyMidi: "~ grooves work, no log drum `synth`",
+                  gaps: ["synth"],
+                  toyMidiText:
+                    "approximate: grooves work, no log drum · missing synth design",
+                },
+                {
+                  name: "Bossa nova",
+                  what: "Bossa clave, nylon guitar comping, extended chords",
+                  typical: "Tempo 120–140",
+                  roots: "L",
+                  uses: [
+                    "Clave",
+                    "Comping patterns",
+                    "Tension-note landing",
+                    "Guide-tone voice leading",
+                    "Rootless A/B voicings",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Gospel",
+                  what: "Reharmonized turnarounds, walk-ups, organ, call and response, modulation",
+                  typical: "Tempo Varies",
+                  roots: "J",
+                  uses: [
+                    "Gospel turnarounds and passing chords",
+                    "Upper-structure triads",
+                    "Call and response",
+                    "Final-chorus key change",
+                    "Inversions for a stepwise bass",
+                    "Runs and melisma",
+                    "Linear drumming",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Film and trailer",
+                  what: "Ostinato, chromatic mediants, braams, hybrid percussion",
+                  typical: "Tempo Varies",
+                  roots: "C",
+                  uses: [
+                    "String ostinato",
+                    "Chromatic mediants",
+                    "Neo-Riemannian moves",
+                    "Pedal point",
+                    "Orchestrated crescendo",
+                    "Transition FX",
+                    "Rhythmic ostinato as identity",
+                  ],
+                  toyMidi:
+                    "~ orchestral parts work, no braams or risers `synth` `fx`",
+                  gaps: ["synth", "fx"],
+                  toyMidiText:
+                    "approximate: orchestral parts work, no braams or risers · missing synth design, effects",
+                },
+                {
+                  name: "Ambient",
+                  what: "Drones, slow harmony, reverb as instrument",
+                  typical: "Tempo Free",
+                  roots: "E",
+                  uses: [
+                    "Pandiatonicism",
+                    "Evolving pads",
+                    "Reverb depth",
+                    "Harmonic stasis",
+                    "Pedal point",
+                  ],
+                  toyMidi: "✗ `fx` `auto`",
+                  gaps: ["fx", "auto"],
+                  toyMidiText: "can't demo yet, needs effects, automation",
+                },
+                {
+                  name: "Chiptune and game music",
+                  what: "Square and pulse leads, fast arpeggios faking chords",
+                  typical: "Tempo Varies",
+                  roots: "E",
+                  uses: [
+                    "Arpeggiation",
+                    "Sequence",
+                    "Instrumental riff hook",
+                    "Modal color tone",
+                  ],
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "Notes",
+          hint: "pitch and harmony",
+          areas: [
+            {
+              name: "Harmony: progressions and schemas",
+              icon: "🎼",
+              items: [
+                {
+                  name: "Doo-wop schema",
+                  what: "I–vi–IV–V loop, and its I–vi–ii–V variant",
+                  typical: "50s–60s pop, retro ballads",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: 'Singer/songwriter ("axis") loop',
+                  what: "I–V–vi–IV and its rotations, especially vi–IV–I–V",
+                  typical: "90s–2010s pop, rock, EDM",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Hopscotch schema",
+                  what: "IV–V–vi–I, starting off-tonic so the loop never lands",
+                  typical: "2010s pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Royal road (王道進行)",
+                  what: "IVmaj7–V7–iii7–vi, the stock J-pop chorus engine",
+                  typical: "J-pop, anisong, K-pop, city pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: '"Just the Two of Us" progression',
+                  what: "IVmaj7–III7–vi7–(v7–I7), chromatic mediant dominant into relative minor",
+                  typical: "City pop, J-pop, K-R&B, lo-fi",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Lament / Andalusian descent",
+                  what: "i–♭VII–♭VI–V over a descending minor tetrachord",
+                  typical: "Flamenco, rock, pop ballads",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: 'Aeolian "epic" loop',
+                  what: "i–♭VI–♭III–♭VII and rotations, no dominant function",
+                  typical: "Trance, EDM, trailer, K-pop",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Mixolydian and double-plagal cadences",
+                  what: "♭VII–IV–I, replacing V with stacked plagal motion",
+                  typical: "Rock, gospel, anthemic pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Modal vamp",
+                  what: "Two-chord shuttle that fixes a mode, such as Dorian i–IV or Mixolydian I–♭VII",
+                  typical: "Funk, house, neo-soul, Latin",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Harmonic stasis",
+                  what: "One chord or a drone, with bass, melody, or groove carrying motion",
+                  typical: "Trap, techno, afrobeats, minimalism",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Blues forms",
+                  what: "12- and 16-bar blues and jazz blues variants",
+                  typical: "Blues, rock, jazz, R&B",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Rhythm changes",
+                  what: "I–vi–ii–V A sections with a III7–VI7–II7–V7 bridge",
+                  typical: "Bebop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Line cliché",
+                  what: "Chromatic inner line over a sustained chord (m, m(maj7), m7, m6)",
+                  typical: "Standards, film themes, ballads",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Chromatic descending bass",
+                  what: "Stepwise bass under one harmony becoming new chords (I–I/7–I/♭7–IV/6)",
+                  typical: "Beatles-era pop, ballads",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Pedal point",
+                  what: "Sustained bass under moving harmony for tension or suspense",
+                  typical: "Film, EDM builds, gospel, classical",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Gospel turnarounds and passing chords",
+                  what: "Walk-ups, passing diminished, 1–6–2–5 with altered secondary dominants",
+                  typical: "Gospel, neo-soul, R&B",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Neo-soul extended loops",
+                  what: "ii–V or iv–i loops in m9, maj9♯11, and 13sus, rarely resolving",
+                  typical: "Neo-soul, lo-fi hip-hop, K-R&B",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Chromatic mediants",
+                  what: "Major-to-major chords a third apart (I–♭VI, I–III) for color shifts",
+                  typical: "Film, trailer, prog",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Neo-Riemannian moves",
+                  what: "P, L, R triad transformations and their chains",
+                  typical: "Film scoring, game music",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Modal interchange",
+                  what: "Borrowed iv, ♭VI, ♭VII, ♭III from the parallel mode",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Secondary dominants and tonicization",
+                  what: "V/x chords that briefly treat a diatonic chord as tonic",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Tritone substitution and backdoor ii–V",
+                  what: "♭II7 for V7, and iv–♭VII7–I",
+                  typical: "Jazz, R&B, city pop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Coltrane changes",
+                  what: "Major-third key cycles with dominants inserted",
+                  typical: "Post-bop, jazz reharm",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Constant structure and planing",
+                  what: "One chord quality moved in parallel, ignoring key",
+                  typical: "Modal jazz, house stabs, Impressionism",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Negative harmony",
+                  what: "Reflection of harmony around the tonic–dominant axis",
+                  typical: "Jazz reharm, internet-era theory",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Pandiatonicism",
+                  what: "Diatonic clusters and sus/add colors with no functional pull",
+                  typical: "Ambient, film, worship, minimalism",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Melody-note reharmonization",
+                  what: "Re-harmonizing one melody note as a different chord tone or tension",
+                  typical: "Jazz arranging, covers",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Harmonic rhythm control",
+                  what: "Changing the rate of chord change by section, such as faster into a cadence or slower in a chorus",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+              ],
+            },
+            {
+              name: "Voicing and voice leading",
+              icon: "🎹",
+              items: [
+                {
+                  name: "Shell voicings",
+                  what: "Root, 3rd, and 7th only, leaving room for bass and melody",
+                  typical: "Jazz comping, small band",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Rootless A/B voicings",
+                  what: "3-7-9-13 and 7-3-13-9 forms, with the bass player taking the root",
+                  typical: "Jazz piano",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Drop-2, drop-3, drop-2&4",
+                  what: "Close voicings with the 2nd (and others) from the top dropped an octave",
+                  typical: "Big band soli, guitar",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Quartal voicings",
+                  what: 'Stacked fourths, as in the "So What" voicing',
+                  typical: "Modal jazz, fusion, neo-soul",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Upper-structure triads",
+                  what: "A triad over a dominant's guide tones to spell altered tensions",
+                  typical: "Jazz, gospel",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Clusters and seconds",
+                  what: "Voicings with deliberate 2nd rubs",
+                  typical: "Neo-soul, film, modern jazz",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Spread voicings",
+                  what: "Open spacing with 10ths and wide intervals for pads and ballads",
+                  typical: "Ballads, string pads",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Guide-tone voice leading",
+                  what: "3rds and 7ths moving by step through changes",
+                  typical: "Jazz",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Inversions for a stepwise bass",
+                  what: "Slash chords chosen so the bass walks",
+                  typical: "Pop, gospel, ballads",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Pop power voicing",
+                  what: "Left hand root–5th–octave, right hand triad with add9, often no 3rd",
+                  typical: "Pop, rock, EDM pads",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Sus and add as default color",
+                  what: "sus2, sus4, add9, 6/9 used as stable chords",
+                  typical: "Pop, K-pop, worship",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Polychords and slash chords",
+                  what: "Triad over a foreign bass note (D/C, F/G)",
+                  typical: "Fusion, gospel, film",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Low interval limits",
+                  what: "Keeping close intervals above register thresholds to avoid mud",
+                  typical: "Arranging, mixing",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Chord stabs",
+                  what: "Short voiced hits, usually m7 or m9, as rhythmic events",
+                  typical: "House, garage, techno",
+                  roots: "E",
+                  toyMidi: "~ GM timbres only",
+                  gaps: [],
+                  toyMidiText: "approximate: GM timbres only",
+                },
+              ],
+            },
+            {
+              name: "Melody, motif, and topline",
+              icon: "🎵",
+              items: [
+                {
+                  name: "Contour design",
+                  what: "Choosing the overall arch, ramp, or inverted arch of a phrase",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Register lift",
+                  what: "Raising the tessitura into the chorus, sometimes by an octave",
+                  typical: "Pop, K-pop, ballads",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Repetition with variation",
+                  what: "AAB or 3+1 phrase shapes where the last statement breaks the pattern",
+                  typical: "Pop hooks, blues",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Sequence",
+                  what: "Repeating a motif transposed, real or tonal",
+                  typical: "Baroque, pop, J-pop",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Motivic transformation",
+                  what: "Inversion, retrograde, augmentation, diminution, fragmentation",
+                  typical: "Classical, film, jazz heads",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Sentence and period",
+                  what: "Presentation–continuation and antecedent–consequent phrase plans",
+                  typical: "Classical, pop verses",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Call and response",
+                  what: "A phrase answered by another voice or instrument",
+                  typical: "Blues, gospel, funk, pop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Guide-tone and compound-line melody",
+                  what: "Writing a melody from an underlying voice-leading line",
+                  typical: "Jazz heads",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Outer-voice counterpoint",
+                  what: "Treating melody and bass as a two-voice frame first",
+                  typical: "Classical, arranging",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Melodic rhythm by section",
+                  what: "Contrasting note density, such as sparse verse, busy pre-chorus, long chorus notes",
+                  typical: "Pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Syncopated and anticipated phrasing",
+                  what: "Phrases starting off the beat and pushing into barlines",
+                  typical: "Pop, R&B, funk",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Tension-note landing",
+                  what: "Landing strong beats on 9, 11, ♯11, or 13 instead of chord tones",
+                  typical: "Jazz, J-pop, neo-soul",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Chromatic approach and enclosure",
+                  what: "Approaching targets from above and below by step or half step",
+                  typical: "Bebop, jazz",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Pentatonic and blues-scale hooks",
+                  what: "Hooks built from pentatonic cells and blue notes",
+                  typical: "Rock, R&B, pop",
+                  roots: "P",
+                  toyMidi: "~ no bends `bend`",
+                  gaps: ["bend"],
+                  toyMidiText: "approximate: no bends · missing pitch bend",
+                },
+                {
+                  name: "Modal color tone",
+                  what: "Featuring the characteristic degree of a mode, such as Dorian ♮6 or Lydian ♯4",
+                  typical: "Film, game, pop",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Gap-fill",
+                  what: "A leap followed by stepwise motion back into the gap",
+                  typical: "Everywhere",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Instrumental riff hook",
+                  what: "A synth or guitar riff standing in for a sung chorus",
+                  typical: "EDM, K-pop post-chorus, rock",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Repeated-note chant hook",
+                  what: 'Rhythm-led hooks on one or two pitches, the "killing part"',
+                  typical: "K-pop, trap, pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Topline over a track",
+                  what: "Writing the melody last over a finished loop or beat",
+                  typical: "Modern pop, K-pop writing camps",
+                  roots: "P",
+                  toyMidi: "~ lead instrument stands in for voice",
+                  gaps: [],
+                  toyMidiText:
+                    "approximate: lead instrument stands in for voice",
+                },
+                {
+                  name: "Runs and melisma",
+                  what: "Fast pentatonic and blues runs on one syllable",
+                  typical: "R&B, gospel, K-pop ballads",
+                  roots: "J",
+                  toyMidi: "~ lead instrument stands in for voice",
+                  gaps: [],
+                  toyMidiText:
+                    "approximate: lead instrument stands in for voice",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "Time",
+          hint: "rhythm and the low end",
+          areas: [
+            {
+              name: "Rhythm, meter, and groove",
+              icon: "⏱️",
+              items: [
+                {
+                  name: "Swing amount",
+                  what: "Continuous swing from straight to triplet, as in MPC swing percentages",
+                  typical: "Jazz, hip-hop, house, lo-fi",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: 'Microtiming ("Dilla feel")',
+                  what: "Parts deliberately offset against the grid and against each other",
+                  typical: "Neo-soul, lo-fi, hip-hop",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Laid-back vs pushed placement",
+                  what: "Consistent drag or push on specific instruments, such as a late snare",
+                  typical: "R&B, funk, hip-hop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Accent maps and ghost notes",
+                  what: "Velocity patterns that make a groove, not just note positions",
+                  typical: "Funk, R&B, drum programming",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Humanization",
+                  what: "Bounded random variation of timing and velocity",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Tresillo (3+3+2)",
+                  what: "Eighths grouped 3+3+2 over a 4/4 bar",
+                  typical: "Reggaeton, afrobeats, pop, K-pop",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Clave",
+                  what: "Son and rumba clave in 2-3 and 3-2 directions, as an organizing timeline",
+                  typical: "Salsa, Latin jazz",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Dembow",
+                  what: "The reggaeton kick–snare pattern built on tresillo",
+                  typical: "Reggaeton, dancehall",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Half-time and double-time feel",
+                  what: "Halving or doubling the backbeat rate at a constant tempo",
+                  typical: "Trap, dubstep, rock bridges",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Triplet subdivision and triplet flow",
+                  what: "Triplet grids on hats or rap rhythms against a straight beat",
+                  typical: "Trap, drill",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Hemiola",
+                  what: "Three-against-two regrouping across bar lines",
+                  typical: "Classical, afro-Latin, waltz-time pop",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Polyrhythm",
+                  what: "Simultaneous 3:2, 4:3, and similar layers",
+                  typical: "Afro-Cuban, jazz, math rock",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Polymeter and asynchronous loops",
+                  what: "Loops of different lengths phasing against each other",
+                  typical: "Techno, minimal, IDM",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Odd meters",
+                  what: "5/4, 7/8, and additive groupings",
+                  typical: "Prog, jazz, Balkan",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Meter and tempo changes",
+                  what: "Metric modulation, mixed meter, and tempo shifts within a piece",
+                  typical: "Prog, film, K-pop beat switch",
+                  roots: "C",
+                  toyMidi: "✗ `tempo`",
+                  gaps: ["tempo"],
+                  toyMidiText: "can't demo yet, needs tempo changes",
+                },
+                {
+                  name: "Rhythmic ostinato as identity",
+                  what: "A fixed rhythmic cell defining the piece",
+                  typical: "Film, minimalism, trailer",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Stop-time and breaks",
+                  what: "Band hits followed by silence, leaving room for a soloist or vocal",
+                  typical: "Blues, funk, pop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Unison hits",
+                  what: "All parts hitting the same rhythm on accents",
+                  typical: "Big band, funk, K-pop choreography accents",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+              ],
+            },
+            {
+              name: "Drum programming and beat-making",
+              icon: "🥁",
+              items: [
+                {
+                  name: "Four-on-the-floor",
+                  what: "Kick on every beat with offbeat open hats and claps on 2 and 4",
+                  typical: "House, disco, techno",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Boom-bap",
+                  what: "Syncopated kick, heavy snare on 2 and 4, swung hats",
+                  typical: "90s hip-hop",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Trap pattern",
+                  what: "Half-time snare on 3, rolled hats, 808 tied to the kick",
+                  typical: "Trap, modern pop, K-pop",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Hi-hat rolls and ratchets",
+                  what: "1/16T and 1/32 bursts with velocity ramps",
+                  typical: "Trap, drill",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "UK garage 2-step",
+                  what: "Shuffled hats with a skipping, broken kick",
+                  typical: "UK garage, 2-step, jersey club adjacent",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Breakbeats",
+                  what: "Amen and Funky Drummer style patterns, programmed or chopped",
+                  typical: "DnB, jungle, big beat",
+                  roots: "E",
+                  toyMidi: "~ programmed only, no chopped breaks `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText:
+                    "approximate: programmed only, no chopped breaks · missing audio sampling",
+                },
+                {
+                  name: "Linear drumming",
+                  what: "Patterns where no two limbs strike together",
+                  typical: "Funk, gospel chops",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Fills and build rolls",
+                  what: "Snare rolls that accelerate in subdivision into a downbeat",
+                  typical: "EDM, pop, rock",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Section markers",
+                  what: "Crash on section downbeats, reverse cymbal into them",
+                  typical: "Everywhere",
+                  roots: "P",
+                  toyMidi: "~ crashes work, no reverse cymbals `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText:
+                    "approximate: crashes work, no reverse cymbals · missing audio sampling",
+                },
+                {
+                  name: "Drum dropout",
+                  what: "Pulling the kick or whole kit for a beat or bar before a downbeat",
+                  typical: "Pop, EDM, hip-hop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Percussion tops",
+                  what: "Shaker, conga, and tambourine layers that add density without weight",
+                  typical: "House, afro, pop",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Sample layering",
+                  what: "Kick and snare built from stacked samples, clap stacks",
+                  typical: "Everywhere modern",
+                  roots: "E",
+                  toyMidi: "~ stack GM kits only `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText:
+                    "approximate: stack GM kits only · missing audio sampling",
+                },
+                {
+                  name: "Kick–bass interlock",
+                  what: "Bass either locking to or avoiding the kick by design",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Brush and jazz kit idioms",
+                  what: "Ride pattern, hi-hat on 2 and 4, snare comping, brush patterns",
+                  typical: "Jazz",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Drum-machine kit identity",
+                  what: "Choosing the 808, 909, or LinnDrum sound as a genre signifier",
+                  typical: "Electro, hip-hop, house, synth-pop",
+                  roots: "E",
+                  toyMidi: "~ TR-808 and Electronic kits only",
+                  gaps: [],
+                  toyMidiText: "approximate: TR-808 and Electronic kits only",
+                },
+              ],
+            },
+            {
+              name: "Bass lines",
+              icon: "🎸",
+              items: [
+                {
+                  name: "Root pulse",
+                  what: "Root eighths or root–fifth patterns",
+                  typical: "Pop, rock",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Walking bass",
+                  what: "Quarter-note lines connecting chord tones with approach notes",
+                  typical: "Jazz",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Octave bass",
+                  what: "Alternating octaves on eighths",
+                  typical: "Disco, nu-disco, K-pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Offbeat bass",
+                  what: 'Bass on every "and" between four-on-the-floor kicks',
+                  typical: "Trance, house",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Rolling 16th bass",
+                  what: "Galloping 16ths, often with the downbeat left to the kick",
+                  typical: "Psytrance, techno",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Syncopated funk bass",
+                  what: "16th pushes, ghost notes, slides",
+                  typical: "Funk, neo-soul",
+                  roots: "J",
+                  toyMidi: "~ no slides `bend`",
+                  gaps: ["bend"],
+                  toyMidiText: "approximate: no slides · missing pitch bend",
+                },
+                {
+                  name: "Melodic counter-line bass",
+                  what: "Bass as an independent melody against the vocal",
+                  typical: "Motown, Beatles",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Riff bass",
+                  what: "Bass riff as the song's hook, often doubled by guitar",
+                  typical: "Rock, funk",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Tumbao",
+                  what: 'The anticipated Afro-Cuban bass pattern on "2-and" and 4',
+                  typical: "Salsa, Latin jazz",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "One-drop bass",
+                  what: "Heavy, spacious lines that leave beat 1 empty",
+                  typical: "Reggae, dub",
+                  roots: "L",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "808 sub bass",
+                  what: "Long sub notes that follow the kick, with glides between pitches",
+                  typical: "Trap, drill, K-pop",
+                  roots: "E",
+                  toyMidi: "~ notes work, no glides or grit `bend` `dyn`",
+                  gaps: ["bend", "dyn"],
+                  toyMidiText:
+                    "approximate: notes work, no glides or grit · missing pitch bend, dynamics",
+                },
+                {
+                  name: "Reese, wobble, and growl bass",
+                  what: "Detuned or LFO-modulated bass whose movement is the part",
+                  typical: "DnB, dubstep",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `filter` `auto`",
+                  gaps: ["synth", "filter", "auto"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, filters, automation",
+                },
+                {
+                  name: "Acid and filter-envelope bass",
+                  what: "Resonant filter envelopes with accents and slides",
+                  typical: "Acid house, funk",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `filter` `bend`",
+                  gaps: ["synth", "filter", "bend"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, filters, pitch bend",
+                },
+                {
+                  name: "Slap and pop",
+                  what: "Thumb slaps and popped strings with octave patterns",
+                  typical: "Funk, city pop",
+                  roots: "J",
+                  toyMidi: "~ GM slap presets, no articulations",
+                  gaps: [],
+                  toyMidiText: "approximate: GM slap presets, no articulations",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "Shape",
+          hint: "how a piece unfolds",
+          areas: [
+            {
+              name: "Form and structure",
+              icon: "🧱",
+              items: [
+                {
+                  name: "Verse–pre-chorus–chorus",
+                  what: "The core modern pop section cycle",
+                  typical: "Pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Post-chorus",
+                  what: "An instrumental or chant hook after the chorus",
+                  typical: "Modern pop, K-pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "AABA and ABAC",
+                  what: "32-bar song forms",
+                  typical: "Standards, Tin Pan Alley",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Bridge or middle 8",
+                  what: "A contrast section with a new harmony or key area",
+                  typical: "Pop, rock",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Pre-chorus build",
+                  what: "Rising bass or harmony, snare build, and rhythmic acceleration toward the chorus",
+                  typical: "Pop, K-pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Break, build, drop",
+                  what: "Strip down, build tension, then release on a downbeat",
+                  typical: "EDM, K-pop",
+                  roots: "E",
+                  toyMidi:
+                    "~ notes and drums work, no risers or sweeps `filter` `auto` `fx`",
+                  gaps: ["filter", "auto", "fx"],
+                  toyMidiText:
+                    "approximate: notes and drums work, no risers or sweeps · missing filters, automation, effects",
+                },
+                {
+                  name: "Silence before the drop",
+                  what: "A beat or bar of near-silence before the downbeat",
+                  typical: "EDM, K-pop, pop",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Dance break",
+                  what: "An instrumental section designed for choreography",
+                  typical: "K-pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Beat or song switch",
+                  what: "A new groove, genre, or tempo partway through a song",
+                  typical: "K-pop, hip-hop",
+                  roots: "P",
+                  toyMidi: "~ groove switch works, no tempo change `tempo`",
+                  gaps: ["tempo"],
+                  toyMidiText:
+                    "approximate: groove switch works, no tempo change · missing tempo changes",
+                },
+                {
+                  name: "Final-chorus key change",
+                  what: "Lifting the last chorus, usually by a half or whole step",
+                  typical: "Pop, K-pop, ballads",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Stripped chorus",
+                  what: "A minimal chorus before the final full one",
+                  typical: "Pop, K-pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Hook-first intro",
+                  what: "Opening on the chorus or hook instead of an instrumental intro",
+                  typical: "Streaming-era pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Bookend, deferred, and twin choruses",
+                  what: "Chorus placement variants such as starting with it, delaying it, or alternating two",
+                  typical: "K-pop",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "DJ-friendly phrase blocks",
+                  what: "8, 16, and 32-bar sections with beat-only intros and outros",
+                  typical: "House, techno",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Energy curve",
+                  what: "Planning intensity section by section as a dramatic arc",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Subtractive arranging",
+                  what: "Building the full loop first, then muting parts to carve sections",
+                  typical: "EDM, beat-making",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Loop mutation",
+                  what: "Varying a loop across repetitions so it evolves instead of repeating",
+                  typical: "Hip-hop, electronic",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Unique events",
+                  what: "A one-off sound or fill heard once, as ear candy",
+                  typical: "Pop production",
+                  roots: "P",
+                  toyMidi: "~ note events work, most ear candy is effects `fx`",
+                  gaps: ["fx"],
+                  toyMidiText:
+                    "approximate: note events work, most ear candy is effects · missing effects",
+                },
+                {
+                  name: "False ending",
+                  what: "A stop that sounds final, followed by a restart",
+                  typical: "Pop, rock",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Tag, coda, and fade",
+                  what: "Repeating the last line, a surprise final chord, or a fade-out",
+                  typical: "Pop, jazz",
+                  roots: "P",
+                  toyMidi: "~ tags and codas work, no fade-out `auto`",
+                  gaps: ["auto"],
+                  toyMidiText:
+                    "approximate: tags and codas work, no fade-out · missing automation",
+                },
+                {
+                  name: "Classical large forms",
+                  what: "Sonata, rondo, theme and variations, binary, and ternary",
+                  typical: "Classical, film, K-pop analyses",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+              ],
+            },
+            {
+              name: "Arranging and orchestration",
+              icon: "🎻",
+              items: [
+                {
+                  name: "Texture choice",
+                  what: "Monophony, melody with accompaniment, counterpoint, or homorhythm per section",
+                  typical: "Everywhere",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Register slotting",
+                  what: "Giving each part its own frequency and register band",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Octave and unison doubling",
+                  what: "Doubling a line for weight or brightness",
+                  typical: "Orchestral, rock, EDM leads",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Timbre layering",
+                  what: "Stacking sounds on one part, such as piano with pad or strings with synth",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Countermelody",
+                  what: "A second melody, often entering in a later chorus",
+                  typical: "Pop, orchestral, musical theater",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Pad vs pulse roles",
+                  what: "Sustained beds against rhythmic comping parts",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Comping patterns",
+                  what: "Piano and guitar rhythm figures such as Charleston, 16th strums, and block chords",
+                  typical: "Jazz, pop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Arpeggiation",
+                  what: "Up, down, and gated arpeggio patterns",
+                  typical: "Synth-pop, trance, film",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "String ostinato",
+                  what: "Driving 8th or 16th string figures",
+                  typical: "Pop, trailer, film",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Sectional soli",
+                  what: "Harmonized lines for a horn or string section, often in drop-2",
+                  typical: "Big band, funk, K-pop horns",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Background figures",
+                  what: "Pads, punches, and stabs behind the melody",
+                  typical: "Big band, pop",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Density build",
+                  what: "Adding one layer every 4 or 8 bars",
+                  typical: "EDM, pop",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Idiomatic range",
+                  what: "Writing lines that real instruments can play",
+                  typical: "Live arranging",
+                  roots: "C",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Orchestral color",
+                  what: "Divisi strings, woodwind doublings, horns as glue, pizzicato and tremolo",
+                  typical: "Film, ballads",
+                  roots: "C",
+                  toyMidi:
+                    "~ GM pizzicato and tremolo presets, no articulation switching",
+                  gaps: [],
+                  toyMidiText:
+                    "approximate: GM pizzicato and tremolo presets, no articulation switching",
+                },
+                {
+                  name: "Orchestrated crescendo",
+                  what: "Building intensity by adding instruments and register, not only volume",
+                  typical: "Orchestral, film",
+                  roots: "C",
+                  toyMidi: "~ adding parts works, no volume swells `cc`",
+                  gaps: ["cc"],
+                  toyMidiText:
+                    "approximate: adding parts works, no volume swells · missing pedal and swells",
+                },
+                {
+                  name: "Stabs and hits",
+                  what: "Brass or string hits on accents",
+                  typical: "K-pop, funk, trailer",
+                  roots: "P",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Guitar idioms",
+                  what: "Power chords, palm-muted chugs, strummed voicings",
+                  typical: "Rock, pop-punk",
+                  roots: "P",
+                  toyMidi: "~ GM guitars, strums as staggered starts",
+                  gaps: [],
+                  toyMidiText:
+                    "approximate: GM guitars, strums as staggered starts",
+                },
+                {
+                  name: "Backing vocal parts",
+                  what: "Harmonized vocal lines in 3rds or 6ths, gang vocals",
+                  typical: "Pop, R&B",
+                  roots: "P",
+                  toyMidi: "~ GM choir stands in `vox`",
+                  gaps: ["vox"],
+                  toyMidiText:
+                    "approximate: GM choir stands in · missing vocals",
+                },
+                {
+                  name: "Reduction",
+                  what: "Arranging a full texture down to a small band or solo piano",
+                  typical: "Jazz, covers",
+                  roots: "J",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "Sound",
+          hint: "production and voice",
+          areas: [
+            {
+              name: "Sound selection and synthesis",
+              icon: "🎛️",
+              items: [
+                {
+                  name: "Era-signifier timbres",
+                  what: "DX7 EP, Rhodes, Juno pads, M1 piano, and Clavinet as period markers",
+                  typical: "City pop, 80s pop, 90s house",
+                  roots: "P",
+                  toyMidi: "~ GM approximations",
+                  gaps: [],
+                  toyMidiText: "approximate: GM approximations",
+                },
+                {
+                  name: "Subtractive synthesis",
+                  what: "Oscillator, filter, and amp with envelopes",
+                  typical: "All synth genres",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `filter`",
+                  gaps: ["synth", "filter"],
+                  toyMidiText: "can't demo yet, needs synth design, filters",
+                },
+                {
+                  name: "Supersaw and unison detune",
+                  what: "Many detuned saw voices for width",
+                  typical: "Trance, EDM, future bass",
+                  roots: "E",
+                  toyMidi: "✗ `synth`",
+                  gaps: ["synth"],
+                  toyMidiText: "can't demo yet, needs synth design",
+                },
+                {
+                  name: "Plucks",
+                  what: "Short amp and filter decay patches",
+                  typical: "EDM, tropical house",
+                  roots: "E",
+                  toyMidi: "~ GM plucked presets only `synth`",
+                  gaps: ["synth"],
+                  toyMidiText:
+                    "approximate: GM plucked presets only · missing synth design",
+                },
+                {
+                  name: "Evolving pads",
+                  what: "Slow attack and modulated movement",
+                  typical: "Ambient, film",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `auto`",
+                  gaps: ["synth", "auto"],
+                  toyMidiText: "can't demo yet, needs synth design, automation",
+                },
+                {
+                  name: "FM synthesis",
+                  what: "Bells, electric pianos, metallic basses",
+                  typical: "80s pop, city pop, dubstep",
+                  roots: "E",
+                  toyMidi: "✗ `synth`",
+                  gaps: ["synth"],
+                  toyMidiText: "can't demo yet, needs synth design",
+                },
+                {
+                  name: "Wavetable movement",
+                  what: "Sweeping through wavetables over time",
+                  typical: "Modern EDM",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `auto`",
+                  gaps: ["synth", "auto"],
+                  toyMidiText: "can't demo yet, needs synth design, automation",
+                },
+                {
+                  name: "808 design",
+                  what: "Sine with pitch envelope, long decay, and saturation",
+                  typical: "Trap, drill",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `dyn` `bend`",
+                  gaps: ["synth", "dyn", "bend"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, dynamics, pitch bend",
+                },
+                {
+                  name: "Acid line",
+                  what: "303-style resonance, accents, and slides",
+                  typical: "Acid house, techno",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `filter` `bend`",
+                  gaps: ["synth", "filter", "bend"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, filters, pitch bend",
+                },
+                {
+                  name: "Transition FX",
+                  what: "Risers, white-noise sweeps, impacts, downlifters",
+                  typical: "EDM, K-pop, film",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `filter` `auto`",
+                  gaps: ["synth", "filter", "auto"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, filters, automation",
+                },
+                {
+                  name: "Layered sound design",
+                  what: "Building one sound from transient, body, and tail parts",
+                  typical: "Sound design",
+                  roots: "E",
+                  toyMidi: "✗ `synth` `sampler`",
+                  gaps: ["synth", "sampler"],
+                  toyMidiText:
+                    "can't demo yet, needs synth design, audio sampling",
+                },
+                {
+                  name: "Portamento leads",
+                  what: "Mono legato leads that glide between notes",
+                  typical: "Synth-pop, G-funk",
+                  roots: "E",
+                  toyMidi: "✗ `bend`",
+                  gaps: ["bend"],
+                  toyMidiText: "can't demo yet, needs pitch bend",
+                },
+                {
+                  name: "Velocity-to-timbre mapping",
+                  what: "Velocity changing brightness, not only level",
+                  typical: "Everywhere",
+                  roots: "U",
+                  toyMidi: "~ soundfont velocity layers only",
+                  gaps: [],
+                  toyMidiText: "approximate: soundfont velocity layers only",
+                },
+              ],
+            },
+            {
+              name: "Sampling and audio manipulation",
+              icon: "✂️",
+              items: [
+                {
+                  name: "Chopping",
+                  what: "Slicing a loop and re-sequencing the slices",
+                  typical: "Hip-hop, lo-fi, jungle",
+                  roots: "E",
+                  toyMidi: "~ clip trim and move, no slice-to-pads `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText:
+                    "approximate: clip trim and move, no slice-to-pads · missing audio sampling",
+                },
+                {
+                  name: "Flipping a sample",
+                  what: "Re-contextualizing a sampled loop with new drums and bass",
+                  typical: "Hip-hop",
+                  roots: "E",
+                  toyMidi: "~ import and place clips",
+                  gaps: [],
+                  toyMidiText: "approximate: import and place clips",
+                },
+                {
+                  name: "Pitched samples",
+                  what: "Speed-changing a sample, as in chipmunk soul",
+                  typical: "2000s hip-hop",
+                  roots: "E",
+                  toyMidi: "✗ `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText: "can't demo yet, needs audio sampling",
+                },
+                {
+                  name: "Time-stretching to tempo",
+                  what: "Fitting audio to the project tempo without changing pitch",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✗ `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText: "can't demo yet, needs audio sampling",
+                },
+                {
+                  name: "Vocal chops",
+                  what: "A sliced vocal played as a melodic instrument",
+                  typical: "Future bass, K-pop, tropical house",
+                  roots: "E",
+                  toyMidi: "✗ `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText: "can't demo yet, needs audio sampling",
+                },
+                {
+                  name: "Reverse",
+                  what: "Reversed cymbals and reversed reverb tails",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✗ `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText: "can't demo yet, needs audio sampling",
+                },
+                {
+                  name: "Resampling",
+                  what: "Bouncing a part to audio and mangling it further",
+                  typical: "EDM, sound design",
+                  roots: "E",
+                  toyMidi: "✗ `sampler`",
+                  gaps: ["sampler"],
+                  toyMidiText: "can't demo yet, needs audio sampling",
+                },
+                {
+                  name: "Stutter and gate edits",
+                  what: "Rhythmic repeats and gating of audio",
+                  typical: "EDM, glitch",
+                  roots: "E",
+                  toyMidi: "~ coarse clip edits only `sampler` `auto`",
+                  gaps: ["sampler", "auto"],
+                  toyMidiText:
+                    "approximate: coarse clip edits only · missing audio sampling, automation",
+                },
+                {
+                  name: "Tape stop",
+                  what: "Pitch and speed falling to a stop",
+                  typical: "Lo-fi, hip-hop, EDM",
+                  roots: "E",
+                  toyMidi: "✗ `sampler` `auto`",
+                  gaps: ["sampler", "auto"],
+                  toyMidiText:
+                    "can't demo yet, needs audio sampling, automation",
+                },
+                {
+                  name: "Found sound",
+                  what: "Foley and field recordings used as percussion or texture",
+                  typical: "Lo-fi, experimental",
+                  roots: "E",
+                  toyMidi: "~ import clips",
+                  gaps: [],
+                  toyMidiText: "approximate: import clips",
+                },
+              ],
+            },
+            {
+              name: "Mixing and effects",
+              icon: "🎚️",
+              items: [
+                {
+                  name: "Static balance",
+                  what: "A level-only mix before any processing",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Panning plan",
+                  what: "LCR placement with a centered kick, bass, and lead",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Complementary EQ",
+                  what: "Cutting one part to make room for another",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "High-pass and shelving",
+                  what: "Clearing low end from non-bass parts and tilting tone",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "~ peaking cuts only `filter`",
+                  gaps: ["filter"],
+                  toyMidiText:
+                    "approximate: peaking cuts only · missing filters",
+                },
+                {
+                  name: "Compression",
+                  what: "Controlling dynamics and shaping attack",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✗ `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText: "can't demo yet, needs dynamics",
+                },
+                {
+                  name: "Parallel compression",
+                  what: "Blending a crushed copy under the dry signal",
+                  typical: "Drums, vocals",
+                  roots: "E",
+                  toyMidi: "✗ `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText: "can't demo yet, needs dynamics",
+                },
+                {
+                  name: "Sidechain pumping",
+                  what: "Ducking pads and bass from the kick as a rhythmic effect",
+                  typical: "House, EDM, K-pop",
+                  roots: "E",
+                  toyMidi: "~ faked with shortened notes `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText:
+                    "approximate: faked with shortened notes · missing dynamics",
+                },
+                {
+                  name: "Reverb depth",
+                  what: "Placing parts front to back with reverb, pre-delay, and gated reverb",
+                  typical: "Everywhere, 80s snare",
+                  roots: "E",
+                  toyMidi: "✗ `fx`",
+                  gaps: ["fx"],
+                  toyMidiText: "can't demo yet, needs effects",
+                },
+                {
+                  name: "Delay throws",
+                  what: "Tempo-synced echoes on chosen words or hits",
+                  typical: "Pop, reggae, dub",
+                  roots: "E",
+                  toyMidi: "✗ `fx` `auto`",
+                  gaps: ["fx", "auto"],
+                  toyMidiText: "can't demo yet, needs effects, automation",
+                },
+                {
+                  name: "Dub mixing",
+                  what: "Send feedback and spring reverb played as an instrument",
+                  typical: "Dub, reggae",
+                  roots: "L",
+                  toyMidi: "✗ `fx` `auto`",
+                  gaps: ["fx", "auto"],
+                  toyMidiText: "can't demo yet, needs effects, automation",
+                },
+                {
+                  name: "Saturation and distortion",
+                  what: "Adding harmonics so a part reads on small speakers",
+                  typical: "Trap 808s, rock",
+                  roots: "E",
+                  toyMidi: "✗ `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText: "can't demo yet, needs dynamics",
+                },
+                {
+                  name: "Stereo width",
+                  what: "Double-tracking, Haas offsets, and chorus",
+                  typical: "Pop, rock",
+                  roots: "E",
+                  toyMidi: "~ panned double tracks only `fx`",
+                  gaps: ["fx"],
+                  toyMidiText:
+                    "approximate: panned double tracks only · missing effects",
+                },
+                {
+                  name: "Mono low end",
+                  what: "Keeping sub frequencies centered",
+                  typical: "Club music",
+                  roots: "E",
+                  toyMidi: "✓",
+                  gaps: [],
+                  toyMidiText: "demo now",
+                },
+                {
+                  name: "Filter sweeps",
+                  what: "DJ-style low- and high-pass sweeps over a whole mix",
+                  typical: "House, French house",
+                  roots: "E",
+                  toyMidi: "✗ `filter` `auto`",
+                  gaps: ["filter", "auto"],
+                  toyMidiText: "can't demo yet, needs filters, automation",
+                },
+                {
+                  name: "Volume automation",
+                  what: "Rides and fades over time",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✗ `auto`",
+                  gaps: ["auto"],
+                  toyMidiText: "can't demo yet, needs automation",
+                },
+                {
+                  name: "Bus processing",
+                  what: "Shared compression or saturation on a group",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✗ `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText: "can't demo yet, needs dynamics",
+                },
+                {
+                  name: "Mastering loudness",
+                  what: "Limiting and final tonal balance",
+                  typical: "Everywhere",
+                  roots: "E",
+                  toyMidi: "✗ `dyn`",
+                  gaps: ["dyn"],
+                  toyMidiText: "can't demo yet, needs dynamics",
+                },
+                {
+                  name: "Lo-fi degradation",
+                  what: "Bitcrushing, wow and flutter, vinyl noise",
+                  typical: "Lo-fi, vaporwave",
+                  roots: "E",
+                  toyMidi: "✗ `fx`",
+                  gaps: ["fx"],
+                  toyMidiText: "can't demo yet, needs effects",
+                },
+                {
+                  name: "Hard pitch correction",
+                  what: "Audible tuning as an effect",
+                  typical: "Trap, K-pop, R&B",
+                  roots: "E",
+                  toyMidi: "✗ `vox` `fx`",
+                  gaps: ["vox", "fx"],
+                  toyMidiText: "can't demo yet, needs vocals, effects",
+                },
+              ],
+            },
+            {
+              name: "Lyrics and vocals",
+              icon: "🎤",
+              items: [
+                {
+                  name: "Prosody",
+                  what: "Aligning stressed syllables with strong beats and open vowels with long notes",
+                  typical: "All sung music",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Rhyme schemes",
+                  what: "End, internal, and multisyllabic rhymes",
+                  typical: "Pop, rap",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Title and hook placement",
+                  what: "Putting the title in the first or last line of the chorus",
+                  typical: "Pop",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Rap flow",
+                  what: "Flow patterns such as triplet flow and switching pockets",
+                  typical: "Hip-hop, K-pop rap verses",
+                  roots: "E",
+                  toyMidi: "~ rhythm on a lead or percussion track",
+                  gaps: [],
+                  toyMidiText:
+                    "approximate: rhythm on a lead or percussion track",
+                },
+                {
+                  name: "Vocal stacks",
+                  what: "Doubles, harmonies, and ad-libs layered on a lead",
+                  typical: "Pop, R&B",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Hook language switching",
+                  what: "English hooks inside non-English verses",
+                  typical: "K-pop, J-pop",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Line distribution",
+                  what: "Assigning lines to group members by voice color",
+                  typical: "K-pop",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Chants and gang shouts",
+                  what: 'Group "hey" and crowd hooks',
+                  typical: "Pop, hip-hop",
+                  roots: "P",
+                  toyMidi: "✗ `vox`",
+                  gaps: ["vox"],
+                  toyMidiText: "can't demo yet, needs vocals",
+                },
+                {
+                  name: "Delivery shift by section",
+                  what: "Rap verse, sung pre-chorus, belted chorus",
+                  typical: "K-pop, pop",
+                  roots: "P",
+                  toyMidi: "~ register shift with a lead stand-in",
+                  gaps: [],
+                  toyMidiText:
+                    "approximate: register shift with a lead stand-in",
+                },
+              ],
+            },
+          ],
+        },
+      ];
+      const GAPS = {
+        synth: "Synth design",
+        sampler: "Audio sampling",
+        auto: "Automation",
+        fx: "Effects",
+        dyn: "Dynamics",
+        filter: "Filters",
+        vox: "Vocals",
+        bend: "Pitch bend",
+        tempo: "Tempo changes",
+        cc: "Pedal and swells",
+      };
+      const ROOTS = {
+        C: { label: "Classical and film", color: "#4a3aa7" },
+        J: { label: "Jazz, soul, and gospel", color: "#2a78d6" },
+        P: { label: "Pop and songwriting", color: "#e87ba4" },
+        E: { label: "Electronic, hip-hop, and production", color: "#1baf7a" },
+        L: { label: "Latin and African diaspora", color: "#eb6834" },
+        U: { label: "Universal", color: "#898781" },
+      };
+      const escape = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      const code = (s) => escape(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+
+      const map = document.getElementById("map");
+      const chips = [];
+      const chipByName = new Map();
+      const genres = [];
+      for (const layer of LAYERS) {
+        const row = document.createElement("section");
+        row.className = "layer";
+        row.innerHTML =
+          '<div class="layer-label"><b>' +
+          layer.name +
+          "</b><span>" +
+          escape(layer.hint) +
+          '</span></div><div class="layer-areas"></div>';
+        for (const area of layer.areas) {
+          const card = document.createElement("div");
+          card.className = "area";
+          const counts = {};
+          for (const item of area.items)
+            counts[item.roots] = (counts[item.roots] || 0) + 1;
+          card.innerHTML =
+            '<h2><span class="icon">' +
+            area.icon +
+            "</span>" +
+            escape(area.name) +
+            '<span class="n">' +
+            area.items.length +
+            "</span></h2>" +
+            '<div class="mix" title="Roots mix">' +
+            Object.keys(ROOTS)
+              .filter((k) => counts[k])
+              .map(
+                (k) =>
+                  '<div style="flex:' +
+                  counts[k] +
+                  ";background:var(--r-" +
+                  k +
+                  ')"></div>',
+              )
+              .join("") +
+            "</div>" +
+            '<div class="chips"></div>';
+          const box = card.querySelector(".chips");
+          for (const item of area.items) {
+            const chip = document.createElement("button");
+            chip.className = "chip" + (item.uses ? " genre" : "");
+            chip.style.setProperty("--c", "var(--r-" + item.roots + ")");
+            chip.textContent = item.name;
+            if (item.toyMidi[0] === "~") chip.classList.add("tm-approx");
+            if (item.toyMidi[0] === "✗") chip.classList.add("tm-missing");
+            chip.title = item.what;
+            const entry = { chip, item, area };
+            chip.onclick = () => select(entry);
+            box.append(chip);
+            chips.push(entry);
+            if (item.uses) genres.push(entry);
+            else chipByName.set(item.name, entry);
+          }
+          row.querySelector(".layer-areas").append(card);
+        }
+        map.append(row);
+      }
+
+      let lens = null;
+      let selected = null;
+      const detail = document.getElementById("detail");
+      function tag(roots) {
+        return (
+          '<span class="tag" style="background:var(--r-' +
+          roots +
+          ')">' +
+          ROOTS[roots].label +
+          "</span>"
+        );
+      }
+      function select(entry) {
+        if (selected === entry) return clear();
+        selected = entry;
+        const { item, area } = entry;
+        let extra;
+        if (item.uses) {
+          lens = new Set([entry, ...item.uses.map((n) => chipByName.get(n))]);
+          extra =
+            '<div class="meta">Uses: ' +
+            item.uses.map(escape).join(" · ") +
+            "</div>";
+        } else {
+          const usedBy = genres.filter((g) => g.item.uses.includes(item.name));
+          lens = new Set([entry, ...usedBy]);
+          extra =
+            '<div class="meta">Used in: ' +
+            (usedBy.length
+              ? usedBy.map((g) => escape(g.item.name)).join(" · ")
+              : "no genre linked") +
+            "</div>";
+        }
+        detail.innerHTML =
+          "<h3>" +
+          area.icon +
+          " " +
+          escape(item.name) +
+          tag(item.roots) +
+          ' <button id="clear">clear</button></h3>' +
+          "<div>" +
+          escape(item.what) +
+          "</div>" +
+          '<div class="meta">' +
+          escape(area.name) +
+          " · " +
+          escape(item.typical) +
+          " · toy-midi: " +
+          escape(item.toyMidiText) +
+          "</div>" +
+          extra;
+        document.getElementById("clear").onclick = clear;
+        render();
+      }
+      function clear() {
+        lens = selected = null;
+        detail.innerHTML =
+          '<span class="empty">Click a genre to light up the techniques it uses, or a technique to see what it is and which genres use it.</span>';
+        render();
+      }
+
+      const q = document.getElementById("q");
+      let rootFilter = null;
+      for (const b of document.querySelectorAll(".root")) {
+        b.onclick = () => {
+          rootFilter = rootFilter === b.dataset.root ? null : b.dataset.root;
+          for (const o of document.querySelectorAll(".root"))
+            o.classList.toggle(
+              "off",
+              !!rootFilter && o.dataset.root !== rootFilter,
+            );
+          render();
+        };
+      }
+      function render() {
+        const text = q.value.trim().toLowerCase();
+        let shown = 0;
+        for (const entry of chips) {
+          const { chip, item } = entry;
+          const match =
+            (!rootFilter || item.roots === rootFilter) &&
+            (!text ||
+              (item.name + " " + item.what + " " + item.typical)
+                .toLowerCase()
+                .includes(text)) &&
+            (!lens || lens.has(entry));
+          chip.classList.toggle("dim", !match);
+          chip.classList.toggle("lit", !!lens && lens.has(entry));
+          chip.classList.toggle("selected", entry === selected);
+          shown += match;
+        }
+        document.getElementById("shown").textContent =
+          shown + " of " + chips.length + " shown";
+      }
+      q.addEventListener("input", render);
+      document.addEventListener(
+        "keydown",
+        (e) => e.key === "Escape" && clear(),
+      );
+      document.getElementById("tm").addEventListener("input", (e) => {
+        document.body.classList.toggle("tm", e.target.checked);
+        if (!e.target.checked && selectedGap) toggleGap(selectedGap);
+      });
+
+      // Gap pills, ranked by how many techniques each one touches. Clicking one is a lens.
+      let selectedGap = null;
+      const gapCounts = {};
+      for (const { item } of chips)
+        for (const g of item.gaps) gapCounts[g] = (gapCounts[g] || 0) + 1;
+      const gapBox = document.getElementById("gaps");
+      for (const [g, n] of Object.entries(gapCounts).sort(
+        (a, b) => b[1] - a[1],
+      )) {
+        const b = document.createElement("button");
+        b.className = "gap";
+        b.dataset.gap = g;
+        b.innerHTML = escape(GAPS[g]) + "<b>" + n + "</b>";
+        b.onclick = () => toggleGap(g);
+        gapBox.append(b, " ");
+      }
+      function toggleGap(g) {
+        selectedGap = selectedGap === g ? null : g;
+        for (const b of gapBox.querySelectorAll(".gap"))
+          b.classList.toggle("on", b.dataset.gap === selectedGap);
+        selected = null;
+        if (selectedGap) {
+          lens = new Set(chips.filter((c) => c.item.gaps.includes(g)));
+          detail.innerHTML =
+            "<h3>Missing in toy-midi: " +
+            escape(GAPS[g]) +
+            ' <button id="clear">clear</button></h3><div class="meta">' +
+            lens.size +
+            " techniques are blocked or limited by it.</div>";
+          document.getElementById("clear").onclick = () => toggleGap(g);
+        } else {
+          clear();
+        }
+        render();
+      }
+      render();
+
+      // About dialog, also reachable by #about, #about-toy-midi, and #about-sources.
+      const about = document.getElementById("about");
+      function openAbout(hash) {
+        if (!about.open) about.showModal();
+        const target = hash === "#about" ? "about-read" : hash.slice(1);
+        document.getElementById(target)?.scrollIntoView({ block: "start" });
+      }
+      for (const b of document.querySelectorAll("[data-about]"))
+        b.onclick = () => (location.hash = b.dataset.about);
+      for (const a of about.querySelectorAll("nav a"))
+        a.onclick = (e) => {
+          e.preventDefault();
+          history.replaceState(null, "", a.getAttribute("href"));
+          openAbout(a.getAttribute("href"));
+        };
+      about.querySelector("[data-close]").onclick = () => about.close();
+      about.addEventListener(
+        "click",
+        (e) => e.target === about && about.close(),
+      );
+      about.addEventListener("close", () =>
+        history.replaceState(null, "", location.pathname + location.search),
+      );
+      const route = () =>
+        location.hash.startsWith("#about") && openAbout(location.hash);
+      addEventListener("hashchange", route);
+      route();
+    </script>
+  </body>
+</html>
