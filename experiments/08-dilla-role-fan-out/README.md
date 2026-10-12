@@ -17,10 +17,18 @@ The listener named a style, J Dilla, and nothing else. The agent drove toy-midi'
 
 ## Notes
 
-- The orchestrator fixed the form, chords and voicings first and turned "Dilla" into concrete targets such as how late the snare sits, so the subagents only filled in roles. The other reading of "explore", several variants with one picked, was never tried.
-- The parts fit together mechanically, with every note in range, and the snare landed where the prompt asked, about 31 ms late.
+How the work was split:
+
+- The orchestrator fixed the form, chords, voicings and roots before handing anything out, so the subagents only filled in roles. The other reading of "use subagents to explore idea", several variants with one picked by ear, was never tried.
+- The orchestrator also turned "J Dilla" into named idioms with numbers in its subagent prompts: drunk kicks, a snare 0.03 to 0.06 beats late, near-straight hats, ghost notes, a chopped soul sample on Rhodes, vocal chops, and extended neo-soul chords. That made the subagents' task much easier than the style name alone.
+- The parts fit together mechanically, with every note in range, and the snare landed where the prompt asked, about 31 ms late. So the feel was carried through, but the number came from the prompt, not from a subagent's choice.
 - Two parts drifted from their brief, and their subagents said so. The choir chops dipped into the keys' register, and the Rhodes played fewer hits in verse A2 than in verse A, though A2 was meant as the peak.
-- Every part was a generator with seeded randomness. That suits a groove, but the melody's bridge development was also a rule, a transposition snapped to each chord, which may be why it felt arbitrary. [09](../09-top-layer-dialogue/README.md) followed this up.
+
+Why the melody felt arbitrary:
+
+- No subagent chose notes one by one. Each wrote a small vocabulary inside its module and then wrote its part in it. In the rhythm part, `snareT(bar, i)` returns a backbeat time with the lateness built in, so one definition places every snare. In the melody part, the hook phrases are literal, but the bridge develops them by transposing and snapping each note to the nearest tone of the new chord (`snapToChord`).
+- That lines up with the listener's verdict. A groove's feel is itself a systematic tendency, so rhythm and harmony written as rules came out grounded. The melody is where a rule stood in for choosing notes, and that is the part that felt arbitrary. [09](../09-top-layer-dialogue/README.md) followed this up by writing the top layer note by note.
+- Drums and chord names got through here, which [07](../07-live-toy-midi-tab/README.md) had not managed, probably because a Dilla beat is a drum-led request.
 
 ## References
 
