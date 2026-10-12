@@ -2,12 +2,12 @@
 
 Notes and experiments on how much musical intuition a general LLM has in its text vocabulary, and how much of the remaining gap is tooling rather than intuition.
 
-- [docs/context.md](docs/context.md): the current thesis, reading, and claim status
-- [docs/history.md](docs/history.md): how the discussion got here, kept as written at the time
+- [docs/context.md](docs/context.md): the thesis, how the discussion got here, and the evidence so far
 - [docs/notation.md](docs/notation.md): what makes musical intent encodable, and presentable by an LLM through a medium
 - [docs/score-format.md](docs/score-format.md): reference for the score format, written to hand to a model
 - [docs/tool-plan.md](docs/tool-plan.md): plan for our own score-to-sound tool
 - [docs/toy-midi-playback.md](docs/toy-midi-playback.md): what toy-midi needs to play our MIDI output
 - [docs/directions.md](docs/directions.md): open research directions and the probe ideas that serve them
 - [docs/industry-landscape.md](docs/industry-landscape.md): how the music industry uses AI as of October 2026, with sources
-- [experiments/](experiments/): one directory per experiment, each with its own README
+- [experiments/](experiments/): one directory per experiment, each with its own README, started from [TEMPLATE.md](experiments/TEMPLATE.md)
+- [src/](src/): the score-to-sound tool used by the early experiments. It reads a text score into note events and writes General MIDI, rendered to audio with fluidsynth
