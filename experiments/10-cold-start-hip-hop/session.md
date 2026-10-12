@@ -509,7 +509,7 @@ Playback only.
 
 Prompt: "can you format comment as markdown?"
 
-The agent replaced the comment with a Markdown rewrite of the same content. The final text was not exported, because the page had disconnected by the time this was written up. toy-midi showed it as raw text, because the comment panel did not render Markdown at the time, which became [toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832).
+The agent replaced the comment with a Markdown rewrite of the same content. The final text is the `comment` in [project-state.json](project-state.json). toy-midi showed it as raw text, because the comment panel did not render Markdown at the time, which became [toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832).
 
 ## 15. Listener remark
 

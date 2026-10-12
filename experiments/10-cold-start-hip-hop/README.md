@@ -27,6 +27,7 @@ Playback is toy-midi's in-browser General MIDI synth. The agent never heard any 
 
 - [session.md](session.md): every listener prompt and every script that wrote to the project, verbatim
 - [share-link.mjs](share-link.mjs): the first draft as a share link, in its second version with the comment
+- [project-state.json](project-state.json): the final project, decoded from the share link the listener saved, with every note, gain and pan, the locators, and the Markdown comment. It includes the listener's own mix change
 
 ## Judgment
 
@@ -58,7 +59,8 @@ Playback is toy-midi's in-browser General MIDI synth. The agent never heard any 
 
 ### By ear
 
-- **Listener remark, not clearly by ear:** "pretty awesome", said after the final version. No part was judged on its own, so the musical claims above stay measured from the scripts or inferred.
+- **Listener remark, not clearly by ear:** "pretty awesome", said after the final version.
+- **Judged by ear, by editing:** the listener raised the vibes, the harmony voice, from gain 0.4 to 0.63, about 4 dB, so it sits closer to the flute. No other value differs from what the agent set. No part was judged on its own, so the musical claims above stay measured from the scripts or inferred.
 - **Inferred:** the hook is rule-shaped, chord tones in A minor pentatonic arranged as call and answer, so it says nothing new about melody.
 
 ## Effect on claims
