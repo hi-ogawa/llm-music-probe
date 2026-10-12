@@ -1,5 +1,6 @@
 # 01-scrimshaw-breakdown
 
+- Kind: breakdown
 - Direction: baseline for all of [directions.md](../../docs/directions.md)
 - Date: 2026-10-07
 - Model ID: Claude Opus 5.5, as stated in the post

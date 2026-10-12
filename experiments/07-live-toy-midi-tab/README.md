@@ -1,5 +1,6 @@
 # 07-live-toy-midi-tab
 
+- Kind: observed
 - Direction: Instrument idiom under Depth, and The adjustment loop, in [directions.md](../../docs/directions.md)
 - Date: 2026-10-10
 - Model ID: claude-opus-5-5, in one Claude Code session that started on unrelated work, not a fresh subagent

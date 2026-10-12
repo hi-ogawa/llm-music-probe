@@ -1,5 +1,6 @@
 # 10-cold-start-hip-hop
 
+- Kind: observed
 - Direction: Beat making and Genre breadth (production-led genres) in [directions.md](../../docs/directions.md), with The adjustment loop
 - Date: 2026-10-12
 - Model ID: claude-opus-5-5, one Claude Code session with no subagents and no prior context about toy-midi or this repository
@@ -29,39 +30,45 @@ Playback is toy-midi's in-browser General MIDI synth. The agent never heard any 
 - [share-link.mjs](share-link.mjs): the first draft as a share link, in its second version with the comment
 - [project-state.json](project-state.json): the final project, decoded from the share link the listener saved, with every note, gain and pan, the locators, and the Markdown comment. It includes the listener's own mix change
 
-## Judgment
+## Results
 
-### Cold start
+### What happened
 
-- **Measured:** the first share link loaded in toy-midi with all three tracks, from a JSON written against the `.d.ts` on the first try. The listener opened it and connected the bridge to it.
-- **Measured:** the friction was in the guide, not the music: a production host hard-coded in `llms.txt`, unclear required fields in the saved format, and a preview origin missing from the bridge's allow list. These are in the [comment on toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831#issuecomment-6118912662).
+Cold start:
 
-### First draft
+- The first share link loaded in toy-midi with all three tracks, from JSON written against the `.d.ts` on the first try. The listener opened it and connected the bridge to it.
+- The friction was in the guide, not the music: a production host hard-coded in `llms.txt`, unclear required fields in the saved format, and a preview origin missing from the bridge's allow list. These are in the [comment on toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831#issuecomment-6118912662).
 
-- **Measured:** asked for "hip hop beat loop", the agent wrote a 4-bar loop at 88 bpm in A minor with three tracks: TR-808 drums with a syncopated kick and swung 8th hats, synth bass on the roots, and Rhodes on Am9, Fmaj7, Dm9, E7#9. No percussion layer, no top line, no sections, and every note on the grid apart from a fixed swing offset.
+First draft:
 
-### Moves applied once asked
+- Asked for "hip hop beat loop", the agent wrote a 4-bar loop at 88 bpm in A minor with three tracks: TR-808 drums with a syncopated kick and swung 8th hats, synth bass on the roots, and Rhodes on Am9, Fmaj7, Dm9, E7#9. There was no percussion layer, no top line, and no sections, and every note was on the grid apart from a fixed swing offset.
 
-- **Measured:** every later move came from a listener prompt, and none from the agent: a percussion layer and a string pad, humanizing, a stacked lead, sections, and transitions.
-- **Measured:** humanizing was a rule, a fixed drag per instrument (snare about 17 ms, clap about 20 ms) plus seeded random scatter, loosest on the hats. This is the same groove rule as 08.
-- **Measured:** asked for "stacked lead-ish upper backing-ish", the agent stacked in octaves only: vibes in two octaves and flute in unison with the top. Asked "is it octave stack?", meant as "isn't this boring octave stack? why not hamonize with two lead?", it read the note as a factual question. It confirmed the stack, offered harmony as an option, and wrote harmony only after "harmony 2 lead stack maybe".
-- **Measured:** the harmony is 09's rule with a different fallback: a diatonic third below, a sixth where a third would not fit the chord, and every note a chord tone, ending on G#, the third of E7, under the resolution. 09 used a fourth as its fallback.
-- **Measured:** asked to make "each section boundary bar imply transition", the agent wrote one standard move per boundary: a snare build into a crash, a kick, snare and tom fill with the bass sitting out the last beat, a hard stop with an open hat ringing, and a snare roll over 8th-note kicks with a bass walk-up. The hard stop left the Rhodes, strings and hook playing, which the agent pointed out.
-- **Inferred:** this is the pattern of 07 and 09 again, with weaker evidence, because most prompts here named the move.
-- **Inferred:** the one note in a musician's words missed. A critique that implied the fix was answered as a question about facts, so the move needed a second prompt that named it. In 07 the bassist's question did lead to the change, so the trigger is not only whether a listener speaks up but whether the agent reads a question as a critique. One instance, so it is an observation, not a pattern.
+Moves applied once asked:
 
-### Intent in the comment
+- Every later move came from a listener prompt, and none from the agent: a percussion layer and a string pad, humanizing, a stacked lead, sections, and transitions.
+- Humanizing was a rule, a fixed drag per instrument (snare about 17 ms, clap about 20 ms) plus seeded random scatter, loosest on the hats.
+- Asked for "stacked lead-ish upper backing-ish", the agent stacked in octaves only: vibes in two octaves and flute in unison with the top. Then the listener asked "is it octave stack?", which they later explained as "isn't this boring octave stack? why not hamonize with two lead?" The agent answered it as a factual question. It confirmed the stack, offered harmony as an option, and wrote harmony only after "harmony 2 lead stack maybe".
+- The harmony is a diatonic third below the flute, a sixth where a third would not fit the chord, and every note a chord tone, ending on G#, the third of E7, under the resolution.
+- Asked to make "each section boundary bar imply transition", the agent wrote one standard move per boundary: a snare build into a crash, a kick, snare and tom fill with the bass sitting out the last beat, a hard stop with an open hat ringing, and a snare roll over 8th-note kicks with a bass walk-up. The hard stop left the Rhodes, strings and hook playing, which the agent pointed out.
 
-- **Measured:** the agent kept the project comment up to date after every change without being asked, from the first link onward. It recorded the chords, each part, the humanize amounts, the arrangement and the transitions. The final version is a Markdown document with tables.
-- **Measured:** the agent caught one error in its own comment, "G#9" for the note over E7#9, which is G natural, the #9, and fixed it.
-- **Measured:** sections went into locators, and the loop range was set to skip the intro.
-- **Inferred:** chords and reasons have no field in toy-midi, so they went into the comment, the place [notation.md](../../docs/notation.md) counts as the core of the Intent row. The comment turned into a structured document only because the listener asked for Markdown, and the app did not render it, which became [toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832).
+Intent in the project:
+
+- The agent kept the project comment up to date after every change without being asked, from the first link onward. It recorded the chords, each part, the humanize amounts, the arrangement and the transitions. When asked, it rewrote the comment as Markdown with tables, which the app showed as raw text.
+- The agent caught one error in its own comment, "G#9" for the note over E7#9, which is G natural, the #9, and fixed it.
+- Sections went into locators, and the loop range was set to skip the intro.
 
 ### By ear
 
-- **Listener remark, not clearly by ear:** "pretty awesome", said after the final version.
-- **Judged by ear, by editing:** the listener raised the vibes, the harmony voice, from gain 0.4 to 0.63, about 4 dB, so it sits closer to the flute. No other value differs from what the agent set. No part was judged on its own, so the musical claims above stay measured from the scripts or inferred.
-- **Inferred:** the hook is rule-shaped, chord tones in A minor pentatonic arranged as call and answer, so it says nothing new about melody.
+- "pretty awesome", said after the final version. It is not clear that this was a listening verdict, and no part was judged on its own.
+- The listener raised the vibes, the harmony voice, from gain 0.4 to 0.63, about 4 dB, before saving. No other value differs from what the agent set.
+
+### Reading
+
+- The pattern of 07 and 09 again: standard moves known and carried out fluently once asked, but not proposed. The evidence is weaker than 09's, because most prompts here named the move.
+- The humanizing is 08's groove rule, and the harmony is 09's rule with a sixth where 09 used a fourth. So both are recalled rules, as in the working reading in [context.md](../../docs/context.md).
+- The one note in a musician's words missed. A critique that implied the fix was answered as a question about facts, so the move needed a second prompt that named it. In 07 the bassist's question did lead to the change, so the trigger depends on whether the agent reads a question as a critique, not only on whether a listener speaks up. This is one instance.
+- Chords and reasons have no field in toy-midi, so they went into the comment, the place [notation.md](../../docs/notation.md) counts as the core of the Intent row. Markdown rendering ([toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832)) would change that room.
+- The hook is rule-shaped, chord tones in A minor pentatonic arranged as call and answer, so it says nothing new about melody.
 
 ## Effect on claims
 

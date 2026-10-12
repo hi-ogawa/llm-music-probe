@@ -1,5 +1,6 @@
 # 02-practice-loop
 
+- Kind: designed
 - Direction: Genre breadth (neo-soul keys and bass) and Depth (voicing, bass) in [directions.md](../../docs/directions.md)
 - Date: 2026-10-08
 - Model ID: claude-opus-5-5, in a Claude Code session with the research context of this repository

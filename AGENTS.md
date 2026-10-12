@@ -11,9 +11,9 @@
 
 ## Layout
 
-- `docs/` holds the running thesis and plan. Update `docs/context.md` when evidence changes the status of a claim, and keep the claim status table current.
+- `docs/` holds the running thesis and plan. `docs/context.md` is the current state: rewrite it when evidence changes a claim, and keep the claim status table to one line of links per claim. `docs/history.md` records how the thesis got here: add to it, and do not rewrite it.
 - `src/` holds the score-to-sound tool: `score/` reads a text score into note events, and `midi/` writes them as General MIDI and renders audio with fluidsynth.
-- `experiments/<nn>-<slug>/` holds one experiment. Start from `experiments/TEMPLATE.md` as its `README.md`.
+- `experiments/<nn>-<slug>/` holds one experiment. Start from `experiments/TEMPLATE.md` as its `README.md`. An experiment is designed when it was planned before running, observed when a session is written up afterwards, or a breakdown of someone else's work.
 
 ## Conventions
 
@@ -23,4 +23,4 @@
 - Commit after each meaningful change, without waiting to be asked
 - Record the exact model ID, prompt, and output format for every run, so results stay comparable across models and formats
 - Keep raw model output verbatim in the experiment directory. Put judgments and interpretation in the README, separate from the raw output
-- Mark each claim as measured, judged by ear, or inferred. Do not present an inference as a result
+- Write results in three parts: what happened, read from the log and the project; what the listener judged by ear, quoted verbatim; and the reading, which is interpretation. Do not present a reading as a result, and say so when nothing was judged by ear

@@ -1,5 +1,6 @@
 # 06-reference-feedback
 
+- Kind: designed
 - Direction: The adjustment loop in [directions.md](../../docs/directions.md)
 - Date: 2026-10-09
 - Model ID: claude-opus-5-5 for every run, each in a fresh subagent

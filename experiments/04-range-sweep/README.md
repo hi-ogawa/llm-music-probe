@@ -1,5 +1,6 @@
 # 04-range-sweep
 
+- Kind: designed
 - Direction: Genre breadth and Fan-out in [directions.md](../../docs/directions.md)
 - Date: 2026-10-08
 - Model ID: claude-opus-5-5 for every cell, each in a fresh subagent

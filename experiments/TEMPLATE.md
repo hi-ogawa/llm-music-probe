@@ -1,5 +1,6 @@
 # <nn>-<slug>
 
+- Kind: designed, observed, or breakdown
 - Direction: which section of [directions.md](../../docs/directions.md)
 - Date:
 - Model ID:
@@ -17,9 +18,19 @@ Prompt, input material, and how output is rendered. Note whether the input mater
 
 Link to the verbatim files in this directory.
 
-## Judgment
+## Results
 
-What was observed. Mark each point as measured, judged by ear, or inferred.
+### What happened
+
+Facts read from the log and the project, such as what was written, which notes, and what the agent did.
+
+### By ear
+
+The listener's verdicts, quoted verbatim, with what they referred to. If nothing was judged by ear, say so.
+
+### Reading
+
+Interpretation, such as patterns across experiments and causes. Each point says what it rests on.
 
 ## Effect on claims
 

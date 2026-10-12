@@ -1,5 +1,6 @@
 # 03-own-taste-loop
 
+- Kind: designed
 - Direction: Depth (voicing, bass) and Genre breadth (neo-soul keys and bass) in [directions.md](../../docs/directions.md)
 - Date: 2026-10-08
 - Model ID: claude-opus-5-5, in a Claude Code session with the research context of this repository
