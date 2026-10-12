@@ -144,6 +144,8 @@ How a DAW user makes a programmed line sound played, compared with what our form
 
 Hypothesis from the range sweep judgment: lines meant to be heard as lines sound awkward while harmony-driven figures sound reasonable, because sustained lines depend on the first three rows and short, attack-driven figures do not.
 
+The same split works at the level of genre, which [context.md](context.md#medium-fit-2026-10-12) reads as a confound for judgments by ear. toy-midi has none of the controller rows yet, so this table's renderable column describes fluidsynth, not toy-midi.
+
 ## Candidate principles
 
 ### Reuse notation that already exists as text
