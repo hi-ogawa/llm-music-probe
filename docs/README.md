@@ -4,7 +4,7 @@ The current reading in detail. Rewrite it when a session changes the reading, ra
 
 - [next.md](next.md): sessions to run next
 - [history.md](history.md): how the question got here, with the earlier question's conclusions and directions
-- [landscape/](landscape/README.md): a catalog of 225 named composition techniques by area, with a one-screen map
+- [Composition landscape](https://gist.github.com/hi-ogawa-agent/ebb143c64417ed58b4e9971e4f838e4c): a catalog of 225 named composition techniques by area, kept in its own gist, with a [one-screen map](https://gisthost.github.io/?ebb143c64417ed58b4e9971e4f838e4c/landscape.html)
 - [archive/](archive/): background notes from the earlier question, on notation and on how the music industry uses AI
 
 ## Question
@@ -47,7 +47,7 @@ Suggested by these, but not yet tested:
 - **Sketching first uses the listener's ear where it is cheapest.** Several short contrasting sketches, one picked by ear, then developed. The agent cannot hear, so sampling and picking stands in for its missing judgment.
 - **Melody needs its own prompt.** Fixing the melody and varying everything else, or the reverse, keeps the weak layer from hiding inside the arrangement.
 
-If these hold, steering is a matter of compositional vocabulary: a person who can name the elements can direct the agent, and a map of named techniques, such as the [composition landscape](landscape/README.md), is a map of the knobs.
+If these hold, steering is a matter of compositional vocabulary: a person who can name the elements can direct the agent, and a map of named techniques, such as the [composition landscape](https://gisthost.github.io/?ebb143c64417ed58b4e9971e4f838e4c/landscape.html), is a map of the knobs.
 
 ## What the medium limits
 
