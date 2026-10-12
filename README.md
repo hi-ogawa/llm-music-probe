@@ -2,7 +2,7 @@
 
 Notes and experiments on how a person steers an LLM to compose good music in a symbolic medium, such as a text score or a MIDI-like project format.
 
-The model already knows the musical vocabulary, mostly as rules it can name and carry out. What it does by default is the cheapest reading of the brief, so what comes out depends on which compositional elements the brief and the listener's notes name. Melody is the layer that stays weak. The current reading and the evidence behind each claim are in [docs/context.md](docs/context.md).
+The model already knows the musical vocabulary, mostly as rules it can name and carry out. What it does by default is the cheapest reading of the brief, so what comes out depends on which compositional elements the brief and the listener's notes name. Melody is the layer that stays weak. The current reading, with links to the experiments behind it, is in [docs/context.md](docs/context.md).
 
 Research:
 
