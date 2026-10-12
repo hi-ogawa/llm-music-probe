@@ -5,19 +5,11 @@
   "type": "module",
   "scripts": {
     "prepare": "vp config",
-    "typecheck": "tsc -b",
-    "lint": "vp check --fix && pnpm typecheck",
-    "lint-check": "vp check && pnpm typecheck",
-    "test": "vitest",
-    "cli": "node src/cli.ts"
-  },
-  "dependencies": {
-    "@tonejs/midi": "^2.0.28"
+    "lint": "vp check --fix",
+    "lint-check": "vp check",
+    "cli": "node packages/score-tool/src/cli.ts"
   },
   "devDependencies": {
-    "@types/node": "^26.6.4",
-    "typescript": "^7.0.2",
-    "vite-plus": "1.0.0-rc.0",
-    "vitest": "^4.1.11"
+    "vite-plus": "1.0.0-rc.0"
   }
 }

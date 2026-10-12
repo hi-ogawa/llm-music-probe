@@ -1,0 +1,19 @@
+{
+  "name": "score-tool",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "node src/cli.ts",
+    "test": "vitest",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

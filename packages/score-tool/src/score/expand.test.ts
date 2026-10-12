@@ -6,7 +6,7 @@ import { parseScore } from "./parse.ts";
 
 const FIXTURE_DIR = path.join(
   import.meta.dirname,
-  "../../experiments/01-scrimshaw-breakdown/source",
+  "../../../../experiments/01-scrimshaw-breakdown/source",
 );
 
 function readSong(text: string, loops = 1) {
