@@ -23,12 +23,23 @@ What came out was "Sunset Drive", 16 bars of city pop in D major at 96 bpm, with
 
 ## Notes
 
+The composition:
+
+- The agent wrote toy-midi's raw numbers directly, with chord names only as labels for voicings it chose by hand. Every voicing holds exactly its chord's pitch classes, and every melody note is in D major, apart from the bass's intended chromatic approaches. So the one error was register, not pitch.
 - The bass register was not a deliberate choice. When asked, the agent first called the whole part high, but only the octave notes were.
-- The agent knew the root, fifth, octave box shape by name and applied it correctly as soon as the tab was questioned, but did not use it on its own. Its first passes treated fingering as a general "fewest frets, least movement" problem, which is not how a bassist would play the line.
-- Even the final tab came from a rule the agent wrote down and ran, not from writing fret numbers directly, so this session says nothing about fingering intuition beyond named rules.
-- In bars 4 and 6 the approach note from below falls under E1, so the hand jumps from the G string to the B string. The agent suggested approaching from above instead, which was not tried.
-- Both of the listener's notes were questions. For the register, the agent explained and waited for agreement before changing the part, but for the tab it rewrote directly.
+- The melody and voicings were written directly as numbers, while the bass and every tab pass went through a procedure. So the directly written layers came out right even in an unfamiliar numeric form.
 - The listener played the piece but said nothing about how the composition sounded, only about the bass.
+
+The tab:
+
+- The agent's first instinct was a generic optimizer, not a bassist's habit. It searched for fingerings with costs for "few frets and little movement", which gave open strings mixed with high positions.
+- It knew the root, fifth, octave box shape by name and applied it correctly as soon as the tab was questioned, but did not reach for it on its own.
+- This was first written up as the idiom being in the model's vocabulary all along. The listener pointed out that recalling a named rule and running it as code is still a heuristic solver. Intuition would mean writing fret numbers directly as text, the way someone who has read a lot of tab would, and this session never asked for that. So every pass, including the final one, was a solver.
+- Two awkward spots are in the notes, not the fingering. In bars 4 and 6 the approach note from below falls under E1, so the hand jumps from the G string to the B string. The agent suggested approaching from above instead, which was not tried.
+
+How the agent took the notes:
+
+- Both of the listener's notes were questions a bassist would ask, not instructions. For the register, the agent explained the cause and waited for agreement before changing the part, but for the tab it rewrote directly.
 
 ## References
 

@@ -29,8 +29,10 @@ The beat started as a plain 4-bar loop. Over nine requests it gained hand percus
 ## Notes
 
 - Every musical move came from a request. The agent added none on its own, even standard ones such as a percussion layer, humanizing, or harmony in the lead.
-- Once a move was named, the agent carried it out with sensible detail, such as a different lag per drum when humanizing, and choosing between a third and a sixth by the chord underneath when harmonizing.
-- The critique phrased as a question, step 5, was answered as a factual question. The change came only once step 6 named it.
+- Once a move was named, the agent carried it out with sensible detail, and each one was a known rule. Humanizing was a fixed drag per drum plus random scatter, written as code, which is a groove template and a humanize pass simulated on the fly rather than taken from a DAW. The harmony was a third below the lead, with a sixth where a third would clash, chosen by the chord underneath. The transitions were one textbook move per boundary.
+- The hook was rule-shaped too, chord tones from A minor pentatonic arranged as call and answer, and nobody judged it on its own.
+- The critique phrased as a question, step 5, was answered as a factual question. The change came only once step 6 named it, so a musician's note that implies the fix can miss.
+- Most requests named the move, such as "humanize" or "harmony 2 lead stack", which is easier for an agent than a note about how the music sounds.
 
 ## References
 

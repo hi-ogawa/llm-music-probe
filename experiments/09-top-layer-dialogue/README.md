@@ -27,13 +27,24 @@ What came out is the same call-and-answer top layer, a flute hook answered by mu
 
 ## Notes
 
-- The hand-written rewrite in step 2 stayed close to 08, a flute hook with horn answers again, so writing every note literally did not by itself make the melody feel less arbitrary.
+The melody:
+
+- The hand-written rewrite in step 2 stayed close to 08, a flute hook with horn answers again. So writing every note literally did not by itself make the melody feel less arbitrary. Going from 08 to here also changed numbers to note names and changed who designed the notation, so one session cannot say which change mattered, if any.
+
+The producer dialogue:
+
 - The two producers behaved as a critique and editing loop, not a source of variation. Across four turns they added no tracks and changed no instruments or melodic material, and their edits were subtractions and fixes.
+- They converged for plain reasons: the same model with the same taste, an existing draft to anchor on, and a setup where agreeing ends the task. Starting them from an empty top layer would separate anchoring on the draft from the model's own default, and was not tried.
 - The critique was real, because the retriggered choir and the semitone rub under the flute would both have sounded wrong. When B corrected A, A conceded with the reason, saying it had read where notes start but not where they end.
-- Pan was used for arrangement, to separate call from answer, in the first turn after it existed.
-- Stacking and vibes voicings are standard arranging moves, and the producer carried them out well once named, choosing intervals against each chord and giving reasons for the spots it left single. But four autonomous turns never proposed one, the same shape as [07](../07-live-toy-midi-tab/README.md), where a known bass fingering was applied only after a bassist asked.
-- The listener's own edit put the second flute on the opposite side from the lead, overruling the producer's reason that the section should fuse around the lead.
 - The producers talked in the text rendering's vocabulary of note names and counted beats, so the notation shaped how they discussed the track as well as how they wrote it.
+
+The arranging moves:
+
+- Pan was used for arrangement, to separate call from answer, in the first turn after it existed.
+- Stacking and vibes voicings are standard arranging moves, and the producer carried them out well once named, choosing intervals against each chord and giving reasons for the spots it left single. But four autonomous turns never proposed one. The listener's note was the trigger.
+- The stacked harmony was written by hand with scripts forbidden, yet it follows a rule note for note: a third below, a fourth where a third would clash, and nothing on bends and teases. So writing without code does not by itself show more than a rule carried out in the head.
+- A natural next try is the same dialogue from turn 4's state, told to go through routine arranging moves before calling it done.
+- The listener's own edit put the second flute on the opposite side from the lead, overruling the producer's reason that the section should fuse around the lead.
 
 ## References
 
