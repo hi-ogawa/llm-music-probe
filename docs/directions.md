@@ -2,6 +2,8 @@
 
 Open directions for the research, each with probe ideas that serve it. Nothing here is a fixed plan or order. Format design lives in [notation.md](notation.md), and our score-to-sound tool in [tool-plan.md](tool-plan.md).
 
+Most of these directions were written for the earlier question of whether musical intuition is encodable. For the current question in [context.md](context.md), how to steer an LLM toward good music, the ones that bear on it directly are [Beat making](#beat-making), [Fan-out](#fan-out) as sketching and picking, and [The adjustment loop](#the-adjustment-loop). The rest are parked: Depth, Genre breadth, Fast decision models, Generality across media, Inventing the medium, Robustness across notations, and Creativity beyond idioms.
+
 Judge results by ear, with renders named by condition so the listener knows what each one is. Blind listening adds a key, shuffled names, and a reveal step, so use it only when a judgment would otherwise lean on knowing the condition and the conditions cannot be told apart by ear. Measure from the scores whatever can be measured, so listening is left for what only the ear can judge. Bass lines and grooves are the strongest targets, because that is where the judge's ear is most reliable.
 
 ## Depth
@@ -19,7 +21,7 @@ Probe ideas:
 
 ## Genre breadth
 
-Scrimshaw's six tracks are in the friendliest genres for a symbolic medium: retro game music, folk jig, and waltz. They were written as notes in the first place, and many symbolic transcriptions exist. Does the intuition hold in genres whose vocabulary lives mostly in recordings rather than in written notation? Simon's follow-up dance track, Starlight Armada, is one data point outside game music, but it is formulaic and has not been judged by ear. Symbolic tradition is a different axis from [medium fit](context.md#medium-fit-2026-10-12), meaning how much of a genre a General MIDI render can carry, and a probe should keep the two apart.
+Scrimshaw's six tracks are in the friendliest genres for a symbolic medium: retro game music, folk jig, and waltz. They were written as notes in the first place, and many symbolic transcriptions exist. Does the intuition hold in genres whose vocabulary lives mostly in recordings rather than in written notation? Simon's follow-up dance track, Starlight Armada, is one data point outside game music, but it is formulaic and has not been judged by ear. Symbolic tradition is a different axis from [medium fit](context.md#what-the-medium-limits), meaning how much of a genre a General MIDI render can carry, and a probe should keep the two apart.
 
 Probe ideas:
 
@@ -77,6 +79,6 @@ What Scrimshaw showed was mostly choosing the right named idiom for the context.
 
 ## The adjustment loop
 
-Conclusion 3 in [context.md](context.md) holds that the agent workflow carries over: discuss at a high level, let the agent drill down to notes, then adjust together. Scrimshaw showed only the first half. Probe the second: give musical feedback the way you would to another musician, and see whether revisions follow the intent. Comping is a good first target.
+Conclusion 3 of the earlier question, in [history.md](history.md#encodability-conclusions-retired-2026-10-12), holds that the agent workflow carries over: discuss at a high level, let the agent drill down to notes, then adjust together. Scrimshaw showed only the first half. Probe the second: give musical feedback the way you would to another musician, and see whether revisions follow the intent. Comping is a good first target.
 
 Prompts in this direction should imitate human musical interaction, not an agent delegating a precise task to a subagent. Write the listener's note the way a musician says it to a collaborator after listening, including its scope, as in "keep everything, just the groove". A note that names the fix, states the scope in technical terms, or points at the measured target makes the test easier than real use. [06-reference-feedback](../experiments/06-reference-feedback/README.md) learned this the hard way, because a draft of its batch 2 added a spec-like rule to the prompt.

@@ -2,86 +2,83 @@
 
 Last updated: 2026-10-12
 
-The current thesis, reading, and claim status. Keep this file current, and rewrite it when evidence changes a claim. How the thesis got here is in [history.md](history.md).
+The current question, what the experiments say about it, and the status of each claim. Keep this file current, and rewrite it when evidence changes a claim, rather than appending dated readings. How the question got here is in [history.md](history.md).
 
-## Thesis
+## Question
 
-The interest is in LLM robustness, generality, and creativity as a property of linguistic expressiveness, not in music generation technology as such.
+How does a person steer an LLM to compose good music in a symbolic medium?
 
-Creative work starts as discrete, symbolic ideas: which sections, which instruments, which chords, which notes, which rhythm pattern, which knob to turn. If the model has those ideas in its vocabulary, then turning them into sound is a harness and tooling problem, not an intrinsic model capability. Closing a perceptual feedback loop is a finishing touch, and it is a separate question from whether the model is creative.
+The research started from an earlier question: is musical intuition encodable as text at all, so that an LLM can present musical ideas without generating audio, the way it presents geometric intuition through code? Experiments 01 to 04 settled that well enough for practical work. The question that is left is practical: given a model that knows the vocabulary, what does a brief or a note from the listener need to say to get music the listener actually likes?
 
-The motivating analogy is code-based visual generation. Geometric and motion intuition shows up through code in motion graphics, explanatory material, and 2D/3D demos, without diffusion-style image generation. The question was whether musical intuition is encoded in the same way.
+It splits into three parts:
 
-The question that matters is whether an encodable medium exists: a form an LLM can write that carries high-level musical intuition such as voicing, orchestration, tension, and reharmonization. It is not how deep a particular model goes today. Once such a medium exists, depth and breadth become a matter of training, which future models can be expected to improve, as they have in other domains.
+1. **What the model knows.** Mostly settled, see [below](#what-the-model-knows).
+2. **How to steer it.** The open core, see [below](#how-to-steer-it).
+3. **What the medium limits.** A confound to keep apart from the other two, see [below](#what-the-medium-limits).
 
-## Conclusion so far (2026-10-07)
+## Evidence levels
 
-1. **An encodable medium for musical intuition exists.** Scrimshaw Jukebox shows it at a primitive level: a plain-text score format carried harmony, bass, rhythm, orchestration, and form idioms that were judged legitimate by ear.
-2. **End-to-end audio is not needed for an AI to present musical ideas.** A text model with no audio input or output produced the music, and audio was only rendering. This was the main point the discussion set out to settle.
-3. **The agent workflow from coding and visuals carries over.** Discuss the composition at a high level, let the agent drill down to notes, rhythms, and chords, then adjust together, the way agents already work on code, visualizations, and video. Scrimshaw shows the first half: scene-level briefs such as "the villain's ship" became keys, progressions, bass lines, and instrument choices, with the high-level idea kept in comments. The adjustment loop is not shown, because Simon gave no musical feedback, so that half rests on the analogy for now.
-4. **Working assumption: depth and breadth will follow from training.** This is plausible given how other domains have gone, but not demonstrated. The one caveat from the discussion is that taste has no automatic checker, so improvement would rely on preference data, as it has for prose and design.
+Every claim says what it rests on:
 
-What remains open is collected in [directions.md](directions.md). Depth, meaning which layers of musical intuition have an encodable medium, is one direction among several.
+- **Heard:** the listener judged the music by ear.
+- **Read:** checked against the scores, scripts, or prompts.
+- **Looked:** the listener judged the score or piano roll by eye, without listening.
+- **Inferred:** a reading of the above, by us or by the agent that wrote a write-up.
 
-## Working reading: a rulebook and a trigger (2026-10-11)
+A write-up drafted by an agent is not evidence on its own, because it can misread its own output. The diagnosis of g10 in [04](../experiments/04-range-sweep/README.md) was one such case. Check a write-up's claims against the scores before building on them.
 
-Drawn from [07](../experiments/07-live-toy-midi-tab/README.md), [08](../experiments/08-dilla-role-fan-out/README.md), and [09](../experiments/09-top-layer-dialogue/README.md), and inferred, not measured.
+## What the model knows
 
-Much of what came out convincing is a known rule carried out, not note patterns recalled from listening or playing. 08's Dilla feel is a timing rule, a mean drag plus random scatter, which simulates a groove no one played. 07's bass tab is a recalled box shape run as code. 09's stacked harmony was written note by note with no script, but it follows a rule too: a diatonic third below, a fourth where a third would clash, and none on bends and teases. So an agent can carry out a rule in code or in its head, and writing by hand does not by itself show more than a rule.
+- **A text medium carries musical ideas.** Harmony, bass, rhythm, orchestration, and form idioms come through a plain-text score or a MIDI-like JSON schema, and audio is only rendering. Heard in [01](../experiments/01-scrimshaw-breakdown/README.md) and across the 43 cells of [04](../experiments/04-range-sweep/README.md).
+- **The vocabulary is rule-shaped.** Much of what came out convincing is a known rule carried out: 08's Dilla feel is a mean drag plus random scatter, 07's bass tab is a recalled box shape, and 09's hand-written harmony line follows a third-below rule note for note. Read in [07](../experiments/07-live-toy-midi-tab/README.md), [08](../experiments/08-dilla-role-fan-out/README.md), and [09](../experiments/09-top-layer-dialogue/README.md). Writing by hand instead of with a script does not by itself show more than a rule.
+- **The rules hold across genres.** The range sweep's genres, plus hip-hop and classical, have come out idiomatic. Heard in [04](../experiments/04-range-sweep/README.md), [10](../experiments/10-cold-start-hip-hop/README.md), and [12](../experiments/12-classical-overture-loop/README.md).
+- **Melody is the weak layer.** It is the least rule-shaped, and it fell short by ear in 04 and 08. 09's hand-written rewrite "didn't explore much", judged by looking at it. Whether the gap is in the notes or in missing phrasing is not separated, and [05](../experiments/05-phrasing-pass/README.md) has not been listened to.
 
-That gets far, because much practical musicianship is rule-shaped: groove templates, voicing and voice leading, doubling in thirds and sixths, idiomatic fingerings, call and answer, leaving space. The model recalls these rules from training, which is memory at the level of rules, and carries them out reliably. For the thesis this counts in favor. A rule the model can state and apply is intent that the medium carries, whatever its source.
+## How to steer it
 
-Two things the rulebook has not supplied so far:
+The model does not lack knowledge so much as default to the cheapest reading of the brief. "A loop" comes out as 4 or 8 bars of fixed rules, because nothing asks for more. So steering is mostly a question of what the brief and the listener's notes name.
 
-1. **Melody.** It is the least rule-shaped layer, and it keeps falling short: in the range sweep, in 08, and in 09's rewrite. Rules can make a line fit its chords, but not make it memorable.
-2. **When to apply a rule.** In 09 the producers knew stacking and vibes voicings, but did not reach for them in four autonomous turns. The listener's "this sounds thin" was the trigger. 07's box shape waited for a bassist's question the same way.
+What the sessions so far show:
 
-Predictions this makes: a routine arranging checklist in the prompt should recover most arrangement moves without a listener, melody should stay weak even with it, and a melody judged good by ear would be the first evidence of something beyond a rule.
+- **Moves are known but not reached for.** In 09 the agents knew stacking and voicing moves but did not use them until the listener said "this sounds thin". In 10 every move, from a percussion layer to humanizing to a harmony line, came from a request. Heard in 09, read in 10.
+- **Once named, a move is carried out with sensible detail, usually the first textbook version.** 10's humanize was a fixed drag per drum plus scatter, and 12's two builds used the same recipe. Read.
+- **Naming an element can unlock a whole level.** 12's brief named multiple sections and build-ups at the boundaries, and the agent added a key plan, a dominant pedal before each arrival, a diminished seventh before the return, a tutti restatement, and a codetta, none of which were named. The listener's verdict on the first link was "pretty awesome". Heard in 12, one run.
+- **A note phrased as a question can miss.** In 10, "is it octave stack?" was answered as a fact, and the change came only when the next note named the harmony. Read in 10. [06](../experiments/06-reference-feedback/README.md) found that a note naming the fix makes the test easier than real use.
 
-## Steering by compositional element (2026-10-12)
+Inferred from these, and not yet tested:
 
-Drawn from [10](../experiments/10-cold-start-hip-hop/README.md), [11](../experiments/11-ambient-pan-loop/README.md), and [12](../experiments/12-classical-overture-loop/README.md), and inferred, not measured. It refines the trigger half of the reading above.
+- **The level of the name matters.** A mechanism such as AABB makes the agent's choice for it. Imagery such as "a set the band has played a hundred times" names no element. The useful level is the compositional element: sections, boundary events, a build, the number of parts, an energy level per section, the role of each part, or variation on repeats.
+- **A reference is an intent that has not been unpacked.** "Drums like Questlove on Voodoo" leaves the model to decide what that means, probably its one stereotype for the record. If the person steering knows what they mean, they should write it as techniques, such as the snare dragged behind the beat and loose hats. What the model reads into a bare reference is a question about its knowledge, not about steering, and is better asked out loud, so the answer can be corrected before anything is composed.
+- **More parts give the agent more to vary.** Variation on repeats is mechanical and cheap for an agent, and a larger palette that comes and goes by section gives it more places to apply it.
+- **Sketching first uses the listener's ear where it is cheapest.** Several short contrasting sketches, one picked by ear, then developed. The agent cannot hear, so sampling and picking stands in for its missing judgment.
+- **Melody needs its own brief.** Fixing the melody and varying everything else, or the reverse, keeps the weak layer from hiding inside the arrangement.
 
-The default is the cheapest reading of the brief, not missing knowledge. "A loop" comes out as 4 or 8 bars of fixed rules, because nothing in the brief asks for more. In 12 the brief named two compositional elements, multiple sections and something happening at each boundary, and the agent filled in the standard kit of that level unprompted: a key plan through related keys, a dominant pedal before each arrival, a diminished seventh before the return, a tutti restatement, and a codetta that closes the loop. Naming one element at the level of form unlocked several techniques nobody named.
+If these hold, steering is a matter of compositional vocabulary: a person who can name the elements can direct the agent, and a map of named techniques is a map of the knobs.
 
-The level of the name matters. A mechanism such as AABB or "the B part goes higher" makes the agent's choice for it, and imagery such as "a set the band has played a hundred times" names no element, so it directs nothing. The useful level is one above mechanics: an element such as sections, boundary events, a build, or variation on repeats, which leaves the agent to choose how to realize it. Within that, the agent reaches for the first entry in the kit, as 12's two builds used the same recipe.
+## What the medium limits
 
-Variation on repeats is cheap for an agent, because it is mechanical, so asking for it buys depth within a song at little cost. Melody stays a separate problem, which briefs should isolate, for example by fixing the melody and varying everything else.
+From general knowledge of MIDI mock-up practice, not checked against sources. How well a genre survives a General MIDI render depends on where it keeps its information. That is a confound for every judgment by ear, because a genre that sounds worse may only be one the medium cannot carry.
 
-If this holds, steering is a matter of compositional vocabulary: a human who can name the elements can direct the agent. That vocabulary is what a technique map such as the one in [journal-private#55](https://github.com/hi-ogawa/journal-private/issues/55) collects.
-
-## Medium fit (2026-10-12)
-
-From general knowledge of MIDI mock-up practice, not checked against sources. How well a genre survives a General MIDI render depends on where it keeps its information, and that is a confound for every judgment by ear, because a genre that sounds worse may only be one the medium cannot carry.
-
-- **Expression at the onset or within the note.** Struck and plucked sounds, such as piano, mallets, harp, pizzicato, and drums, do everything at the attack, so pitch and velocity carry most of it. Bowed strings, winds, brass, and voice shape each note while it sounds, which needs continuous control. [notation.md](notation.md#performance-techniques-from-daw-practice) lists those techniques. toy-midi has no controller automation, pitch bend, or sustain pedal yet, so in toy-midi experiments even the ones General MIDI could render are unavailable.
+- **Expression at the onset or within the note.** Struck and plucked sounds, such as piano, mallets, harp, pizzicato, and drums, do everything at the attack, so pitch and velocity carry most of it. Bowed strings, winds, brass, and voice shape each note while it sounds, which needs continuous control. [notation.md](notation.md#performance-techniques-from-daw-practice) lists those techniques. toy-midi has no controller automation, pitch bend, or sustain pedal yet.
 - **Born in a sequencer.** House, techno, synth-pop, chiptune, and trap were made as MIDI, so programmed sounds authentic there, groove feel included.
 - **Texture that masks individuals.** Tutti orchestra, pads, and ambient washes forgive crude per-note expression. An exposed solo line shows all of it.
 - **General MIDI sample quality.** Pads, string ensemble, piano, and synths hold up. Brushes, upright bass, solo sax, and nylon guitar sound like General MIDI.
 
-So texture-led, tutti, keyboard, and electronic briefs fit the medium, and small-group jazz or solo wind lines do not. Solo piano is expressive but fits, because the piano is a velocity instrument, though it needs the sustain pedal. Briefs meant to measure the composition rather than the renderer should pick a genre that fits.
+So texture-led, tutti, keyboard, and electronic briefs fit the medium, and small-group jazz or solo wind lines do not. A brief meant to judge the composition rather than the renderer should pick a genre that fits.
 
 ## Claim status
 
-Each claim's evidence is in the experiments it links to.
+| Claim                                                                     | Status                | Basis                                                                                                                                                                    |
+| ------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| A text medium carries harmony, form, and instrumentation ideas            | Supported             | Heard: [01](../experiments/01-scrimshaw-breakdown/README.md), [04](../experiments/04-range-sweep/README.md)                                                              |
+| The idioms hold across genres, symbolic tradition or not                  | Supported             | Heard: [04](../experiments/04-range-sweep/README.md), [10](../experiments/10-cold-start-hip-hop/README.md), [12](../experiments/12-classical-overture-loop/README.md)    |
+| Melody is as convincing as rhythm and harmony                             | Not supported         | Heard: [04](../experiments/04-range-sweep/README.md), [08](../experiments/08-dilla-role-fan-out/README.md). Looked: [09](../experiments/09-top-layer-dialogue/README.md) |
+| Standard moves are known but not used without a prompt                    | Supported             | Heard: [09](../experiments/09-top-layer-dialogue/README.md). Read: [10](../experiments/10-cold-start-hip-hop/README.md)                                                  |
+| Naming a compositional element unlocks that level's standard moves        | Supported in one run  | Heard: [12](../experiments/12-classical-overture-loop/README.md)                                                                                                         |
+| Element-level names steer better than mechanisms, imagery, or references  | Open                  | Inferred from 10 and 12                                                                                                                                                  |
+| Sketching first and picking by ear improves the result                    | Open                  | Inferred                                                                                                                                                                 |
+| An agent revises toward a musician's note without the fix being named     | Mixed                 | Heard: [09](../experiments/09-top-layer-dialogue/README.md) "sounds thin" worked. Read: [10](../experiments/10-cold-start-hip-hop/README.md) step 5 missed               |
+| Exact syntax matters little, and room in the medium decides what gets out | Supported in two runs | Read: [07](../experiments/07-live-toy-midi-tab/README.md), [09](../experiments/09-top-layer-dialogue/README.md)                                                          |
+| Texture, tutti, keyboard, and electronic genres fit General MIDI better   | Working assumption    | Inferred from MIDI mock-up practice                                                                                                                                      |
 
-| Claim                                                                                               | Status                       | Basis                                                                                                                                                                                                                                |
-| --------------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| An encodable text medium for musical intuition exists                                               | Supported                    | [01](../experiments/01-scrimshaw-breakdown/README.md)                                                                                                                                                                                |
-| End-to-end audio is not needed for an AI to present musical ideas                                   | Supported                    | [01](../experiments/01-scrimshaw-breakdown/README.md): a text model with no audio in or out                                                                                                                                          |
-| Harmony, form, and instrumentation ideas are encoded in the text vocabulary                         | Supported                    | [01](../experiments/01-scrimshaw-breakdown/README.md), and 43 cells of [04](../experiments/04-range-sweep/README.md) by ear                                                                                                          |
-| Melodic intent is as convincing as rhythmic and harmonic intent                                     | Not supported                | [04](../experiments/04-range-sweep/README.md) and [08](../experiments/08-dilla-role-fan-out/README.md) by ear. Notes or missing phrasing not yet separated                                                                           |
-| The awkward lines need only interpretation, not different notes                                     | Open                         | [05](../experiments/05-phrasing-pass/README.md) renders the lines through a phrasing pass, not yet listened to. Test: a performer plays the lines from the score                                                                     |
-| Music needs a perceptual feedback loop more than visuals do                                         | Refuted for presenting ideas | [01](../experiments/01-scrimshaw-breakdown/README.md): only an execution check, no listening                                                                                                                                         |
-| Note-level vocabulary is locked in audio ("no GitHub for music")                                    | Refuted at this level        | Named idioms are written down in theory teaching and notation                                                                                                                                                                        |
-| Artistic music will stay end-to-end                                                                 | Refuted for presenting ideas | [01](../experiments/01-scrimshaw-breakdown/README.md), [04](../experiments/04-range-sweep/README.md). Timbre and vocals are a separate question                                                                                      |
-| Depth and breadth will follow from training                                                         | Working assumption           | Track record in other domains, with the taste-signal caveat                                                                                                                                                                          |
-| Voicing, groove, and timbre each have an encodable medium                                           | Open                         | [directions.md](directions.md)                                                                                                                                                                                                       |
-| The intuition holds beyond genres with a strong symbolic tradition                                  | Supported, except melody     | [04](../experiments/04-range-sweep/README.md) by ear. [10](../experiments/10-cold-start-hip-hop/README.md) adds hip-hop, not judged by ear. Medium fit not separated                                                                 |
-| An agent can extend expression a human programmed into one part across a piece                      | Open                         | Expectation from [04](../experiments/04-range-sweep/README.md)                                                                                                                                                                       |
-| A named fingering rule for bass tab is known, but not applied by default                            | Supported in one run         | [07](../experiments/07-live-toy-midi-tab/README.md)                                                                                                                                                                                  |
-| Fingering intuition is encoded in tab as text, beyond named rules                                   | Open                         | [07](../experiments/07-live-toy-midi-tab/README.md) tested only a recalled rule. Test in [directions.md](directions.md)                                                                                                              |
-| Exact syntax matters little, and room in the medium decides what gets out                           | Supported in two runs        | [07](../experiments/07-live-toy-midi-tab/README.md), [09](../experiments/09-top-layer-dialogue/README.md). Consistent in [10](../experiments/10-cold-start-hip-hop/README.md)                                                        |
-| Standard arrangement moves are known, but not reached for without a prompt                          | Supported in one run         | [09](../experiments/09-top-layer-dialogue/README.md). Consistent in [10](../experiments/10-cold-start-hip-hop/README.md), whose prompts mostly named the move. Next test: a routine arranging checklist, or element-level directions |
-| Naming a compositional element above mechanics unlocks that level's standard techniques             | Supported in one run         | [12](../experiments/12-classical-overture-loop/README.md)                                                                                                                                                                            |
-| Texture, tutti, keyboard, and electronic genres fit a General MIDI render better than exposed lines | Working assumption           | MIDI mock-up practice, and the range sweep hypothesis in [notation.md](notation.md#performance-techniques-from-daw-practice)                                                                                                         |
+Claims from the earlier encodability question that no longer bear on steering, such as whether artistic music will stay end-to-end, are kept as they stood in [history.md](history.md#encodability-conclusions-retired-2026-10-12).
