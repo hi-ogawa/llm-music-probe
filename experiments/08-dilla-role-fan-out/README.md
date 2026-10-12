@@ -26,8 +26,10 @@ How the work was split:
 
 Why the melody felt arbitrary:
 
-- No subagent chose notes one by one. Each wrote a small vocabulary inside its module and then wrote its part in it. In the rhythm part, `snareT(bar, i)` returns a backbeat time with the lateness built in, so one definition places every snare. In the melody part, the hook phrases are literal, but the bridge develops them by transposing and snapping each note to the nearest tone of the new chord (`snapToChord`).
-- That lines up with the listener's verdict. A groove's feel is itself a systematic tendency, so rhythm and harmony written as rules came out grounded. The melody is where a rule stood in for choosing notes, and that is the part that felt arbitrary. [09](../09-top-layer-dialogue/README.md) followed this up by writing the top layer note by note.
+- No subagent chose notes one by one. Each wrote an on-the-fly DSL inside its module, a small vocabulary of helpers, and then wrote its part in that vocabulary. In the rhythm part, `snareT = (bar, i) => bar + i / 4 + r(0.03, 0.06)` returns a backbeat time with the lateness built in, so one definition places every snare, and a section reads as usage such as `snareT(bar, 12)` for the snare on beat 4. In the melody part, the hook phrases are literal, but the bridge develops them by transposing and snapping each note to the nearest tone of the new chord (`snapToChord`).
+- These vocabularies are rule-level, not literal: one line stands for a rule, and its implementation, often with a random draw, decides the exact note.
+- `snareT` also rebuilds two DAW features in one expression: a fixed drag of about +0.045 beats, which is a groove template, and ±0.015 of random scatter, which is humanize. Only the snare's range came from the prompt, so the kick swing and every jitter amount were the subagent's own.
+- That lines up with the listener's verdict. A groove's feel is itself a systematic tendency, so rhythm and harmony written as rules came out grounded. The melody is where a rule stood in for choosing notes, and that is the part that felt arbitrary. [09](../09-top-layer-dialogue/README.md) followed this up by writing the top layer note by note. The longer write-up of the DSL reading is in [notation.md](../../docs/notation.md#second-evidence-notations-the-agents-invent-2026-10-11).
 - Drums and chord names got through here, which [07](../07-live-toy-midi-tab/README.md) had not managed, probably because a Dilla beat is a drum-led request.
 
 ## References
