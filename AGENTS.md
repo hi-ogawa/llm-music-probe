@@ -2,4 +2,4 @@
 
 See [README.md](README.md) for what is where.
 
-- Start each experiment from [experiments/TEMPLATE.md](experiments/TEMPLATE.md) as `experiments/<nn>-<slug>/README.md`.
+- Write up each experiment following [experiments/README.md](experiments/README.md).
