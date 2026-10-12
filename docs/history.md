@@ -1,6 +1,6 @@
 # History
 
-How the thesis got here, kept as written at the time. Add to it, and do not rewrite it. The current state is in [the README](../README.md).
+How the thesis got here, kept as written at the time. Add to it, and do not rewrite it. The current state is in [the reading](reading.md).
 
 ## How the discussion got here (2026-10-06)
 
@@ -39,7 +39,7 @@ Links were not carried over from the chat, so these are names to look up.
 
 ## Encodability conclusions, retired (2026-10-12)
 
-On 2026-10-12 the current question in [the README](../README.md) moved from whether musical intuition is encodable to how a person steers an LLM toward good music. The thesis, conclusions, and claim table below are kept as they stood just before that change.
+On 2026-10-12 the current question in [the reading](reading.md) moved from whether musical intuition is encodable to how a person steers an LLM toward good music. The thesis, conclusions, and claim table below are kept as they stood just before that change.
 
 ### Thesis
 
@@ -91,7 +91,7 @@ The directions list as it stood when the question moved to steering. Sessions to
 
 Open directions for the research, each with probe ideas that serve it. Nothing here is a fixed plan or order. Format design lives in [notation.md](archive/notation.md), and our score-to-sound tool in [tool-plan.md](../packages/score-tool/tool-plan.md).
 
-Most of these directions were written for the earlier question of whether musical intuition is encodable. For the current question in [the README](../README.md), how to steer an LLM toward good music, the ones that bear on it directly are [Beat making](#beat-making), [Fan-out](#fan-out) as sketching and picking, and [The adjustment loop](#the-adjustment-loop). The rest are parked: Depth, Genre breadth, Fast decision models, Generality across media, Inventing the medium, Robustness across notations, and Creativity beyond idioms.
+Most of these directions were written for the earlier question of whether musical intuition is encodable. For the current question in [the reading](reading.md), how to steer an LLM toward good music, the ones that bear on it directly are [Beat making](#beat-making), [Fan-out](#fan-out) as sketching and picking, and [The adjustment loop](#the-adjustment-loop). The rest are parked: Depth, Genre breadth, Fast decision models, Generality across media, Inventing the medium, Robustness across notations, and Creativity beyond idioms.
 
 Judge results by ear, with renders named by condition so the listener knows what each one is. Blind listening adds a key, shuffled names, and a reveal step, so use it only when a judgment would otherwise lean on knowing the condition and the conditions cannot be told apart by ear. Measure from the scores whatever can be measured, so listening is left for what only the ear can judge. Bass lines and grooves are the strongest targets, because that is where the judge's ear is most reliable.
 
@@ -110,7 +110,7 @@ Probe ideas:
 
 ### Genre breadth
 
-Scrimshaw's six tracks are in the friendliest genres for a symbolic medium: retro game music, folk jig, and waltz. They were written as notes in the first place, and many symbolic transcriptions exist. Does the intuition hold in genres whose vocabulary lives mostly in recordings rather than in written notation? Simon's follow-up dance track, Starlight Armada, is one data point outside game music, but it is formulaic and has not been judged by ear. Symbolic tradition is a different axis from [medium fit](../README.md#what-the-medium-limits), meaning how much of a genre a General MIDI render can carry, and a probe should keep the two apart.
+Scrimshaw's six tracks are in the friendliest genres for a symbolic medium: retro game music, folk jig, and waltz. They were written as notes in the first place, and many symbolic transcriptions exist. Does the intuition hold in genres whose vocabulary lives mostly in recordings rather than in written notation? Simon's follow-up dance track, Starlight Armada, is one data point outside game music, but it is formulaic and has not been judged by ear. Symbolic tradition is a different axis from [medium fit](reading.md#what-the-medium-limits), meaning how much of a genre a General MIDI render can carry, and a probe should keep the two apart.
 
 Probe ideas:
 

@@ -15,7 +15,7 @@ This is a probe of the interface between a listener and a score. Feedback given 
 
 Material: the reference is a famous recording, so this tests recall on purpose, unlike the preference for unmemorized material elsewhere. The question is whether a named reference carries the same information as an explicit description.
 
-Claims affected in [the README](../../README.md): the adjustment loop, and the inference that the model treats notation labels as if they were the sound.
+Claims affected in [the reading](../../docs/reading.md): the adjustment loop, and the inference that the model treats notation labels as if they were the sound.
 
 ## Setup
 
