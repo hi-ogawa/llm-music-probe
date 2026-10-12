@@ -1,78 +1,35 @@
-# 10-cold-start-hip-hop
+# 10 Corner Store Thirds
 
-- Kind: observed
-- Direction: Beat making and Genre breadth (production-led genres) in [directions.md](../../docs/directions.md), with The adjustment loop
+A hip-hop beat built one request at a time, starting from a bare toy-midi preview URL.
+
 - Date: 2026-10-12
-- Model ID: claude-opus-5-5, one Claude Code session with no subagents and no prior context about toy-midi or this repository
-- Output format: first a toy-midi share link, a `SerializedEditorRuntimeState` JSON written by a Node script and encoded into the URL, then JavaScript run in the open page through `webmcp-bridge execute-tool toy_midi_eval`
+- Model: claude-opus-5-5, one Claude Code session with no prior context about toy-midi
+- How the agent worked: first a share link written from the site's `/llms.txt`, then JavaScript run in the open page through `webmcp-bridge`
+- Result: [project-state.json](project-state.json), the project as the listener saved it. Every script the agent ran is in [session.md](session.md), and the first share link in [share-link.mjs](share-link.mjs)
 
-## Question
+## Session
 
-The session was a dog-food of toy-midi's agent guide ([toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831)), not a designed experiment. It is recorded because it touches three questions:
+| #   | Listener                                                                                            | Agent                                                                                                                                                                                                                                              |
+| --- | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | "can you make hip hop beat loop on https://fix-issue-822-llms-txt-toy-midi.hiro18181.workers.dev/?" | Read `/llms.txt` and the runtime's `.d.ts`, wrote the project as JSON, and sent a share link. A 4-bar loop at 88 bpm in A minor: TR-808 drums with a syncopated kick and swung hats, synth bass on the roots, and Rhodes on Am9, Fmaj7, Dm9, E7#9. |
+| 2   | "can you add project comment?"                                                                      | Added a comment describing each part and sent a new link.                                                                                                                                                                                          |
+| 3   | "can you use webmcp-bridge cli"                                                                     | Found that the preview site was not on the bridge's allow list, allowed it, and asked the listener to open the page.                                                                                                                               |
+| 4   | "connected. add comment there"                                                                      | Set the comment in the open page, which was the first link without one.                                                                                                                                                                            |
+| 5   | "can we add more background percussion to backup the vibe and maybe backing with other instrument"  | Added a percussion track (swung 16th shaker, side stick, conga and bongo figures, panned right) and a string pad on the upper chord tones (panned left), both quiet.                                                                               |
+| 6   | "can you humanize a bit main beat and bass?"                                                        | Moved notes by a fixed amount per instrument plus random scatter: snare about 17 ms late, clap about 20 ms, hats loosest, bass about 8 ms behind the kick.                                                                                         |
+| 7   | "can we add other stacked lead-ish upper backing-ish?"                                              | Wrote a sparse call-and-response hook, played by vibes in two octaves and a flute on the top octave. Its comment called the note over E7#9 "G#9", then it caught the mistake (the note is G) and fixed it.                                         |
+| 8   | "is it octave stack?"                                                                               | Confirmed that it was octaves only and offered harmony, without changing anything. The listener meant "isn't this boring octave stack? why not hamonize with two lead?", so the agent missed the critique.                                         |
+| 9   | "harmony 2 lead stack maybe"                                                                        | Turned the vibes into a harmony line under the flute: thirds below, sixths where a third would clash, always a chord tone, ending on G# under E7#9.                                                                                                |
+| 10  | "can you make compact overview mode track"                                                          | Put every track in overview mode at the smallest height.                                                                                                                                                                                           |
+| 11  | "name song"                                                                                         | Named it "Corner Store Thirds".                                                                                                                                                                                                                    |
+| 12  | "can we extend to multi section loop?"                                                              | Made 24 bars from the 4-bar parts: intro (Rhodes, strings, shaker), verse (no hook), hook (everything), and break (no kick, snare or bass). Added section markers and looped bars 5-24, so the intro plays once.                                   |
+| 13  | "can we make each section boundary bar imply transition?"                                           | Wrote one move per boundary: a snare build into a crash, a tom fill with the bass resting and strings swelling, a stop on the last beat (rhythm section only, which it pointed out), and a snare roll with a bass walk-up back into the verse.     |
+| 14  | "can we start from top"                                                                             | Played from the start.                                                                                                                                                                                                                             |
+| 15  | "can you format comment as markdown?"                                                               | Rewrote the comment as Markdown with tables. The app showed it as raw text, which became [toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832).                                                                                          |
+| 16  | Saved the project, raised the vibes from gain 0.4 to 0.63 (about 4 dB), and said "pretty awesome"   |                                                                                                                                                                                                                                                    |
 
-1. Can an agent with no prior context start composing from the site's `/llms.txt` alone?
-2. Does a hip-hop beat, a production-led genre, come out as convincingly as the genres covered so far?
-3. Does the pattern from [07](../07-live-toy-midi-tab/README.md) and [09](../09-top-layer-dialogue/README.md) repeat, where standard moves are known but applied only once a listener asks?
+## Notes
 
-Claims touched in [context.md](../../docs/context.md): standard arrangement moves not reached for without a prompt, and room in the medium.
-
-## Setup
-
-The listener gave the agent a toy-midi preview URL and asked for "hip hop beat loop". The agent fetched `/llms.txt` and `/llms/toy-midi.d.ts`, wrote a share link, and moved to the bridge when the listener asked. From there the listener asked for one change at a time in short prompts. Most of them named the move, such as "humanize" or "harmony 2 lead stack", which [directions.md](../../docs/directions.md) notes makes the test easier than a musician's note. One prompt was a musician's note phrased as a question, "is it octave stack?", which the listener later explained as "isn't this boring octave stack? why not hamonize with two lead?"
-
-Unlike 09, timing and some patterns were generated by script: per-instrument drag plus seeded random scatter for humanizing, and loops for shaker 16ths, snare rolls and section copies. Chords, bass, hook, harmony and fills were chosen note by note inside the scripts.
-
-Playback is toy-midi's in-browser General MIDI synth. The agent never heard any of it.
-
-## Raw output
-
-- [session.md](session.md): every listener prompt and every script that wrote to the project, verbatim
-- [share-link.mjs](share-link.mjs): the first draft as a share link, in its second version with the comment
-- [project-state.json](project-state.json): the final project, decoded from the share link the listener saved, with every note, gain and pan, the locators, and the Markdown comment. It includes the listener's own mix change
-
-## Results
-
-### What happened
-
-Cold start:
-
-- The first share link loaded in toy-midi with all three tracks, from JSON written against the `.d.ts` on the first try. The listener opened it and connected the bridge to it.
-- The friction was in the guide, not the music: a production host hard-coded in `llms.txt`, unclear required fields in the saved format, and a preview origin missing from the bridge's allow list. These are in the [comment on toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831#issuecomment-6118912662).
-
-First draft:
-
-- Asked for "hip hop beat loop", the agent wrote a 4-bar loop at 88 bpm in A minor with three tracks: TR-808 drums with a syncopated kick and swung 8th hats, synth bass on the roots, and Rhodes on Am9, Fmaj7, Dm9, E7#9. There was no percussion layer, no top line, and no sections, and every note was on the grid apart from a fixed swing offset.
-
-Moves applied once asked:
-
-- Every later move came from a listener prompt, and none from the agent: a percussion layer and a string pad, humanizing, a stacked lead, sections, and transitions.
-- Humanizing was a rule, a fixed drag per instrument (snare about 17 ms, clap about 20 ms) plus seeded random scatter, loosest on the hats.
-- Asked for "stacked lead-ish upper backing-ish", the agent stacked in octaves only: vibes in two octaves and flute in unison with the top. Then the listener asked "is it octave stack?", which they later explained as "isn't this boring octave stack? why not hamonize with two lead?" The agent answered it as a factual question. It confirmed the stack, offered harmony as an option, and wrote harmony only after "harmony 2 lead stack maybe".
-- The harmony is a diatonic third below the flute, a sixth where a third would not fit the chord, and every note a chord tone, ending on G#, the third of E7, under the resolution.
-- Asked to make "each section boundary bar imply transition", the agent wrote one standard move per boundary: a snare build into a crash, a kick, snare and tom fill with the bass sitting out the last beat, a hard stop with an open hat ringing, and a snare roll over 8th-note kicks with a bass walk-up. The hard stop left the Rhodes, strings and hook playing, which the agent pointed out.
-
-Intent in the project:
-
-- The agent kept the project comment up to date after every change without being asked, from the first link onward. It recorded the chords, each part, the humanize amounts, the arrangement and the transitions. When asked, it rewrote the comment as Markdown with tables, which the app showed as raw text.
-- The agent caught one error in its own comment, "G#9" for the note over E7#9, which is G natural, the #9, and fixed it.
-- Sections went into locators, and the loop range was set to skip the intro.
-
-### By ear
-
-- "pretty awesome", said after the final version. It is not clear that this was a listening verdict, and no part was judged on its own.
-- The listener raised the vibes, the harmony voice, from gain 0.4 to 0.63, about 4 dB, before saving. No other value differs from what the agent set.
-
-### Reading
-
-- The pattern of 07 and 09 again: standard moves known and carried out fluently once asked, but not proposed. The evidence is weaker than 09's, because most prompts here named the move.
-- The humanizing is 08's groove rule, and the harmony is 09's rule with a sixth where 09 used a fourth. So both are recalled rules, as in the working reading in [context.md](../../docs/context.md).
-- The one note in a musician's words missed. A critique that implied the fix was answered as a question about facts, so the move needed a second prompt that named it. In 07 the bassist's question did lead to the change, so the trigger depends on whether the agent reads a question as a critique, not only on whether a listener speaks up. This is one instance.
-- Chords and reasons have no field in toy-midi, so they went into the comment, the place [notation.md](../../docs/notation.md) counts as the core of the Intent row. Markdown rendering ([toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832)) would change that room.
-- The hook is rule-shaped, chord tones in A minor pentatonic arranged as call and answer, so it says nothing new about melody.
-
-## Effect on claims
-
-- Standard arrangement moves known but not reached for without a prompt: consistent in a second run, with the caveat that most prompts named the move. It adds that a musician's critique phrased as a question can fail as a trigger. The status stays "supported in one run" until a run with musician-style notes, or with the routine checklist from 09's next test.
-- Room in the medium: consistent. Intent without a field went into the comment, and toy-midi's Markdown rendering ([toy-midi#832](https://github.com/hi-ogawa/toy-midi/issues/832)) is a change to that room.
-- Genre breadth: a first hip-hop data point, not judged by ear.
-- Cold start: the agent guide was enough for a fresh agent to write a working project on its first try. This is about the tooling, not the thesis.
+- The agent added nothing unprompted, apart from keeping the project comment up to date after every change. Every musical move came from a request.
+- The one request phrased as a musician's critique, step 8, was answered as a factual question. The change came only after step 9 named it.
+- Friction with toy-midi's agent guide is in the [comment on toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831#issuecomment-6118912662).
