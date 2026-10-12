@@ -7,7 +7,20 @@
 
 This continues [08](../08-dilla-role-fan-out/README.md)'s J Dilla–inspired beat, 36 bars at 88 bpm. After 08 the listener found the rhythm and harmony grounded but the melody arbitrary, so this session reworked only the top layer, keeping 08's drums, bass, Rhodes, strings and organ unchanged throughout. Playback was toy-midi's in-browser General MIDI synth.
 
-Every note was written by hand in a plain text format the orchestrating agent designed, one line per note with bar, position in 16ths, note name, length and velocity. Scripts only converted and checked it. First a single subagent rewrote the top layer against a bar-by-bar map of what the other parts play. Then two subagents, Producer A and Producer B, took turns editing the top layer as edit commands over the song, reading a bar-by-bar text rendering of it in place of listening and leaving each other studio-style messages. Nobody else was in that loop until the listener stepped in with a pan request and later a note of their own.
+First a single subagent rewrote the top layer against a bar-by-bar map of what the other parts play. Then two subagents, Producer A and Producer B, took turns editing the top layer, reading the song as text in place of listening and leaving each other studio-style messages. Nobody else was in that loop until the listener stepped in with a pan request and later a note of their own.
+
+### The arrangement format
+
+Unlike 08, where each subagent wrote JavaScript in a vocabulary it made up, every note here was written by hand in a text format the orchestrating agent designed during the session. It is literal, one line per note: a bar, a position counted in 16ths with an optional offset in beats, a note name, a length, and a velocity.
+
+```
+track Flute 73 0.75
+5 1&+0.06 C5 1/4 78
+5 1a+0.05 D5 1/4 80
+5 2&+0.07 F5 3/4 84
+```
+
+For the dialogue the format gained edit commands over the base song, `edit`, `clear <track> <bars>`, `drop`, `set`, and later `pan`, plus drum names such as `kick` and `ohat`. The producers wrote only `arrangement.txt`. A build script applied it to the base song, rejected any edit to the locked rhythm and harmony tracks, and produced the toy-midi tracks that the orchestrator loaded into the open page through `webmcp-bridge`. The same script also rendered the song back bar by bar in the format's vocabulary as `summary.md`, which the producers read each turn in place of listening. Scripts only converted and checked. None generated notes.
 
 The mix round also dog-fooded two features toy-midi had just added, per-track pan ([toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803)) and a project comment ([toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747)). Fresh producer agents took the same roles for it, because the earlier ones could not be resumed after a session restart, and they read the history from the conversation log.
 
