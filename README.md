@@ -11,4 +11,4 @@ Notes and experiments on how much musical intuition a general LLM has in its tex
 - [docs/directions.md](docs/directions.md): open research directions and the probe ideas that serve them
 - [docs/industry-landscape.md](docs/industry-landscape.md): how the music industry uses AI as of October 2026, with sources
 - [experiments/](experiments/): one directory per experiment, each with its own README, started from [TEMPLATE.md](experiments/TEMPLATE.md)
-- [packages/score-tool/](packages/score-tool/): the score-to-sound tool used by the early experiments. `pnpm cli` at the root still runs it. It reads a text score into note events and writes General MIDI, rendered to audio with fluidsynth
+- [packages/score-tool/](packages/score-tool/): the score-to-sound tool used by the early experiments. It reads a text score into note events and writes General MIDI, rendered to audio with fluidsynth. `pnpm cli` at the root still runs it
