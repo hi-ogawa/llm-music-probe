@@ -1,6 +1,6 @@
 import fs from "node:fs";
-import { expandScore } from "../../src/score/expand.ts";
-import { parseScore } from "../../src/score/parse.ts";
+import { expandScore } from "../../packages/score-tool/src/score/expand.ts";
+import { parseScore } from "../../packages/score-tool/src/score/parse.ts";
 
 // Print each voice's onsets per bar on a 14-step grid relative to the bar,
 // so scores in 7/8 and 7/4, or at different tempos, compare directly.
