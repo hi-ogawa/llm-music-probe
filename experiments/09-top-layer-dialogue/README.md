@@ -9,6 +9,10 @@ This continues [08](../08-dilla-role-fan-out/README.md)'s J Dilla–inspired bea
 
 First a single subagent rewrote the top layer against a bar-by-bar map of what the other parts play. Then two subagents, Producer A and Producer B, took turns editing the top layer, reading the song as text in place of listening and leaving each other studio-style messages. Nobody else was in that loop until the listener stepped in with a pan request and later a note of their own.
 
+The mix round also dog-fooded two features toy-midi had just added, per-track pan ([toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803)) and a project comment ([toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747)). Fresh producer agents took the same roles for it, because the earlier ones could not be resumed after a session restart, and they read the history from the conversation log.
+
+What came out is the same call-and-answer top layer, a flute hook answered by muted trumpet, tightened by the producers, panned call left and answer right, and stacked with a second flute and second trumpet underneath, with the vibes playing chord shapes.
+
 ### The arrangement format
 
 Unlike 08, where each subagent wrote JavaScript in a vocabulary it made up, every note here was written by hand in a text format the orchestrating agent designed during the session. It is literal, one line per note: a bar, a position counted in 16ths with an optional offset in beats, a note name, a length, and a velocity.
@@ -21,10 +25,6 @@ track Flute 73 0.75
 ```
 
 For the dialogue the format gained edit commands over the base song, `edit`, `clear <track> <bars>`, `drop`, `set`, and later `pan`, plus drum names such as `kick` and `ohat`. The producers wrote only `arrangement.txt`. A build script applied it to the base song, rejected any edit to the locked rhythm and harmony tracks, and produced the toy-midi tracks that the orchestrator loaded into the open page through `webmcp-bridge`. The same script also rendered the song back bar by bar in the format's vocabulary as `summary.md`, which the producers read each turn in place of listening. Scripts only converted and checked. None generated notes.
-
-The mix round also dog-fooded two features toy-midi had just added, per-track pan ([toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803)) and a project comment ([toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747)). Fresh producer agents took the same roles for it, because the earlier ones could not be resumed after a session restart, and they read the history from the conversation log.
-
-What came out is the same call-and-answer top layer, a flute hook answered by muted trumpet, tightened by the producers, panned call left and answer right, and stacked with a second flute and second trumpet underneath, with the vibes playing chord shapes.
 
 ## Session
 
