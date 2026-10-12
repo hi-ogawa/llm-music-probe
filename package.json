@@ -6,8 +6,7 @@
   "scripts": {
     "prepare": "vp config",
     "lint": "vp check --fix",
-    "lint-check": "vp check",
-    "cli": "node packages/score-tool/src/cli.ts"
+    "lint-check": "vp check"
   },
   "devDependencies": {
     "vite-plus": "1.0.0-rc.0"
