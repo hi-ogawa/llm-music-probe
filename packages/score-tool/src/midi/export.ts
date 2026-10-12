@@ -97,13 +97,13 @@ export function exportMidi(
   return midi.toArray();
 }
 
-const DEFAULT_VOL = 0.8;
+export const DEFAULT_VOL = 0.8;
 
 /**
  * MIDI velocity from a note's dynamic level, scaled by `vol` relative to its
  * default. Level 0 is velocity 90, and each level step is 18.
  */
-function getVelocity(level: number, vol: number): number {
+export function getVelocity(level: number, vol: number): number {
   const velocity = Math.round(((90 + 18 * level) * vol) / DEFAULT_VOL);
   return Math.min(127, Math.max(1, velocity));
 }
