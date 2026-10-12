@@ -2,7 +2,7 @@
 
 How does a person steer an LLM to compose good music in a symbolic medium, such as a text score or a MIDI-like project format?
 
-Tentative answer so far: the model already knows the vocabulary, mostly as rules it can name and carry out, but defaults to the cheapest reading of the brief. What comes out depends on which compositional elements the brief and the listener's notes name, such as sections, energy per section, roles, and variation on repeats. Melody stays weak. The details are in [docs/README.md](docs/README.md).
+Working hypothesis: textbook technique, which is what an LLM is best at, gets much further than it seems, as long as the brief asks for enough of it. So far the model knows the vocabulary as rules it can name and carry out, but defaults to the cheapest reading of the brief. What comes out depends on which compositional elements the brief and the listener's notes name, such as sections, energy per section, roles, and variation on repeats. Melody stays weak. The details are in [docs/README.md](docs/README.md).
 
 - [docs/README.md](docs/README.md): the current reading, with the experiments behind it
 - [experiments/](experiments/README.md): one write-up per session, listed on the [experiment index](https://github.com/hi-ogawa/llm-music-probe/issues/5)
