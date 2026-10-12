@@ -2,6 +2,8 @@
 
 Each experiment is a write-up of one session or batch run, in the [format](#write-up-format) below, delivered in one of two ways.
 
+The session itself is an ordinary music session. The composing agent gets the listener's brief and the tools it needs, but nothing about this repository, its hypotheses, or what the session is meant to show, because an agent that knows the hypothesis composes toward it. The write-up is a separate step afterwards, made from the session's prompts and scripts.
+
 - **In this repository**: write the write-up as `experiments/<nn>-<slug>/README.md`, with the agent's raw output, such as scripts and the saved project, in the same directory.
 - **As a gist**, an optional alternative, such as for a self-contained run: create a public gist with the write-up as `README.md` and the raw output as flat files next to it, and set the gist's description to the experiment's name, because gists have no title of their own.
 
