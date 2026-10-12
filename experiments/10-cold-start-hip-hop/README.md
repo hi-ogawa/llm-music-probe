@@ -5,7 +5,9 @@
 
 ## Setup
 
-The listener asked for a hip-hop beat loop and then shaped it one short request at a time, the way you would steer a producer sitting next to you. The agent wrote the music in toy-midi and never heard it. The listener played it in the browser between requests and saved the result.
+The session was a dog-food of toy-midi's new agent guide, the site's `/llms.txt` ([toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831)). The agent started with no context about toy-midi beyond a preview URL. It read the guide and the runtime's type declarations, wrote the first version as a share link, a URL with the whole project encoded in it, and then switched to driving the open page through `webmcp-bridge`, running JavaScript against toy-midi's runtime for every later change. Playback was toy-midi's in-browser General MIDI synth.
+
+The listener asked for a hip-hop beat loop and then shaped it one short request at a time, the way you would steer a producer sitting next to you. The agent never heard the music. The listener played it in the browser between requests and saved the result.
 
 The beat started as a plain 4-bar loop. Over nine requests it gained hand percussion, a string pad, a humanized groove, a two-voice lead hook, a 24-bar arrangement, and transitions between sections.
 
@@ -35,3 +37,4 @@ The beat started as a plain 4-bar loop. Over nine requests it gained hand percus
 - [project-state.json](project-state.json): the project as the listener saved it, with every note
 - [session.md](session.md): every script the agent ran, in order
 - [share-link.mjs](share-link.mjs): the first version, written as a toy-midi share link
+- [toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831): the agent guide this session dog-fooded
