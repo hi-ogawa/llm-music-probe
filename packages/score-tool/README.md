@@ -4,7 +4,7 @@ The score-to-sound tool used by experiments 02 to 06. It reads a plain-text scor
 
 ## Usage
 
-Run from this directory, or with `pnpm cli` from the repository root.
+Run from this directory.
 
 ```sh
 pnpm cli check <score...>
