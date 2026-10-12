@@ -9,6 +9,8 @@ This continues [08](../08-dilla-role-fan-out/README.md)'s J Dilla–inspired bea
 
 Every note was written by hand in a plain text format the orchestrating agent designed, one line per note with bar, position in 16ths, note name, length and velocity. Scripts only converted and checked it. First a single subagent rewrote the top layer against a bar-by-bar map of what the other parts play. Then two subagents, Producer A and Producer B, took turns editing the top layer as edit commands over the song, reading a bar-by-bar text rendering of it in place of listening and leaving each other studio-style messages. Nobody else was in that loop until the listener stepped in with a pan request and later a note of their own.
 
+The mix round also dog-fooded two features toy-midi had just added, per-track pan ([toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803)) and a project comment ([toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747)). Fresh producer agents took the same roles for it, because the earlier ones could not be resumed after a session restart, and they read the history from the conversation log.
+
 What came out is the same call-and-answer top layer, a flute hook answered by muted trumpet, tightened by the producers, panned call left and answer right, and stacked with a second flute and second trumpet underneath, with the vibes playing chord shapes.
 
 ## Session
@@ -56,4 +58,5 @@ The arranging moves:
 - [dialogue/turns/](dialogue/turns/): arrangement.txt after each turn, and comment.md after turns 5-7 (turn 4 made no edits). To reproduce a turn, copy `dialogue/turns/<turn>.arrangement.txt` to `dialogue/arrangement.txt` and run `node dialogue/build.mjs`, which writes `summary.md`, `full.json` and page scripts next to it
 - [dialogue/comment.md](dialogue/comment.md): the final project comment
 - [dialogue/aborted-open-scope/](dialogue/aborted-open-scope/): the stopped first attempt with every part open
+- [toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803) and [toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747): the pan and project comment features the mix round used
 - [project-state.json](project-state.json): the final page, including the listener's own edits, with every note, gain and pan
