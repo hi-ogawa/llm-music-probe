@@ -6,7 +6,7 @@ The model already knows the musical vocabulary, mostly as rules it can name and 
 
 Research:
 
-- [docs/context.md](docs/context.md): the current question, reading, and claim status
+- [docs/context.md](docs/context.md): the current question and reading
 - [experiments/](experiments/README.md): one directory or gist per experiment, written up in the format its README describes and listed on the [experiment index](https://github.com/hi-ogawa/llm-music-probe/issues/5)
 - [docs/directions.md](docs/directions.md): open research directions and the probe ideas that serve them
 - [docs/notation.md](docs/notation.md): what makes musical intent encodable, and presentable by an LLM through a medium
