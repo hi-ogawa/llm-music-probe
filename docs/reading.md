@@ -2,6 +2,10 @@
 
 The current reading in detail. Rewrite it when a session changes the reading, rather than appending dated notes, and keep the short version in the [README](../README.md) in step.
 
+- [next.md](next.md): sessions to run next
+- [history.md](history.md): how the question got here, with the earlier question's conclusions and directions
+- [archive/](archive/): background notes from the earlier question, on notation and on how the music industry uses AI
+
 ## Question
 
 How does a person steer an LLM to compose good music in a symbolic medium?
