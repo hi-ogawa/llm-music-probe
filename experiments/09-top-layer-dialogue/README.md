@@ -1,33 +1,21 @@
-# 09-top-layer-dialogue
+# 09 Dilla Beat Top Layer
 
-- Direction: Fan-out and The adjustment loop in [directions.md](../../docs/directions.md), continuing [08-dilla-role-fan-out](../08-dilla-role-fan-out/README.md)
 - Date: 2026-10-11
-- Model ID: claude-opus-5-5 for the orchestrating agent and for every subagent (`general-purpose`), in one Claude Code session that continued from 08
-- Output format: hand-written text, either a bar, beat and note-name line format or edit commands over a fixed base, converted mechanically to toy-midi tracks and loaded through `webmcp-bridge execute-tool toy_midi_eval`
-
-## Question
-
-After 08, Hiroshi judged the rhythm and harmony grounded and the melody arbitrary. This run follows that judgment through four steps, each prompted by the listener as it went, not designed in advance:
-
-1. Does the top layer improve if one agent writes it by hand, while seeing what the other parts play?
-2. If two producer agents keep talking about the top layer, with rhythm and harmony locked, what variation comes out?
-3. Given per-track pan and a project comment, new in toy-midi, do the producers use pan as arrangement?
-4. How does a listener's note in a musician's words land?
-
-Claims touched in [context.md](../../docs/context.md): melodic intent, room in the medium, and a new row on whether known arrangement moves get applied without a prompt.
+- Model: claude-opus-5-5, for the orchestrating agent and for every `general-purpose` subagent it launched, in one Claude Code session that continued from 08
 
 ## Setup
 
-Everything sits on 08's song, with its drums, bass, Rhodes, strings and organ unchanged throughout. Playback is toy-midi's in-browser General MIDI synth. Every note in this run was written by hand in a text format. Scripts only converted, checked or summarized it, and no script generated, transposed or randomized notes.
+This continues [08](../08-dilla-role-fan-out/README.md)'s J Dilla–inspired beat, 36 bars at 88 bpm. After 08 the listener found the rhythm and harmony grounded but the melody arbitrary, so this session reworked only the top layer, keeping 08's drums, bass, Rhodes, strings and organ unchanged throughout. Playback was toy-midi's in-browser General MIDI synth.
 
-1. **Melody rewrite.** [melody-rewrite/context.md](melody-rewrite/context.md) is a bar-by-bar map of where 08's kick, snare, bass and Rhodes hits fall, generated from 08's project state. One fresh subagent wrote a new top layer against it in [melody-rewrite/melody.txt](melody-rewrite/melody.txt). It was not shown 08's melody.
-2. **Producer dialogue.** Two subagents, Producer A and Producer B, took turns editing [dialogue/arrangement.txt](dialogue/arrangement.txt), a list of commands applied to [dialogue/base.json](dialogue/base.json), which is 08 with the step 1 top layer. [dialogue/build.mjs](dialogue/build.mjs) applies the commands, rejects any on the locked tracks, and writes a bar-by-bar summary the producers read in place of listening. Each turn appended a message to [dialogue/conversation.md](dialogue/conversation.md). Nobody else was in the loop. A first attempt left every part open, which the listener had not meant. It was stopped in turn 2 and kept in [dialogue/aborted-open-scope/](dialogue/aborted-open-scope/).
-3. **Mix round.** toy-midi added per-track pan and a project `comment`. The build gained a `pan` command allowed on every track and wrote `comment.md` into the project. Fresh agents in the same two roles read the history from conversation.md, because the earlier agents could not be resumed after a session restart.
-4. **Listener note.** The listener's note was passed word for word to a fresh agent in the Producer A role, with only one constraint added: keep the melody notes.
+First a single subagent rewrote the top layer against a bar-by-bar map of what the other parts play. Then two subagents, Producer A and Producer B, took turns editing the top layer, reading the song as text in place of listening and leaving each other studio-style messages. Nobody else was in that loop until the listener stepped in with a pan request and later a note of their own.
 
-### Notation
+The mix round also dog-fooded two features toy-midi had just added, per-track pan ([toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803)) and a project comment ([toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747)). Fresh producer agents took the same roles for it, because the earlier ones could not be resumed after a session restart, and they read the history from the conversation log.
 
-Unlike 08, where each subagent wrote in a JavaScript vocabulary it defined itself, every part here was written in an external text notation. The orchestrating agent designed it during the run, and a script parses it. It is literal: one line is one note, as a bar, a position counted in 16ths with an optional offset in beats, a note name with octave, a length, and a velocity.
+What came out is the same call-and-answer top layer, a flute hook answered by muted trumpet, tightened by the producers, panned call left and answer right, and stacked with a second flute and second trumpet underneath, with the vibes playing chord shapes.
+
+### The arrangement format
+
+Unlike 08, where each subagent wrote JavaScript in a vocabulary it made up, every note here was written by hand in a text format the orchestrating agent designed during the session. It is literal, one line per note: a bar, a position counted in 16ths with an optional offset in beats, a note name, a length, and a velocity.
 
 ```
 track Flute 73 0.75
@@ -36,58 +24,52 @@ track Flute 73 0.75
 5 2&+0.07 F5 3/4 84
 ```
 
-For the dialogue it gained edit commands over the base song (`edit`, `clear <track> <bars>`, `drop`, `set`, `pan`) and drum names such as `kick` and `ohat`, documented in [dialogue/FORMAT.md](dialogue/FORMAT.md). `summary.md` runs the other way: build.mjs renders the song bar by bar in the same vocabulary, and the producers read it in place of listening.
+For the dialogue the format gained edit commands over the base song, `edit`, `clear <track> <bars>`, `drop`, `set`, and later `pan`, plus drum names such as `kick` and `ohat`. The producers wrote only `arrangement.txt`. A build script applied it to the base song, rejected any edit to the locked rhythm and harmony tracks, and produced the toy-midi tracks that the orchestrator loaded into the open page through `webmcp-bridge`. The same script also rendered the song back bar by bar in the format's vocabulary as `summary.md`, which the producers read each turn in place of listening. Scripts only converted and checked. None generated notes.
 
-Reproduce a turn by copying `dialogue/turns/<turn>.arrangement.txt` to `dialogue/arrangement.txt` and running `node dialogue/build.mjs`, which writes `summary.md`, `full.json`, and page scripts next to it. Turns 1-4 ran before `build.mjs` had `pan` and the comment export, and the current version applies their files unchanged.
+## Session
 
-## Raw output
+| #   | Listener                                                                                                                                                                                                                                                                                                                                                                                                                                         | Agent                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | "llike others experiments, rhythm, harmony looks desent grounded but melody feels arbitrary. interesting they are in parallel not knowing others. wonder melody idea iteration may improve this. any iteration to try?"                                                                                                                                                                                                                          | Proposed a 2×2 of writing the melody blind or aware of the other parts, by generator or by hand.                                                                                                                                                                                                                                                                                                           |
+| 2   | "just aim for one good improvement over this. pick one and execute and will listen"                                                                                                                                                                                                                                                                                                                                                              | One subagent, not shown 08's melody, wrote a new top layer against the map of kick, snare, bass and Rhodes hits: a flute hook (C-D-F-A up, G-E-D-C-A down) placed after the Rhodes hits and next to the backbeat, muted trumpet answers, and vibes, 119 notes in all.                                                                                                                                      |
+| 3   | "one thing i'm interested in is what happens if let agent each other iterate on nuance? for example, can they even talk about melody choice to somehow polish autonomosly? it looks like this iteration didn't explore much than existing. the degree of freedom can be larger not just melody chocie but instrument and parts and like that. can we explore that angle what kind of variation we'll actually get if two subagetn keep talking?" | With every part open, Producer A spent its first turn rewriting the verse drum feel and removing a doubled bass.                                                                                                                                                                                                                                                                                           |
+| 4   | "i meant keeping rhythm and harmony fixed though. wondering just what's the variant of remaining extra part (which we currently call "melody", but that maybe a part of issue)"                                                                                                                                                                                                                                                                  | Restarted with only the top layer open. Over four turns the producers turned the choir swell from retriggered 16ths into a few soft held notes, gave the vibes the hook alone in bars 25-26, emptied bar 17 so the bridge reads as call-and-answer pairs, moved a choir note off the flute's C to C# resolution, and brought bar 18 back in softer. Turn 4 made no edits and called it done.               |
+| 5   | "i mean, can you or your producers figure out good use of pan for arrangement? also use comment."                                                                                                                                                                                                                                                                                                                                                | Panned the call and answer apart, with flute and vibes at -0.4 and muted trumpet at +0.45, drums, basses and choir centered, Rhodes just left, and strings and organ right. Producer B moved the hand percussion to the hook side so the mix doesn't tip right on every answer. They wrote a project comment on the form, the empty bars and the mix. No notes changed.                                    |
+| 6   | "pan feels like a cheap musical depth technique and i like it."                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 7   | "i'm thinking for melody / single tone sections, we may stack something. maybe just slight weaker volocity but harmonical up or down with similar instrument to give depth while keeping melody for now. also vibes two or three note would be natural than single tone."                                                                                                                                                                        | Added a second flute under every full hook statement and a second muted trumpet under every answer, mostly a third below with fourths where a third would clash with the Rhodes, softer and a hair late, panned just inside their leads. Turned the vibes in bars 25-26 into two- and three-note shapes with the melody on top. Left the teases, pickups, the bar 20 bend and the outro single on purpose. |
+| 8   | "sounds better. i feel like these are also mostly classic quick arrangement cheatsheet so llm could figure out on its own."                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 9   | Raised the flute about 1 dB, lowered the second flute about 2 dB and moved it across to the right (+0.29), and turned the master down                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                            |
+
+## Notes
+
+The melody:
+
+- The hand-written rewrite in step 2 stayed close to 08, a flute hook with horn answers again. So writing every note literally did not by itself make the melody feel less arbitrary. Going from 08 to here also changed numbers to note names and changed who designed the notation, so one session cannot say which change mattered, if any.
+
+The producer dialogue:
+
+- The two producers behaved as a critique and editing loop, not a source of variation. Across four turns they added no tracks and changed no instruments or melodic material, and their edits were subtractions and fixes.
+- They converged for plain reasons: the same model with the same taste, an existing draft to anchor on, and a setup where agreeing ends the task. Starting them from an empty top layer would separate anchoring on the draft from the model's own default, and was not tried.
+- The critique was real, because the retriggered choir and the semitone rub under the flute would both have sounded wrong. When B corrected A, A conceded with the reason, saying it had read where notes start but not where they end.
+- The producers talked in the text rendering's vocabulary of note names and counted beats, so the notation shaped how they discussed the track as well as how they wrote it.
+
+The arranging moves:
+
+- Pan was used for arrangement, to separate call from answer, in the first turn after it existed.
+- Stacking and vibes voicings are standard arranging moves, and the producer carried them out well once named, choosing intervals against each chord and giving reasons for the spots it left single. But four autonomous turns never proposed one. The listener's note was the trigger.
+- The stacked harmony was written by hand with scripts forbidden, yet it follows a rule note for note: a third below, a fourth where a third would clash, and nothing on bends and teases. So writing without code does not by itself show more than a rule carried out in the head.
+- A natural next try is the same dialogue from turn 4's state, told to go through routine arranging moves before calling it done.
+- The listener's own edit put the second flute on the opposite side from the lead, overruling the producer's reason that the section should fuse around the lead.
+
+## References
 
 - [session.md](session.md): every listener prompt and every subagent prompt, verbatim
-- [melody-rewrite/](melody-rewrite/): the context map, its generator, the converter, and the subagent's melody
-- [dialogue/conversation.md](dialogue/conversation.md): the producers' seven messages, verbatim as they wrote them
-- [dialogue/turns/](dialogue/turns/): arrangement.txt after each turn, and comment.md after turns 5-7. Turn 4 made no edits
+- [melody-rewrite/](melody-rewrite/): the bar-by-bar map of the other parts, its generator, the converter, and the subagent's hand-written top layer in [melody.txt](melody-rewrite/melody.txt)
+- [dialogue/FORMAT.md](dialogue/FORMAT.md): the note format and edit commands the producers wrote in
+- [dialogue/conversation.md](dialogue/conversation.md): the producers' seven messages, verbatim
+- [dialogue/base.json](dialogue/base.json), [dialogue/arrangement.txt](dialogue/arrangement.txt) and [dialogue/build.mjs](dialogue/build.mjs): the starting song, the final edit commands, and the script that applies them, rejects edits to the rhythm and harmony tracks, and writes the bar-by-bar summary
+- [dialogue/turns/](dialogue/turns/): arrangement.txt after each turn, and comment.md after turns 5-7 (turn 4 made no edits). To reproduce a turn, copy `dialogue/turns/<turn>.arrangement.txt` to `dialogue/arrangement.txt` and run `node dialogue/build.mjs`, which writes `summary.md`, `full.json` and page scripts next to it
 - [dialogue/comment.md](dialogue/comment.md): the final project comment
+- [dialogue/aborted-open-scope/](dialogue/aborted-open-scope/): the stopped first attempt with every part open
+- [toy-midi#803](https://github.com/hi-ogawa/toy-midi/issues/803) and [toy-midi#747](https://github.com/hi-ogawa/toy-midi/issues/747): the pan and project comment features the mix round used
 - [project-state.json](project-state.json): the final page, including the listener's own edits, with every note, gain and pan
-
-## Judgment
-
-### 1. Melody rewrite
-
-- **Measured:** the subagent wrote 119 notes on flute, muted trumpet and vibes. Its hook (C5 D5 F5, then E5 D5 C5 A4) places each note after a Rhodes hit and next to the backbeat, as it described, which was checked against the map for the first statement only.
-- **Judged by the listener, by looking more than by ear:** "it looks like this iteration didn't explore much than existing." It is a flute hook with horn answers again, like 08's.
-
-### 2. Producer dialogue
-
-- **Measured:** the producers agreed the top layer was finished after four turns, and turn 4 made no edits. Across the four turns they added no tracks and changed no instruments or melodic material. The flute went from 79 to 66 notes and the vibes from 18 to 10. The trumpet was unchanged. The Voice Swell went from 32 retriggered 16ths to 6 held notes.
-- **Measured:** the edits were subtractions and fixes. They emptied one bridge bar (17), softened a re-entry, gave the vibes the hook alone for two bars instead of doubling the flute, and moved a pad note that sat a semitone under the flute's C to C# resolution.
-- **Inferred:** the critique was real. The retriggered choir and the semitone rub would both have sounded wrong. When B corrected A, A conceded with the reason ("I read the start positions and didn't check where the notes end"). Producer B already called the track "close to done" in turn 2.
-- **Measured:** in the first attempt, with every part open, Producer A spent turn 1 on the verse drum feel and on removing a doubled bass, not on the top layer.
-- **Inferred:** two agents of the same model, starting from a draft, behave as a critique and editing loop, not a source of variation. Same taste, an existing draft to anchor on, and a setup that rewards agreement all push toward convergence. Starting from an empty top layer would separate the draft's anchoring from the model's default, and was not run.
-
-### 3. Mix round
-
-- **Measured:** both producers used pan for the call and answer they had built, the flute and vibes at -0.4 against the muted trumpet at +0.45, with pulse and root in the center. B's one change moved the hand percussion to the hook side, -0.25, arguing about how the stereo picture shifts on every answer, not about balance. Neither changed a note.
-- **Measured:** B corrected a factual error in A's draft comment, which said the breakdown had no strings when the strings do play there.
-- **Judged by ear:** "pan feels like a cheap musical depth technique and i like it."
-- **Inferred:** pan was used in the first turn after the field existed, and for arrangement reasons. Before it, the only mix control was gain, and no stereo idea got out.
-
-### 4. Listener note
-
-- **Measured:** the producer added a second flute (42 notes) under every full hook statement and a second muted trumpet (20 notes) under every answer. It also turned the vibes' notes in bars 25-26 into two- and three-note shapes, with the melody note on top. No melody note changed. Every harmony note starts with a lead note and sits 3 to 5 semitones below it, with fourths where a third would clash with the Rhodes, and never at or above the lead.
-- **Measured:** it left some spots single on purpose: the quiet teases, the pickups, the bar 20 bend where a parallel voice would smear it, and the outro, which thins out.
-- **Judged by ear:** "sounds better."
-- **Judged by ear, by editing:** the listener then raised the flute about 1 dB, lowered the second flute about 2 dB, and moved it from -0.3, just inside the lead, to +0.29, across the stereo field. That overrules the producer's reason, "the section fuses around the lead".
-- **Inferred, from the listener's remark:** "these are also mostly classic quick arrangement cheatsheet so llm could figure out on its own." The producers had these moves. They applied them fluently once named, with chord-aware intervals and reasoned exceptions. But four autonomous turns never proposed one, and pan came up only when the agent was told about the feature. This is the same shape as [07](../07-live-toy-midi-tab/README.md), where the bass box shape was known but applied only after a bassist asked. What is missing is not knowledge or execution but reaching for the standard move unprompted.
-
-### Notation
-
-- **Measured:** going from 08 to this run changed three things together. The notation went from rule-level to literal, from numbers to note names and counted 16ths, and from one each subagent defined to one the orchestrator defined. Whether the notes were chosen one by one changed with the first of these.
-- **Judged by the listener, by looking:** the literal rewrite "didn't explore much". So the literal notation, in which every note is chosen, did not by itself fix what felt arbitrary. One run cannot say which of the three changes mattered, if any.
-- **Inferred:** the producers' messages talk in the summary's vocabulary, note names and counted beats such as "The trumpet's C5-A4 starts on 2& and the A4 ends at about 3e", so the notation also shaped how they discussed the track, not only how they wrote it.
-
-## Effect on claims
-
-- New row in [context.md](../../docs/context.md): standard arrangement moves are known and executed well when named, but not reached for in an autonomous loop. Supported in one run, with 07 as the same pattern for fingering. The next test is the same producer dialogue from turn 4's state, with an instruction to go through routine arranging moves before calling it done.
-- Melodic intent: 08's judgment, an arbitrary melody over grounded rhythm and harmony, adds to the existing "not supported" row. The rewritten melody was not judged on its own by ear, only as "didn't explore much". The stacked version sounded better, but that is arrangement around the melody, not the melody's notes.
-- Room in the medium: pan is a second data point after 07. The intent was already in the parts, and it got out as soon as the field existed.
-- Fan-out: a role split (08) and a two-agent dialogue (here) both converged. Neither produced variation, which leaves the exploration form, several independent drafts judged by ear, as the untested one.
