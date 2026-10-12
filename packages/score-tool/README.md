@@ -1,6 +1,6 @@
 # score-tool
 
-The score-to-sound tool used by experiments 02 to 06. It reads a plain-text score in a Scrimshaw-compatible format, checks it, and renders it as note events, General MIDI, or audio. The format is described in [docs/score-format.md](../../docs/score-format.md), and the plan behind the tool in [docs/tool-plan.md](../../docs/tool-plan.md).
+The score-to-sound tool used by experiments 02 to 06. It reads a plain-text score in a Scrimshaw-compatible format, checks it, and renders it as note events, General MIDI, or audio. The format is described in [score-format.md](score-format.md), the plan behind the tool in [tool-plan.md](tool-plan.md), and what toy-midi needs to play its MIDI output in [toy-midi-playback.md](toy-midi-playback.md).
 
 ## Usage
 
