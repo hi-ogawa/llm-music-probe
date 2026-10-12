@@ -1,6 +1,6 @@
 # Next
 
-Sessions to run next, each aimed at one idea from the [reading](reading.md#how-to-steer-it) that no session has tested yet. The composing agent gets only the brief, as [experiments/README.md](../experiments/README.md) says.
+Sessions to run next, each aimed at one idea from the [reading](README.md#how-to-steer-it) that no session has tested yet. The composing agent gets only the brief, as [experiments/README.md](../experiments/README.md) says.
 
 - **Elements against sketches.** The same late-night neo-soul brief run two ways: references plus three 4-bar sketches to pick from, and a one-shot brief that spells out form, energy per section, roles, groove placement, harmonic rhythm, and variation. Both are running as of 2026-10-12.
 - **References, bare and unpacked.** A brief that names a record for the drums, against the same brief with the reference written out as techniques. Asking the model first what the reference means shows what it reads into it.

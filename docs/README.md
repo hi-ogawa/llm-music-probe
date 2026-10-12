@@ -1,4 +1,4 @@
-# Reading
+# Docs
 
 The current reading in detail. Rewrite it when a session changes the reading, rather than appending dated notes, and keep the short version in the [README](../README.md) in step.
 

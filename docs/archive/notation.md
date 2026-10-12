@@ -62,7 +62,7 @@ What reached the ear:
 - **Judged by the listener, by looking:** the literal rewrite in 09 "didn't explore much". Moving to a literal notation did not by itself make the melody less arbitrary. 08 to 09 also changed numbers to note names and the notation's author, so one run cannot separate these.
 - **Inferred:** the notation also shapes the discussion. 09's producers read a bar-by-bar summary in the same vocabulary and argued in it, as in "The trumpet's C5-A4 starts on 2& and the A4 ends at about 3e".
 
-- **Inferred, revising the 07 criterion:** 09's stacked harmony was written by hand with scripts forbidden, so there was no procedure between intent and output, yet it follows a rule note for note. Carrying out a rule in one's head is still carrying out a rule. So the line between intuition and procedure is not whether code sits between intent and output. It is whether the output goes beyond what a known rule would produce. By that test, 07's directly written melody and voicings are not yet shown to be more than rules either. See the working reading in [the reading](../reading.md#what-the-model-knows).
+- **Inferred, revising the 07 criterion:** 09's stacked harmony was written by hand with scripts forbidden, so there was no procedure between intent and output, yet it follows a rule note for note. Carrying out a rule in one's head is still carrying out a rule. So the line between intuition and procedure is not whether code sits between intent and output. It is whether the output goes beyond what a known rule would produce. By that test, 07's directly written melody and voicings are not yet shown to be more than rules either. See the working reading in [the reading](../README.md#what-the-model-knows).
 
 ### Groove against humanize
 
@@ -144,7 +144,7 @@ How a DAW user makes a programmed line sound played, compared with what our form
 
 Hypothesis from the range sweep judgment: lines meant to be heard as lines sound awkward while harmony-driven figures sound reasonable, because sustained lines depend on the first three rows and short, attack-driven figures do not.
 
-The same split works at the level of genre, which [the reading](../reading.md#what-the-medium-limits) reads as a confound for judgments by ear. toy-midi has none of the controller rows yet, so this table's renderable column describes fluidsynth, not toy-midi.
+The same split works at the level of genre, which [the reading](../README.md#what-the-medium-limits) reads as a confound for judgments by ear. toy-midi has none of the controller rows yet, so this table's renderable column describes fluidsynth, not toy-midi.
 
 ## Candidate principles
 
