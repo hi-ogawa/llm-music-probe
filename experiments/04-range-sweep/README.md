@@ -1,6 +1,6 @@
 # 04-range-sweep
 
-- Direction: Genre breadth and Fan-out in [directions.md](../../docs/directions.md)
+- Direction: Genre breadth and Fan-out in [the retired directions](../../docs/history.md#directions-retired-2026-10-12)
 - Date: 2026-10-08
 - Model ID: claude-opus-5-5 for every cell, each in a fresh subagent
 - Output format: our Scrimshaw-compatible score, rendered by our tool
@@ -126,7 +126,7 @@ The first batch tests the setup on six cells: the bass ladder (d01s, d01, d01d) 
 
 - In the bass ladder, the tempo (92), pad, kick, snare, and hat are fixed in a base score handed to every run, and the subagent writes only the bass. Otherwise differences between bass lines could not be separated from differences in everything else.
 - The open-brief runs get an identical prompt: "if nothing were specified and you were to show your own musical taste, what would you write?", with every choice left to the model.
-- Each subagent is told to read only [score-format.md](../../docs/score-format.md), and not other docs or scores, so its choices stay independent.
+- Each subagent is told to read only [score-format.md](../../packages/score-tool/score-format.md), and not other docs or scores, so its choices stay independent.
 
 ### Batch 1 results
 

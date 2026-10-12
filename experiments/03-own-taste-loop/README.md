@@ -1,6 +1,6 @@
 # 03-own-taste-loop
 
-- Direction: Depth (voicing, bass) and Genre breadth (neo-soul keys and bass) in [directions.md](../../docs/directions.md)
+- Direction: Depth (voicing, bass) and Genre breadth (neo-soul keys and bass) in [the retired directions](../../docs/history.md#directions-retired-2026-10-12)
 - Date: 2026-10-08
 - Model ID: claude-opus-5-5, in a Claude Code session with the research context of this repository
 - Output format: Scrimshaw-compatible score, rendered by our tool

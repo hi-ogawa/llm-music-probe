@@ -1,6 +1,6 @@
 # 06-reference-feedback
 
-- Direction: The adjustment loop in [directions.md](../../docs/directions.md)
+- Direction: The adjustment loop in [the retired directions](../../docs/history.md#directions-retired-2026-10-12)
 - Date: 2026-10-09
 - Model ID: claude-opus-5-5 for every run, each in a fresh subagent
 - Output format: our Scrimshaw-compatible score, rendered by our tool
@@ -15,7 +15,7 @@ This is a probe of the interface between a listener and a score. Feedback given 
 
 Material: the reference is a famous recording, so this tests recall on purpose, unlike the preference for unmemorized material elsewhere. The question is whether a named reference carries the same information as an explicit description.
 
-Claims affected in [context.md](../../docs/context.md): the adjustment loop, and the inference that the model treats notation labels as if they were the sound.
+Claims affected in [the reading](../../docs/README.md): the adjustment loop, and the inference that the model treats notation labels as if they were the sound.
 
 ## Setup
 

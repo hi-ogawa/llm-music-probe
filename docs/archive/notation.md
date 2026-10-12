@@ -1,16 +1,16 @@
 # Notation
 
-What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it had been tested until [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), which gives the central hypothesis its first data point, below, and 08 and 09 add a second on notations the agents invent.
+What makes musical intent encodable, and presentable by an LLM through a medium. Everything here is a working hypothesis, drawn from one example, Scrimshaw ([breakdown](../../experiments/01-scrimshaw-breakdown/README.md)), and from reasoning about how agents work. None of it had been tested until [07-live-toy-midi-tab](../../experiments/07-live-toy-midi-tab/README.md), which gives the central hypothesis its first data point, below, and 08 and 09 add a second on notations the agents invent.
 
 The central hypothesis is that exact syntax matters little, because a capable model can learn and use any reasonable format, and that what matters is whether the medium has room for an idea. If it does not, a probe can fail because the idea could not get out, not because it was missing.
 
 A renderer default is where room is lost most easily, as with chord names voiced by Scrimshaw's renderer. So every decision that can carry intent should be writable explicitly, with defaults applying only where the score says nothing. An explicit value is then deliberate by definition, and no separate "do not change this" mark is needed.
 
-Whether intent survives translation between notations is a question about the model rather than the notation, so it lives in [directions.md](directions.md) as "Robustness across notations".
+Whether intent survives translation between notations is a question about the model rather than the notation, so it lives in [the retired directions](../history.md#directions-retired-2026-10-12) as "Robustness across notations".
 
 ## First evidence: writing into a schema (2026-10-10)
 
-In [07-live-toy-midi-tab](../experiments/07-live-toy-midi-tab/README.md), the agent composed straight into toy-midi's project model, which is not a notation: MIDI numbers, beats as decimals, and one object per note. It wrote no score. What it wrote instead, in the script ([session.md](../experiments/07-live-toy-midi-tab/session.md)), had four layers, each symbolic to a different degree:
+In [07-live-toy-midi-tab](../../experiments/07-live-toy-midi-tab/README.md), the agent composed straight into toy-midi's project model, which is not a notation: MIDI numbers, beats as decimals, and one object per note. It wrote no score. What it wrote instead, in the script ([session.md](../../experiments/07-live-toy-midi-tab/session.md)), had four layers, each symbolic to a different degree:
 
 - **Chart and form:** chord names per bar in arrays, the second pass as an array spread, and the ending as an override. This is the only layer that looks like a notation.
 - **Voicings:** MIDI numbers in a table keyed by chord name. The name is a label, not parsed, so the voicing was chosen without any chord-symbol rule.
@@ -21,7 +21,7 @@ Measured: there was almost no step converting a notation into the schema, becaus
 
 This supports the central hypothesis. Syntax mattered little, because the agent was fluent in a raw numeric schema it had never used. Room decided what got out: tab had a field and was written, while drums and pan had none and were not. Intent such as the chord chart and the reasons behind choices existed in the script, but the project has no place to keep it, which is the Intent row's core room missing. The harness covered repetition and variation, as the rejected candidates below argue.
 
-It does not show that intent survives as well as in a score, because the piece was not judged by ear. That comparison, the same brief written as a score and into the schema, belongs to "Robustness across notations" in [directions.md](directions.md).
+It does not show that intent survives as well as in a score, because the piece was not judged by ear. That comparison, the same brief written as a score and into the schema, belongs to "Robustness across notations" in [the retired directions](../history.md#directions-retired-2026-10-12).
 
 What counts as intuition here is not symbols against numbers. The tab passes were not intuition because a procedure the agent wrote stood between the intent and the output, first a search and then a recalled rule run as code. By that criterion the layers of the piece split differently from how they look:
 
@@ -35,7 +35,7 @@ What counts as intuition here is not symbols against numbers. The tab passes wer
 
 So the raw numbers are not evidence against intuition. The melody and voicings are the direct kind, and the bass and tab are where a procedure stood in.
 
-Measured from [project-state.json](../experiments/07-live-toy-midi-tab/project-state.json): every voicing holds exactly its chord's pitch classes, and every melody note is in D major. The only notes outside the key are the bass's chromatic approaches, which its rule intends. The one error was in register, the bass an octave high, not in pitch class.
+Measured from [project-state.json](../../experiments/07-live-toy-midi-tab/project-state.json): every voicing holds exactly its chord's pitch classes, and every melody note is in D major. The only notes outside the key are the bass's chromatic approaches, which its rule intends. The one error was in register, the bass an octave high, not in pitch class.
 
 Inferred: this fits the reading that the model's pitch knowledge sits above any one encoding and projects into note names, chord symbols, or MIDI numbers alike, the way a musician's knowledge projects onto staff, fretboard, solfège, and ear. The projection into numbers was clean for pitch class and slipped only on octave, which is a +12 offset in numbers but explicit in a note name such as G2. The agent's own account of whether it converted names to numbers or worked in numbers is not evidence about the mechanism, so this stays an inference until the robustness probe tests it.
 
@@ -46,7 +46,7 @@ Two nuances:
 
 ## Second evidence: notations the agents invent (2026-10-11)
 
-[08-dilla-role-fan-out](../experiments/08-dilla-role-fan-out/README.md) and [09-top-layer-dialogue](../experiments/09-top-layer-dialogue/README.md) suggest a correction to the 07 reading above. "Where it abstracted, it did so as code, not as a text notation" draws the wrong line. An agent that abstracts in code is defining a notation: a vocabulary of helpers, written on the fly, and then the music written in that vocabulary. It is an embedded DSL, and its implementation sits in the same script.
+[08-dilla-role-fan-out](../../experiments/08-dilla-role-fan-out/README.md) and [09-top-layer-dialogue](../../experiments/09-top-layer-dialogue/README.md) suggest a correction to the 07 reading above. "Where it abstracted, it did so as code, not as a text notation" draws the wrong line. An agent that abstracts in code is defining a notation: a vocabulary of helpers, written on the fly, and then the music written in that vocabulary. It is an embedded DSL, and its implementation sits in the same script.
 
 In 08, the rhythm subagent defined `snareT = (bar, i) => bar + i / 4 + r(0.03, 0.06)`, with `kickT` and `hatT` alongside, and then wrote sections as usage, such as `brush.add(RIM, snareT(bar, 12), 0.2, 38)`. The melody subagent defined literal hook phrases and a `snapToChord` operation. In 09, the orchestrating agent designed an external text notation with its own parser, one line per note, such as `5 2&+0.07 F5 3/4 84`.
 
@@ -62,7 +62,7 @@ What reached the ear:
 - **Judged by the listener, by looking:** the literal rewrite in 09 "didn't explore much". Moving to a literal notation did not by itself make the melody less arbitrary. 08 to 09 also changed numbers to note names and the notation's author, so one run cannot separate these.
 - **Inferred:** the notation also shapes the discussion. 09's producers read a bar-by-bar summary in the same vocabulary and argued in it, as in "The trumpet's C5-A4 starts on 2& and the A4 ends at about 3e".
 
-- **Inferred, revising the 07 criterion:** 09's stacked harmony was written by hand with scripts forbidden, so there was no procedure between intent and output, yet it follows a rule note for note. Carrying out a rule in one's head is still carrying out a rule. So the line between intuition and procedure is not whether code sits between intent and output. It is whether the output goes beyond what a known rule would produce. By that test, 07's directly written melody and voicings are not yet shown to be more than rules either. See the working reading in [context.md](context.md#working-reading-a-rulebook-and-a-trigger-2026-10-11).
+- **Inferred, revising the 07 criterion:** 09's stacked harmony was written by hand with scripts forbidden, so there was no procedure between intent and output, yet it follows a rule note for note. Carrying out a rule in one's head is still carrying out a rule. So the line between intuition and procedure is not whether code sits between intent and output. It is whether the output goes beyond what a known rule would produce. By that test, 07's directly written melody and voicings are not yet shown to be more than rules either. See the working reading in [the reading](../README.md#what-the-model-knows).
 
 ### Groove against humanize
 
@@ -83,7 +83,7 @@ This does not revive the rejected candidate "let the level of abstraction match 
 
 ## Scrimshaw's capabilities
 
-What the format can write, from its spec ([composing prompt](../experiments/01-scrimshaw-breakdown/source/composing-prompt.md)), classified by the room test:
+What the format can write, from its spec ([composing prompt](../../experiments/01-scrimshaw-breakdown/source/composing-prompt.md)), classified by the room test:
 
 - **Core**: gives room for an idea that nothing else in the format can carry
 - **Shorthand**: expressible another way in the same format, so it adds no room
@@ -144,7 +144,7 @@ How a DAW user makes a programmed line sound played, compared with what our form
 
 Hypothesis from the range sweep judgment: lines meant to be heard as lines sound awkward while harmony-driven figures sound reasonable, because sustained lines depend on the first three rows and short, attack-driven figures do not.
 
-The same split works at the level of genre, which [context.md](context.md#medium-fit-2026-10-12) reads as a confound for judgments by ear. toy-midi has none of the controller rows yet, so this table's renderable column describes fluidsynth, not toy-midi.
+The same split works at the level of genre, which [the reading](../README.md#what-the-medium-limits) reads as a confound for judgments by ear. toy-midi has none of the controller rows yet, so this table's renderable column describes fluidsynth, not toy-midi.
 
 ## Candidate principles
 
