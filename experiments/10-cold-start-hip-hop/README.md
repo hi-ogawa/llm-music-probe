@@ -28,6 +28,15 @@ The beat started as a plain 4-bar loop. Over nine requests it gained hand percus
 
 ## Notes
 
+How the agent wrote the music:
+
+- The agent wrote toy-midi's project format directly, notes as MIDI pitch numbers with start and length in beats, with chords spelled out as voicings it chose by hand and named only in comments.
+- On top of that it defined small helpers on the fly, such as `swing(step)` for a swung 16th position, `roll()` for a snare roll that builds, `cut()` to clear a range, and a `feel` table of drag and scatter per drum. It is the same kind of made-up vocabulary as [08](../08-dilla-role-fan-out/README.md)'s, but much thinner, and the shaker 16ths, rolls and section copies were loops over it.
+- The chords, bass line, hook, harmony and fills were literal tables of notes inside those scripts.
+- The harmony was a literal map from each melody note to the note under it, but every entry follows one rule, so writing it out note by note did not make it more than a rule.
+
+How the iteration went:
+
 - Every musical move came from a request. The agent added none on its own, even standard ones such as a percussion layer, humanizing, or harmony in the lead.
 - Once a move was named, the agent carried it out with sensible detail, and each one was a known rule. Humanizing was a fixed drag per drum plus random scatter, written as code, which is a groove template and a humanize pass simulated on the fly rather than taken from a DAW. The harmony was a third below the lead, with a sixth where a third would clash, chosen by the chord underneath. The transitions were one textbook move per boundary.
 - The hook was rule-shaped too, chord tones from A minor pentatonic arranged as call and answer, and nobody judged it on its own.

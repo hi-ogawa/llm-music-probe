@@ -5,7 +5,7 @@
 
 ## Setup
 
-Free-form intro, so the README reads on its own: what was asked, how the agent worked, how the session went, and what came out, in a few sentences. Tooling context goes here, not in the main section.
+Free-form intro, so the README reads on its own: what was asked, how the agent worked, how the session went, and what came out, in a few sentences. Context on tools and setup goes here, not in the main section.
 
 ## <Main section>
 
@@ -13,7 +13,7 @@ Named for the experiment, such as Session or Runs. The musical iteration in orde
 
 ## Notes
 
-Observations on how the iteration went, such as a request the agent misread or a move it never made on its own. Leave the section out if nothing stood out.
+Observations on how the agent represented the music and iterated on it: the form it wrote music in, such as raw numbers, a vocabulary it made up, or a text format; which choices were rules run as code and which were notes chosen one by one; and how it took the listener's requests, such as a move it never made on its own or a request it misread. Leave out tooling friction, such as setup problems and bugs.
 
 ## References
 
