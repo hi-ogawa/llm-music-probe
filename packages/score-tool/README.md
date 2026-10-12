@@ -12,7 +12,7 @@ pnpm cli render <score> <output> [--loops <n>] [--phrase <voices>] [--solo <voic
 ```
 
 - `check` prints each problem as `file:line: message` and exits non-zero if there are any.
-- `render` picks the format from the output's extension: `.json` for note events, `.mid` for MIDI, and `.wav` for audio.
+- `render` picks the format from the output's extension: `.json` for note events, `.mid` for MIDI, `.wav` for audio, and `.link` for a toy-midi share link.
 - `--loops` sets how many times the loop section plays, 1 by default.
 - `--phrase` plays the listed voices, comma-separated, through the phrasing pass, which shapes velocity, length and expression without changing any note.
 - `--solo` keeps only the listed voices, comma-separated.
