@@ -23,4 +23,4 @@
 - Commit after each meaningful change, without waiting to be asked
 - Record the exact model ID, prompt, and output format for every run, so results stay comparable across models and formats
 - Keep raw model output verbatim in the experiment directory. Put judgments and interpretation in the README, separate from the raw output
-- Record the musical iteration, the listener's requests and the musical changes that answered them, not tooling details. Keep observations in Notes, separate from what happened
+- Record the musical iteration, the listener's requests and the musical changes that answered them, not tooling details. Keep observations in Notes, separate from the record of the session

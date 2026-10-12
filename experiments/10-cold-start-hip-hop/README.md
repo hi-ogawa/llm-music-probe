@@ -9,7 +9,7 @@ The listener asked for a hip-hop beat loop and then shaped it one short request 
 
 The beat started as a plain 4-bar loop. Over nine requests it gained hand percussion, a string pad, a humanized groove, a two-voice lead hook, a 24-bar arrangement, and transitions between sections.
 
-## What happened
+## Session
 
 | #   | Listener                                                                                           | Agent                                                                                                                                                                                                             |
 | --- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

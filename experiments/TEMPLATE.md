@@ -7,9 +7,9 @@
 
 Free-form intro, so the README reads on its own: what was asked, how the session went, and what came out, in a few sentences.
 
-## What happened
+## <Main section>
 
-The musical iteration in order. For a session, a table with the listener's request verbatim and the musical change the agent made. Put the listener's own edits and verdicts in as rows too. For a batch run, a short list of what was run.
+Named for the experiment, such as Session or Runs. The musical iteration in order. For a session, a table with the listener's request verbatim and the musical change the agent made. Put the listener's own edits and verdicts in as rows too. For a batch run, a short list of what was run.
 
 ## Notes
 
