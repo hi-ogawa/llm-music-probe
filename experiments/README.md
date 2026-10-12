@@ -36,6 +36,6 @@ Either way, add a comment to the [experiment index](https://github.com/hi-ogawa/
 ```
 
 - **Setup**: a free-form intro, so the write-up reads on its own. Say what was asked, how the agent worked, how the session went, and what came out, in a few sentences. Context on tools and setup goes here, not in the main section.
-- **Main section**: named for the experiment, such as Session or Runs. The musical iteration in order. For a session, a table with the listener's request verbatim and the musical change that answered it, leaving out tooling details. Put the listener's own edits and verdicts in as rows too. For a batch run, a short list of what was run.
+- **Main section**: named for the experiment, such as Session or Runs. The musical iteration in order: what was asked and what changed, in whatever form reads best.
 - **Notes**: observations on how the agent represented the music and iterated on it. Cover the form it wrote music in, such as raw numbers, a vocabulary it made up, or a text format, which choices were rules run as code and which were notes chosen one by one, and how it took the listener's requests, such as a move it never made on its own or a request it misread. Leave out tooling friction, such as setup problems and bugs.
 - **References**: links to the agent's raw output, kept next to the write-up, along with any outside resources.
