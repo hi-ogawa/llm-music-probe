@@ -109,7 +109,7 @@ export function getVelocity(level: number, vol: number): number {
 }
 
 /** Channel volume (CC7) from `vol`: 100 at the default of 0.8, the General MIDI default */
-function getChannelVolume(vol: number): number {
+export function getChannelVolume(vol: number): number {
   return Math.min(127, Math.max(0, Math.round((100 * vol) / DEFAULT_VOL)));
 }
 

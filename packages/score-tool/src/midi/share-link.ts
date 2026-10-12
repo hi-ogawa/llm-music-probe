@@ -1,6 +1,6 @@
 import { deflateRawSync } from "node:zlib";
 import type { Song } from "../score/expand.ts";
-import { DEFAULT_VOL, getVelocity } from "./export.ts";
+import { DEFAULT_VOL, getChannelVolume, getVelocity } from "./export.ts";
 import { GENERAL_MIDI_SOUNDS } from "./general-midi.ts";
 
 export const TOY_MIDI_ORIGIN = "https://toy-midi.hiro18181.workers.dev";
@@ -15,7 +15,9 @@ const STANDARD_KIT = 0;
  * Timing follows `exportMidi`: a score beat is a quarter note. toy-midi has
  * one tempo and one meter per project, so only the first of each is kept.
  * Every voice gets its own track, percussion included, so each drum voice
- * keeps its own level and pan, which a shared MIDI channel could not.
+ * keeps its own pan, which a shared MIDI channel could not. Levels match the
+ * MIDI export as fluidsynth plays it: a melodic voice's channel volume becomes
+ * track gain, and a percussion voice's level stays in its velocities.
  */
 export function exportShareLink(song: Song): string {
   const midiTracks = song.voices.map((voice) => {
@@ -31,14 +33,17 @@ export function exportShareLink(song: Song): string {
               : note.pitch!,
         start: round(note.start),
         duration: round(sound.kind === "effect" ? sound.length : note.duration),
-        velocity: getVelocity(note.level, DEFAULT_VOL),
+        velocity: getVelocity(
+          note.level,
+          sound.kind === "percussion" ? voice.vol : DEFAULT_VOL,
+        ),
       }));
     return {
       name: voice.name,
       ...(sound.kind === "percussion"
         ? { bank: DRUM_BANK, program: STANDARD_KIT }
         : { program: sound.program }),
-      gain: round(voice.vol / DEFAULT_VOL),
+      gain: sound.kind === "percussion" ? 1 : round(getTrackGain(voice.vol)),
       pan: voice.pan,
       notes,
     };
@@ -52,6 +57,16 @@ export function exportShareLink(song: Song): string {
   };
   const payload = deflateRawSync(JSON.stringify(project)).toString("base64url");
   return `${TOY_MIDI_ORIGIN}/draft#p=${payload}`;
+}
+
+/**
+ * Track gain for the channel volume (CC7) the MIDI export writes, relative to
+ * the General MIDI default of 100. A SoundFont synth attenuates CC7 by
+ * 40·log10(CC7/127) dB, which is an amplitude of (CC7/127)², so the gain is
+ * that amplitude divided by the default's.
+ */
+function getTrackGain(vol: number): number {
+  return (getChannelVolume(vol) / 100) ** 2;
 }
 
 /** Keep beat positions short in the link, since triplet steps repeat forever */
