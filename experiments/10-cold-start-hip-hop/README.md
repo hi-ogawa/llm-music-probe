@@ -49,3 +49,4 @@ How the iteration went:
 - [session.md](session.md): every script the agent ran, in order
 - [share-link.mjs](share-link.mjs): the first version, written as a toy-midi share link
 - [toy-midi#831](https://github.com/hi-ogawa/toy-midi/pull/831): the agent guide this session dog-fooded
+- [13-loudness-mix-fix](../13-loudness-mix-fix/README.md): a later mix fix, measured per track, with the bass brought down and the lead brought up
