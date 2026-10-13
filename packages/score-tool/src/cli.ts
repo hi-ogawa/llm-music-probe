@@ -5,6 +5,7 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 import { exportMidi } from "./midi/export.ts";
 import { DEFAULT_GAIN, DEFAULT_SOUNDFONT, renderWav } from "./midi/render.ts";
+import { exportShareLink } from "./midi/share-link.ts";
 import { expandScore, type Song } from "./score/expand.ts";
 import { parseScore } from "./score/parse.ts";
 
@@ -15,7 +16,8 @@ Usage:
   llm-music-probe render <score> <output> [--loops <n>] [--phrase <voices>]
                          [--solo <voices>] [--gain <g>] [--soundfont <file>]
       Render a score. The output extension picks the format:
-      .json for note events, .mid for MIDI, .wav for audio through fluidsynth.
+      .json for note events, .mid for MIDI, .wav for audio through fluidsynth,
+      .link for a toy-midi share link.
       --loops sets how many times the loop section plays (default 1).
       --phrase plays the listed voices, comma-separated, through the phrasing
       pass, which shapes velocity, length, and expression without changing notes.
@@ -131,6 +133,15 @@ async function writeSong(
     }
     case ".mid": {
       fs.writeFileSync(outputFile, exportMidi(song, { phrase }));
+      break;
+    }
+    case ".link": {
+      if (song.tempos.length > 1 || song.meters.length > 1) {
+        console.error(
+          `${outputFile}: toy-midi keeps one tempo and one meter, so later changes are dropped`,
+        );
+      }
+      fs.writeFileSync(outputFile, exportShareLink(song) + "\n");
       break;
     }
     case ".wav": {
