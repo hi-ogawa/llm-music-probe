@@ -45,6 +45,6 @@ The listener compared the two on toy-midi and said the fix "sounds better".
 
 - [loudness.mjs](loudness.mjs): per-track render and loudness measurement
 - [fix-mix.mjs](fix-mix.mjs): applies target levels as track gains, and writes the fixed project and share links
-- [project-fixed.json](project-fixed.json): the corrected project
+- [Spike gist](https://gist.github.com/hi-ogawa-agent/1c5370c5dbb9c3406c562dc4d9f500d7): share links for the original and the fixed mix. The fixed project can be regenerated from 10's `project-state.json` with `node fix-mix.mjs ../10-cold-start-hip-hop/project-state.json <out-dir> '{"Bass":{"raw":-29.2,"target":-33},"Flute (lead)":{"raw":-28.9,"target":-32}}'`
 - [10-cold-start-hip-hop](../10-cold-start-hip-hop/README.md): the original session and project
 - [toy-midi#845](https://github.com/hi-ogawa/toy-midi/issues/845): per-track loudness feedback for agents
