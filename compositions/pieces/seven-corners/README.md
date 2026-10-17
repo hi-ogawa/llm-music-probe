@@ -2,9 +2,9 @@
 
 ## Guitar iteration on v4
 
-**Demo: [open guitar v5 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fguitar-v5-simple.json)** ([guitar v4](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fguitar-v4-keys.json), [guitar v2](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fguitar-v2-ring.json), [guitar v1](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fguitar-v1-tele.json)) (plays GeneralUser, not the Telecaster renders)
+**Demo: [open guitar v5 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v5-simple.json)** ([guitar v4](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v4-keys.json), [guitar v2](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v2-ring.json), [guitar v1](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v1-tele.json)) (plays GeneralUser, not the Telecaster renders)
 
-Iterating by ear on v4's guitars with a better electric guitar font, without changing the composition otherwise. Context: https://github.com/hi-ogawa/toy-midi/issues/861, after the Night Drive cutting (https://gist.github.com/hi-ogawa-agent/348fb1c97dfb6be73254543ce1714081) and Interlock (https://gist.github.com/hi-ogawa-agent/adda447fab1379e354214a37cc9cd357) iterations. Toy MIDI can't load another SoundFont yet (#852), so the links play GeneralUser. The renders are MP3s in the Discord thread, not kept here.
+Iterating by ear on v4's guitars with a better electric guitar font, without changing the composition otherwise. Context: https://github.com/hi-ogawa/toy-midi/issues/861, after the Night Drive cutting (https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/night-drive-cutting-guitar) and Interlock (https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/interlock-in-e) iterations. Toy MIDI can't load another SoundFont yet (#852), so the links play GeneralUser. The renders are MP3s in the Discord thread, not kept here.
 
 - Font: the [FlameStudios Telecaster neck pickup](https://github.com/gdm-2112/electric-guitar-soundfonts/tree/main/SF3/FlameStudios) SF3 (GPL), the clean default picked in #861. Standard preset for open notes, Muted preset for "Gtr 1 mutes". Velocities 0–45 play its Muted recordings, so open notes need 46 and up.
 - `guitar-font.mjs` moves the guitars to it at render time. The project files keep GM programs 27 and 28 (with the velocity floor of 46), so Toy MIDI plays guitars. `guitar-gtr2.mjs <in> <out> ring|space` rewrites Gtr 2's 16th cells.
@@ -25,7 +25,7 @@ Next (from v3): the cells were planned as tapping, with "taps accented and the h
 
 ## v4
 
-**[Open v4 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fproject-v4.json)**
+**[Open v4 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fproject-v4.json)**
 
 v4 drops the genre constraint and aims for whatever sounds best in a GM render, which here means leaning into fusion. The keys now carry the harmony, and the guitars step back to rhythm and texture. The files are `project-v4.json` and `gen-v4.mjs`.
 
@@ -66,7 +66,7 @@ v4 drops the genre constraint and aims for whatever sounds best in a GM render, 
 ## v3
 
 
-**[Open v3 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fproject-v3.json)**
+**[Open v3 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fproject-v3.json)**
 
 v3 is v2 with three changes, aimed at sounding less like fusion and relying less on the GM guitar. The files are `project-v3.json` and `gen-v3.mjs`.
 
@@ -104,7 +104,7 @@ The trumpet is unchanged.
 ## v2
 
 
-**[Open v2 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fproject-v2.json)**
+**[Open v2 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fproject-v2.json)**
 
 v2 keeps v1's form, harmony, and tempo. Three things change: the bar's "limp" feel, articulation tracks, and humanised timing. The files are `project-v2.json` and `gen-v2.mjs`.
 
@@ -161,7 +161,7 @@ Timing is humanised per track. Drums sit about 4 ms ahead, bass about 7 ms behin
 
 ## v1
 
-**[Open v1 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2F61a15c2a9644d165ba6e6b3c7bb1842a%2Fraw%2Fproject.json)**
+**[Open v1 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fproject.json)**
 
 7/8 at ♩ = 144 (eighth = 288), 40 bars, about 58 seconds. Key centre is E major with Lydian ♭VI/♭VII borrowings. The loop is on, and bar 40 leads back into bar 1. Tracks are Gtr 1 (clean, GM 27, pan −0.6), Gtr 2 (clean, GM 27, pan +0.6), Bass (finger, GM 33, centre), and Drums (GS Room kit, centre). `gen.mjs` is the generator that writes `project.json`.
 

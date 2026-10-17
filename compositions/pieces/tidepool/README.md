@@ -4,8 +4,8 @@ A calm ambient loop for Toy MIDI. 70 BPM, 4/4, 52 bars (about 2:58), with the lo
 
 Open it:
 
-- v2 (latest): https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2Ffeb08355e303b9f8ff5187699f275129%2Fraw%2Ftidepool-v2.json
-- v1: https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fgist.githubusercontent.com%2Fhi-ogawa-agent%2Ffeb08355e303b9f8ff5187699f275129%2Fraw%2Ftidepool.json
+- v2 (latest): https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Ftidepool%2Ftidepool-v2.json
+- v1: https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Ftidepool%2Ftidepool.json
 
 ## v2: strings split by register
 
