@@ -4,151 +4,151 @@
     "description": "70s CTI-style soul-jazz for a 16-track large band, with the theme passed around the band over an F Dorian loop",
     "date": "2026-10-14",
     "tags": ["soul-jazz", "large band"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/westchester-nocturne.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/2bf54268d712fd42ea8b25841e54e6a0"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/westchester-nocturne/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/westchester-nocturne"
   },
   {
     "name": "Seven Corners",
     "description": "Math rock in 7/8 that leans into fusion, with a clean guitar arpeggio, Rhodes and ringing piano cells",
     "date": "2026-10-14",
     "tags": ["math rock", "fusion"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/seven-corners.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/61a15c2a9644d165ba6e6b3c7bb1842a"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/seven-corners/guitar-v5-simple.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/seven-corners"
   },
   {
     "name": "Night Cruise Overture",
     "description": "Orchestral city pop with pizzicato bass, brass stabs and a side-slip key change",
     "date": "2026-10-14",
     "tags": ["orchestral", "city pop"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/night-cruise-overture.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/731ca883d89842d28d3ffb60e2a52b42"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/night-cruise-overture/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
   },
   {
     "name": "Orquestra de Bolso",
     "description": "Orchestral bossa nova after Jobim, with harmony sliding under a still melody",
     "date": "2026-10-14",
     "tags": ["orchestral", "bossa nova"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orquestra-de-bolso.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/731ca883d89842d28d3ffb60e2a52b42"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orquestra-de-bolso/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
   },
   {
     "name": "Orchestral Dilla",
     "description": "Dilla beat played on pizzicato strings with a dragging late snare",
     "date": "2026-10-14",
     "tags": ["orchestral", "hip-hop"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/731ca883d89842d28d3ffb60e2a52b42"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla/orchestral-dilla.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
   },
   {
     "name": "One More Loop",
     "description": "Orchestral French house with a robotic brass riff and timpani four-on-the-floor",
     "date": "2026-10-14",
     "tags": ["orchestral", "house"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/one-more-loop.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/731ca883d89842d28d3ffb60e2a52b42"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/one-more-loop/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
   },
   {
     "name": "Dorian Vamp Funk",
     "description": "Slap bass, clav and sax riffs over an E Dorian vamp",
     "date": "2026-10-13",
     "tags": ["funk"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/dorian-vamp-funk.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/4dc89c47ffcb4c07fd080e9e83293ad2"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/dorian-vamp-funk/dorian-vamp-funk.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/dorian-vamp-funk"
   },
   {
     "name": "Clichê",
     "description": "Bossa nova for flute, nylon guitar and brushes",
     "date": "2026-10-13",
     "tags": ["bossa nova"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/cliche.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/141e84efce0074589b50f6be29b6c075"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/cliche/cliche.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/cliche"
   },
   {
     "name": "Tide Engine",
     "description": "Film cue that grows from one viola figure to full orchestra",
     "date": "2026-10-13",
     "tags": ["film", "orchestral"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/tide-engine.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/f99a63d31a78c237a4222dd0af01f935"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/tide-engine/tide-engine.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/tide-engine"
   },
   {
     "name": "Night Drive in D♭",
     "description": "City pop with sax lead, slap bass and a last-chorus key lift",
     "date": "2026-10-13",
     "tags": ["city pop"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/night-drive-in-db.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/953d42479b4cf5384604b04a6e505eb1"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/night-drive-in-db/night-drive-in-db.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/night-drive-in-db"
   },
   {
     "name": "Lift It Higher",
     "description": "Gospel ballad with choir call and response and a half-step final-chorus lift",
     "date": "2026-10-13",
     "tags": ["gospel"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/lift-it-higher.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/63d636ae12d7ec36c46096b319bf9535"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/lift-it-higher/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/lift-it-higher"
   },
   {
     "name": "Mixolydian Quest",
     "description": "Mixolydian game loop with a saw lead, clavinet arp and 808 kit",
     "date": "2026-10-13",
     "tags": ["game", "chiptune"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/mixolydian-quest.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/3b4b152ed9f878915060b1d48bebe557"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/mixolydian-quest/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/mixolydian-quest"
   },
   {
     "name": "Borrowed Mirrorball",
     "description": "Disco loop with brass stabs, string ostinato and chords borrowed from minor",
     "date": "2026-10-13",
     "tags": ["disco"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/borrowed-mirrorball.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/d5486f5320d8c969b968d5116f420f79"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/borrowed-mirrorball/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/borrowed-mirrorball"
   },
   {
     "name": "A Dorian vamp",
     "description": "Afrobeats vamp with a highlife guitar answering the lead over tresillo drums",
     "date": "2026-10-13",
     "tags": ["afrobeats"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/a-dorian-vamp.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/21fd1be2643f54a99714c27e1f3d7ef0"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/a-dorian-vamp/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/a-dorian-vamp"
   },
   {
     "name": "Once More, From the Top",
     "description": "Anisong with royal road chords, saw lead and a whole-step final-chorus lift",
     "date": "2026-10-13",
     "tags": ["j-pop", "anisong"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/once-more-from-the-top.json",
-    "writeup": "https://gist.github.com/hi-ogawa-agent/15264429e3e0cf9b00158e67695c412a"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/once-more-from-the-top/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/once-more-from-the-top"
   },
   {
     "name": "Corner Store Thirds",
     "description": "Hip-hop loop layered from drum and percussion kits",
     "date": "2026-10-12",
     "tags": ["hip-hop", "boom-bap"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/corner-store-thirds.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/blob/main/experiments/10-cold-start-hip-hop/README.md"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/corner-store-thirds/corner-store-thirds.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/corner-store-thirds"
   },
   {
     "name": "Slow Tide",
     "description": "Ambient waltz that drifts across the stereo field",
     "date": "2026-10-12",
     "tags": ["ambient"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/slow-tide.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/blob/main/experiments/11-ambient-pan-loop/README.md"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/slow-tide/slow-tide.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/slow-tide"
   },
   {
     "name": "Overture in D minor",
     "description": "Orchestral overture that builds into each new section",
     "date": "2026-10-12",
     "tags": ["orchestral", "classical"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/overture-in-d-minor.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/blob/main/experiments/12-classical-overture-loop/README.md"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/overture-in-d-minor/overture-in-d-minor.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/overture-in-d-minor"
   },
   {
     "name": "Dilla Beat Top Layer (Donut Shop)",
     "description": "Dilla-style beat with a flute hook answered by muted trumpet",
     "date": "2026-10-11",
     "tags": ["hip-hop"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/dilla-beat-top-layer.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/blob/main/experiments/09-top-layer-dialogue/README.md"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/dilla-beat-top-layer/project-state.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/dilla-beat-top-layer"
   }
 ]

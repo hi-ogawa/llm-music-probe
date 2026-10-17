@@ -6,15 +6,17 @@ Composed pieces you can search, open, and loop in Toy MIDI.
 - **Kept pieces:** [`catalog.json`](catalog.json)
 - **Candidates:** pieces still being iterated on, listed on the [composition tracker](https://github.com/hi-ogawa/toy-midi/issues/862)
 
-Every piece, kept or candidate, has one project file in [`pieces/`](pieces/). Each file is a Toy MIDI `SharedProject` and opens as an unsaved draft with `https://toy-midi.hiro18181.workers.dev/draft?src=<raw url>`. Its raw URL on `main` always serves the latest version, and replacing `main` with a commit SHA gives a link that keeps playing that version.
+Each piece, kept or candidate, has a folder in [`pieces/`](pieces/) with its project files next to the write-up and scripts that produced them. A session that produced several pieces has one folder with its write-up, and each piece's files take the piece's name. A piece composed in an experiment has a folder holding its kept version and a README linking the experiment.
+
+A project file is a Toy MIDI `SharedProject` and opens as an unsaved draft with `https://toy-midi.hiro18181.workers.dev/draft?src=<raw url>`. Its raw URL on `main` always serves the latest version, and replacing `main` with a commit SHA gives a link that keeps playing that version.
 
 ```
-https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/<file>.json
+https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/<folder>/<file>.json
 ```
 
-When a session iterates on a piece, commit the new version over its file, so git history holds the earlier ones. Scripts and notes from the session stay with its write-up.
+A composing session writes its folder here from the start, and a session that continues a piece adds to that piece's folder.
 
-Toy MIDI's Examples menu opens some of these files by name, so don't rename or delete a file in `pieces/` without updating Toy MIDI first.
+Toy MIDI's Examples menu opens some of these files by path, so don't rename or move a file that `catalog.json` links without updating Toy MIDI first.
 
 ## Catalog format
 
@@ -26,17 +28,17 @@ Toy MIDI's Examples menu opens some of these files by name, so don't rename or d
   "description": "One line on the genre and what makes it distinctive",
   "date": "2026-10-14",
   "tags": ["orchestral", "bossa nova"],
-  "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orquestra-de-bolso.json",
-  "writeup": "https://gist.github.com/<user>/<gist>"
+  "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orquestra-de-bolso/project.json",
+  "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
 }
 ```
 
-- `url` is the raw URL of the piece's file on `main`.
-- `writeup` links the write-up, an experiment README in this repository, or the session gist that has the plan and notes.
+- `url` is the raw URL of the piece's project file on `main`.
+- `writeup` links the folder with the session's write-up.
 
 ## Adding a piece
 
 Add a piece when the listener says to keep it.
 
-1. Make sure its file is in `pieces/`, named after the piece in kebab-case. If the session only has a share link, decode the link into the file. Toy MIDI's `/llms.txt` documents the encoding.
+1. Make sure its folder has the project file. If the session only has a share link, decode the link into a file. Toy MIDI's `/llms.txt` documents the encoding.
 2. Append an entry to `catalog.json`, keeping newest first.
