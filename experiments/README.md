@@ -7,7 +7,7 @@ The session itself is an ordinary music session. The composing agent gets the pe
 - **In this repository**: write the write-up as `experiments/<nn>-<slug>/README.md`, with the agent's raw output, such as scripts and the saved project, in the same directory.
 - **As a gist**, an optional alternative, such as for a self-contained run: create a public gist with the write-up as `README.md` and the raw output as flat files next to it, and set the gist's description to the experiment's name, because gists have no title of their own.
 
-Either way, when the person wants to keep a piece, add it to the [Toy MIDI catalog](https://gist.github.com/hi-ogawa-agent/eb09556862b4e19e1170bf92fc6bb317) with `writeup` linking the write-up. The catalog's README has the format and the steps.
+Either way, when the person wants to keep a piece, add it to the [catalog](../compositions/README.md) with `writeup` linking the write-up. The catalog's README has the format and the steps.
 
 ## Write-up format
 

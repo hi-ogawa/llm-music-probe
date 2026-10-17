@@ -1,0 +1,1637 @@
+{
+  "title": "Slow Tide",
+  "comment": "Slow Tide — ambient loop, 3/4, 16 bars (48 beats) at 66 bpm, D major (lydian-leaning).\nHarmony: 8 chords x 2 bars: Dmaj7 | Gmaj9 | Bm7 | Em9 | Dmaj7/F# | Gmaj7 | Em7 | A(add9) -> loops to D.\nStereo plan:\n- Pad + low drone sit center as the bed.\n- Electric piano melody at -0.45 (left), sparse, mostly entering on beat 2 to float over the bar.\n- Music box answers at +0.6 (right) in the melody's gaps, two octaves up, so L/R hold a quiet conversation.\n- Two crystal tracks hard-panned (-0.95 / +0.95) ping-pong: odd bars tick on the left at beat 3.5, even bars on the right at beat 2.5.\nLoop 0-48 beats enabled. Metronome off.\n\nPercussion audition tracks (numbered by idea, mute/combine freely):\n1 Brush tap (L, beat 1 odd bars) + Shaker (R, beat 3 even bars) = brushed heartbeat\n2 Kalimba (R) root+fifth ostinato on beats 2 and 3\n3 Woodblock ping-pong, bars 9-16, R on odd / L on even (opposite to the crystals)\n4 Reverse-cymbal wash swelling into bars 1/9 (L) and 5/13 (R)\n5 808 kick on beat 1, velocity 30, center",
+  "locators": [],
+  "audioTracks": [],
+  "midiTracks": [
+    {
+      "id": "t1",
+      "name": "Pad (center)",
+      "notes": [
+        {
+          "id": "n1",
+          "pitch": 62,
+          "start": 0,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n2",
+          "pitch": 66,
+          "start": 0.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n3",
+          "pitch": 69,
+          "start": 0.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n4",
+          "pitch": 73,
+          "start": 0.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n5",
+          "pitch": 62,
+          "start": 6,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n6",
+          "pitch": 66,
+          "start": 6.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n7",
+          "pitch": 67,
+          "start": 6.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n8",
+          "pitch": 71,
+          "start": 6.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n9",
+          "pitch": 74,
+          "start": 6.32,
+          "duration": 5.68,
+          "velocity": 58
+        },
+        {
+          "id": "n10",
+          "pitch": 62,
+          "start": 12,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n11",
+          "pitch": 66,
+          "start": 12.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n12",
+          "pitch": 69,
+          "start": 12.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n13",
+          "pitch": 71,
+          "start": 12.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n14",
+          "pitch": 62,
+          "start": 18,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n15",
+          "pitch": 64,
+          "start": 18.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n16",
+          "pitch": 67,
+          "start": 18.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n17",
+          "pitch": 71,
+          "start": 18.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n18",
+          "pitch": 66,
+          "start": 18.32,
+          "duration": 5.68,
+          "velocity": 58
+        },
+        {
+          "id": "n19",
+          "pitch": 61,
+          "start": 24,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n20",
+          "pitch": 66,
+          "start": 24.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n21",
+          "pitch": 69,
+          "start": 24.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n22",
+          "pitch": 74,
+          "start": 24.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n23",
+          "pitch": 62,
+          "start": 30,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n24",
+          "pitch": 66,
+          "start": 30.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n25",
+          "pitch": 67,
+          "start": 30.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n26",
+          "pitch": 71,
+          "start": 30.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n27",
+          "pitch": 62,
+          "start": 36,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n28",
+          "pitch": 64,
+          "start": 36.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n29",
+          "pitch": 67,
+          "start": 36.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n30",
+          "pitch": 71,
+          "start": 36.24,
+          "duration": 5.76,
+          "velocity": 58
+        },
+        {
+          "id": "n31",
+          "pitch": 64,
+          "start": 42,
+          "duration": 6,
+          "velocity": 58
+        },
+        {
+          "id": "n32",
+          "pitch": 69,
+          "start": 42.08,
+          "duration": 5.92,
+          "velocity": 58
+        },
+        {
+          "id": "n33",
+          "pitch": 71,
+          "start": 42.16,
+          "duration": 5.84,
+          "velocity": 58
+        },
+        {
+          "id": "n34",
+          "pitch": 73,
+          "start": 42.24,
+          "duration": 5.76,
+          "velocity": 58
+        }
+      ],
+      "bank": 0,
+      "program": 88,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "70f22660-c891-484c-a289-e9c6a43602bf",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.55,
+      "pan": 0,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t2",
+      "name": "Drone (center)",
+      "notes": [
+        {
+          "id": "n35",
+          "pitch": 38,
+          "start": 0,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n36",
+          "pitch": 43,
+          "start": 6,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n37",
+          "pitch": 47,
+          "start": 12,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n38",
+          "pitch": 40,
+          "start": 18,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n39",
+          "pitch": 42,
+          "start": 24,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n40",
+          "pitch": 43,
+          "start": 30,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n41",
+          "pitch": 40,
+          "start": 36,
+          "duration": 6.2,
+          "velocity": 54
+        },
+        {
+          "id": "n42",
+          "pitch": 45,
+          "start": 42,
+          "duration": 6.2,
+          "velocity": 54
+        }
+      ],
+      "bank": 0,
+      "program": 89,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "c90985ba-4fca-4adc-b8e9-eaf8771b8f07",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.6,
+      "pan": 0,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t3",
+      "name": "E.Piano (L)",
+      "notes": [
+        {
+          "id": "n43",
+          "pitch": 69,
+          "start": 1,
+          "duration": 2,
+          "velocity": 68
+        },
+        {
+          "id": "n44",
+          "pitch": 66,
+          "start": 4,
+          "duration": 2,
+          "velocity": 73
+        },
+        {
+          "id": "n45",
+          "pitch": 71,
+          "start": 7,
+          "duration": 2,
+          "velocity": 78
+        },
+        {
+          "id": "n46",
+          "pitch": 69,
+          "start": 10,
+          "duration": 1.5,
+          "velocity": 68
+        },
+        {
+          "id": "n47",
+          "pitch": 66,
+          "start": 12,
+          "duration": 3,
+          "velocity": 73
+        },
+        {
+          "id": "n48",
+          "pitch": 64,
+          "start": 16,
+          "duration": 2,
+          "velocity": 78
+        },
+        {
+          "id": "n49",
+          "pitch": 62,
+          "start": 18,
+          "duration": 3,
+          "velocity": 68
+        },
+        {
+          "id": "n50",
+          "pitch": 64,
+          "start": 22,
+          "duration": 1,
+          "velocity": 73
+        },
+        {
+          "id": "n51",
+          "pitch": 66,
+          "start": 23,
+          "duration": 1,
+          "velocity": 78
+        },
+        {
+          "id": "n52",
+          "pitch": 73,
+          "start": 25,
+          "duration": 2,
+          "velocity": 68
+        },
+        {
+          "id": "n53",
+          "pitch": 69,
+          "start": 28,
+          "duration": 2,
+          "velocity": 73
+        },
+        {
+          "id": "n54",
+          "pitch": 71,
+          "start": 30,
+          "duration": 3,
+          "velocity": 78
+        },
+        {
+          "id": "n55",
+          "pitch": 74,
+          "start": 34,
+          "duration": 2,
+          "velocity": 68
+        },
+        {
+          "id": "n56",
+          "pitch": 71,
+          "start": 36,
+          "duration": 2,
+          "velocity": 73
+        },
+        {
+          "id": "n57",
+          "pitch": 67,
+          "start": 40,
+          "duration": 2,
+          "velocity": 78
+        },
+        {
+          "id": "n58",
+          "pitch": 64,
+          "start": 42,
+          "duration": 3,
+          "velocity": 68
+        },
+        {
+          "id": "n59",
+          "pitch": 61,
+          "start": 45,
+          "duration": 3,
+          "velocity": 73
+        }
+      ],
+      "bank": 0,
+      "program": 4,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "88cc2cee-dae5-4328-a821-d449212a6de9",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.8,
+      "pan": -0.45,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t4",
+      "name": "Music box (R)",
+      "notes": [
+        {
+          "id": "n60",
+          "pitch": 86,
+          "start": 3,
+          "duration": 1,
+          "velocity": 52
+        },
+        {
+          "id": "n61",
+          "pitch": 90,
+          "start": 11.5,
+          "duration": 1,
+          "velocity": 52
+        },
+        {
+          "id": "n62",
+          "pitch": 81,
+          "start": 15,
+          "duration": 1.5,
+          "velocity": 52
+        },
+        {
+          "id": "n63",
+          "pitch": 86,
+          "start": 21,
+          "duration": 1,
+          "velocity": 52
+        },
+        {
+          "id": "n64",
+          "pitch": 88,
+          "start": 27,
+          "duration": 1,
+          "velocity": 52
+        },
+        {
+          "id": "n65",
+          "pitch": 90,
+          "start": 33,
+          "duration": 1,
+          "velocity": 52
+        },
+        {
+          "id": "n66",
+          "pitch": 83,
+          "start": 39,
+          "duration": 1.5,
+          "velocity": 52
+        },
+        {
+          "id": "n67",
+          "pitch": 85,
+          "start": 46.5,
+          "duration": 0.5,
+          "velocity": 52
+        },
+        {
+          "id": "n68",
+          "pitch": 88,
+          "start": 47,
+          "duration": 1,
+          "velocity": 52
+        }
+      ],
+      "bank": 0,
+      "program": 10,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "006e9a3d-d26d-4a53-8b63-3b4851bd913f",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.7,
+      "pan": 0.6,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t5",
+      "name": "Crystal (hard L)",
+      "notes": [
+        {
+          "id": "n69",
+          "pitch": 97,
+          "start": 2.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n70",
+          "pitch": 98,
+          "start": 8.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n71",
+          "pitch": 95,
+          "start": 14.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n72",
+          "pitch": 88,
+          "start": 20.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n73",
+          "pitch": 98,
+          "start": 26.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n74",
+          "pitch": 90,
+          "start": 32.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n75",
+          "pitch": 95,
+          "start": 38.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n76",
+          "pitch": 93,
+          "start": 44.5,
+          "duration": 0.5,
+          "velocity": 42
+        }
+      ],
+      "bank": 0,
+      "program": 98,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "39fdd00d-b245-4e41-9933-027d9b2748dc",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.44668359215096315,
+      "pan": -0.95,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t6",
+      "name": "Crystal (hard R)",
+      "notes": [
+        {
+          "id": "n77",
+          "pitch": 93,
+          "start": 4.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n78",
+          "pitch": 91,
+          "start": 10.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n79",
+          "pitch": 93,
+          "start": 16.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n80",
+          "pitch": 90,
+          "start": 22.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n81",
+          "pitch": 93,
+          "start": 28.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n82",
+          "pitch": 86,
+          "start": 34.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n83",
+          "pitch": 91,
+          "start": 40.5,
+          "duration": 0.5,
+          "velocity": 42
+        },
+        {
+          "id": "n84",
+          "pitch": 88,
+          "start": 46.5,
+          "duration": 0.5,
+          "velocity": 42
+        }
+      ],
+      "bank": 0,
+      "program": 98,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "73be090e-8399-4deb-aefe-ce64826c2c46",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.5,
+      "pan": 0.95,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t7",
+      "name": "1 Brush tap (L)",
+      "notes": [
+        {
+          "id": "n85",
+          "pitch": 38,
+          "start": 0,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n86",
+          "pitch": 38,
+          "start": 6,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n87",
+          "pitch": 38,
+          "start": 12,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n88",
+          "pitch": 38,
+          "start": 18,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n89",
+          "pitch": 38,
+          "start": 24,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n90",
+          "pitch": 38,
+          "start": 30,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n91",
+          "pitch": 38,
+          "start": 36,
+          "duration": 0.5,
+          "velocity": 46
+        },
+        {
+          "id": "n92",
+          "pitch": 38,
+          "start": 42,
+          "duration": 0.5,
+          "velocity": 46
+        }
+      ],
+      "bank": 128,
+      "program": 40,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "da6e5671-1af8-4c07-8bae-1bfd4c056a58",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.3981071705534972,
+      "pan": -0.25,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t8",
+      "name": "1 Shaker (R)",
+      "notes": [
+        {
+          "id": "n93",
+          "pitch": 70,
+          "start": 5,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n94",
+          "pitch": 70,
+          "start": 5.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n95",
+          "pitch": 70,
+          "start": 11,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n96",
+          "pitch": 70,
+          "start": 11.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n97",
+          "pitch": 70,
+          "start": 17,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n98",
+          "pitch": 70,
+          "start": 17.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n99",
+          "pitch": 70,
+          "start": 23,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n100",
+          "pitch": 70,
+          "start": 23.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n101",
+          "pitch": 70,
+          "start": 29,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n102",
+          "pitch": 70,
+          "start": 29.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n103",
+          "pitch": 70,
+          "start": 35,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n104",
+          "pitch": 70,
+          "start": 35.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n105",
+          "pitch": 70,
+          "start": 41,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n106",
+          "pitch": 70,
+          "start": 41.5,
+          "duration": 0.25,
+          "velocity": 28
+        },
+        {
+          "id": "n107",
+          "pitch": 70,
+          "start": 47,
+          "duration": 0.5,
+          "velocity": 40
+        },
+        {
+          "id": "n108",
+          "pitch": 70,
+          "start": 47.5,
+          "duration": 0.25,
+          "velocity": 28
+        }
+      ],
+      "bank": 128,
+      "program": 40,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "ecc2eb6e-24c8-425d-ab0a-e53996411898",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.1778279410038923,
+      "pan": 0.2,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t9",
+      "name": "2 Kalimba (R)",
+      "notes": [
+        {
+          "id": "n109",
+          "pitch": 62,
+          "start": 1,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n110",
+          "pitch": 69,
+          "start": 2,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n111",
+          "pitch": 62,
+          "start": 4,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n112",
+          "pitch": 69,
+          "start": 5,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n113",
+          "pitch": 67,
+          "start": 7,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n114",
+          "pitch": 74,
+          "start": 8,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n115",
+          "pitch": 67,
+          "start": 10,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n116",
+          "pitch": 74,
+          "start": 11,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n117",
+          "pitch": 71,
+          "start": 13,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n118",
+          "pitch": 78,
+          "start": 14,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n119",
+          "pitch": 71,
+          "start": 16,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n120",
+          "pitch": 78,
+          "start": 17,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n121",
+          "pitch": 64,
+          "start": 19,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n122",
+          "pitch": 71,
+          "start": 20,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n123",
+          "pitch": 64,
+          "start": 22,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n124",
+          "pitch": 71,
+          "start": 23,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n125",
+          "pitch": 66,
+          "start": 25,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n126",
+          "pitch": 73,
+          "start": 26,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n127",
+          "pitch": 66,
+          "start": 28,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n128",
+          "pitch": 73,
+          "start": 29,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n129",
+          "pitch": 67,
+          "start": 31,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n130",
+          "pitch": 74,
+          "start": 32,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n131",
+          "pitch": 67,
+          "start": 34,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n132",
+          "pitch": 74,
+          "start": 35,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n133",
+          "pitch": 64,
+          "start": 37,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n134",
+          "pitch": 71,
+          "start": 38,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n135",
+          "pitch": 64,
+          "start": 40,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n136",
+          "pitch": 71,
+          "start": 41,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n137",
+          "pitch": 69,
+          "start": 43,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n138",
+          "pitch": 76,
+          "start": 44,
+          "duration": 0.6,
+          "velocity": 44
+        },
+        {
+          "id": "n139",
+          "pitch": 69,
+          "start": 46,
+          "duration": 0.6,
+          "velocity": 50
+        },
+        {
+          "id": "n140",
+          "pitch": 76,
+          "start": 47,
+          "duration": 0.6,
+          "velocity": 44
+        }
+      ],
+      "bank": 0,
+      "program": 108,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "d8aa2c53-c49f-45d8-b668-22a0f8b6e773",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.23713737056616552,
+      "pan": 0.35,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t10",
+      "name": "3 Wood (hard L)",
+      "notes": [
+        {
+          "id": "n141",
+          "pitch": 72,
+          "start": 28,
+          "duration": 0.3,
+          "velocity": 46
+        },
+        {
+          "id": "n142",
+          "pitch": 72,
+          "start": 34,
+          "duration": 0.3,
+          "velocity": 46
+        },
+        {
+          "id": "n143",
+          "pitch": 72,
+          "start": 40,
+          "duration": 0.3,
+          "velocity": 46
+        },
+        {
+          "id": "n144",
+          "pitch": 72,
+          "start": 46,
+          "duration": 0.3,
+          "velocity": 46
+        }
+      ],
+      "bank": 0,
+      "program": 115,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "38e19df3-1a7c-44fd-aa08-a4f8d468d3e1",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.5,
+      "pan": -0.9,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t11",
+      "name": "3 Wood (hard R)",
+      "notes": [
+        {
+          "id": "n145",
+          "pitch": 72,
+          "start": 25,
+          "duration": 0.3,
+          "velocity": 46
+        },
+        {
+          "id": "n146",
+          "pitch": 72,
+          "start": 31,
+          "duration": 0.3,
+          "velocity": 46
+        },
+        {
+          "id": "n147",
+          "pitch": 72,
+          "start": 37,
+          "duration": 0.3,
+          "velocity": 46
+        },
+        {
+          "id": "n148",
+          "pitch": 72,
+          "start": 43,
+          "duration": 0.3,
+          "velocity": 46
+        }
+      ],
+      "bank": 0,
+      "program": 115,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "22687e06-4cd8-491d-a381-4c68ee278bb9",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.5,
+      "pan": 0.9,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t12",
+      "name": "4 Wash (L)",
+      "notes": [
+        {
+          "id": "n149",
+          "pitch": 60,
+          "start": 45,
+          "duration": 3,
+          "velocity": 42
+        },
+        {
+          "id": "n150",
+          "pitch": 60,
+          "start": 21,
+          "duration": 3,
+          "velocity": 42
+        }
+      ],
+      "bank": 0,
+      "program": 119,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "11b5465b-92ab-41fd-a460-edb7991eb70f",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.45,
+      "pan": -0.7,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t13",
+      "name": "4 Wash (R)",
+      "notes": [
+        {
+          "id": "n151",
+          "pitch": 60,
+          "start": 9,
+          "duration": 3,
+          "velocity": 42
+        },
+        {
+          "id": "n152",
+          "pitch": 60,
+          "start": 33,
+          "duration": 3,
+          "velocity": 42
+        }
+      ],
+      "bank": 0,
+      "program": 119,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "a4b434d0-55f1-427a-835d-922cb9472a30",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.45,
+      "pan": 0.7,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    },
+    {
+      "id": "t14",
+      "name": "5 808 sub (center)",
+      "notes": [
+        {
+          "id": "n153",
+          "pitch": 36,
+          "start": 0,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n154",
+          "pitch": 36,
+          "start": 3,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n155",
+          "pitch": 36,
+          "start": 6,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n156",
+          "pitch": 36,
+          "start": 9,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n157",
+          "pitch": 36,
+          "start": 12,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n158",
+          "pitch": 36,
+          "start": 15,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n159",
+          "pitch": 36,
+          "start": 18,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n160",
+          "pitch": 36,
+          "start": 21,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n161",
+          "pitch": 36,
+          "start": 24,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n162",
+          "pitch": 36,
+          "start": 27,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n163",
+          "pitch": 36,
+          "start": 30,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n164",
+          "pitch": 36,
+          "start": 33,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n165",
+          "pitch": 36,
+          "start": 36,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n166",
+          "pitch": 36,
+          "start": 39,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n167",
+          "pitch": 36,
+          "start": 42,
+          "duration": 0.5,
+          "velocity": 30
+        },
+        {
+          "id": "n168",
+          "pitch": 36,
+          "start": 45,
+          "duration": 0.5,
+          "velocity": 30
+        }
+      ],
+      "bank": 128,
+      "program": 25,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "id": "555ae95e-dd3b-47a2-bc00-15b0db063b21",
+            "frequency": 1000,
+            "gain": 1,
+            "q": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "gain": 0.26607250597988097,
+      "pan": 0,
+      "muted": false,
+      "soloed": false,
+      "tabAnnotationEnabled": false,
+      "tabOpenStringPitches": [43, 38, 33, 28, 23],
+      "keySignature": {
+        "fifths": 2,
+        "mode": "major"
+      }
+    }
+  ],
+  "trackOrder": [
+    "t1",
+    "t2",
+    "t3",
+    "t4",
+    "t5",
+    "t6",
+    "t7",
+    "t8",
+    "t9",
+    "t10",
+    "t11",
+    "t12",
+    "t13",
+    "t14"
+  ],
+  "masterGain": 1,
+  "metronomeGain": 0.5,
+  "loop": {
+    "enabled": true,
+    "range": {
+      "startBeat": 0,
+      "endBeat": 48
+    }
+  },
+  "punch": {
+    "enabled": false
+  },
+  "tempo": 66,
+  "timeSignature": {
+    "numerator": 3,
+    "denominator": 4
+  }
+}
