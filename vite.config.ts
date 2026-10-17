@@ -2,6 +2,8 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   fmt: {
+    // Session output is kept as the composing agent wrote it.
+    ignorePatterns: ["compositions/pieces/**"],
     printWidth: 80,
     sortImports: {
       newlinesBetween: false,
@@ -10,6 +12,7 @@ export default defineConfig({
     },
   },
   lint: {
+    ignorePatterns: ["compositions/pieces/**"],
     categories: {
       correctness: "off",
     },
