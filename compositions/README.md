@@ -2,7 +2,7 @@
 
 Composed pieces you can search, open, and loop in Toy MIDI.
 
-- **Viewer:** https://gisthost.github.io/?a59cf62ada7ef9f1f327bdc8672d0db6/index.html, which loads `catalog.json` from `main`
+- **Viewer:** Toy MIDI's [Examples page](https://toy-midi.hiro18181.workers.dev/examples), which loads `catalog.json` from `main`
 - **Kept pieces:** [`catalog.json`](catalog.json)
 - **Candidates:** pieces still being iterated on, listed on the [composition tracker](https://github.com/hi-ogawa/toy-midi/issues/862)
 
@@ -16,7 +16,7 @@ https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pie
 
 A composing session writes its folder here from the start, and a session that continues a piece adds to that piece's folder.
 
-Toy MIDI's Examples menu opens some of these files by path, so don't rename or move a file that `catalog.json` links without updating Toy MIDI first.
+Toy MIDI's Examples page reads `catalog.json` and opens the files it links, so when you move a file, update its `url` in the same commit, and keep the entry fields Toy MIDI reads unless Toy MIDI changes with them.
 
 ## Catalog format
 
