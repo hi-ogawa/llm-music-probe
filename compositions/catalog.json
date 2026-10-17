@@ -1,5 +1,21 @@
 [
   {
+    "name": "Swell",
+    "description": "Short orchestral cue in D major turning to B minor, with its swells shaped by expression",
+    "date": "2026-10-17",
+    "tags": ["orchestral", "film"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/swell/v2-expression.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/swell"
+  },
+  {
+    "name": "Tidepool",
+    "description": "Calm ambient loop in D Lydian, sinking to B minor and lifting to F major before looping home",
+    "date": "2026-10-15",
+    "tags": ["ambient"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/tidepool/tidepool.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/tidepool"
+  },
+  {
     "name": "Westchester Nocturne",
     "description": "70s CTI-style soul-jazz for a 16-track large band, with the theme passed around the band over an F Dorian loop",
     "date": "2026-10-14",
@@ -46,6 +62,22 @@
     "tags": ["orchestral", "house"],
     "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/one-more-loop/project.json",
     "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/one-more-loop"
+  },
+  {
+    "name": "Interlock in E",
+    "description": "Four-bar clean guitar loop with syncopated cutting chords under a single-note lead",
+    "date": "2026-10-14",
+    "tags": ["guitar", "funk"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/interlock-in-e/v9-automation.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/interlock-in-e"
+  },
+  {
+    "name": "Glass Hook",
+    "description": "Clean guitar hook with designed bends over a half-time trap groove, with Rhodes and twin-guitar harmonies",
+    "date": "2026-10-14",
+    "tags": ["guitar", "trap"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/glass-hook/v13-automation.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/glass-hook"
   },
   {
     "name": "Dorian Vamp Funk",
