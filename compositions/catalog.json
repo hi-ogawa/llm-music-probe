@@ -21,7 +21,7 @@
     "date": "2026-10-14",
     "tags": ["orchestral", "city pop"],
     "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/night-cruise-overture/project.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/night-cruise-overture"
   },
   {
     "name": "Orquestra de Bolso",
@@ -29,7 +29,7 @@
     "date": "2026-10-14",
     "tags": ["orchestral", "bossa nova"],
     "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orquestra-de-bolso/project.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orquestra-de-bolso"
   },
   {
     "name": "Orchestral Dilla",
@@ -37,7 +37,7 @@
     "date": "2026-10-14",
     "tags": ["orchestral", "hip-hop"],
     "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla/orchestral-dilla.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-dilla"
   },
   {
     "name": "One More Loop",
@@ -45,7 +45,7 @@
     "date": "2026-10-14",
     "tags": ["orchestral", "house"],
     "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/one-more-loop/project.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-genre-triggers"
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/one-more-loop"
   },
   {
     "name": "Dorian Vamp Funk",
