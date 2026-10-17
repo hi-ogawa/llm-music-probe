@@ -229,7 +229,7 @@ const project = (version, shaped) => ({
     track("Harp", 46, 0.42, -0.45, harp),
     { ...track("Timpani", 47, 0.7, 0.1, timpani), automation: shaped ? cc11(curve(timpaniShape, 0, 40)) : flat(FLAT.Timpani) },
   ],
-  loop: { enabled: false, range: { startBeat: 0, endBeat: END } },
+  loop: { enabled: true, range: { startBeat: 0, endBeat: END } },
 });
 
 fs.mkdirSync(outDir, { recursive: true });

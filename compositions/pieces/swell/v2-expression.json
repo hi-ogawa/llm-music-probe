@@ -3910,7 +3910,7 @@
     }
   ],
   "loop": {
-    "enabled": false,
+    "enabled": true,
     "range": {
       "startBeat": 0,
       "endBeat": 64
