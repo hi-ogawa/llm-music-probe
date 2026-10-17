@@ -6,7 +6,7 @@ Composed pieces you can search, open, and loop in Toy MIDI.
 - **Kept pieces:** [`catalog.json`](catalog.json)
 - **Candidates:** pieces still being iterated on, listed on the [composition tracker](https://github.com/hi-ogawa/toy-midi/issues/862)
 
-Each piece, kept or candidate, has a folder in [`pieces/`](pieces/) with its project files next to the write-up and scripts that produced them. A session that produced several pieces has one folder with its write-up, and each piece's files take the piece's name. A piece composed in an experiment has a folder holding its kept version and a README linking the experiment.
+Each piece, kept or candidate, has a folder in [`pieces/`](pieces/) with its project files next to the write-up and scripts that produced them. When a session's write-up covers several pieces, it has its own folder next to theirs. A piece composed in an experiment has a folder holding its kept version and a README linking the experiment.
 
 A project file is a Toy MIDI `SharedProject` and opens as an unsaved draft with `https://toy-midi.hiro18181.workers.dev/draft?src=<raw url>`. Its raw URL on `main` always serves the latest version, and replacing `main` with a commit SHA gives a link that keeps playing that version.
 
