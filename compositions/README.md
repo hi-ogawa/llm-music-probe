@@ -2,7 +2,7 @@
 
 Composed pieces you can search, open, and loop in Toy MIDI.
 
-- **Viewer:** https://hi-ogawa.github.io/llm-music-probe/compositions/
+- **Viewer:** [`index.html`](index.html), which reads `catalog.json` from next to it
 - **Kept pieces:** [`catalog.json`](catalog.json)
 - **Candidates:** pieces still being iterated on, listed on the [composition tracker](https://github.com/hi-ogawa/toy-midi/issues/862)
 
