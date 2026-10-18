@@ -12,11 +12,11 @@ Not run yet. A composing session gets only the prompt below, as [experiments/REA
 >
 > Elements:
 >
-> - Form: around 120 BPM. An intro riff at crunch, a verse with the same riff clean, a palm-muted pre-chorus that builds, a chorus on open power chords at high gain, and a short lead break over the chorus chords before the loop.
+> - Form: around 120 BPM. An intro riff at crunch, a verse with the same riff clean, a palm-muted pre-chorus that builds, a chorus on open power chords at high gain, and a short lead break over the chorus chords before the loop. Fills and build rolls into the chorus, with a drum dropout just before its downbeat.
 > - Harmony: power chords (root, fifth, octave) at high gain. Fuller chords with thirds only in the clean and crunch sections, where distortion doesn't muddy them. A key with open low strings, such as E or A.
-> - Guitar writing: real chord shapes held in one position, with open against palm-muted strokes carrying the rhythm rather than velocity steps. Double the chorus rhythm guitar on two tracks panned hard left and right, with slightly different timing.
+> - Guitar writing: guitar idioms in real chord shapes held in one position, with open against palm-muted strokes carrying the rhythm rather than velocity steps. Stereo width from double-tracking the chorus rhythm guitar on two tracks panned hard left and right, with slightly different timing.
 > - Lead: a short single-note line with one or two bends written as pitch-bend automation, on notes long enough for the sustain to show.
-> - Rhythm section: a rock kit with the kick locked to the palm mutes, and bass on the guitar's roots.
+> - Rhythm section: a rock kit with the kick locked to the palm mutes, and a root pulse bass under the chorus.
 > - Mix: check that the guitars stay audible against the drums in every section, and say how you checked.
 >
 > Loop the whole piece, so the end leads back into the start. Leave out optional track fields such as height and viewMode, so their defaults apply. Before writing notes, write a short bar-by-bar plan with each section's gain. After, give a checklist mapping each technique to bars where it appears. Save the project JSON next to a README.md with the plan and the checklist.
