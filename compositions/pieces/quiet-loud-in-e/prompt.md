@@ -2,7 +2,7 @@
 
 A demo piece for A/B renders of an amp sim on Toy MIDI's clean Telecaster, for https://github.com/hi-ogawa/toy-midi/issues/934. The quiet-loud form plays the same riff clean in the verse and distorted in the chorus, so one piece tests the drive across its range on the same notes. Hard rock or metal would test only one end.
 
-Not run yet. A composing session gets only the prompt below, as [experiments/README.md](../../experiments/README.md) says, so the purpose above stays out of it.
+Run on 2026-10-18, and the piece is in this folder. The composing session got only the prompt below, as [experiments/README.md](../../experiments/README.md) says, so the purpose above stays out of it.
 
 ## Prompt
 
