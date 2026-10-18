@@ -87,7 +87,7 @@ Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and
 
 ## Renders
 
-`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step through 5 adds one stage to the one before, step 6 takes the cabinet out of step 5, step 7 replaces step 4's gate with automation, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step through 5 adds one stage to the one before, step 6 takes the cabinet out of step 5, step 7 replaces step 4's gate with automation, step 8 adds the gate to step 2, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
 
 | File | Guitars |
 | --- | --- |
@@ -99,3 +99,4 @@ Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and
 | `5-room.mp3` | With a short room after the amp, the final chain |
 | `6-no-cabinet.mp3` | The final chain without the cabinet, which leaves the drive's fizz above 5 kHz |
 | `7-swell-cut.mp3` | Step 3's amp with no note gate, but CC 11 automation on each guitar track that fades to 0 over 30 ms after a note-off and comes back at the next note-on, the gate written as expression instead |
+| `8-drive-gate.mp3` | Step 2's amp, without the compressor, with step 4's note gate |
