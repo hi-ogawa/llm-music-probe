@@ -14,67 +14,62 @@ Each stage is there because of something heard along the way, so the iterations 
 
 ## Iterations
 
-Every render is normalized to −16 LUFS, so a comparison is about tone, not level. The tag on each step is the variant to listen to, and [Reproduce](#reproduce) generates them all.
+Each step changes one thing from the step before, all on the filter cabinet the chain ships with, and the cabinet itself gets its own comparison at the end. Every render is normalized to −16 LUFS, so a comparison is about tone, not level. The tags name the variants to compare, and [Reproduce](#reproduce) generates them all.
+
+The session didn't run in this order. Its v2 round added the Marshall cabinet IR together with the amp changes, so the gate and the room were first heard with the IR. The cabinet comparison in step 6 found the IR and the filters interchangeable, and the gate was then confirmed on the filter-cabinet pair, so the steps below follow the cleaner order.
 
 ### 1. No amp: country guitar (`tele-dry`)
 
 The Telecaster bridge pickup played clean is the classic country sound, so rock riffs on it sound like rock written for a country tone. The writing already reads as guitar, so the missing piece was the amp.
 
-### 2. Drive and a filter cabinet (`v1`)
+### 2. Drive (`v1` against `tele-dry`)
 
-Pre-EQ, a fixed gain boost into a tanh soft clipper, and filters standing in for a speaker cabinet.
+Pre-EQ, a fixed gain boost into a tanh soft clipper, and the filter cabinet.
 
-**Heard:** better than clean, and the Les Paul bridge font better than the Telecaster. But General MIDI's distortion had the more convincing sustain, even though its samples have no pick attack.
+**Heard:** better than clean, and the Les Paul bridge font better than the Telecaster. But General MIDI's distortion (`gm`) had the more convincing sustain, even though its samples have no pick attack.
 
 **Why:** a fixed boost clips the start of a note, but as the DI string decays, the signal falls below the clipping point and the note cleans up. General MIDI's samples were recorded through a real amp, whose compression keeps the decaying string saturated. On a held note through high gain, v1 fades about 15 dB over 6 seconds. The font itself isn't the cause, since its samples sustain a full 6-second note.
 
-### 3. Sustain and a real cabinet (`v2`, `v2-ir`)
+### 3. Sustain (`v2` against `v1`)
 
-Three changes to the amp, and a recorded cabinet:
+Three changes to the amp:
 
 - **Compressor before the drive,** which keeps a decaying note pushed into the clipper. A held note now holds within about 4 dB over 6 seconds.
 - **Asymmetric first stage:** a DC offset before the clipper flattens one half of the wave more than the other, which adds even harmonics like a tube stage.
 - **Cascaded stages** for high gain, each clipping a little, the way a high-gain preamp does, instead of one hard push.
-- **Cabinet IR:** a convolution with a recorded Marshall 1960A 4×12 cabinet with an SM57, instead of the filters.
 
 **Heard:** a good addition, but sustain leaked and muddied the phrasing and articulation.
 
-**Why:** the compressor and drive add about 40 dB of gain, so they also raise each note's decay after its note-off to full distortion, and it smears into the next note. On riff tracks, the level after note-off was only 7 to 13 dB below the notes.
+**Why:** the compressor and drive add about 40 dB of gain, so they also raise each note's decay after its note-off to full distortion, and it smears into the next note.
 
-### 4. A gate keyed to the notes (`v2-ir-gate`)
+### 4. A gate keyed to the notes (`v2-gate-filtercab` against `v2`)
 
 The input to the amp stays open while a note is held and closes over 30 ms after its note-off, like the fretting hand letting go of the string.
 
 A real high-gain rig uses a noise gate on the audio level, and that was tried first, with no measurable effect. The leaking decay sits between about −30 and −50 dB, so a threshold high enough to cut it would also cut a held note's sustain. Only the note-off tells "let go" from "still holding", and Toy MIDI has every note-off, which a real amp doesn't.
 
-| Track | Level after note-off, below the notes: v2-ir | v2-ir-gate |
+| Track | Level after note-off, below the notes: v2 | with the gate |
 | --- | --- | --- |
-| Quiet-Loud crunch, muted | 13 dB | 40 dB |
-| Quiet-Loud high gain L | 21 dB | 36 dB |
-| Open E riff, muted | 10 dB | 40 dB |
-| Open E riff, open | 7 dB | 37 dB |
+| Quiet-Loud crunch, muted | 16 dB | silent |
+| Quiet-Loud high gain L | 21 dB | 43 dB |
+| Open E riff, muted | 12 dB | 50 dB |
+| Open E riff, open | 7 dB | 53 dB |
 
-**Heard:** "this looks like it", with good nuance, though the cut is unusually hard.
+**Heard:** the gate is the fix, with good nuance, though the cut is unusually hard.
 
-### 5. A short room (`v2-ir-gate-room`)
+### 5. A short room (`v2-ir-gate-room` against `v2-ir-gate`)
 
-A recorded guitar always carries some room, and that's what softens a note's end in real life. Here it's a few early reflections at 19 to 47 ms, after the amp, because a room before the drive would itself get distorted and smear again. Keep it short on fast parts, where a long reverb would bring the blur back.
+A recorded guitar always carries some room, and that's what softens a note's end in real life. Here it's a few early reflections at 19 to 47 ms, after the amp, because a room before the drive would itself get distorted and smear again. Keep it short on fast parts, where a long reverb would bring the blur back. This pair was heard with the IR cabinet.
 
 **Heard:** all good.
 
-### 6. Filter cabinet or recorded IR (`v2-gate-filtercab` against `v2-ir-gate`)
+### 6. The cabinet: none, filters, or a recorded IR (`v2-gate-nocab`, `v2-gate-filtercab`, `v2-ir-gate`)
 
-The same chain with the note gate, once with filters standing in for the cabinet and once with the Marshall IR.
+The same gated chain three ways. The filter cabinet is a 75 Hz high-pass, a steep roll-off from about 5 kHz, a presence bump at 2.4 kHz, and a dip at 450 Hz. The IR is a recorded Marshall 1960A 4×12 cabinet with an SM57.
 
-**Heard:** different, but neither clearly better in any particular way. So the filter cabinet is enough for now, and a recorded IR is deferred. That also avoids the license question below.
+**Heard:** without a cabinet it sounds fuzzed and bad. The filters and the IR sound different, but neither is clearly better in any particular way, so the filter cabinet is enough for now and a recorded IR is deferred.
 
-### 7. No cabinet at all (`v2-gate-nocab` against `v2-gate-filtercab`)
-
-Every earlier step had a cabinet, either filters or the IR, so this checks the one stage that was there from v1 on textbook grounds alone.
-
-**Heard:** without the cabinet it sounds fuzzed and bad.
-
-**Why:** clipping adds harmonics far above what a guitar speaker reproduces. A real amp's speaker rolls them off from about 5 kHz, so without a cabinet they come through as raw fizz. Even a filter cabinet removes most of it, which is why step 6 found the filters and the IR close.
+**Why:** clipping adds harmonics far above what a guitar speaker reproduces. A real speaker rolls them off from about 5 kHz, so without a cabinet they come through as raw fizz. That roll-off is most of a cabinet's job, which is why the filters and the IR end up close.
 
 ## Pitfalls
 
