@@ -68,6 +68,14 @@ The same chain with the note gate, once with filters standing in for the cabinet
 
 **Heard:** different, but neither clearly better in any particular way. So the filter cabinet is enough for now, and a recorded IR is deferred. That also avoids the license question below.
 
+### 7. No cabinet at all (`v2-gate-nocab` against `v2-gate-filtercab`)
+
+Every earlier step had a cabinet, either filters or the IR, so this checks the one stage that was there from v1 on textbook grounds alone.
+
+**Heard:** without the cabinet it sounds fuzzed and bad.
+
+**Why:** clipping adds harmonics far above what a guitar speaker reproduces. A real amp's speaker rolls them off from about 5 kHz, so without a cabinet they come through as raw fizz. Even a filter cabinet removes most of it, which is why step 6 found the filters and the IR close.
+
 ## Pitfalls
 
 Two ffmpeg details that silently broke the drive, worth knowing for an implementation:
@@ -97,6 +105,7 @@ run --tag v2-ir --amp v2 --ir <cabinet.wav>
 run --tag v2-ir-gate --amp v2 --note-gate --ir <cabinet.wav>
 run --tag v2-ir-gate-room --amp v2 --note-gate --ir <cabinet.wav> --room
 run --tag v2-gate-filtercab --amp v2 --note-gate
+run --tag v2-gate-nocab --amp v2 --note-gate --no-cab
 ```
 
 `--amp none` leaves the guitars as rendered. `--gm` renders the guitar tracks on General MIDI's Clean (27), Muted (28), Overdriven (29), and Distortion (30) Guitar instead, and `--sf2` swaps in another guitar font, such as the FlameStudios Les Paul bridge from toy-midi's `soundfonts-1` release.
