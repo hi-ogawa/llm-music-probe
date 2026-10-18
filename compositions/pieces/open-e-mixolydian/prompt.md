@@ -1,8 +1,8 @@
 # Hard rock riff
 
-A demo piece for A/B renders of an amp sim on Toy MIDI's clean Telecaster, for https://github.com/hi-ogawa/toy-midi/issues/934. Where [quiet-loud guitar](../pieces/quiet-loud-in-e/prompt.md) covers the range from clean to high gain, this one stays at crunch, the gain where full chords with thirds still ring clearly, and adds a lead with bends, where distortion's sustain is most audible. Blues-based hard rock is built on exactly that pairing.
+A demo piece for A/B renders of an amp sim on Toy MIDI's clean Telecaster, for https://github.com/hi-ogawa/toy-midi/issues/934. Where [quiet-loud guitar](../quiet-loud-in-e/prompt.md) covers the range from clean to high gain, this one stays at crunch, the gain where full chords with thirds still ring clearly, and adds a lead with bends, where distortion's sustain is most audible. Blues-based hard rock is built on exactly that pairing.
 
-Not run yet. A composing session gets only the prompt below, as [experiments/README.md](../../experiments/README.md) says, so the purpose above stays out of it.
+Run on 2026-10-18, and the piece is in this folder. The composing session got only the prompt below, as [experiments/README.md](../../experiments/README.md) says, so the purpose above stays out of it.
 
 ## Prompt
 
