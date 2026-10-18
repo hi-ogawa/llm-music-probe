@@ -7,7 +7,7 @@ Can a clean DI guitar through a simple amp sim beat General MIDI's distorted gui
 Yes. The final chain sustains like General MIDI's distortion, keeps the DI's pick attack, which General MIDI's samples lack, and stops cleanly between notes:
 
 ```
-note gate → pre-EQ → compressor → drive (asymmetric, then cascaded stages, at 4× sample rate) → cabinet IR → short room
+note gate → pre-EQ → compressor → drive (asymmetric, then cascaded stages, at 4× sample rate) → cabinet → short room
 ```
 
 Each stage is there because of something heard along the way, so the iterations below are the explanation.
@@ -62,6 +62,12 @@ A recorded guitar always carries some room, and that's what softens a note's end
 
 **Heard:** all good.
 
+### 6. Filter cabinet or recorded IR (`v2-gate-filtercab` against `v2-ir-gate`)
+
+The same chain with the note gate, once with filters standing in for the cabinet and once with the Marshall IR.
+
+**Heard:** different, but neither clearly better in any particular way. So the filter cabinet is enough for now, and a recorded IR is deferred. That also avoids the license question below.
+
 ## Pitfalls
 
 Two ffmpeg details that silently broke the drive, worth knowing for an implementation:
@@ -71,7 +77,7 @@ Two ffmpeg details that silently broke the drive, worth knowing for an implement
 
 ## Open
 
-- **A cabinet IR that can ship.** The Marshall IR is from https://github.com/fnpngn/IR, a collection of freely shared IRs, and isn't committed here, because its license doesn't say it can be redistributed. Toy MIDI needs an IR it may ship, or one made for it. Comparing `v2` (filter cabinet) with `v2-ir` shows how much the IR matters.
+- **A cabinet IR, deferred.** The Marshall IR is from https://github.com/fnpngn/IR, a collection of freely shared IRs, and isn't committed here, because its license doesn't say it can be redistributed. Step 6 found no clear gain over the filter cabinet, so an IR that Toy MIDI may ship is a later upgrade, not a requirement.
 - **The gate's release.** 30 ms is a quick fretting-hand mute. 50 to 80 ms may sound more natural on open riffs.
 
 ## Reproduce
@@ -90,6 +96,7 @@ run --tag v2 --amp v2
 run --tag v2-ir --amp v2 --ir <cabinet.wav>
 run --tag v2-ir-gate --amp v2 --note-gate --ir <cabinet.wav>
 run --tag v2-ir-gate-room --amp v2 --note-gate --ir <cabinet.wav> --room
+run --tag v2-gate-filtercab --amp v2 --note-gate
 ```
 
 `--amp none` leaves the guitars as rendered. `--gm` renders the guitar tracks on General MIDI's Clean (27), Muted (28), Overdriven (29), and Distortion (30) Guitar instead, and `--sf2` swaps in another guitar font, such as the FlameStudios Les Paul bridge from toy-midi's `soundfonts-1` release.
