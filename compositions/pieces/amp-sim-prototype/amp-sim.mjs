@@ -7,7 +7,7 @@
 // loudness-normalized so an A/B compares tone, not level.
 //
 //   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag <name>
-//     [--amp v1|v2] [--ir <cabinet.wav>] [--room] [--sf2 <guitar font>]
+//     [--amp v1|v2] [--note-gate] [--ir <cabinet.wav>] [--room] [--sf2 <guitar font>]
 //   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag gm --gm
 
 import { execFileSync } from "node:child_process";
@@ -25,6 +25,7 @@ const { positionals, values } = parseArgs({
     amp: { type: "string", default: "v2" },
     ir: { type: "string" },
     room: { type: "boolean", default: false },
+    "note-gate": { type: "boolean", default: false },
     sf2: { type: "string" },
     gm: { type: "boolean", default: false },
   },
@@ -56,7 +57,6 @@ const ASYM_TANH = `dcshift=0.15,${TANH},highpass=f=20`;
 // clipper, so it sustains at full distortion instead of cleaning up.
 const SUSTAIN = (ratio) =>
   `acompressor=threshold=0.03:ratio=${ratio}:attack=5:release=200:makeup=4`;
-
 // Drive stages run at 4x the sample rate, so the harmonics that clipping adds
 // above the original Nyquist frequency are filtered out on the way back down
 // instead of aliasing. asoftclip's own oversample option overshoots by about
@@ -152,6 +152,44 @@ function sampleRate(wav) {
   return Number(out.trim());
 }
 
+// A gate keyed to the notes rather than to the audio level: open while a note
+// is held, closing over NOTE_GATE_RELEASE seconds after its note-off, like the
+// fretting hand letting go of the string. Without it, the compressor and drive
+// raise each note's decay after note-off to full distortion and smear the
+// phrasing, and a gate on the audio level can't tell that decay from a held
+// note's sustain.
+const NOTE_GATE_RELEASE = 0.03;
+
+function writeNoteGate(track, tempo, rate, file) {
+  const seconds = (beat) => (beat * 60) / tempo;
+  const end = Math.max(...track.notes.map((n) => n.start + n.duration));
+  const env = new Float32Array(Math.ceil((seconds(end) + 1) * rate));
+  const release = NOTE_GATE_RELEASE * rate;
+  for (const note of track.notes) {
+    const on = Math.round(seconds(note.start) * rate);
+    const off = Math.round(seconds(note.start + note.duration) * rate);
+    for (let i = on; i < off + release && i < env.length; i++) {
+      const v = i < off ? 1 : 1 - (i - off) / release;
+      if (v > env[i]) env[i] = v;
+    }
+  }
+  // 32-bit float mono WAV.
+  const header = Buffer.alloc(44);
+  header.write("RIFF", 0);
+  header.writeUInt32LE(36 + env.byteLength, 4);
+  header.write("WAVEfmt ", 8);
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(3, 20);
+  header.writeUInt16LE(1, 22);
+  header.writeUInt32LE(rate, 24);
+  header.writeUInt32LE(rate * 4, 28);
+  header.writeUInt16LE(4, 32);
+  header.writeUInt16LE(32, 34);
+  header.write("data", 36);
+  header.writeUInt32LE(env.byteLength, 40);
+  fs.writeFileSync(file, Buffer.concat([header, Buffer.from(env.buffer)]));
+}
+
 // Same equal-power pan as the render tool and Web Audio's StereoPannerNode.
 function channelFilter(gain, pan) {
   const x = pan <= 0 ? pan + 1 : pan;
@@ -213,9 +251,24 @@ function ampTrack(track, raw, workDir) {
   // 16-bit format the drive's volume boost would hard-clip before the soft
   // clipper sees it, and headroom so later boosts don't clip the 16-bit file.
   const amp = AMP[gainOf(track)](rate);
-  const chain = ["aformat=sample_fmts=flt:channel_layouts=mono", amp, "volume=-18dB"];
+  const chain = [amp, "volume=-18dB"];
   if (!values.ir) chain.push(FILTER_CAB);
-  ffmpeg(["-i", raw, "-af", chain.filter(Boolean).join(","), `${base}-amp.wav`]);
+  const mono = "aformat=sample_fmts=flt:channel_layouts=mono";
+  if (values["note-gate"]) {
+    const gate = `${base}-gate.wav`;
+    writeNoteGate(track, project.tempo, rate, gate);
+    ffmpeg([
+      "-i",
+      raw,
+      "-i",
+      gate,
+      "-filter_complex",
+      `[0:a]${mono}[g];[1:a]${mono}[e];[g][e]amultiply,${chain.filter(Boolean).join(",")}`,
+      `${base}-amp.wav`,
+    ]);
+  } else {
+    ffmpeg(["-i", raw, "-af", [mono, ...chain].filter(Boolean).join(","), `${base}-amp.wav`]);
+  }
   let cab = `${base}-amp.wav`;
   if (values.ir) {
     cab = `${base}-cab.wav`;
