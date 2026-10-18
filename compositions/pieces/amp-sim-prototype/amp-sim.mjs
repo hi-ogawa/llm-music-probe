@@ -7,7 +7,7 @@
 // loudness-normalized so an A/B compares tone, not level.
 //
 //   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag <name>
-//     [--amp none|v1|v2] [--note-gate] [--ir <cabinet.wav>] [--room] [--sf2 <guitar font>]
+//     [--amp none|v1|v2] [--note-gate] [--ir <cabinet.wav> | --no-cab] [--room] [--sf2 <guitar font>]
 //   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag gm --gm
 
 import { execFileSync } from "node:child_process";
@@ -26,6 +26,7 @@ const { positionals, values } = parseArgs({
     ir: { type: "string" },
     room: { type: "boolean", default: false },
     "note-gate": { type: "boolean", default: false },
+    "no-cab": { type: "boolean", default: false },
     sf2: { type: "string" },
     gm: { type: "boolean", default: false },
   },
@@ -252,7 +253,7 @@ function ampTrack(track, raw, workDir) {
   // clipper sees it, and headroom so later boosts don't clip the 16-bit file.
   const amp = AMP[gainOf(track)](rate);
   const chain = [amp, "volume=-18dB"];
-  if (!values.ir) chain.push(FILTER_CAB);
+  if (!values.ir && !values["no-cab"]) chain.push(FILTER_CAB);
   const mono = "aformat=sample_fmts=flt:channel_layouts=mono";
   if (values["note-gate"]) {
     const gate = `${base}-gate.wav`;
