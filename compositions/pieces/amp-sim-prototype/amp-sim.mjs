@@ -34,6 +34,9 @@ async function main() {
     console.log(USAGE);
     return;
   }
+
+  // Read the project, and for the General MIDI baseline, swap the guitar
+  // tracks onto General MIDI's guitars.
   const project = JSON.parse(fs.readFileSync(options.input, "utf8"));
   const variant = structuredClone(project);
   if (options.gm) {
@@ -46,9 +49,13 @@ async function main() {
     }
   }
 
+  // Export the project as MIDI and render each track dry on its SoundFont.
   const renderDir = await renderDryTracks({ project: variant, options });
   const workDir = path.join(options.out, options.tag);
   fs.mkdirSync(workDir, { recursive: true });
+
+  // Run each guitar track through the amp, and give every track its gain and
+  // pan.
   const tracks = await Promise.all(
     variant.midiTracks.map(async (track, index) => {
       const raw = getDryTrackPath({ renderDir, index, track });
@@ -62,6 +69,8 @@ async function main() {
       return { file, guitar };
     }),
   );
+
+  // Mix the full arrangement and the guitars alone, each loudness-normalized.
   await mixTracks(
     tracks.map((t) => t.file),
     path.join(options.out, `${options.tag}.mp3`),
