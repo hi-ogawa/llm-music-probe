@@ -84,16 +84,16 @@ Caveats: fluidsynth is not Toy MIDI's synth, so absolute levels differ, but both
 
 ## Renders
 
-`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step through 5 adds one stage to the one before, step 6 takes the cabinet out of step 5, step 7 replaces step 4's gate with automation, step 8 adds the gate to step 2, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+`renders/` has this piece through Toy MIDI's amp sim prototype (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). 1 to 5 each add to the render before, 6 to 8 each change one thing in an earlier render, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
 
 | File | Guitars |
 | --- | --- |
 | `0-gm-reference.mp3` | General MIDI's own clean, muted, overdriven, and distortion guitars, no amp |
 | `1-no-amp.mp3` | The Telecaster Bridge presets as rendered |
-| `2-drive.mp3` | Through the first amp: pre-EQ, one drive stage, and the filter cabinet (`v1`) |
-| `3-compressor.mp3` | With a compressor in front and cascaded drive stages, which sustain but leak after note-offs (`v2`) |
+| `2-drive.mp3` | Through the first amp: pre-EQ, one drive stage, and the filter cabinet |
+| `3-compressor.mp3` | 2 with a compressor in front and a heavier drive (more stages, clipping one side harder), which sustain but leak after note-offs |
 | `4-note-gate.mp3` | With the note gate, which cuts each note 30 ms after its note-off |
 | `5-room.mp3` | With a short room after the amp, the final chain |
 | `6-no-cabinet.mp3` | The final chain without the cabinet, which leaves the drive's fizz above 5 kHz |
-| `7-swell-cut.mp3` | Step 3's amp with no note gate, but CC 11 automation on each guitar track that fades to 0 over 30 ms after a note-off and comes back at the next note-on, the gate written as expression instead |
-| `8-drive-gate.mp3` | Step 2's amp, without the compressor, with step 4's note gate |
+| `7-swell-cut.mp3` | 3 with CC 11 automation on each guitar track that fades to 0 over 30 ms after a note-off and comes back at the next note-on, the gate written as expression instead |
+| `8-drive-gate.mp3` | 2 with the note gate from 4 |
