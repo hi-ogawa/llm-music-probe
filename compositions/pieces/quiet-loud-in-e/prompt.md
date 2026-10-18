@@ -21,10 +21,6 @@ Run on 2026-10-18, and the piece is in this folder. The composing session got on
 >
 > Loop the whole piece, so the end leads back into the start. Leave out optional track fields such as height and viewMode, so their defaults apply. Before writing notes, write a short bar-by-bar plan with each section's gain. After, give a checklist mapping each technique to bars where it appears. Save the project JSON next to a README.md with the plan and the checklist.
 
-## Renders to compare
+## Renders
 
-Each in the loop and with the guitars soloed:
-
-1. The guitar parts on General MIDI's Overdriven and Distortion Guitar (programs 29 and 30), the baseline an amp sim has to beat.
-2. The Telecaster bridge through the amp sim at each track's gain.
-3. The FlameStudios Les Paul bridge (from the `soundfonts-1` release) through the same settings, which answers #934's question about bundling a humbucker.
+Toy MIDI's amp sim prototype renders this piece, with the comparisons and what was heard in its README: https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim (added in https://github.com/hi-ogawa/toy-midi/pull/963).
