@@ -81,3 +81,16 @@ Final numbers, guitar power over drum power in dB (positive means the guitars ar
 In the lead break, the lead alone is +3.5 dB over the drums broadband and +16.3 dB in the band, and it is level with each rhythm double while sitting in the center between them.
 
 Caveats: fluidsynth is not Toy MIDI's synth, so absolute levels differ, but both use the same SoundFonts, so the ratios should carry over. The guitars will also go through amp sims, which compress and add level, so the crunch and high-gain sections will be denser than this clean render. Gains on the clean, crunch, and high-gain tracks may need a final trim after the render.
+
+## Renders
+
+`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step adds one stage to the one before, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+
+| File | Guitars |
+| --- | --- |
+| `0-gm-reference.mp3` | General MIDI's own clean, muted, overdriven, and distortion guitars, no amp |
+| `1-no-amp.mp3` | The Telecaster Bridge presets as rendered |
+| `2-drive.mp3` | Through the first amp: pre-EQ, one drive stage, and the filter cabinet (`v1`) |
+| `3-compressor.mp3` | With a compressor in front and cascaded drive stages, which sustain but leak after note-offs (`v2`) |
+| `4-note-gate.mp3` | With the note gate, which cuts each note 30 ms after its note-off |
+| `5-room.mp3` | With a short room after the amp, the final chain |

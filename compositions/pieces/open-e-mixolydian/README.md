@@ -84,3 +84,16 @@ The first pass had the lead 1–5 dB under the drums in the lead break, so I rai
 In the lead break the riff guitar is about level with the drums, which is on purpose since it has stepped back to chugs, and it still has the left side to itself. The lead is weakest in bar 17 (+0.1 dB) because that bar is one held, bent note decaying for two beats. The full mix peaks at -3.3 dBFS in this render.
 
 Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and the drum kit's balance may differ, and bar RMS says nothing about frequency masking. The amp sim will also change the guitars' levels, since gain compresses and brightens them. Treat these numbers as a starting balance and check by ear in Toy MIDI. The lead and riff faders are the first things to adjust.
+
+## Renders
+
+`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step adds one stage to the one before, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+
+| File | Guitars |
+| --- | --- |
+| `0-gm-reference.mp3` | General MIDI's own clean, muted, overdriven, and distortion guitars, no amp |
+| `1-no-amp.mp3` | The Telecaster Bridge presets as rendered |
+| `2-drive.mp3` | Through the first amp: pre-EQ, one drive stage, and the filter cabinet (`v1`) |
+| `3-compressor.mp3` | With a compressor in front and cascaded drive stages, which sustain but leak after note-offs (`v2`) |
+| `4-note-gate.mp3` | With the note gate, which cuts each note 30 ms after its note-off |
+| `5-room.mp3` | With a short room after the amp, the final chain |
