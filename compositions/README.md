@@ -5,7 +5,7 @@ Composed pieces you can search, open, and loop in Toy MIDI.
 - **Viewer:** Toy MIDI's [Examples page](https://toy-midi.hiro18181.workers.dev/examples), which loads `catalog.json` from `main`
 - **Kept pieces:** [`catalog.json`](catalog.json)
 - **Candidates:** pieces still being iterated on, listed on the [composition tracker](https://github.com/hi-ogawa/toy-midi/issues/862)
-- **Prompts:** composing prompts not run yet, in [`prompts/`](prompts/), each with what it is for
+- **Prompts:** composing prompts not run yet, in [`prompts/`](prompts/), each with what it is for, run as [Running a prompt](#running-a-prompt) describes
 
 Each piece, kept or candidate, has a folder in [`pieces/`](pieces/) with its project files next to the write-up and scripts that produced them. A write-up that compares several sessions, such as `orchestral-genre-triggers/`, has its own folder next to their pieces. A later session that iterates on part of a piece, such as `cliche-guitar/`, also has its own folder, with each step's files prefixed by its step. A piece composed in an experiment has a folder holding its kept version and a README linking the experiment.
 
@@ -15,9 +15,19 @@ A project file is a Toy MIDI `SharedProject` and opens as an unsaved draft with 
 https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/<folder>/<file>.json
 ```
 
-A composing session writes its folder here from the start, and a session that continues a piece adds to that piece's folder.
+A new piece starts from a prompt, as [Running a prompt](#running-a-prompt) describes, and a session that continues a piece adds to that piece's folder.
 
 Toy MIDI's Examples page reads `catalog.json` and opens the files it links, so when you move a file, update its `url` in the same commit, and keep the entry fields Toy MIDI reads unless Toy MIDI changes with them.
+
+## Running a prompt
+
+A prompt file in `prompts/` has two parts: what the piece is for, and the prompt itself. Only the prompt goes to the composing agent, because an agent that knows the purpose composes toward it, as [experiments/README.md](../experiments/README.md) says.
+
+1. **Write the prompt** in `prompts/` on a branch, and open a draft PR for it.
+2. **Hand it off** to a fresh agent session. Give it the prompt as its whole request, and a scratch directory outside this repository to save into, so it can't read the purpose or the other pieces. When the prompt is longer than a chat message allows, write it to a file in the scratch directory and send a one-line request to read that file.
+3. **Collect** the result on the same branch. Copy the project file and the session's README into `pieces/<folder>/`, and move the prompt file there as `prompt.md`, so the folder records what was asked and `prompts/` holds only prompts not run yet.
+4. **Track** the piece in the composition tracker's Candidates. Until the branch merges, its Toy MIDI link uses the branch's raw URL instead of `main`, and switches to `main` at merge.
+5. **Merge** the PR once its pieces are in, so a prompt and the pieces it produced land together. Keeping a piece then follows [Adding a piece](#adding-a-piece).
 
 ## Catalog format
 
