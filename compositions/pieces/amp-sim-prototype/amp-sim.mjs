@@ -1,14 +1,16 @@
 // Offline amp sim prototype for the guitar demos.
 //
-// Renders a project with Toy MIDI's offline render tool (tools/render in a
-// toy-midi checkout), runs each guitar track through the amp setting its name
-// starts with (Clean, Crunch, High Gain), and remixes. Each call writes one
-// variant, `<tag>.mp3` and `<tag>-guitars.mp3` with the guitars soloed, both
-// loudness-normalized so an A/B compares tone, not level.
+// Exports a project as MIDI with `toy-midi export-midi`, renders each MIDI
+// track dry with fluidsynth on the track's SoundFont, runs each guitar track
+// through the amp setting its name starts with (Clean, Crunch, High Gain), and
+// remixes. Each call writes one variant, `<tag>.mp3` and `<tag>-guitars.mp3`
+// with the guitars soloed, both loudness-normalized so an A/B compares tone,
+// not level.
 //
-//   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag <name>
-//     [--amp none|v1|v2] [--note-gate] [--ir <cabinet.wav> | --no-cab] [--room] [--sf2 <guitar font>]
-//   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag gm --gm
+//   node amp-sim.mjs <project.json> --soundfonts <dir> --out <dir> --tag <name>
+//     [--amp none|v1|v2] [--note-gate] [--ir <cabinet.wav> | --no-cab] [--room]
+//     [--cli <toy-midi command>] [--url <app URL>]
+//   node amp-sim.mjs <project.json> --soundfonts <dir> --out <dir> --tag gm --gm
 
 import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
@@ -19,7 +21,9 @@ import { parseArgs } from "node:util";
 const { positionals, values } = parseArgs({
   allowPositionals: true,
   options: {
-    "toy-midi": { type: "string" },
+    soundfonts: { type: "string" },
+    cli: { type: "string", default: "toy-midi" },
+    url: { type: "string" },
     out: { type: "string" },
     tag: { type: "string" },
     amp: { type: "string", default: "v2" },
@@ -27,7 +31,6 @@ const { positionals, values } = parseArgs({
     room: { type: "boolean", default: false },
     "note-gate": { type: "boolean", default: false },
     "no-cab": { type: "boolean", default: false },
-    sf2: { type: "string" },
     gm: { type: "boolean", default: false },
   },
 });
@@ -191,7 +194,7 @@ function writeNoteGate(track, tempo, rate, file) {
   fs.writeFileSync(file, Buffer.concat([header, Buffer.from(env.buffer)]));
 }
 
-// Same equal-power pan as the render tool and Web Audio's StereoPannerNode.
+// Equal-power pan, as Web Audio's StereoPannerNode does on stereo input.
 function channelFilter(gain, pan) {
   const x = pan <= 0 ? pan + 1 : pan;
   const a = Math.cos((x * Math.PI) / 2);
@@ -203,30 +206,97 @@ function channelFilter(gain, pan) {
   return `volume=${gain},${panFilter}`;
 }
 
-// Render once per distinct project, so variants that only change the amp
-// reuse the same render.
+// SoundFont files by a track's `soundfont`, as published on toy-midi's
+// `soundfonts-1` release. A track without one plays on GeneralUser GS.
+const FONTS = {
+  undefined: "GeneralUserGS-2.0.3.sf3",
+  "flamestudios-telecaster-bridge": "FlameStudios-Telecaster-Bridge-SM-b50f761.sf3",
+  "flamestudios-telecaster-neck": "FlameStudios-Telecaster-Neck-SM-b50f761.sf3",
+};
+
+// One track of an exported MIDI file, behind the file's conductor track, with
+// its volume (CC 7) at 100, the MIDI default, and its pan (CC 10) centered, so
+// the render is dry and the script applies the track's gain and pan itself, as
+// the app does after the synth. The amp's drive levels were tuned at volume
+// 100, and the drive depends on input level. Values are rewritten in place, so
+// no event moves.
+function dryTrackMidi(smf, index) {
+  const chunks = [];
+  for (let p = 14; p < smf.length; ) {
+    const len = smf.readUInt32BE(p + 4);
+    chunks.push(Buffer.from(smf.subarray(p, p + 8 + len)));
+    p += 8 + len;
+  }
+  const track = chunks[index + 1];
+  const varlen = (p) => {
+    let v = 0;
+    for (;;) {
+      const b = track[p++];
+      v = (v << 7) | (b & 0x7f);
+      if (!(b & 0x80)) return [v, p];
+    }
+  };
+  let status = 0;
+  for (let p = 8; p < track.length; ) {
+    p = varlen(p)[1];
+    const b = track[p];
+    if (b === 0xff) {
+      const [len, q] = varlen(p + 2);
+      p = q + len;
+    } else if (b === 0xf0 || b === 0xf7) {
+      const [len, q] = varlen(p + 1);
+      p = q + len;
+    } else {
+      if (b & 0x80) {
+        status = b;
+        p++;
+      }
+      const type = status & 0xf0;
+      if (type === 0xb0 && track[p] === 7) track[p + 1] = 100;
+      if (type === 0xb0 && track[p] === 10) track[p + 1] = 64;
+      p += type === 0xc0 || type === 0xd0 ? 1 : 2;
+    }
+  }
+  const header = Buffer.from(smf.subarray(0, 14));
+  header.writeUInt16BE(1, 8);
+  header.writeUInt16BE(2, 10);
+  return Buffer.concat([header, chunks[0], track]);
+}
+
+// Render each MIDI track dry, once per distinct project, so variants that
+// only change the amp reuse the same render.
 function render(project) {
   const json = JSON.stringify(project);
   const hash = crypto.createHash("sha1").update(json).digest("hex").slice(0, 8);
   const dir = path.join(outDir, `render-${hash}`);
-  if (!fs.existsSync(path.join(dir, "00-mix.wav"))) {
+  if (!fs.existsSync(path.join(dir, "done"))) {
     fs.mkdirSync(dir, { recursive: true });
     const file = path.join(dir, "project.json");
     fs.writeFileSync(file, json);
-    execFileSync(
-      "pnpm",
-      ["exec", "tsx", "tools/render/render.ts", file, "--out", dir],
-      { cwd: values["toy-midi"], stdio: ["ignore", "ignore", "inherit"] },
-    );
+    const url = values.url ? ["--url", values.url] : [];
+    execFileSync(values.cli, ["export-midi", file, path.join(dir, "project.mid"), ...url], {
+      stdio: ["ignore", "ignore", "inherit"],
+    });
+    const smf = fs.readFileSync(path.join(dir, "project.mid"));
+    project.midiTracks.forEach((track, i) => {
+      const { raw } = trackFiles(dir, i, track);
+      const mid = raw.replace(/\.wav$/, ".mid");
+      fs.writeFileSync(mid, dryTrackMidi(smf, i));
+      const font = path.join(values.soundfonts, FONTS[track.soundfont]);
+      execFileSync(
+        "fluidsynth",
+        ["-n", "-i", "-q", "-g", "0.5", "-R", "0", "-C", "0", "-r", "48000", "-F", raw, font, mid],
+        { stdio: "ignore" },
+      );
+    });
+    fs.writeFileSync(path.join(dir, "done"), "");
   }
   return dir;
 }
 
 function trackFiles(renderDir, index, track) {
-  // The render tool's file naming.
   const slug = track.name.replace(/[^\w-]+/g, "-").toLowerCase();
-  const stem = path.join(renderDir, `${String(index + 1).padStart(2, "0")}-${slug}`);
-  return { raw: `${stem}-raw.wav`, post: `${stem}.wav` };
+  return { raw: path.join(renderDir, `${String(index + 1).padStart(2, "0")}-${slug}-raw.wav`) };
 }
 
 // Mix the given track files and normalize the mix to MIX_LUFS as an MP3.
@@ -300,9 +370,6 @@ for (const track of variant.midiTracks) {
   if (values.gm) {
     track.program = track.program === 1 ? 28 : GM[gain];
     delete track.soundfont;
-  } else if (values.sf2) {
-    track.sf2 = path.resolve(values.sf2);
-    delete track.soundfont;
   }
 }
 
@@ -310,10 +377,13 @@ const renderDir = render(variant);
 const workDir = path.join(outDir, values.tag);
 fs.mkdirSync(workDir, { recursive: true });
 const tracks = variant.midiTracks.map((track, i) => {
-  const { raw, post } = trackFiles(renderDir, i, track);
+  const { raw } = trackFiles(renderDir, i, track);
   const guitar = Boolean(gainOf(track));
-  const amped = guitar && !values.gm && values.amp !== "none";
-  const file = amped ? ampTrack(track, raw, workDir) : post;
+  if (guitar && !values.gm && values.amp !== "none") {
+    return { file: ampTrack(track, raw, workDir), guitar };
+  }
+  const file = path.join(workDir, path.basename(raw, ".wav") + "-out.wav");
+  ffmpeg(["-i", raw, "-af", channelFilter(track.gain ?? 1, track.pan ?? 0), file]);
   return { file, guitar };
 });
 mix(

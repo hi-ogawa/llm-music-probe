@@ -106,12 +106,20 @@ Two ffmpeg details that silently broke the drive, worth knowing for an implement
 
 ## Reproduce
 
-`amp-sim.mjs` renders with Toy MIDI's offline render tool from https://github.com/hi-ogawa/toy-midi/pull/864, which needs `fluidsynth` and `ffmpeg`, and the script also needs `ffprobe`. Each call writes one variant as `<tag>.mp3` and `<tag>-guitars.mp3`, with the guitars soloed.
+`amp-sim.mjs` exports the project as MIDI with Toy MIDI's CLI (`toy-midi export-midi`), renders each MIDI track on its own with fluidsynth on the track's SoundFont, and runs the guitar tracks through the amp. It needs the CLI, `fluidsynth`, `ffmpeg`, and `ffprobe`, and the SoundFonts from toy-midi's `soundfonts-1` release:
+
+```sh
+pnpm i -g "github:hi-ogawa/toy-midi#path:/packages/cli"
+gh release download soundfonts-1 -R hi-ogawa/toy-midi -D /tmp/ampsim/sf \
+  -p 'GeneralUserGS-*.sf3' -p 'FlameStudios-Telecaster-*.sf3'
+```
+
+Each call writes one variant as `<tag>.mp3` and `<tag>-guitars.mp3`, with the guitars soloed:
 
 ```sh
 run() {
   node amp-sim.mjs ../quiet-loud-in-e/quiet-loud.json \
-    --toy-midi <toy-midi checkout> --out /tmp/ampsim/quiet-loud "$@"
+    --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/quiet-loud "$@"
 }
 run --tag gm --gm
 run --tag tele-dry --amp none
@@ -124,13 +132,15 @@ run --tag v2-gate-filtercab --amp v2 --note-gate
 run --tag v2-gate-nocab --amp v2 --note-gate --no-cab
 ```
 
+`--amp none` leaves the guitars as rendered, and `--gm` renders the guitar tracks on General MIDI's Clean (27), Muted (28), Overdriven (29), and Distortion (30) Guitar instead. `--cli` points at another `toy-midi` command, and `--url` at another app, such as a local dev server or a pull request's preview while `export-midi` isn't deployed yet.
+
+Each track renders dry, with its volume at the MIDI default and its pan centered, and the script applies the track's gain and pan afterwards. The drive depends on input level, so the volume stays at the default the amp was tuned at.
+
 The figures come from renders of [`held-note.json`](held-note.json), three notes held for 6 seconds on one high-gain track, and of Open E Mixolydian:
 
 ```sh
-node amp-sim.mjs held-note.json --toy-midi <toy-midi checkout> --out /tmp/ampsim/held --tag v1 --amp v1
-node amp-sim.mjs held-note.json --toy-midi <toy-midi checkout> --out /tmp/ampsim/held --tag v2 --amp v2
+node amp-sim.mjs held-note.json --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/held --tag v1 --amp v1
+node amp-sim.mjs held-note.json --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/held --tag v2 --amp v2
 # Open E Mixolydian into /tmp/ampsim/riff, with the tags v2, v2-gate-filtercab, v2-gate-nocab, and v2-ir-gate
 node gen-figures.mjs --held-note /tmp/ampsim/held --riff /tmp/ampsim/riff
 ```
-
-`--amp none` leaves the guitars as rendered. `--gm` renders the guitar tracks on General MIDI's Clean (27), Muted (28), Overdriven (29), and Distortion (30) Guitar instead, and `--sf2` swaps in another guitar font, such as the FlameStudios Les Paul bridge from toy-midi's `soundfonts-1` release.
