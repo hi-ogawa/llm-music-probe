@@ -7,7 +7,7 @@
 // loudness-normalized so an A/B compares tone, not level.
 //
 //   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag <name>
-//     [--amp v1|v2] [--note-gate] [--ir <cabinet.wav>] [--room] [--sf2 <guitar font>]
+//     [--amp none|v1|v2] [--note-gate] [--ir <cabinet.wav>] [--room] [--sf2 <guitar font>]
 //   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag gm --gm
 
 import { execFileSync } from "node:child_process";
@@ -311,7 +311,8 @@ fs.mkdirSync(workDir, { recursive: true });
 const tracks = variant.midiTracks.map((track, i) => {
   const { raw, post } = trackFiles(renderDir, i, track);
   const guitar = Boolean(gainOf(track));
-  const file = guitar && !values.gm ? ampTrack(track, raw, workDir) : post;
+  const amped = guitar && !values.gm && values.amp !== "none";
+  const file = amped ? ampTrack(track, raw, workDir) : post;
   return { file, guitar };
 });
 mix(

@@ -1,38 +1,95 @@
 # Amp sim prototype
 
-An offline amp sim for [Quiet-Loud in E](../quiet-loud-in-e/) and [Open E Mixolydian](../open-e-mixolydian/), to hear whether a clean DI guitar through drive and a cabinet beats General MIDI's distorted guitars before Toy MIDI builds one (https://github.com/hi-ogawa/toy-midi/issues/934). Without an amp, both pieces' Telecaster bridge parts sound like country guitar.
+Can a clean DI guitar through a simple amp sim beat General MIDI's distorted guitars? This prototype answers that offline, before Toy MIDI builds an amp sim (https://github.com/hi-ogawa/toy-midi/issues/934). It renders [Quiet-Loud in E](../quiet-loud-in-e/) and [Open E Mixolydian](../open-e-mixolydian/), whose guitar tracks are on the FlameStudios Telecaster bridge font and named by the gain they get (Clean, Crunch, High Gain), and runs each guitar track through an amp in ffmpeg.
 
-## Chain
+## Result
 
-`amp-sim.mjs` renders a project with Toy MIDI's offline render tool, then runs each guitar track through the amp setting its name starts with. Each call writes one variant as a mix and as the guitars soloed, both normalized to −16 LUFS, so a comparison is about tone, not level. Each processed track is matched to its dry loudness, then gets the track's gain and pan.
+Yes. The final chain sustains like General MIDI's distortion, keeps the DI's pick attack, which General MIDI's samples lack, and stops cleanly between notes:
 
-| Gain | v1 | v2 |
-| --- | --- | --- |
-| Clean | none | light compression |
-| Crunch | pre-EQ, +20 dB into tanh | pre-EQ, compressor, asymmetric tanh at +18 dB, then a second stage at +6 dB |
-| High gain | pre-EQ, two tanh stages | pre-EQ, harder compressor, asymmetric tanh, then two more tanh stages |
-
-- **Pre-EQ:** a 90 Hz high-pass and a 750 Hz boost, like a mid-boost overdrive pedal in front of the amp, so the low end stays tight under distortion.
-- **Compressor (v2):** keeps a decaying note pushed into the clipper. On a held note through high gain, v1 fades about 15 dB over 6 seconds as the note cleans up, while v2 holds within about 4 dB.
-- **Note gate (`--note-gate`):** the input to the amp stays open while a note is held and closes over 30 ms after its note-off, like the fretting hand letting go of the string. Without it, the compressor and drive raise each note's decay after note-off to full distortion, so sustain leaks across the phrasing. On muted and open riff tracks, the level after note-off drops from 7 to 13 dB below the notes to 36 to 40 dB below. A gate on the audio level, as on a real high-gain rig, didn't help here, because the leaking decay sits between about −30 and −50 dB, where cutting it would also cut a held note's sustain.
-- **Asymmetric clipping (v2):** a DC offset before the first clipper adds even harmonics, like a tube stage.
-- **Drive:** tanh clipping at 4× the sample rate, so the harmonics it adds above the original Nyquist frequency are filtered out instead of aliasing.
-- **Cabinet:** with `--ir`, a convolution with a recorded cabinet impulse response. Without it, filters stand in for a speaker: a 75 Hz high-pass, a steep roll-off from about 5 kHz, a presence bump at 2.4 kHz, and a dip at 450 Hz.
-- **Room (`--room`):** a few early reflections, because a fully dry distorted guitar sounds small next to a recorded one.
-
-## Run
-
-```sh
-node amp-sim.mjs ../quiet-loud-in-e/quiet-loud.json \
-  --toy-midi <toy-midi checkout with tools/render> --out /tmp/ampsim/quiet-loud \
-  --tag v2-ir --amp v2 --note-gate --ir <cabinet.wav> [--room] [--sf2 <guitar font>]
-node amp-sim.mjs ../quiet-loud-in-e/quiet-loud.json \
-  --toy-midi <toy-midi checkout with tools/render> --out /tmp/ampsim/quiet-loud \
-  --tag gm --gm
+```
+note gate → pre-EQ → compressor → drive (asymmetric, then cascaded stages, at 4× sample rate) → cabinet IR → short room
 ```
 
-`--gm` renders the guitar tracks on General MIDI's Clean (27), Muted (28), Overdriven (29), and Distortion (30) Guitar instead, as the baseline. `--sf2` swaps in another guitar font, such as the FlameStudios Les Paul bridge from toy-midi's `soundfonts-1` release.
+Each stage is there because of something heard along the way, so the iterations below are the explanation.
 
-The cabinet IR used so far is a Marshall 1960A 4×12 with an SM57, `45oa4x12-sm57-1in-1.5c.wav` from https://github.com/fnpngn/IR, a collection of freely shared IRs. It isn't committed here, because its license doesn't say it can be redistributed.
+## Iterations
 
-The render tool is in https://github.com/hi-ogawa/toy-midi/pull/864. It needs `fluidsynth` and `ffmpeg`, and this script needs `ffmpeg` and `ffprobe`.
+Every render is normalized to −16 LUFS, so a comparison is about tone, not level. The tag on each step is the variant to listen to, and [Reproduce](#reproduce) generates them all.
+
+### 1. No amp: country guitar (`tele-dry`)
+
+The Telecaster bridge pickup played clean is the classic country sound, so rock riffs on it sound like rock written for a country tone. The writing already reads as guitar, so the missing piece was the amp.
+
+### 2. Drive and a filter cabinet (`v1`)
+
+Pre-EQ, a fixed gain boost into a tanh soft clipper, and filters standing in for a speaker cabinet.
+
+**Heard:** better than clean, and the Les Paul bridge font better than the Telecaster. But General MIDI's distortion had the more convincing sustain, even though its samples have no pick attack.
+
+**Why:** a fixed boost clips the start of a note, but as the DI string decays, the signal falls below the clipping point and the note cleans up. General MIDI's samples were recorded through a real amp, whose compression keeps the decaying string saturated. On a held note through high gain, v1 fades about 15 dB over 6 seconds. The font itself isn't the cause, since its samples sustain a full 6-second note.
+
+### 3. Sustain and a real cabinet (`v2`, `v2-ir`)
+
+Three changes to the amp, and a recorded cabinet:
+
+- **Compressor before the drive,** which keeps a decaying note pushed into the clipper. A held note now holds within about 4 dB over 6 seconds.
+- **Asymmetric first stage:** a DC offset before the clipper flattens one half of the wave more than the other, which adds even harmonics like a tube stage.
+- **Cascaded stages** for high gain, each clipping a little, the way a high-gain preamp does, instead of one hard push.
+- **Cabinet IR:** a convolution with a recorded Marshall 1960A 4×12 cabinet with an SM57, instead of the filters.
+
+**Heard:** a good addition, but sustain leaked and muddied the phrasing and articulation.
+
+**Why:** the compressor and drive add about 40 dB of gain, so they also raise each note's decay after its note-off to full distortion, and it smears into the next note. On riff tracks, the level after note-off was only 7 to 13 dB below the notes.
+
+### 4. A gate keyed to the notes (`v2-ir-gate`)
+
+The input to the amp stays open while a note is held and closes over 30 ms after its note-off, like the fretting hand letting go of the string.
+
+A real high-gain rig uses a noise gate on the audio level, and that was tried first, with no measurable effect. The leaking decay sits between about −30 and −50 dB, so a threshold high enough to cut it would also cut a held note's sustain. Only the note-off tells "let go" from "still holding", and Toy MIDI has every note-off, which a real amp doesn't.
+
+| Track | Level after note-off, below the notes: v2-ir | v2-ir-gate |
+| --- | --- | --- |
+| Quiet-Loud crunch, muted | 13 dB | 40 dB |
+| Quiet-Loud high gain L | 21 dB | 36 dB |
+| Open E riff, muted | 10 dB | 40 dB |
+| Open E riff, open | 7 dB | 37 dB |
+
+**Heard:** "this looks like it", with good nuance, though the cut is unusually hard.
+
+### 5. A short room (`v2-ir-gate-room`)
+
+A recorded guitar always carries some room, and that's what softens a note's end in real life. Here it's a few early reflections at 19 to 47 ms, after the amp, because a room before the drive would itself get distorted and smear again. Keep it short on fast parts, where a long reverb would bring the blur back.
+
+**Heard:** all good.
+
+## Pitfalls
+
+Two ffmpeg details that silently broke the drive, worth knowing for an implementation:
+
+- **Clipping before the clipper.** ffmpeg kept the 16-bit sample format through the chain, so the +24 dB boost hard-clipped before the tanh stage saw the signal. The chain runs in float.
+- **Oversampling that overshoots.** `asoftclip`'s own oversample option produced peaks about 9 dB above full scale. Resampling to 4× around the drive stages explicitly is the textbook way, and it stays bounded.
+
+## Open
+
+- **A cabinet IR that can ship.** The Marshall IR is from https://github.com/fnpngn/IR, a collection of freely shared IRs, and isn't committed here, because its license doesn't say it can be redistributed. Toy MIDI needs an IR it may ship, or one made for it. Comparing `v2` (filter cabinet) with `v2-ir` shows how much the IR matters.
+- **The gate's release.** 30 ms is a quick fretting-hand mute. 50 to 80 ms may sound more natural on open riffs.
+
+## Reproduce
+
+`amp-sim.mjs` renders with Toy MIDI's offline render tool from https://github.com/hi-ogawa/toy-midi/pull/864, which needs `fluidsynth` and `ffmpeg`, and the script also needs `ffprobe`. Each call writes one variant as `<tag>.mp3` and `<tag>-guitars.mp3`, with the guitars soloed.
+
+```sh
+run() {
+  node amp-sim.mjs ../quiet-loud-in-e/quiet-loud.json \
+    --toy-midi <toy-midi checkout> --out /tmp/ampsim/quiet-loud "$@"
+}
+run --tag gm --gm
+run --tag tele-dry --amp none
+run --tag v1 --amp v1
+run --tag v2 --amp v2
+run --tag v2-ir --amp v2 --ir <cabinet.wav>
+run --tag v2-ir-gate --amp v2 --note-gate --ir <cabinet.wav>
+run --tag v2-ir-gate-room --amp v2 --note-gate --ir <cabinet.wav> --room
+```
+
+`--amp none` leaves the guitars as rendered. `--gm` renders the guitar tracks on General MIDI's Clean (27), Muted (28), Overdriven (29), and Distortion (30) Guitar instead, and `--sf2` swaps in another guitar font, such as the FlameStudios Les Paul bridge from toy-midi's `soundfonts-1` release.
