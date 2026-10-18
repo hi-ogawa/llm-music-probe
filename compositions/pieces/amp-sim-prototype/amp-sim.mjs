@@ -1,14 +1,17 @@
 // Offline amp sim prototype for the guitar demos.
 //
 // Renders a project with Toy MIDI's offline render tool (tools/render in a
-// toy-midi checkout), runs each guitar track through a drive stage and a
-// filter-based cabinet chosen by the gain its name starts with (Clean, Crunch,
-// High Gain), and remixes. Each variant's mix is loudness-normalized so the
-// A/B compares tone, not level.
+// toy-midi checkout), runs each guitar track through the amp setting its name
+// starts with (Clean, Crunch, High Gain), and remixes. Each call writes one
+// variant, `<tag>.mp3` and `<tag>-guitars.mp3` with the guitars soloed, both
+// loudness-normalized so an A/B compares tone, not level.
 //
-//   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> [--lespaul <sf3>]
+//   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag <name>
+//     [--amp v1|v2] [--ir <cabinet.wav>] [--room] [--sf2 <guitar font>]
+//   node amp-sim.mjs <project.json> --toy-midi <checkout> --out <dir> --tag gm --gm
 
 import { execFileSync } from "node:child_process";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
@@ -18,21 +21,25 @@ const { positionals, values } = parseArgs({
   options: {
     "toy-midi": { type: "string" },
     out: { type: "string" },
-    lespaul: { type: "string" },
+    tag: { type: "string" },
+    amp: { type: "string", default: "v2" },
+    ir: { type: "string" },
+    room: { type: "boolean", default: false },
+    sf2: { type: "string" },
+    gm: { type: "boolean", default: false },
   },
 });
 const [projectPath] = positionals;
-const toyMidi = values["toy-midi"];
 const outDir = path.resolve(values.out);
 const MIX_LUFS = -16;
 
 // Guitar tone controls before the drive, like a mid-boost overdrive pedal in
 // front of the amp. It tightens the low end so the distortion doesn't flub.
 const PRE = "highpass=f=90,equalizer=f=750:t=o:w=1.2:g=4";
-// Speaker cabinet as filters: a guitar speaker rolls off steeply above about
-// 5 kHz, which removes the fizz that clipping adds, with a presence bump and a
-// low-mid dip.
-const CAB = [
+// Speaker cabinet as filters, for when no impulse response is given: a guitar
+// speaker rolls off steeply above about 5 kHz, which removes the fizz that
+// clipping adds, with a presence bump and a low-mid dip.
+const FILTER_CAB = [
   "highpass=f=75",
   "lowpass=f=5200",
   "lowpass=f=5200",
@@ -40,7 +47,15 @@ const CAB = [
   "equalizer=f=2400:t=o:w=1:g=3",
   "equalizer=f=450:t=o:w=1.5:g=-2.5",
 ].join(",");
-const CLIP = "asoftclip=type=tanh";
+const TANH = "asoftclip=type=tanh";
+// A DC offset before the clipper flattens one half of the wave more than the
+// other, which adds even harmonics like a tube stage. The high-pass after it
+// removes the offset again.
+const ASYM_TANH = `dcshift=0.15,${TANH},highpass=f=20`;
+// A compressor in front of the drive keeps a decaying note pushed into the
+// clipper, so it sustains at full distortion instead of cleaning up.
+const SUSTAIN = (ratio) =>
+  `acompressor=threshold=0.03:ratio=${ratio}:attack=5:release=200:makeup=4`;
 
 // Drive stages run at 4x the sample rate, so the harmonics that clipping adds
 // above the original Nyquist frequency are filtered out on the way back down
@@ -50,23 +65,59 @@ function oversampled(rate, stages) {
   return [`aresample=${rate * 4}`, ...stages, `aresample=${rate}`].join(",");
 }
 
-const AMP = {
-  clean: () => CAB,
-  crunch: (rate) =>
-    [PRE, oversampled(rate, ["volume=20dB", CLIP]), CAB].join(","),
-  "high gain": (rate) =>
-    [
-      PRE,
-      oversampled(rate, [
-        "volume=24dB",
-        CLIP,
-        "equalizer=f=1000:t=o:w=1:g=3",
-        "volume=12dB",
-        CLIP,
-      ]),
-      CAB,
-    ].join(","),
+const AMPS = {
+  v1: {
+    clean: () => "",
+    crunch: (rate) => [PRE, oversampled(rate, ["volume=20dB", TANH])].join(","),
+    "high gain": (rate) =>
+      [
+        PRE,
+        oversampled(rate, [
+          "volume=24dB",
+          TANH,
+          "equalizer=f=1000:t=o:w=1:g=3",
+          "volume=12dB",
+          TANH,
+        ]),
+      ].join(","),
+  },
+  // Compression for sustain, asymmetric first stage, and cascaded stages that
+  // each clip less, the way a high-gain preamp does.
+  v2: {
+    clean: () => SUSTAIN(2),
+    crunch: (rate) =>
+      [
+        PRE,
+        SUSTAIN(4),
+        oversampled(rate, [
+          "volume=18dB",
+          ASYM_TANH,
+          "equalizer=f=1000:t=o:w=1:g=2",
+          "volume=6dB",
+          TANH,
+        ]),
+      ].join(","),
+    "high gain": (rate) =>
+      [
+        PRE,
+        SUSTAIN(8),
+        oversampled(rate, [
+          "volume=18dB",
+          ASYM_TANH,
+          "highpass=f=120,equalizer=f=1000:t=o:w=1:g=3",
+          "volume=14dB",
+          TANH,
+          "volume=10dB",
+          TANH,
+        ]),
+      ].join(","),
+  },
 };
+const AMP = AMPS[values.amp];
+
+// A small room, as a few early reflections, because a fully dry distorted
+// guitar sounds small next to a recorded one.
+const ROOM = "aecho=0.9:0.6:19|31|47:0.18|0.12|0.08";
 
 // General MIDI stand-ins for the baseline: Clean 27, Muted 28, Overdriven 29,
 // Distortion 30.
@@ -74,7 +125,7 @@ const GM = { clean: 27, crunch: 29, "high gain": 30 };
 
 function gainOf(track) {
   const name = track.name.toLowerCase();
-  return Object.keys(AMP).find((g) => name.startsWith(g));
+  return Object.keys(GM).find((g) => name.startsWith(g));
 }
 
 function ffmpeg(args) {
@@ -113,16 +164,23 @@ function channelFilter(gain, pan) {
   return `volume=${gain},${panFilter}`;
 }
 
-function render(project, dir) {
-  fs.mkdirSync(dir, { recursive: true });
-  const file = path.join(dir, "project.json");
-  fs.writeFileSync(file, JSON.stringify(project));
-  execFileSync(
-    "pnpm",
-    ["exec", "tsx", "tools/render/render.ts", file, "--out", path.join(dir, "render")],
-    { cwd: toyMidi, stdio: ["ignore", "ignore", "inherit"] },
-  );
-  return path.join(dir, "render");
+// Render once per distinct project, so variants that only change the amp
+// reuse the same render.
+function render(project) {
+  const json = JSON.stringify(project);
+  const hash = crypto.createHash("sha1").update(json).digest("hex").slice(0, 8);
+  const dir = path.join(outDir, `render-${hash}`);
+  if (!fs.existsSync(path.join(dir, "00-mix.wav"))) {
+    fs.mkdirSync(dir, { recursive: true });
+    const file = path.join(dir, "project.json");
+    fs.writeFileSync(file, json);
+    execFileSync(
+      "pnpm",
+      ["exec", "tsx", "tools/render/render.ts", file, "--out", dir],
+      { cwd: values["toy-midi"], stdio: ["ignore", "ignore", "inherit"] },
+    );
+  }
+  return dir;
 }
 
 function trackFiles(renderDir, index, track) {
@@ -146,81 +204,68 @@ function mix(inputs, output) {
   fs.rmSync(tmp);
 }
 
-// Run each guitar track through its amp, matched to its dry loudness, then
-// apply the track's gain and pan. Other tracks keep the render tool's output.
-function amp(project, renderDir, ampDir) {
-  fs.mkdirSync(ampDir, { recursive: true });
-  return project.midiTracks.map((track, i) => {
-    const { raw, post } = trackFiles(renderDir, i, track);
-    const gain = gainOf(track);
-    if (!gain) return { track, file: post, guitar: false };
-    const driven = path.join(ampDir, path.basename(raw));
-    // Float samples, because in the 16-bit format the drive's volume boost
-    // would hard-clip before the soft clipper sees it, and headroom so the
-    // cabinet's boosts don't clip the 16-bit file. The track is
-    // loudness-matched afterwards anyway.
-    const chain = AMP[gain](sampleRate(raw));
-    ffmpeg(["-i", raw, "-af", `aformat=sample_fmts=flt,${chain},volume=-18dB`, driven]);
-    const match = lufs(raw) - lufs(driven);
-    const file = path.join(ampDir, path.basename(post));
+// Run a guitar track's dry render through the amp and cabinet, matched to its
+// dry loudness, then apply the track's gain and pan.
+function ampTrack(track, raw, workDir) {
+  const base = path.join(workDir, path.basename(raw, ".wav"));
+  const rate = sampleRate(raw);
+  // Mono, because a DI guitar is one signal. Float samples, because in the
+  // 16-bit format the drive's volume boost would hard-clip before the soft
+  // clipper sees it, and headroom so later boosts don't clip the 16-bit file.
+  const amp = AMP[gainOf(track)](rate);
+  const chain = ["aformat=sample_fmts=flt:channel_layouts=mono", amp, "volume=-18dB"];
+  if (!values.ir) chain.push(FILTER_CAB);
+  ffmpeg(["-i", raw, "-af", chain.filter(Boolean).join(","), `${base}-amp.wav`]);
+  let cab = `${base}-amp.wav`;
+  if (values.ir) {
+    cab = `${base}-cab.wav`;
     ffmpeg([
       "-i",
-      driven,
-      "-af",
-      `volume=${match}dB,${channelFilter(track.gain ?? 1, track.pan ?? 0)}`,
-      file,
+      `${base}-amp.wav`,
+      "-i",
+      values.ir,
+      "-filter_complex",
+      `[1:a]aresample=${rate},aformat=channel_layouts=mono[ir];[0:a][ir]afir=gtype=peak`,
+      cab,
     ]);
-    return { track, file, guitar: true };
-  });
+  }
+  const match = lufs(raw) - lufs(cab);
+  const post = [`volume=${match}dB`, "aformat=channel_layouts=stereo"];
+  if (values.room) post.push(ROOM);
+  post.push(channelFilter(track.gain ?? 1, track.pan ?? 0));
+  const out = `${base}-out.wav`;
+  ffmpeg(["-i", cab, "-af", post.join(","), out]);
+  return out;
 }
 
 const project = JSON.parse(fs.readFileSync(projectPath, "utf8"));
-const solo = (tracks) => tracks.filter((t) => t.guitar).map((t) => t.file);
-const all = (tracks) => tracks.map((t) => t.file);
-fs.mkdirSync(outDir, { recursive: true });
-
-// 1. The Telecaster as written, no amp.
-const teleRender = render(project, path.join(outDir, "tele"));
-const teleDry = project.midiTracks.map((track, i) => ({
-  track,
-  file: trackFiles(teleRender, i, track).post,
-  guitar: Boolean(gainOf(track)),
-}));
-mix(all(teleDry), path.join(outDir, "1-tele-dry.mp3"));
-
-// 2. General MIDI's guitars, the baseline.
-const gmProject = structuredClone(project);
-for (const track of gmProject.midiTracks) {
+const variant = structuredClone(project);
+for (const track of variant.midiTracks) {
   const gain = gainOf(track);
   if (!gain) continue;
-  const muted = track.program === 1;
-  delete track.soundfont;
-  track.program = muted ? 28 : GM[gain];
-}
-const gmRender = render(gmProject, path.join(outDir, "gm"));
-const gm = gmProject.midiTracks.map((track, i) => ({
-  track,
-  file: trackFiles(gmRender, i, track).post,
-  guitar: Boolean(gainOf(track)),
-}));
-mix(all(gm), path.join(outDir, "2-gm.mp3"));
-mix(solo(gm), path.join(outDir, "2-gm-guitars.mp3"));
-
-// 3. The Telecaster through the amp sim.
-const tele = amp(project, teleRender, path.join(outDir, "tele", "amp"));
-mix(all(tele), path.join(outDir, "3-tele-amp.mp3"));
-mix(solo(tele), path.join(outDir, "3-tele-amp-guitars.mp3"));
-
-// 4. The Les Paul bridge through the same amp sim.
-if (values.lespaul) {
-  const lpProject = structuredClone(project);
-  for (const track of lpProject.midiTracks) {
-    if (!gainOf(track)) continue;
+  if (values.gm) {
+    track.program = track.program === 1 ? 28 : GM[gain];
     delete track.soundfont;
-    track.sf2 = path.resolve(values.lespaul);
+  } else if (values.sf2) {
+    track.sf2 = path.resolve(values.sf2);
+    delete track.soundfont;
   }
-  const lpRender = render(lpProject, path.join(outDir, "lespaul"));
-  const lp = amp(lpProject, lpRender, path.join(outDir, "lespaul", "amp"));
-  mix(all(lp), path.join(outDir, "4-lespaul-amp.mp3"));
-  mix(solo(lp), path.join(outDir, "4-lespaul-amp-guitars.mp3"));
 }
+
+const renderDir = render(variant);
+const workDir = path.join(outDir, values.tag);
+fs.mkdirSync(workDir, { recursive: true });
+const tracks = variant.midiTracks.map((track, i) => {
+  const { raw, post } = trackFiles(renderDir, i, track);
+  const guitar = Boolean(gainOf(track));
+  const file = guitar && !values.gm ? ampTrack(track, raw, workDir) : post;
+  return { file, guitar };
+});
+mix(
+  tracks.map((t) => t.file),
+  path.join(outDir, `${values.tag}.mp3`),
+);
+mix(
+  tracks.filter((t) => t.guitar).map((t) => t.file),
+  path.join(outDir, `${values.tag}-guitars.mp3`),
+);
