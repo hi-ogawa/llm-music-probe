@@ -87,7 +87,7 @@ Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and
 
 ## Renders
 
-`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step adds one stage to the one before, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+`renders/` has this piece through each step of Toy MIDI's amp sim prototype, numbered as the steps in its README (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). Each step through 5 adds one stage to the one before, step 6 takes the cabinet out of step 5, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
 
 | File | Guitars |
 | --- | --- |
@@ -97,3 +97,4 @@ Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and
 | `3-compressor.mp3` | With a compressor in front and cascaded drive stages, which sustain but leak after note-offs (`v2`) |
 | `4-note-gate.mp3` | With the note gate, which cuts each note 30 ms after its note-off |
 | `5-room.mp3` | With a short room after the amp, the final chain |
+| `6-no-cabinet.mp3` | The final chain without the cabinet, which leaves the drive's fizz above 5 kHz |
