@@ -1,5 +1,5 @@
 // Generates the README's figures in images/: a chain diagram per step, and
-// plots from amp-sim.mjs renders (its per-track WAVs, 16-bit mono).
+// plots from amp-sim.ts renders (its per-track WAVs, 16-bit mono).
 //
 //   node gen-figures.mjs --held-note <out dir> --riff <out dir>
 //

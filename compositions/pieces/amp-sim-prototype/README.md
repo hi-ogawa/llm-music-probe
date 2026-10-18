@@ -106,7 +106,7 @@ Two ffmpeg details that silently broke the drive, worth knowing for an implement
 
 ## Reproduce
 
-`amp-sim.mjs` exports the project as MIDI with Toy MIDI's CLI (`toy-midi export-midi`), renders each MIDI track on its own with fluidsynth on the track's SoundFont, and runs the guitar tracks through the amp. It needs the CLI, `fluidsynth`, `ffmpeg`, and `ffprobe`, and the SoundFonts from toy-midi's `soundfonts-1` release:
+`amp-sim.ts` exports the project as MIDI with Toy MIDI's CLI (`toy-midi export-midi`), renders each MIDI track on its own with fluidsynth on the track's SoundFont, and runs the guitar tracks through the amp. It needs the CLI, `fluidsynth`, `ffmpeg`, and `ffprobe`, and the SoundFonts from toy-midi's `soundfonts-1` release:
 
 ```sh
 pnpm i -g "github:hi-ogawa/toy-midi#path:/packages/cli"
@@ -118,7 +118,7 @@ Each call writes one variant as `<tag>.mp3` and `<tag>-guitars.mp3`, with the gu
 
 ```sh
 run() {
-  node amp-sim.mjs ../quiet-loud-in-e/quiet-loud.json \
+  node amp-sim.ts ../quiet-loud-in-e/quiet-loud.json \
     --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/quiet-loud "$@"
 }
 run --tag gm --gm
@@ -139,8 +139,8 @@ Each track renders dry, with its volume at the MIDI default and its pan centered
 The figures come from renders of [`held-note.json`](held-note.json), three notes held for 6 seconds on one high-gain track, and of Open E Mixolydian:
 
 ```sh
-node amp-sim.mjs held-note.json --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/held --tag v1 --amp v1
-node amp-sim.mjs held-note.json --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/held --tag v2 --amp v2
+node amp-sim.ts held-note.json --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/held --tag v1 --amp v1
+node amp-sim.ts held-note.json --soundfonts /tmp/ampsim/sf --out /tmp/ampsim/held --tag v2 --amp v2
 # Open E Mixolydian into /tmp/ampsim/riff, with the tags v2, v2-gate-filtercab, v2-gate-nocab, and v2-ir-gate
 node gen-figures.mjs --held-note /tmp/ampsim/held --riff /tmp/ampsim/riff
 ```
