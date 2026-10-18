@@ -194,16 +194,12 @@ async function renderDryTracks({
   }
   fs.mkdirSync(dir, { recursive: true });
 
-  // Export a copy with every track at the dry gain and centered, so the MIDI
-  // carries no mix, and the script applies each track's gain and pan after
-  // the amp, as the app does after the synth.
-  const dry: Project = {
-    ...project,
-    midiTracks: project.midiTracks.map((t) => ({ ...t, gain: DRY_GAIN, pan: 0 })),
-  };
+  // Export MIDI carries what the synth plays and leaves out each track's gain
+  // and pan, so the render is dry, and the script applies them after the amp,
+  // as the app does after the synth.
   const projectFile = path.join(dir, "project.json");
   const midiFile = path.join(dir, "project.mid");
-  fs.writeFileSync(projectFile, JSON.stringify(dry));
+  fs.writeFileSync(projectFile, json);
   const url = options.url ? ["--url", options.url] : [];
   await execFileAsync(options.cli, [
     "export-midi",
@@ -239,11 +235,6 @@ async function renderDryTracks({
   fs.writeFileSync(path.join(dir, "done"), "");
   return dir;
 }
-
-// export-midi writes a track's gain as CC 7 = round(127·√gain), so this gain
-// becomes 100, the MIDI default. The amp's drive levels were tuned at that
-// volume, and the drive depends on input level.
-const DRY_GAIN = (100 / 127) ** 2;
 
 function getDryTrackPath({
   renderDir,
