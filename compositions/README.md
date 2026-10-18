@@ -25,7 +25,7 @@ A prompt file in `prompts/` has two parts: what the piece is for, and the prompt
 
 1. **Hand it off** to a fresh agent session. Give it the prompt as its whole request, and a scratch directory outside this repository to save into, so it can't read the purpose or the other pieces. When the prompt is longer than a chat message allows, write it to a file in the scratch directory and send a one-line request to read that file.
 2. **Collect** the result into `pieces/<folder>/`: the project file and the session's README. Move the prompt file there as `prompt.md`, so the folder records what was asked and `prompts/` holds only prompts not run yet.
-3. **Track** the piece in the composition tracker's Candidates, with a Toy MIDI link to its project file.
+3. **Track** the piece in the composition tracker's Candidates, with a Toy MIDI link to its project file. A raw URL on `main` resolves only once the file is on `main`, so while the piece sits on a branch, link the branch's raw URL and switch the row to `main` after it merges.
 4. **Keep** it, when the listener says so, by following [Adding a piece](#adding-a-piece).
 
 ## Catalog format
