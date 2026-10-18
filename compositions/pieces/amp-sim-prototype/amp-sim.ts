@@ -193,9 +193,17 @@ async function renderDryTracks({
     return dir;
   }
   fs.mkdirSync(dir, { recursive: true });
+
+  // Export a copy with every track at the dry gain and centered, so the MIDI
+  // carries no mix, and the script applies each track's gain and pan after
+  // the amp, as the app does after the synth.
+  const dry: Project = {
+    ...project,
+    midiTracks: project.midiTracks.map((t) => ({ ...t, gain: DRY_GAIN, pan: 0 })),
+  };
   const projectFile = path.join(dir, "project.json");
   const midiFile = path.join(dir, "project.mid");
-  fs.writeFileSync(projectFile, json);
+  fs.writeFileSync(projectFile, JSON.stringify(dry));
   const url = options.url ? ["--url", options.url] : [];
   await execFileAsync(options.cli, [
     "export-midi",
@@ -203,12 +211,14 @@ async function renderDryTracks({
     midiFile,
     ...url,
   ]);
+
+  // Render each track on its own SoundFont.
   const smf = fs.readFileSync(midiFile);
   await Promise.all(
     project.midiTracks.map(async (track, index) => {
       const raw = getDryTrackPath({ renderDir: dir, index, track });
       const trackMidi = raw.replace(/\.wav$/, ".mid");
-      fs.writeFileSync(trackMidi, extractDryTrack(smf, index));
+      fs.writeFileSync(trackMidi, extractTrack(smf, index));
       const soundfont = path.join(
         options.soundfonts,
         (track.soundfont && SOUNDFONT_FILES[track.soundfont]) ??
@@ -230,6 +240,11 @@ async function renderDryTracks({
   return dir;
 }
 
+// export-midi writes a track's gain as CC 7 = round(127·√gain), so this gain
+// becomes 100, the MIDI default. The amp's drive levels were tuned at that
+// volume, and the drive depends on input level.
+const DRY_GAIN = (100 / 127) ** 2;
+
 function getDryTrackPath({
   renderDir,
   index,
@@ -244,60 +259,19 @@ function getDryTrackPath({
   return path.join(renderDir, `${number}-${slug}-raw.wav`);
 }
 
-// One track of an exported MIDI file, behind the file's conductor track, with
-// its volume (CC 7) at 100, the MIDI default, and its pan (CC 10) centered, so
-// the render is dry and the script applies the track's gain and pan itself, as
-// the app does after the synth. The amp's drive levels were tuned at volume
-// 100, and the drive depends on input level. Values are rewritten in place, so
-// no event moves.
-function extractDryTrack(smf: Buffer, index: number) {
+// One track of an exported MIDI file, behind the file's conductor track, as a
+// MIDI file of its own. Export MIDI writes the conductor first and then the
+// project's tracks in order.
+function extractTrack(smf: Buffer, index: number) {
   const chunks: Buffer[] = [];
   for (let p = 14; p < smf.length; ) {
     const length = smf.readUInt32BE(p + 4);
-    chunks.push(Buffer.from(smf.subarray(p, p + 8 + length)));
+    chunks.push(smf.subarray(p, p + 8 + length));
     p += 8 + length;
   }
-  const track = chunks[index + 1]!;
-  const readVarLength = (p: number) => {
-    let value = 0;
-    for (;;) {
-      const byte = track[p++]!;
-      value = (value << 7) | (byte & 0x7f);
-      if (!(byte & 0x80)) {
-        return { value, next: p };
-      }
-    }
-  };
-  let status = 0;
-  for (let p = 8; p < track.length; ) {
-    p = readVarLength(p).next;
-    const byte = track[p]!;
-    if (byte === 0xff) {
-      const { value, next } = readVarLength(p + 2);
-      p = next + value;
-    } else if (byte === 0xf0 || byte === 0xf7) {
-      const { value, next } = readVarLength(p + 1);
-      p = next + value;
-    } else {
-      // A data byte here continues the previous status (running status).
-      if (byte & 0x80) {
-        status = byte;
-        p++;
-      }
-      const type = status & 0xf0;
-      if (type === 0xb0 && track[p] === 7) {
-        track[p + 1] = 100;
-      }
-      if (type === 0xb0 && track[p] === 10) {
-        track[p + 1] = 64;
-      }
-      p += type === 0xc0 || type === 0xd0 ? 1 : 2;
-    }
-  }
   const header = Buffer.from(smf.subarray(0, 14));
-  header.writeUInt16BE(1, 8);
   header.writeUInt16BE(2, 10);
-  return Buffer.concat([header, chunks[0]!, track]);
+  return Buffer.concat([header, chunks[0]!, chunks[index + 1]!]);
 }
 
 // --- amp ------------------------------------------------------------------------
