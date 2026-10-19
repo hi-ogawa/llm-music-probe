@@ -45,6 +45,6 @@ Add a piece when the listener says to keep it.
 
 ## Optional steps
 
-Add these to a composing prompt only when a piece calls for them.
+None of these is part of a default composing prompt. The person steering adds one when they choose to.
 
-- **Level check.** An agent that sets levels by role without hearing them can bury its own hook, as in [13](../experiments/13-loudness-mix-fix/README.md). Ask the session to measure per-track loudness from a render, for example with that experiment's [`loudness.mjs`](../experiments/13-loudness-mix-fix/loudness.mjs), and to check that the focus part sits on top. Toy MIDI's own loudness meter for agents is planned in [toy-midi#890](https://github.com/hi-ogawa/toy-midi/issues/890).
+- **Level check.** An agent that sets levels by role without hearing them can bury its own hook, as in [13](../experiments/13-loudness-mix-fix/README.md), where the check came after a listen found the bass too loud and the lead buried. When a listen finds a part too loud or buried, ask the session to measure per-track loudness from a render, for example with that experiment's [`loudness.mjs`](../experiments/13-loudness-mix-fix/loudness.mjs), and to check that the focus part sits on top. Toy MIDI's own loudness meter for agents is planned in [toy-midi#890](https://github.com/hi-ogawa/toy-midi/issues/890).
