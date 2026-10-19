@@ -42,3 +42,9 @@ Add a piece when the listener says to keep it.
 
 1. Make sure its folder has the project file. If the session only has a share link, decode the link into a file. Toy MIDI's `/llms.txt` documents the encoding.
 2. Append an entry to `catalog.json`, keeping newest first.
+
+## Optional steps
+
+Add these to a composing prompt only when a piece calls for them.
+
+- **Level check.** An agent that sets levels by role without hearing them can bury its own hook, as in [13](../experiments/13-loudness-mix-fix/README.md). Ask the session to measure per-track loudness from a render, for example with that experiment's [`loudness.mjs`](../experiments/13-loudness-mix-fix/loudness.mjs), and to check that the focus part sits on top. Toy MIDI's own loudness meter for agents is planned in [toy-midi#890](https://github.com/hi-ogawa/toy-midi/issues/890).
