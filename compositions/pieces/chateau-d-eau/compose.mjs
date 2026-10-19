@@ -244,21 +244,79 @@ for (let b = 1; b <= BARS; b++) {
 }
 stab("rhodes", "rhodes", "Ebmaj9", bar(49) + 3.5, 0.6, 96);
 
-// ---------- guitar: backbeat chanks with 16th ghosts ----------
+// ---------- guitar: open accents and muted chks on the top three strings ----------
+// After the cutting-guitar lessons in toy-midi#861: the rhythm is carried by which strokes ring
+// and which are muted, not by velocity steps; the hand keeps moving in 16ths with air strokes in
+// between; and the grips stay in one position on the G, B, and e strings, voice-led.
+const ms = (x) => (x * 100) / 60000; // milliseconds to beats at 100 BPM
+const STRINGS = [55, 59, 64]; // G3, B3, E4
+let prevGrip = [65, 70, 74]; // F-Bb-D around the 10th fret
+const gripFor = (name) => {
+  const pcs = CHORDS[name].gtr.map((n) => PC[n.replace(/-?\d$/, "")]);
+  let best;
+  for (let a = 1; a <= 15; a++)
+    for (let b = 1; b <= 15; b++)
+      for (let c = 1; c <= 15; c++) {
+        const frets = [a, b, c];
+        if (Math.max(...frets) - Math.min(...frets) > 3) continue;
+        const grip = frets.map((f, i) => STRINGS[i] + f);
+        if (!grip.every((p) => pcs.includes(p % 12)) || new Set(grip.map((p) => p % 12)).size !== 3) continue;
+        const score = grip.reduce((s, p, i) => s + Math.abs(p - prevGrip[i]), 0) + Math.abs(frets[0] - 9) * 0.5; // stay near the 9th fret
+        if (!best || score < best.score) best = { grip, score };
+      }
+  return (prevGrip = best.grip);
+};
+// X open accent, P open push into the next bar's chord, x muted chk, . air stroke
+const GTR = {
+  a: "x...X.x.....x.P.",
+  b: "....X..x..x.X.x.",
+  b6: "....X..x..x.X.P.",
+  c7: "..x.X..x..x.X..x",
+  c8: "X.x.X..x..x.X.x.",
+  soloOdd: "......X.......x.",
+  soloEven: "..x.......X.....",
+  soloBuild: "x...X.x...x...P.",
+  end: "..............P.",
+};
+const gtrGrid = (b) => {
+  const { sec, type } = form[b];
+  if (sec === "intro" && b < 5) return null;
+  if (sec === "ending") return b === 49 ? GTR.end : null;
+  if (sec === "solo") return b === 40 ? GTR.b : b >= 37 ? GTR.soloBuild : b % 2 ? GTR.soloOdd : GTR.soloEven;
+  return { a: GTR.a, a3: GTR.a, b1: GTR.b, b2: GTR.b, b6: GTR.b6, c7: GTR.c7, c8: GTR.c8 }[type];
+};
+const strokes = [];
 for (let b = 1; b <= BARS; b++) {
-  const { sec } = form[b];
-  const t0 = bar(b);
-  if (sec === "ending" || (sec === "intro" && b < 5)) continue;
-  if (sec === "solo") {
-    // solo: one off-beat chank per bar, a little denser from bar 37
-    stab("guitar", "gtr", chordAt(t0 + 2.5), t0 + 2.5, 0.12, 58);
-    if (b >= 37) stab("guitar", "gtr", chordAt(t0 + 1), t0 + 1, 0.12, 66);
-    continue;
-  }
-  const v = sec === "head3" ? 84 : 76;
-  for (const [x, d, dv] of [[0.75, 0.06, -34], [1, 0.12, 0], [2.75, 0.06, -34], [3, 0.12, 0]]) stab("guitar", "gtr", chordAt(t0 + x), t0 + x, d, v + dv);
+  const grid = gtrGrid(b);
+  if (!grid) continue;
+  [...grid].forEach((c, s) => {
+    if (c === ".") return;
+    const t = bar(b) + s / 4;
+    const name = c === "P" ? (b === 49 ? "Ebmaj9" : chordAt(bar(b + 1))) : chordAt(t);
+    strokes.push({ t, s, kind: c, name, b, sec: form[b].sec });
+  });
 }
-stab("guitar", "gtr", "Ebmaj9", bar(49) + 3.5, 0.5, 92);
+strokes.forEach((st, i) => {
+  const grip = gripFor(st.name);
+  const down = st.s % 2 === 0;
+  const open = st.kind !== "x";
+  let strs = open ? grip : down ? [grip[0] - 5, ...grip] : grip.slice(-2);
+  if (!down) strs = [...strs].reverse();
+  const start = st.t + (down ? 0 : ms(6)) + ms(jitter(4));
+  const spread = (ms(open ? 16 : down ? 8 : 5) + ms(jitter(3))) / (strs.length - 1);
+  // accents choke at a 16th; the last accent in a bar and the pushes ring until just before the
+  // next stroke, with the left hand letting go 0.06-0.14 beat early
+  const next = strokes[i + 1]?.t ?? st.t + 2.4;
+  const lastInBar = !strokes.slice(i + 1).some((o) => o.b === st.b && o.kind !== "x");
+  const ringEnd = st.kind === "P" || lastInBar ? Math.min(next, st.t + 1.5) - (0.06 + rand() * 0.08) : st.t + 0.2;
+  const base = !open ? (down ? 40 : 34) : st.sec === "head3" ? 94 : st.sec === "solo" && st.b < 37 ? 74 : 86;
+  strs.forEach((pitch, k) => {
+    const on = start + k * spread;
+    const velocity = base + 4 - (8 * k) / (strs.length - 1);
+    if (open) add("guitar", pitch, on, Math.max(ms(30), ringEnd - on + jitter(0.02)), velocity, { vJit: 4 });
+    else add("guitarMuted", pitch, on, ms(22 + jitter(4)), velocity, { vJit: 4 });
+  });
+});
 
 // ---------- organ: pads under head 2, the solo, and head 3 ----------
 for (const s of segments) {
@@ -381,7 +439,8 @@ const project = {
     { name: "Trombone", program: 57, gain: 0.6, pan: -0.1, keySignature: key, automation: swell(), notes: notes.trombone },
     { name: "Rhodes solo", program: 4, gain: 0.8, pan: 0.05, keySignature: key, notes: notes.solo },
     { name: "Rhodes comp", program: 4, gain: 0.55, pan: -0.4, keySignature: key, notes: notes.rhodes },
-    { name: "Guitar", program: 27, gain: 0.45, pan: 0.5, keySignature: key, notes: notes.guitar },
+    { name: "Guitar (open)", soundfont: "flamestudios-telecaster-neck", program: 0, gain: 0.45, pan: 0.5, keySignature: key, notes: notes.guitar },
+    { name: "Guitar (muted)", soundfont: "flamestudios-telecaster-neck", program: 1, gain: 0.6, pan: 0.5, keySignature: key, notes: notes.guitarMuted },
     { name: "Organ pad", program: 16, gain: 0.32, pan: -0.2, keySignature: key, notes: notes.organ },
     { name: "Upright bass", program: 32, gain: 0.9, pan: 0, keySignature: key, notes: notes.bass },
     { name: "Drums", program: 0, bank: 128, gain: 0.8, pan: 0, notes: notes.drums },
