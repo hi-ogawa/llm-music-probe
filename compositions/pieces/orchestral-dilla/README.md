@@ -1,6 +1,6 @@
 # Orchestral Dilla, a J Dilla beat played by an orchestra with no drums
 
-**Demo: [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Forchestral-dilla%2Forchestral-dilla.json)** ([self-contained share link](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Forchestral-dilla%2Forchestral-dilla.json))
+**Demo: [open v2 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Forchestral-dilla%2Forchestral-dilla-v2.json)** ([v1, without automation](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Forchestral-dilla%2Forchestral-dilla.json))
 
 A 40-bar looping piece at 88 BPM in Db major, with a flip into Bb minor. The prompt asked for orchestral music inspired by J Dilla beats, with no drum kit so the groove has to come from the orchestra, multiple sections, a loop, and build-ups at the section boundaries. It was composed in one take as a share link, without hearing it, and has no feedback yet.
 
@@ -84,7 +84,45 @@ The boundary from D back to A has no build. It is the breakdown above, because a
 
 ## Iteration
 
-1. **First take** (`orchestral-dilla.json`). Everything above. Feedback: pending.
+1. **First take** (`orchestral-dilla.json`, `gen.mjs`). Everything above. Feedback: pending.
+2. **Automation** (`orchestral-dilla-v2.json`, `v2-automation.mjs`). The same notes, with expression, vibrato, pedal, and pitch bend added, as described in [v2](#v2-automation). Feedback: pending.
+
+## v2: automation
+
+v1 was written before Toy MIDI played automation, so every held string and wind note sits at its attack level for its whole length. v2 keeps every note of v1 and adds automation per track, so switching between the two links isolates what the automation does. `v2-automation.mjs` reads v1's file, adds the sequences, and fails if any note differs.
+
+The idea is that the beat stays a machine and the orchestra around it breathes. The pizzicato "drums" and the string chops are the sample in this piece, and a chopped sample plays back at a fixed level, so they get no automation. Everything that holds a note gets the shaping a player would give it.
+
+### Techniques
+
+- **Expression (CC11)** shapes the level inside held notes. The pad and horns swell into each chord and settle, the melodies get louder toward the top of each phrase, long notes bloom and taper, and the last note of a phrase releases. Builds become one continuous crescendo instead of steps between re-struck notes, and tutti hits decay sforzando-piano instead of ending as a flat block.
+- **Vibrato (CC1)** comes in on flute and violin notes of about a beat or longer, starting after the note settles, as a player's vibrato does. Short notes stay straight. Clarinet, horns, and muted trumpet play without vibrato, which is their idiom here: a classical clarinet, an orchestral horn section, and a Harmon-muted jazz trumpet.
+- **Sustain pedal (CC64)** lets the harp and celesta ring through each bar in the intro and the breakdown, lifting just before each chord change. Elsewhere the harp's answers to the beat stay dry.
+- **Pitch bend** gives the muted trumpet a half-step scoop into its long notes and the blue A natural over F7b9, and a three-semitone fall into the dropout before D. In the intro and the breakdown, the pad, harp, and celesta also drift together by a few cents, like the wow of a worn record. All three share one curve, so they stay in tune with each other. This is the one effect that isn't orchestral, but it belongs to the piece's premise that the orchestra is a sampled record.
+
+### By section
+
+| Section | What the automation does |
+| --- | --- |
+| A, dusty intro (1–8) | The pad swells into each chord and settles, softer than anywhere else (expression about 78 to 100). The harp and celesta ring with the pedal, and the whole texture wows slightly, so the intro sounds like the record before the beat comes in. The arco bass from bar 5 leans into each kick and relaxes, so it follows the kick instead of droning. |
+| Build into B (7–8) | The pad, tremolo strings, and brass section crescendo continuously to full level at the dropout, so the re-struck chords join into one rising line. The pedal lifts at the dropout, so the cut is clean. |
+| B, the beat (9–24) | The groove is untouched. The flute hook follows its contour, with vibrato on its held notes, and the clarinet doubling shapes the same way without vibrato. From bar 17, the pad breathes with each chord and the horn guide tones swell through each bar, so the guide tones move as a line instead of holding. |
+| Build into C (23–24) | The pad, horns, tremolo strings, and brass section crescendo together into the dropout, and the violin run rises from expression 90 to full on its way into the downbeat. |
+| C, the flip (25–32) | The muted trumpet scoops into its long notes and the A natural over F7b9, which makes the bluesier phrase sound played rather than sequenced. The horns doubling it the second time shape the same phrase a little under it. The pad breathes as in B. At the end, the trumpet falls off its last note into the dropout. |
+| D, tutti (33–38) | The tutti hit decays in the brass section and tremolo strings, then the brass returns to full level for its snare stabs. The pad and horns swell at a higher level than in B (about 100 to 124), and the violins carry the hook with wider vibrato than the flute. |
+| Breakdown (39–40) | The pad, contrabass, and violins fade continuously through both bars (the pad from about 108 to 40), and the harp and celesta pedal and wow return. The loop wraps into an intro that sounds the same way, so the seam is a fade-in rather than a jump. |
+
+### Toy MIDI doc gaps
+
+I composed v2 against Toy MIDI's agent docs (`/llms.txt` and `/llms/toy-midi.d.ts`) and [toy-midi#916](https://github.com/hi-ogawa/toy-midi/pull/916), without hearing anything. Before the instruction to use only the docs arrived, I briefly dumped GeneralUser's preset data. I discarded it and none of the choices below come from it. These are the questions the docs left open and what I chose:
+
+- **How the CC11 value maps to level.** The docs don't give the curve. I assumed the GM-recommended one, where 90 is about −6 dB and 64 about −12 dB, and kept most shaping between about 80 and 127, so v2 isn't much quieter than v1 overall.
+- **What CC1 does on these presets.** The docs name CC1 as modulation but not its depth or rate, or whether a preset already has its own vibrato for CC1 to add to. I used it only on flute and violins, with depths of 38 to 50 and a delayed onset, so a wrong guess is limited to their held notes.
+- **Whether the harp and celesta respond to CC64.** I assumed GM behavior, where notes keep ringing after note-off while the pedal is down and decay naturally.
+- **Whether pitch bend is smoothed between points.** Values hold until the next point, so the scoops and the fall are written as steps of under 20 ms and the wow as steps of a 16th of a beat. The docs don't say whether those steps are audible.
+- **Whether a point on a note's start applies to that note.** toy-midi#916 says it does for controllers, but the type docs don't say, and nothing says it for pitch bend. The trumpet scoops rely on it.
+- **How dense automation can get.** The docs give no limit or guidance. v2 writes a point every 16th of a beat while a value changes, which makes the file about three times the size of v1's.
+- **Pitch bend is per track.** The type says the offset is "from the note's pitch" but not that one bend applies to every sounding note on the track. That is how MIDI works, so I only bent monophonic lines and the three tracks that share the wow.
 
 ## Untested
 
