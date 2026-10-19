@@ -16,6 +16,8 @@ https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pie
 
 A composing session composes the piece itself, so the listener can follow and steer it, and it writes its folder here from the start. A session that continues a piece adds to that piece's folder. An experiment that needs to control what the composer sees runs it in a fresh subagent instead, and says so in its write-up.
 
+A composing session works from Toy MIDI's agent docs, [`/llms.txt`](https://toy-midi.hiro18181.workers.dev/llms.txt) and the type declarations it links, rather than from Toy MIDI's source or the SoundFont's internals, because those docs are the interface Toy MIDI offers agents. When the docs leave a question open, such as how a controller sounds on a preset, the session makes a reasonable choice, lists the question under "Toy MIDI doc gaps" in its write-up, and mentions it when reporting the piece, so the docs can be fixed in Toy MIDI.
+
 Toy MIDI's Examples page reads `catalog.json` and opens the files it links, so when you move a file, update its `url` in the same commit, and keep the entry fields Toy MIDI reads unless Toy MIDI changes with them.
 
 ## Catalog format
