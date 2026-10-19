@@ -4,7 +4,7 @@ A soul-jazz riff tune after the techniques of Roy Hargrove's "Strasbourg / St. D
 
 **[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fchateau-d-eau%2Fproject.json)**
 
-50 bars at 100 BPM in 4/4, E♭ major, looping the whole piece. The tracks are Trumpet, Alto sax, Tenor sax, Trombone, Rhodes solo, Rhodes comp, Guitar (clean), Organ pad, Bass (finger), Drums, and Congas + shaker. `compose.mjs` generates `project.json`.
+50 bars at 100 BPM in 4/4, E♭ major, looping the whole piece. The tracks are Trumpet, Alto sax, Tenor sax, Trombone, Rhodes solo, Rhodes comp, Guitar (clean), Organ pad, Upright bass, Drums, and Congas + shaker. `compose.mjs` generates `project.json`.
 
 The session composed it directly from Hiroshi's brief, which asked for the reading of the reference to be written out as techniques before composing. Two earlier runs of an older brief came out as F minor blues because that brief called the head "bluesy" from an unchecked recollection, so this session checked the reading against published lead sheets instead of recalling it, and did not look at those two pieces.
 

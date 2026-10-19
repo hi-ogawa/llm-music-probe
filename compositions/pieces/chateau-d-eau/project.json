@@ -10811,8 +10811,8 @@
       ]
     },
     {
-      "name": "Bass",
-      "program": 33,
+      "name": "Upright bass",
+      "program": 32,
       "gain": 0.9,
       "pan": 0,
       "keySignature": {

@@ -383,7 +383,7 @@ const project = {
     { name: "Rhodes comp", program: 4, gain: 0.55, pan: -0.4, keySignature: key, notes: notes.rhodes },
     { name: "Guitar", program: 27, gain: 0.45, pan: 0.5, keySignature: key, notes: notes.guitar },
     { name: "Organ pad", program: 16, gain: 0.32, pan: -0.2, keySignature: key, notes: notes.organ },
-    { name: "Bass", program: 33, gain: 0.9, pan: 0, keySignature: key, notes: notes.bass },
+    { name: "Upright bass", program: 32, gain: 0.9, pan: 0, keySignature: key, notes: notes.bass },
     { name: "Drums", program: 0, bank: 128, gain: 0.8, pan: 0, notes: notes.drums },
     { name: "Congas + shaker", program: 0, bank: 128, gain: 0.5, pan: 0.45, notes: notes.perc },
   ],
