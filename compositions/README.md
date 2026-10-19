@@ -14,7 +14,7 @@ A project file is a Toy MIDI `SharedProject` and opens as an unsaved draft with 
 https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/<folder>/<file>.json
 ```
 
-A composing session writes its folder here from the start, and a session that continues a piece adds to that piece's folder.
+A composing session composes the piece itself, so the listener can follow and steer it, and it writes its folder here from the start. A session that continues a piece adds to that piece's folder. An experiment that needs to control what the composer sees runs it in a fresh subagent instead, and says so in its write-up.
 
 Toy MIDI's Examples page reads `catalog.json` and opens the files it links, so when you move a file, update its `url` in the same commit, and keep the entry fields Toy MIDI reads unless Toy MIDI changes with them.
 
@@ -42,3 +42,9 @@ Add a piece when the listener says to keep it.
 
 1. Make sure its folder has the project file. If the session only has a share link, decode the link into a file. Toy MIDI's `/llms.txt` documents the encoding.
 2. Append an entry to `catalog.json`, keeping newest first.
+
+## Optional steps
+
+None of these is part of a default composing prompt. The person steering adds one when they choose to.
+
+- **Level check.** An agent that sets levels by role without hearing them can bury its own hook, as in [13](../experiments/13-loudness-mix-fix/README.md), where the check came after a listen found the bass too loud and the lead buried. When a listen finds a part too loud or buried, ask the session to measure per-track loudness from a render, for example with that experiment's [`loudness.mjs`](../experiments/13-loudness-mix-fix/loudness.mjs), and to check that the focus part sits on top. Toy MIDI's own loudness meter for agents is planned in [toy-midi#890](https://github.com/hi-ogawa/toy-midi/issues/890).
