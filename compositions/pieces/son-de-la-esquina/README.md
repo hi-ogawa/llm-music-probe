@@ -2,9 +2,10 @@
 
 Salsa in the son montuno tradition, in D minor at 190 BPM, with every part locked to a 2-3 son clave.
 
-[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject.json)
+- **v1:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject.json). `compose.mjs` writes `project.json`.
+- **v2:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject-v2.json), denser, described in [v2](#v2). `compose-v2.mjs` writes `project-v2.json`.
 
-`compose.mjs` writes `project.json`. Run it with `node compose.mjs`.
+Run a script with `node <script>`.
 
 ## Brief
 
@@ -69,6 +70,30 @@ Notes are on an eighth-note grid with small seeded velocity variation, so reruns
 - Levels are set by role (lead and bass on top, piano and horns under them, percussion lower) and haven't been measured.
 - The timbalero plays no cáscara in the head, because the GM key map has no timbale shell sound. Congas and guiro carry the head instead.
 - The bongo martillo and the bongo bell play together in the montuno, as the brief asks, although one bongocero usually switches from one to the other.
+
+## v2
+
+After listening to v1, Hiroshi found the percussion and parts idiomatic but the texture too thin on the GM render, because a live band's fullness doesn't come through in MIDI. The feedback was to write denser than a band would, within the genre, and keep the percussion, form, melody, and bass. v2 adds:
+
+- **Horn backgrounds:** a four-voice voicing, trombones on the 3rd and 7th between E3 and Eb4 and trumpets on the other two chord tones just above, which keeps it under the lead. Sustained pads sit behind the head's A sections, and each pad after the first enters on the "and" of 4 before its chord. Through B, short punches on the clave replace the pads, skipping any that would land within 0.3 beats of a lead or coro attack.
+- **Tres:** dyads between C4 and Bb4 on the eighths the piano guajeo leaves open, so the two guajeos interlock. It enters with the bass in bar 5 and plays the cierre hits.
+- **Coro attack:** muted trumpets play the coro's voices short, while the choir holds each note until the next one, so the attack lands on time and the choir carries the sustain.
+- **Intro pickup:** the horn pickup in bars 7-8 is now four voices instead of a trumpet pair over a trombone octave.
+
+The montuno still builds by layers. Horn pads go in behind the pregón from cycle 3 and behind the whole cycle from cycle 5. In cycles 7-8, punches an octave above the pads go behind the pregón. Only two of those punches survive the lead-attack check, because the last two pregones leave few clave gaps.
+
+The register plan per section, with v2's additions in bold. Bass is below C3, low-mid C3 to C4, middle C4 to C5, and top above C5.
+
+| Section   | Bass                | Low-mid                                                 | Middle                                                         | Top                                       |
+| --------- | ------------------- | ------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------- |
+| Intro     | tumbao from bar 5   | guajeo bottom octave                                    | guajeo inner tones, **tres** from bar 5                        | guajeo top, **four-voice horn pickup**    |
+| Head A/A' | tumbao              | **trombone pads on guide tones**, guajeo bottom         | **trumpet pads**, **tres**, guajeo                             | lead, guajeo top                          |
+| Head B    | tumbao              | **trombone punches**, guajeo bottom                     | **trumpet punches**, **tres**, guajeo                          | lead, guajeo top                          |
+| Montuno   | tumbao              | coro low voice, guajeo bottom, **trombone pads**        | coro **with muted-trumpet attack**, **tres**, **trumpet pads** | coro top, pregón, guajeo top, **punches** |
+| Mambo     | tumbao              | trombone riff                                           | **tres**, guajeo, trumpet riff lower voice                     | trumpet riff, sax line                    |
+| Cierre    | roots               | trombones                                               | trumpets, piano, **tres**                                      | trumpet top                               |
+
+The tres is GM Steel Acoustic Guitar, because GM has no tres. Levels are still set by role and haven't been measured.
 
 ## Toy MIDI doc gaps
 
