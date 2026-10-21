@@ -1,5 +1,11 @@
 # Seven Corners: math rock in 7/8
 
+## Amp Version
+
+**[Open the amp version in Toy MIDI](https://fix-issue-974-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Famp-rearrangements%2Fcompositions%2Fpieces%2Fseven-corners%2Famp.json)**, on the preview of https://github.com/hi-ogawa/toy-midi/pull/977, the PR that adds the amp, so the link stops working once that preview is gone.
+
+`amp.json` is `guitar-v5-simple.json` with the crunch amp on Gtr 1 double, so a crunch layer sits under the clean Gtr 1. Math rock often runs one guitar clean and another at the edge of breakup, and the double was the one part free to change. The amped track moves to the Telecaster bridge SoundFont the amp was tuned on, gets CC 11 cuts after each note-off so the drive doesn't bring a note's release up into the next one, and has its gain lowered so it plays at the original's dry loudness. `amp.mjs` builds it.
+
 ## Guitar iteration on v4
 
 **Demo: [open guitar v5 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v5-simple.json)** ([guitar v4](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v4-keys.json), [guitar v2](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v2-ring.json), [guitar v1](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fseven-corners%2Fguitar-v1-tele.json)) (plays GeneralUser, not the Telecaster renders)

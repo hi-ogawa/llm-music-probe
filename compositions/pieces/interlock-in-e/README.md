@@ -6,6 +6,12 @@ A fresh 4-bar guitar loop rendered offline with a better electric guitar SoundFo
 
 Each version is a full project file here (`vN-<slug>.json`) with a Toy MIDI link, for reviewing the notes on the piano roll. Toy MIDI can't load another SoundFont yet (#852), so it plays GeneralUser. The FSBS renders are posted as MP3s in the Discord thread, not kept here.
 
+## Amp Version
+
+**[Open the amp version in Toy MIDI](https://fix-issue-974-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Famp-rearrangements%2Fcompositions%2Fpieces%2Finterlock-in-e%2Famp.json)**, on the preview of https://github.com/hi-ogawa/toy-midi/pull/977, the PR that adds the amp, so the link stops working once that preview is gone.
+
+`amp.json` is `v8-tele.json` with the crunch amp on Guitar R (line). The cutting parts stay clean, since funk cutting wants a clean attack, and the line gets a light crunch against them. The amped track moves to the Telecaster bridge SoundFont the amp was tuned on, gets CC 11 cuts after each note-off so the drive doesn't bring a note's release up into the next one, and has its gain lowered so it plays at the original's dry loudness. `amp.mjs` builds it.
+
 ## Why a fresh loop
 
 The question in #861 is whether a better sample fixes electric guitar compared with GeneralUser program 27. On Night Drive, FreePats FSBS clean beat program 27 by ear (Night Drive iteration 1). Iteration 2 there tried stroke simulation on the existing part, which drifted into tuning one arrangement. This loop starts from scratch with guitar-idiomatic writing, to hear what the FSBS sample can carry across two different guitar roles: chord cutting and a single-note line.

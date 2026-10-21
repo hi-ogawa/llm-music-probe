@@ -6,6 +6,12 @@ One articulation per test: a short phrase written so that the articulation belon
 
 Each version is a pair of project files with Toy MIDI links. Toy MIDI has no articulation support yet, so it plays the notes without the bends, on GeneralUser. The renders are MP3s in the Discord thread, not kept here.
 
+## Amp Version
+
+**[Open the amp version in Toy MIDI](https://fix-issue-974-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Famp-rearrangements%2Fcompositions%2Fpieces%2Fbend-test%2Famp.json)**, on the preview of https://github.com/hi-ogawa/toy-midi/pull/977, the PR that adds the amp, so the link stops working once that preview is gone.
+
+`amp.json` is `v3-with-bends.json` with the high gain amp on the lead. Drive holds a note up while it bends, which is where bends sound most guitar-like, so this is also the first version whose bends play in Toy MIDI: the `art` marks are written as pitch-bend automation, picked at the lower pitch and bent up, with each release continuing the bent note back down. The amped track moves to the Telecaster bridge SoundFont the amp was tuned on, gets CC 11 cuts after each note-off so the drive doesn't bring a note's release up into the next one, and has its gain lowered so it plays at the original's dry loudness. `amp.mjs` builds it.
+
 ## Setup
 
 - Font: the [FlameStudios Telecaster neck pickup](https://github.com/gdm-2112/electric-guitar-soundfonts/tree/main/SF3/FlameStudios) SF3 (GPL), the clean default picked in #861. The project files keep GM 27 (and 28 for ghosts), and the render maps them to the font's Standard (and Muted) presets.
