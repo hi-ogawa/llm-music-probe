@@ -87,7 +87,7 @@ Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and
 
 ## Renders
 
-`renders/` has this piece through Toy MIDI's amp sim prototype (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). 1 to 5 each add to the render before, 6 to 11 each change one thing in an earlier render, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+`renders/` has this piece through Toy MIDI's amp sim prototype (https://github.com/hi-ogawa/toy-midi/pull/963). 1 to 5 each add to the render before, 6 to 11 each change one thing in an earlier render, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
 
 | File | Guitars |
 | --- | --- |

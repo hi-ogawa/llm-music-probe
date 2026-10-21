@@ -23,4 +23,4 @@ Run on 2026-10-18, and the piece is in this folder. The composing session got on
 
 ## Renders
 
-Toy MIDI's amp sim prototype renders this piece, with the comparisons and what was heard in its README: https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim (added in https://github.com/hi-ogawa/toy-midi/pull/963).
+Toy MIDI's amp sim prototype renders this piece, with the comparisons and what was heard in its README: https://github.com/hi-ogawa/toy-midi/pull/963.
