@@ -1,5 +1,21 @@
 [
   {
+    "name": "Quiet-Loud in E",
+    "description": "Quiet-loud rock in E, with the riff clean in the verse and power chords double-tracked at high gain in the chorus",
+    "date": "2026-10-18",
+    "tags": ["rock", "guitar"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/quiet-loud-in-e/quiet-loud-amp.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/quiet-loud-in-e"
+  },
+  {
+    "name": "Open E Mixolydian",
+    "description": "Blues-based hard rock in E built on one open-position riff, with crunch rhythm guitars and a pentatonic lead with bends",
+    "date": "2026-10-18",
+    "tags": ["rock", "guitar"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/open-e-mixolydian/project-amp.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/open-e-mixolydian"
+  },
+  {
     "name": "Swell",
     "description": "Short orchestral cue in D major turning to B minor, with its swells shaped by expression",
     "date": "2026-10-17",
