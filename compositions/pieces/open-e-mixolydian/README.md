@@ -103,3 +103,5 @@ Limits: fluidsynth is not Toy MIDI's synth (SpessaSynth), so absolute levels and
 | `9-heavy-drive-gate.mp3` | 4 without the compressor, which leaves 3's heavier drive and the note gate |
 | `10-drive-release-time.mp3` | 2 with CC 72 (release time) at 0 on each guitar track instead of a gate, rendered with SpessaSynth, the app's synth, because fluidsynth ignores CC 72 |
 | `11-app-amp-swell-cut.mp3` | 9 through Toy MIDI's own amp (https://github.com/hi-ogawa/toy-midi/pull/965) instead of the ffmpeg chain, with 7's CC 11 swell-cut from `project-swell-cut.json` instead of the note gate |
+
+`project-amp.json` is `project-swell-cut.json` with Toy MIDI's amp (https://github.com/hi-ogawa/toy-midi/pull/977) on each Crunch and High Gain track, so render 11's setup can be heard in the app by opening it with `/draft?src=` and the file's raw URL.
