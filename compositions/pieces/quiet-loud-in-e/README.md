@@ -95,8 +95,8 @@ Caveats: fluidsynth is not Toy MIDI's synth, so absolute levels differ, but both
 | `4-note-gate.mp3` | With the note gate, which cuts each note 30 ms after its note-off |
 | `5-room.mp3` | With a short room after the amp, the final chain |
 | `6-no-cabinet.mp3` | The final chain without the cabinet, which leaves the drive's fizz above 5 kHz |
-| `7-swell-cut.mp3` | 3 with CC 11 automation on each guitar track that fades to 0 over 30 ms after a note-off and comes back at the next note-on, the gate written as expression instead |
+| `7-swell-cut.mp3` | 3 with CC 11 automation on each guitar track that fades to 0 over 30 ms after a note-off and comes back at the next note-on, the gate written as expression instead, rendered from `quiet-loud-swell-cut.json` |
 | `8-drive-gate.mp3` | 2 with the note gate from 4 |
 | `9-heavy-drive-gate.mp3` | 4 without the compressor, which leaves 3's heavier drive and the note gate |
 | `10-drive-release-time.mp3` | 2 with CC 72 (release time) at 0 on each guitar track instead of a gate, rendered with SpessaSynth, the app's synth, because fluidsynth ignores CC 72 |
-| `11-app-amp-swell-cut.mp3` | 9 through Toy MIDI's own amp (https://github.com/hi-ogawa/toy-midi/pull/965) instead of the ffmpeg chain, with 7's CC 11 swell-cut instead of the note gate, rendered from `quiet-loud-swell-cut.json`, a copy of the project with that automation on each guitar track |
+| `11-app-amp-swell-cut.mp3` | 9 through Toy MIDI's own amp (https://github.com/hi-ogawa/toy-midi/pull/965) instead of the ffmpeg chain, with 7's CC 11 swell-cut from `quiet-loud-swell-cut.json` instead of the note gate |
