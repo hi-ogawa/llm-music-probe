@@ -65,10 +65,10 @@
   },
   {
     "name": "Orchestral Dilla",
-    "description": "Dilla beat played on pizzicato strings with a dragging late snare",
+    "description": "Dilla beat played on pizzicato strings with a dragging late snare, with the orchestra around the beat shaped by expression, vibrato, pedal, and pitch bend",
     "date": "2026-10-14",
     "tags": ["orchestral", "hip-hop"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla/orchestral-dilla.json",
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla/orchestral-dilla-v2.json",
     "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-dilla"
   },
   {
