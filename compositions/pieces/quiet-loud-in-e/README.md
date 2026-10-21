@@ -84,7 +84,7 @@ Caveats: fluidsynth is not Toy MIDI's synth, so absolute levels differ, but both
 
 ## Renders
 
-`renders/` has this piece through Toy MIDI's amp sim prototype (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). 1 to 5 each add to the render before, 6 to 10 each change one thing in an earlier render, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
+`renders/` has this piece through Toy MIDI's amp sim prototype (https://github.com/hi-ogawa/toy-midi/tree/main/tools/amp-sim, added in https://github.com/hi-ogawa/toy-midi/pull/963). 1 to 5 each add to the render before, 6 to 11 each change one thing in an earlier render, every render is normalized to −16 LUFS, and `-guitars` has the guitars soloed.
 
 | File | Guitars |
 | --- | --- |
@@ -99,3 +99,4 @@ Caveats: fluidsynth is not Toy MIDI's synth, so absolute levels differ, but both
 | `8-drive-gate.mp3` | 2 with the note gate from 4 |
 | `9-heavy-drive-gate.mp3` | 4 without the compressor, which leaves 3's heavier drive and the note gate |
 | `10-drive-release-time.mp3` | 2 with CC 72 (release time) at 0 on each guitar track instead of a gate, rendered with SpessaSynth, the app's synth, because fluidsynth ignores CC 72 |
+| `11-app-amp-swell-cut.mp3` | 9 through Toy MIDI's own amp (https://github.com/hi-ogawa/toy-midi/pull/965) instead of the ffmpeg chain, with 7's CC 11 swell-cut instead of the note gate, rendered from `quiet-loud-swell-cut.json`, a copy of the project with that automation on each guitar track |
