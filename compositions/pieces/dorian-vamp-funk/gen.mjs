@@ -120,11 +120,6 @@ for (const s of HITS15) cl.chord(15, s, [63,67,74], 0.15, 112);
 cl.chord(16, 14, [62,67,69], 0.15, 112);
 cl.chord(24, 0, [62,67,72], 0.15, 112); cl.chord(24, 3, [62,67,72], 0.15, 105); cl.chord(24, 8, [66,71,76], 0.3, 112);
 
-// ---------------- Muted guitar: chicken scratch ----------------
-const gt = track();
-const gtPat = [[2,45],[3,40],[4,105],[6,50],[7,45],[10,90],[11,40],[12,105],[14,50],[15,45]];
-for (const bar of [...range(5, 8), ...A2]) for (const [s, v] of gtPat) gt.chord(bar, s, isEm(bar) ? [55,59,62] : [55,61,64], 0.1, v);
-
 // ---------------- Tenor sax: riff hook (call) + bridge line ----------------
 const sx = track();
 const riff = [[2,64,0.25,100],[3,67,0.25,95],[4,69,0.25,115],[6,70,0.12,85],[7,71,0.5,110],[10,69,0.25,95],[11,67,0.25,90]];
@@ -181,7 +176,6 @@ const project = {
     { name: "Tenor Sax (riff)", program: 66, gain: 0.75, pan: 0, notes: sx.notes },
     { name: "Rhodes (quartal)", program: 4, gain: 0.65, pan: -0.25, notes: rh.notes },
     { name: "Clav", program: 7, gain: 0.6, pan: -0.5, notes: cl.notes },
-    { name: "Muted Guitar", program: 28, gain: 0.55, pan: 0.55, notes: gt.notes },
     { name: "Brass (response)", program: 61, gain: 0.6, pan: 0.3, notes: br.notes },
   ],
 };
