@@ -4,6 +4,7 @@ Salsa in the son montuno tradition, in D minor at 190 BPM, with every part locke
 
 - **v1:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject.json). `compose.mjs` writes `project.json`.
 - **v2:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject-v2.json), denser, described in [v2](#v2). `compose-v2.mjs` writes `project-v2.json`.
+- **v3:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject-v3.json), v2 with the tres rewritten, described in [v3](#v3). `compose-v3.mjs` writes `project-v3.json`.
 
 Run a script with `node <script>`.
 
@@ -95,9 +96,22 @@ The register plan per section, with v2's additions in bold. Bass is below C3, lo
 
 The tres is GM Steel Acoustic Guitar, because GM has no tres. Levels are still set by role and haven't been measured.
 
+## v3
+
+Hiroshi found v2's tres sounded poor. Every stroke was a two-note block chord between C4 and Bb4, struck at once and cut to 0.4 beats, in the register that the trumpet pads, the guajeo's inner tones, and the coro already share. v3 keeps the tres's rhythm, which interlocks with the piano guajeo, and changes how it sounds. Every other part is note for note the same as v2.
+
+- **Register:** the top line moves up an octave to between D5 and D6, with the lower note of each dyad a third or fourth under it. This takes the tres out of the middle register and puts it beside the guajeo's top and the lead, where it is the only plucked part.
+- **Pick strokes:** each dyad is a stroke with its two notes 10 ms apart. On the beat it is a downstroke with the low string first, and on the offbeat an upstroke with the high string first. Notes ring until just before the next stroke, up to 1.25 beats, instead of stopping after 0.4.
+- **Doubled course:** a tres's strings come in pairs, so a second track, Tres doubled course, plays the top line again 6 ms late and 8 cents sharp through a held pitch bend, panned further right than the tres. The pair beats like doubled strings. The double is in unison rather than an octave up, because an octave over D5-D6 would sit above where a tres's or a 12-string's paired strings sound.
+- **Accent:** the stroke on the 3 side's downbeat is the one tres stroke on a clave hit, so it plays louder than the rest.
+- **EQ:** both tres tracks have a high-pass at 300 Hz, which keeps the guitar sample's body out of the low-mid.
+
+To compare, mute Tres doubled course to hear the stroke and register changes alone. If the tres still sounds cheap, the next step is to drop it and give its figure to the piano in octaves.
+
 ## Toy MIDI doc gaps
 
 - **Drum tracks:** the docs list bank 128's kits but don't say that notes on them follow the GM percussion key map, or whether several tracks can use a kit at once. I assumed both, with one track per percussion instrument.
 - **Percussion note length:** it isn't documented whether a drum note's duration affects its sound, such as for a long guiro scrape, or whether the sample always plays out. I gave long guiro strokes 0.9 beats and other hits 0.2-0.3.
 - **Overlapping notes:** it isn't documented what happens when two notes of the same pitch overlap on one track. I shortened ties and anticipations so none overlap.
+- **Fractional pitch bend:** pitch-bend points take semitones from -12 to 12, but the docs don't say whether a small fraction such as 0.08 is applied as is or rounded. v3's doubled course relies on it being applied as is.
 - **Kit sounds beyond GM:** the docs don't say whether GeneralUser GS's kits have sounds outside the GM key map, such as a timbale shell for cáscara.
