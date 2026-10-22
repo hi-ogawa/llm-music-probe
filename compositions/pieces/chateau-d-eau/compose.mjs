@@ -222,7 +222,9 @@ for (const [h, ns] of Object.entries(STAB)) for (const n of ns) add(h, P(n), bar
 const DETUNE = { trumpet: 0, alto: -0.06, tenor: 0.07, trombone: -0.05, bari: 0.05, brass: 0.04, horns: -0.04, strings: 0 };
 const automation = (track) => {
   const shapes = [];
-  for (const [t, len] of sfz[track] ?? []) shapes.push([t, len, (x) => (x < 0.12 ? 124 : x < 0.3 ? 70 : 70 + ((x - 0.3) / (len - 0.3)) * 50)]);
+  // The dip after the attack is about 3 dB (124 to 104 on SoundFont's 40·log10 expression curve),
+  // eased over a quarter beat, then the note swells back to 124 by its end.
+  for (const [t, len] of sfz[track] ?? []) shapes.push([t, len, (x) => (x < 0.125 ? 124 : x < 0.375 ? 124 - 20 * ((x - 0.125) / 0.25) : 104 + 20 * ((x - 0.375) / (len - 0.375)))]);
   for (const [t, len] of swells[track] ?? []) shapes.push([t, len, (x) => (x < len * 0.6 ? 46 + (x / (len * 0.6)) * 70 : 116 - ((x - len * 0.6) / (len * 0.4)) * 50)]);
   shapes.sort((a, b) => a[0] - b[0]);
   const cc = [{ beat: 0, value: 127 }];
