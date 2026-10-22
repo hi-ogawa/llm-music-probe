@@ -16,7 +16,7 @@
 | 13–14 | Bridge | Cm7 F7 \| Gmaj7 | Backdoor ii–V in G (iv–♭VII7–I), then a 16th snare build. | 6→7 |
 | 15 | Stop-time | B7alt | Unison hits on 1, the "a" of 1, and the "and" of 2 across the whole band, then silence. | 8 then 0 |
 | 16 | Break | (F7) | Linear drum break solo, then a unison F7 hit on the "and" of 4 (tritone sub for B7) into Em. | 6→8 |
-| 17–23 | A' | Em7 \| A9 | Full band. Crash, open hats, harder clav accents, Rhodes switches to short quartal chord stabs, and the bass adds extra pops and ghosts. Riff/response continues, and the bar-23 riff climbs to E5. | 9 |
+| 17–23 | A' | Em7 \| A9 | Full band. Crash, open hats, harder clav accents, Rhodes switches to short quartal chord stabs, and the bass adds extra pops and ghosts. Riff/response continues, and the bar-23 riff climbs to E5 and falls off it. | 9 |
 | 24 | Turnaround | Am7 D7 → (Em7) | Backdoor iv–♭VII7 in E. Unison hits, then a tom fill that resolves to Em7 at bar 1 when the loop restarts. | 8, then drop to 3 at bar 1 |
 
 ## Technique checklist
@@ -42,4 +42,9 @@
 | Stop-time and breaks | 15 (stop-time hits, then silence), 16 (drum break) |
 | A, bridge, A | A 1–8, bridge 9–16, A' 17–24 |
 | Energy curve | See the energy column: build over 1–8, dip at 9, rise through the bridge to stop-time, peak at 17–23, then reset at the loop |
+| Horn articulation | Sax scoops a semitone into the riff's held B4 (5, 7, 17, 19, 21, 23) and falls off the top E5 in 23. Brass falls off the last stop-time hit in 15 and the turnaround D7 in 24. Pitch bend plus a CC11 fade |
 | Panning plan | Center: drums, bass, sax lead. Left: Rhodes −0.25, clav −0.5. Right: brass +0.3 |
+
+## Toy MIDI doc gaps
+
+- The docs don't say how CC11 maps to level. The falls fade CC11 linearly from 127 to 50, by ear rather than to a target in dB.
