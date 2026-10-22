@@ -269,28 +269,103 @@ const BASS_RETURN = {
   39: [["F2", 1.5, 0.2, -8], ["Ab2", 1.75, 0.2, -8], ["Bb2", 2, 0.3], ["Bb2", 2.75, 0.15, -10], ["C3", 3, 0.3], ["Bb2", 3.5, 0.2, -6], ["Ab2", 3.75, 0.2, -6]],
   40: [["Bb2", 0, 0.4, 8], ["Bb2", 0.75, 0.15, -12], ["Ab2", 1, 0.35], ["F2", 1.5, 0.3, -6], ["Bb2", 2, 0.3], ["D3", 3, 0.35, 10], ["C3", 3.5, 0.2, -2], ["A2", 3.75, 0.2]],
 };
+// The figure develops across the heads: head 1 states it plain, and heads 2 and 3 vary it about
+// every other bar, with fills into the turnaround and the pushes and new answers to the octave pop.
+const BASS_VARIANT = {
+  20: [["Ab2", 1.5, 0.2, -10], ["F2", 1.75, 0.2, -12], ["Bb2", 2, 0.3, -2], ["D3", 3, 0.25, 8], ["F#2", 3.25, 0.2, -4], ["A2", 3.5, 0.2, -2], ["C3", 3.75, 0.2, 2]],
+  21: [["G2", 0, 0.4, 8], ["Bb2", 0.5, 0.2, -8], ["C3", 0.75, 0.2, -8], ["D3", 1, 0.35, 2], ["Ab2", 2, 0.4, 4], ["Eb3", 2.5, 0.2, -10], ["Ab2", 2.75, 0.15, -12], ["Bb2", 3.5, 1.85, 12]],
+  24: [["C3", 0, 0.4, 8], ["C3", 0.75, 0.15, -14], ["Bb2", 1, 0.35], ["G2", 2, 0.25, 4], ["Bb2", 2.25, 0.2, -8], ["B2", 2.5, 0.2, -6], ["C3", 2.75, 0.2, -6], ["D3", 3, 0.35, 8], ["C3", 3.5, 0.2, -4], ["A2", 3.75, 0.2, -2]],
+  42: [["Ab2", 1.5, 0.2, -10], ["F2", 1.75, 0.2, -12], ["Bb2", 2, 0.3, -2], ["C3", 2.5, 0.2, -8], ["D3", 3, 0.3, 8], ["Eb3", 3.25, 0.2, -4], ["C3", 3.5, 0.2, -4], ["A2", 3.75, 0.2, -2]],
+  43: [["G2", 0, 0.4, 8], ["G3", 0.5, 0.2, -8], ["F3", 0.75, 0.2, -10], ["D3", 1, 0.35], ["Ab2", 2, 0.4, 4], ["Ab3", 2.5, 0.2, -10], ["G3", 2.75, 0.15, -12], ["Bb2", 3.5, 1.85, 12]],
+  46: [["Ab2", 1.5, 0.2, -10], ["F2", 1.75, 0.2, -12], ["Bb2", 2, 0.25, -2], ["C3", 2.5, 0.2, -6], ["D3", 2.75, 0.2, -6], ["F3", 3, 0.25, 4], ["D3", 3.25, 0.2, -6], ["Eb2", 3.5, 1.85, 12]],
+  48: [["C3", 0, 0.4, 8], ["Eb3", 0.5, 0.2, -8], ["D3", 0.75, 0.2, -10], ["C3", 1, 0.35], ["G2", 2, 0.3, 4], ["A2", 2.5, 0.2, -6], ["Bb2", 2.75, 0.2, -6], ["D3", 3, 0.35, 8], ["C3", 3.5, 0.2, -4], ["A2", 3.75, 0.2, -2]],
+};
 const bassVel = { intro: 98, head1: 100, head2: 102, solo: 84, head3: 106 };
 let soloChordBar = 0;
 for (let b = 1; b <= BARS; b++) {
   const { sec, type } = form[b];
   const opts = { tJit: 0.006, vJit: 3 };
   if (sec === "ending") continue;
+  if (BASS_VARIANT[b]) { phrase("bass", b, BASS_VARIANT[b], bassVel[sec], opts); continue; }
   if (BASS_RETURN[b]) { phrase("bass", b, BASS_RETURN[b], 92 + (b - 37) * 3, opts); continue; }
   if (sec === "solo") { phrase("bass", b, BASS[type][soloChordBar++ % 2], bassVel.solo, opts); continue; }
   phrase("bass", b, BASS[type], bassVel[sec], opts);
 }
 phrase("bass", 49, [["G2", 0, 0.4, 8], ["G3", 0.75, 0.15, -10], ["G2", 1, 0.35], ["Ab2", 2, 0.4, 4], ["Ab2", 2.75, 0.15, -8], ["C3", 3, 0.25], ["Eb2", 3.5, 0.6, 14]], 106);
 
-// ---------- guitar: doubles the bass figure an octave up ----------
-// The figure is written above at guitar pitch. The guitar plays it there from bar 3 on, outside
-// the loose part of the solo, and the bass takes it an octave down, in the real bass register.
-// The octave pops go under velocity 46, which the Telecaster font plays from its muted layer, and
-// the one note under the low E string goes up an octave.
+// ---------- guitar: its own part, answering the bass ----------
+// The figure is written above at guitar pitch, and the bass takes it an octave down, in the real
+// bass register. The guitar doubles it only as an event, when it enters in bars 3-4 and in the
+// stop-time ending. Notes under velocity 46 play from the Telecaster font's muted layer.
 for (const n of notes.bass) {
   const b = Math.floor(n.start / 4) + 1;
-  if (b < 3 || (form[b].sec === "solo" && b < 37)) continue;
+  if (b !== 3 && b !== 4 && b !== 49) continue;
   const pop = n.duration <= 0.15;
   add("guitar", n.pitch < 40 ? n.pitch + 12 : n.pitch, n.start, pop ? n.duration : Math.min(n.duration, 0.9), pop ? 40 : n.velocity - 18, { vJit: 3 });
+}
+// Elsewhere in the intro and heads 1-2, and in bars 37-40: soul-jazz stabs on the D, G, and B
+// strings (around B♭3-F4, where the guitar has body), placed in the holes the bass figure leaves,
+// with muted 16th scratches between. Grips stay in one position and voice-lead.
+const MID_STRINGS = [50, 55, 59]; // D3, G3, B3
+let prevGrip = [58, 62, 65]; // B♭3-D4-F4, frets 8-7-6
+const gripFor = (name) => {
+  const pcs = CHORDS[name].gtr.map((n) => PC[n.replace(/-?\d$/, "")]);
+  let best;
+  for (let a = 1; a <= 12; a++)
+    for (let b = 1; b <= 12; b++)
+      for (let c = 1; c <= 12; c++) {
+        const frets = [a, b, c];
+        if (Math.max(...frets) - Math.min(...frets) > 3) continue;
+        const grip = frets.map((f, i) => MID_STRINGS[i] + f);
+        if (!grip.every((p) => pcs.includes(p % 12)) || new Set(grip.map((p) => p % 12)).size !== 3) continue;
+        const score = grip.reduce((s, p, i) => s + Math.abs(p - prevGrip[i]), 0) + Math.abs(frets[1] - 7) * 0.5;
+        if (!best || score < best.score) best = { grip, score };
+      }
+  return (prevGrip = best.grip);
+};
+// X open stab, x muted scratch, . nothing. The bass hits 1, 2, 3 and pushes on the "and" of 4 in
+// the first bar of a cycle, and holds its push through beat 2 of the second, so the stabs fall on
+// the "and" of 2 and on 4 in the first bar, and on the "and" of 1 and of 3 in the second.
+const STABS = {
+  a: "....x.X...x.X...",
+  b: "..X.x.....X.x...",
+  c7: "..X.x.X...x.X...",
+  c8: "..X.x.X...x.....",
+};
+const stabGrid = (b) => {
+  const { sec, type } = form[b];
+  if (sec === "intro" && b >= 5) return STABS[type[0]];
+  if (sec === "solo" && b >= 37) return b <= 38 ? STABS.a : STABS.b;
+  if (sec === "head1" || sec === "head2") return STABS[type] ?? STABS[type[0]];
+  return null;
+};
+for (let b = 1; b <= BARS; b++) {
+  const grid = stabGrid(b);
+  if (!grid) continue;
+  [...grid].forEach((c, s) => {
+    if (c === ".") return;
+    const t = bar(b) + s / 4;
+    const grip = gripFor(chordAt(t));
+    const open = c === "X";
+    const strs = open ? grip : grip.slice(0, 2);
+    const v = open ? (form[b].sec === "intro" ? 76 : 84) : 36;
+    strs.forEach((p, k) => add("guitar", p, t + ms(k * (open ? 11 : 6)), open ? 0.38 - k * 0.02 : ms(24), v + 3 - k * 3, { tJit: 0.004, vJit: 4 }));
+  });
+}
+// Head 3: a Wes-style octave counter-line instead, in the riff's holes, mostly the start of each
+// second bar where the horns rest, plus an octave hit on each push.
+const OCTAVE_LINE = {
+  41: [["Bb3", 3.5, 0.4]],
+  42: [["F3", 0, 0.45], ["Ab3", 0.5, 0.2], ["Bb3", 0.75, 0.45], ["C4", 1.25, 0.2]],
+  43: [["Bb3", 3.5, 0.4]],
+  44: [["Eb4", 0, 0.45], ["D4", 0.5, 0.2], ["C4", 0.75, 0.2], ["Bb3", 1, 0.45]],
+  45: [["Bb3", 3.5, 0.4]],
+  46: [["F3", 0, 0.2], ["G3", 0.25, 0.2], ["Ab3", 0.5, 0.2], ["Bb3", 0.75, 0.2], ["C4", 1, 0.45], ["Eb4", 3.5, 0.4]],
+  47: [["D4", 0.5, 0.45], ["Bb3", 1, 0.45]],
+  48: [["G3", 1.75, 0.2], ["Bb3", 2, 0.2], ["C4", 2.25, 0.2], ["D4", 2.5, 0.45]],
+};
+for (const [b, list] of Object.entries(OCTAVE_LINE)) {
+  for (const [n, s, d] of list) [0, 12].forEach((k) => add("guitar", P(n) + k, bar(Number(b)) + s + ms(k ? 8 : 0), d, 88 - (k ? 6 : 0), { tJit: 0.004, vJit: 3 }));
 }
 // In the loose part of the solo, ringing sixths instead, two per chord.
 const SIXTHS = { Gm11: [["D4", "Bb4"], ["F4", "D5"]], Abmaj7s11: [["C4", "Ab4"], ["Eb4", "C5"]], Cm11: [["Eb4", "C5"], ["G4", "Eb5"]], Fm9: [["C4", "Ab4"], ["Eb4", "C5"]] };
@@ -481,4 +556,4 @@ for (const t of project.midiTracks) {
   for (const n of t.notes) if (n.start < 0 || n.start + n.duration > endBeat + 0.001 || n.pitch < 0 || n.pitch > 127) throw new Error(`${t.name} out of range ${JSON.stringify(n)}`);
   console.log(t.name.padEnd(18), t.notes.length, "notes");
 }
-writeFileSync(new URL("./v2.json", import.meta.url), JSON.stringify(project, null, 2) + "\n");
+writeFileSync(new URL("./v3.json", import.meta.url), JSON.stringify(project, null, 2) + "\n");
