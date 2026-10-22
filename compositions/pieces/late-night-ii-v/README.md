@@ -7,7 +7,7 @@ Lo-fi jazz in C at 88 BPM, 32 bars, built around a Dm9–G13–Cmaj9–Am9 loop.
 
 ## How it was made
 
-The session drove Toy MIDI's open draft page through its WebMCP tool, `toy_midi_eval`, from the desktop app's built-in browser. There was no brief up front. Hiroshi steered with short requests while listening, and each step was written straight into the open project:
+This is the first piece composed from the Claude desktop app's built-in browser. The session drove Toy MIDI's open draft page through its WebMCP tool, `toy_midi_eval`, but the browser doesn't expose WebMCP natively: `document.modelContext` is undefined until Toy MIDI installs its own polyfill on a project page, and the tool never showed up in the session's tool list. So the session reached it through the browser's JavaScript tool, calling the polyfill's `executeTool` from page script, which then evaluated the session's code against the runtime. There was no brief up front. Hiroshi steered with short requests while listening, and each step was written straight into the open project:
 
 1. "compose something": an 8-bar loop on the ii–V–I–vi in C with electric piano, bass, drums, and vibes.
 2. "minimize track": every track collapsed to an overview row.
