@@ -1,16 +1,10 @@
 # Dorian Vamp Funk
 
-**[▶ Open v2 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fdorian-vamp-funk%2Fdorian-vamp-funk-v2-telecaster.json)** ([v1](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fdorian-vamp-funk%2Fdorian-vamp-funk.json))
-
-## v2: Telecaster
-
-`dorian-vamp-funk-v2-telecaster.json` is v1 with the muted guitar on the Muted preset of Toy MIDI's bundled Telecaster Bridge (toy-midi#852), from program 28. Feedback: pending.
-
-## v1
+**[▶ Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fdorian-vamp-funk%2Fdorian-vamp-funk.json)**
 
 24 bars, 100 BPM, 4/4, E Dorian. The loop covers bars 1–24 (beats 0–96). The 16th-note swing is about 56% and is baked into the note timing, which pushes odd 16ths 0.03 beats late. Tracks: Drums (GS Standard), Slap Bass, Tenor Sax, Rhodes, Clav, Muted Guitar, and Brass Section.
 
-### Bar-by-bar plan
+## Bar-by-bar plan
 
 | Bars | Section | Harmony | What happens | Energy |
 |---|---|---|---|---|
@@ -25,7 +19,7 @@
 | 17–23 | A' | Em7 \| A9 | Full band. Crash, open hats, Rhodes switches to short quartal chord stabs, and the bass adds extra pops and ghosts. Riff/response continues, and the bar-23 riff climbs to E5. | 9 |
 | 24 | Turnaround | Am7 D7 → (Em7) | Backdoor iv–♭VII7 in E. Unison hits, then a tom fill that resolves to Em7 at bar 1 when the loop restarts. | 8, then drop to 3 at bar 1 |
 
-### Technique checklist
+## Technique checklist
 
 | Technique | Bars |
 |---|---|
