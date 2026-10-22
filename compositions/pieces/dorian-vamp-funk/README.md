@@ -4,12 +4,7 @@
 
 ## v2: Telecaster
 
-v2 moves the muted guitar from General MIDI program 28 to the Muted preset of the FlameStudios Telecaster's bridge pickup, which Toy MIDI bundles since toy-midi#852. The bridge pickup suits the chicken scratch's bright chop. `telecaster.mjs` makes `dorian-vamp-funk-v2-telecaster.json` from `dorian-vamp-funk.json`, and the notes and track gain are v1's.
-
-- The preset has one velocity layer, so the ghost strokes and accents stay the same mute sample and differ only in level.
-- Its mutes die faster than program 28's, so the part has no CC 11 cut.
-
-Rendered with `toy-midi render-audio` against v1, as the full mix and the guitar alone. Feedback: pending.
+`dorian-vamp-funk-v2-telecaster.json` is v1 with the muted guitar on the Muted preset of Toy MIDI's bundled Telecaster Bridge (toy-midi#852), from program 28. Feedback: pending.
 
 ## v1
 
