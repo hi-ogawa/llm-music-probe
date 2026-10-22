@@ -45,6 +45,10 @@ Add a piece when the listener says to keep it.
 1. Make sure its folder has the project file. If the session only has a share link, decode the link into a file. Toy MIDI's `/llms.txt` documents the encoding.
 2. Append an entry to `catalog.json`, keeping newest first.
 
+## Changing a piece
+
+A PR that changes a cataloged piece updates its catalog entry in the same PR. Reread each field against the new version, such as a description that names a part the PR rewrote, rather than only checking that `url` still resolves.
+
 ## Optional steps
 
 None of these is part of a default composing prompt. The person steering adds one when they choose to.

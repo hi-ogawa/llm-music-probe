@@ -112,10 +112,30 @@ for (const s of HITS15) rh.chord(15, s, V.B7alt, s === 6 ? 0.6 : 0.2, 110);
 rh.chord(16, 14, V.F7, 0.4, 110);
 rh.chord(24, 0, V.Am7, 0.2, 110); rh.chord(24, 3, V.Am7, 0.2, 105); rh.chord(24, 8, V.D7, 1.0, 112);
 
-// ---------------- Clav: 16th comping ----------------
+// ---------------- Clav: two-hand 16th cell ----------------
+// 1 = left-hand root, 2 = left-hand 5th+octave, 9 = right-hand 3rd-7th dyad:
+//   1292 9229 2912 9929
+// The root anchors 1 and the "and" of 3 with the kick and bass, the right hand takes the backbeats and
+// syncopates around them, and the 5th+octave fills between, mostly as ghosts.
 const cl = track();
-const clavPat = [[1,55],[2,95],[5,90],[7,60],[8,100],[10,92],[13,85],[14,60]];
-for (const bar of [...range(3, 8), ...A2]) for (const [s, v] of clavPat) cl.chord(bar, s, isEm(bar) ? [62,67,71] : [61,67,71], 0.12, v);
+const CELL = "1292922929129929";
+const LEFT = { Em: { root: [52], fifth: [59,64] }, A9: { root: [57], fifth: [64,69] } }; // E3, B3-E4 / A3, E4-A4
+const RIGHT = { Em: [67,74], A9: [67,73] }; // G-D, G-C#
+const realFifths = [3, 14]; // the "a" of 1 with the kick, the "and" of 4 into the "a" of 4
+const rightVel = { 4: 105, 12: 105, 13: 85 }; // backbeats lead, the "e" of 4 trails
+for (const bar of [...range(3, 8), ...A2]) {
+  const ch = isEm(bar) ? "Em" : "A9";
+  // bars 3-4 play the same cell softer; A' plays it harder
+  const lift = bar < 5 ? -15 : A2.includes(bar) ? 8 : 0;
+  const ghostLift = bar < 5 ? -8 : 0;
+  for (let s = 0; s < 16; s++) {
+    if (bar === 8 && s >= 12) break;
+    if (CELL[s] === "1") cl.chord(bar, s, LEFT[ch].root, 0.15, 100 + lift);
+    else if (CELL[s] === "9") cl.chord(bar, s, RIGHT[ch], 0.1, (rightVel[s] ?? 95) + lift);
+    else if (realFifths.includes(s)) cl.chord(bar, s, LEFT[ch].fifth, 0.1, 88 + lift);
+    else cl.chord(bar, s, LEFT[ch].fifth, 0.05, 48 + ghostLift);
+  }
+}
 for (const s of HITS15) cl.chord(15, s, [63,67,74], 0.15, 112);
 cl.chord(16, 14, [62,67,69], 0.15, 112);
 cl.chord(24, 0, [62,67,72], 0.15, 112); cl.chord(24, 3, [62,67,72], 0.15, 105); cl.chord(24, 8, [66,71,76], 0.3, 112);
@@ -125,7 +145,7 @@ const sx = track();
 const riff = [[2,64,0.25,100],[3,67,0.25,95],[4,69,0.25,115],[6,70,0.12,85],[7,71,0.5,110],[10,69,0.25,95],[11,67,0.25,90]];
 const endA = [[12,64,0.5,110],[14,62,0.25,95],[15,64,0.4,105]];
 const endB = [[12,64,0.25,105],[13,67,0.25,95],[14,69,0.25,100],[15,71,0.6,115]];
-const endC = [[12,71,0.25,105],[13,74,0.25,108],[14,76,0.75,120]];
+const endC = [[12,71,0.25,105],[13,74,0.25,108],[14,76,0.5,120]]; // shortened to end at the bar-24 hit, with a fall
 for (const bar of [5, 7, 17, 19, 21, 23]) {
   const end = bar === 23 ? endC : bar === 7 || bar === 19 ? endB : endA;
   for (const [s,p,d,v] of [...riff, ...end]) sx.add(bar, s, p, d, v);
@@ -157,6 +177,39 @@ for (const s of HITS15) br.chord(15, s, [63,67,74], s === 6 ? 0.6 : 0.2, 118);
 br.chord(16, 14, [57,62,67], 0.4, 115);
 br.chord(24, 0, [62,67,72], 0.2, 115); br.chord(24, 3, [62,67,72], 0.2, 108); br.chord(24, 8, [66,71,76], 1.0, 118);
 
+// ---------------- Horn articulation (pitch bend + CC11 expression) ----------------
+// Points hold until the next one, so ramps are written as closely spaced points.
+const at = (bar, step) => r((bar - 1) * 4 + step * 0.25 + (step % 2 === 1 ? SWING : 0));
+function articulation() {
+  const bend = [{ beat: 0, semitones: 0 }], expr = [{ beat: 0, value: 127 }];
+  const ramp = (from, to, a, b, curve, set) => {
+    const n = Math.max(2, Math.round((to - from) / 0.02));
+    for (let i = 0; i <= n; i++) { const t = i / n; set(r(from + (to - from) * t), a + (b - a) * curve(t)); }
+  };
+  return {
+    // bend up from below into the note
+    scoop(beat, semis, len) { ramp(beat, beat + len, -semis, 0, (t) => 1 - (1 - t) ** 2, (b, v) => bend.push({ beat: b, semitones: r(v) })); },
+    // drop off the end of the note while fading, then reset once the tail is gone
+    fall(from, to, semis, reset) {
+      ramp(from, to, 0, -semis, (t) => t * t, (b, v) => bend.push({ beat: b, semitones: r(v) }));
+      ramp(from, to, 127, 50, (t) => t, (b, v) => expr.push({ beat: b, value: Math.round(v) }));
+      bend.push({ beat: reset, semitones: 0 }); expr.push({ beat: reset, value: 127 });
+    },
+    automation() {
+      const sort = (xs) => xs.sort((a, b) => a.beat - b.beat);
+      return [{ type: "pitch-bend", points: sort(bend) }, { type: "controller", controller: 11, points: sort(expr) }];
+    },
+  };
+}
+// sax: scoop a semitone into the riff's held B4, fall off the bar-23 top E5 into the turnaround
+const sxArt = articulation();
+for (const bar of [5, 7, 17, 19, 21, 23]) sxArt.scoop(at(bar, 7), 1, 0.08);
+sxArt.fall(at(23, 14) + 0.2, at(24, 0) - 0.02, 3, at(24, 0));
+// brass: section falls off the last stop-time hit and the turnaround D7
+const brArt = articulation();
+brArt.fall(at(15, 6) + 0.25, at(15, 6) + 0.6, 3, at(15, 6) + 1.5);
+brArt.fall(at(24, 8) + 0.45, at(24, 8) + 1.0, 5, at(24, 8) + 1.6);
+
 const project = {
   title: "Dorian Vamp Funk",
   comment: "~24-bar funk in E Dorian. A (1-8) Em7-A9 vamp, Bridge (9-16) in G with tritone subs, backdoor ii-V, stop-time and drum break, A' (17-24) full band, ending on a backdoor iv-bVII7 turnaround that loops back to bar 1. Swing ~56% on 16ths is baked into the note timing.",
@@ -173,10 +226,10 @@ const project = {
   midiTracks: [
     { name: "Drums", program: 0, bank: 128, gain: 0.9, pan: 0, notes: dr.notes },
     { name: "Slap Bass", program: 36, gain: 1, pan: 0, notes: bs.notes },
-    { name: "Tenor Sax (riff)", program: 66, gain: 0.75, pan: 0, notes: sx.notes },
+    { name: "Tenor Sax (riff)", program: 66, gain: 0.75, pan: 0, notes: sx.notes, automation: sxArt.automation() },
     { name: "Rhodes (quartal)", program: 4, gain: 0.65, pan: -0.25, notes: rh.notes },
     { name: "Clav", program: 7, gain: 0.6, pan: -0.5, notes: cl.notes },
-    { name: "Brass (response)", program: 61, gain: 0.6, pan: 0.3, notes: br.notes },
+    { name: "Brass (response)", program: 61, gain: 0.6, pan: 0.3, notes: br.notes, automation: brArt.automation() },
   ],
 };
 const json = JSON.stringify(project);
