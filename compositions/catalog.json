@@ -1,5 +1,21 @@
 [
   {
+    "name": "Château d'Eau",
+    "description": "Soul-jazz riff tune in E♭ major after Roy Hargrove's \"Strasbourg / St. Denis\", carried by a staccato bass figure that pushes over the barline, with a horn section, a loose Rhodes solo, and horn and string pads between the heads",
+    "date": "2026-10-22",
+    "tags": ["soul-jazz"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/chateau-d-eau/v3.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/chateau-d-eau"
+  },
+  {
+    "name": "Son de la Esquina",
+    "description": "Salsa in the son montuno tradition in D minor, locked to a 2-3 son clave, with a tenor sax head, a coro and pregón montuno, and a mambo for trombone and trumpets",
+    "date": "2026-10-22",
+    "tags": ["salsa", "latin"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/son-de-la-esquina/project-v4.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/son-de-la-esquina"
+  },
+  {
     "name": "Quiet-Loud in E",
     "description": "Quiet-loud rock in E, with the riff clean in the verse and power chords double-tracked at high gain in the chorus",
     "date": "2026-10-18",
