@@ -5,6 +5,7 @@ Salsa in the son montuno tradition, in D minor at 190 BPM, with every part locke
 - **v1:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject.json). `compose.mjs` writes `project.json`.
 - **v2:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject-v2.json), denser, described in [v2](#v2). `compose-v2.mjs` writes `project-v2.json`.
 - **v3:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject-v3.json), v2 with the tres rewritten, described in [v3](#v3). `compose-v3.mjs` writes `project-v3.json`.
+- **v4:** [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fson-de-la-esquina%2Fproject-v4.json), v3 with articulation, described in [v4](#v4). `compose-v4.mjs` writes `project-v4.json`.
 
 Run a script with `node <script>`.
 
@@ -108,10 +109,26 @@ Hiroshi found v2's tres sounded poor. Every stroke was a two-note block chord be
 
 To compare, mute Tres doubled course to hear the stroke and register changes alone. If the tres still sounds cheap, the next step is to drop it and give its figure to the piano in octaves.
 
+## v4
+
+Hiroshi found v3's tres acceptable and wanted the melody polished, starting with articulation now that Toy MIDI has controller and pitch-bend automation. v4 changes no notes. It shapes the lead and the horn pads with automation, because a GM sax or brass sample plays every note as the same static block. Automation values hold until the next point instead of gliding, so every ramp is written as steps of a sixteenth of a beat or finer.
+
+The lead's long notes, a beat or longer, get the shaping, and short notes stay plain:
+
+- **Vibrato (CC 1):** it starts after the attack and deepens through the note, more on notes of a beat and a half or longer, then returns to none before the next note.
+- **Expression (CC 11):** a long note leans on its attack, backs off, and swells toward its end, so a held note moves instead of sitting flat.
+- **Scoops (pitch bend):** the first long note of each phrase scoops up from a semitone under over about 50 ms. A phrase starts after a gap of more than half a beat.
+- **Drop-offs:** a long note that ends a phrase before a rest of a beat and a half or more bends down a semitone and a half as it fades over its last 0.3 beats, the way a singer or saxophonist lets go of a phrase. The cierre's hits get none of this, and only its last note gets vibrato.
+
+Through the rest of the line, expression sits at 116 instead of the full 127, so a long note can lean above it. That makes the lead slightly quieter than in v3.
+
+The horn pads enter each chord with a push, settle back, and swell through their last beats and a half into the next chord's "and"-of-4 anticipation, which is how a salsa horn section leans into a change. Outside the pads the horns play at full expression, so the mambo riffs, head B punches, and cierre hits sound as in v3. The montuno's last two cycles put punches over the pads on the same tracks, so those punches follow the pad swell.
+
 ## Toy MIDI doc gaps
 
 - **Drum tracks:** the docs list bank 128's kits but don't say that notes on them follow the GM percussion key map, or whether several tracks can use a kit at once. I assumed both, with one track per percussion instrument.
 - **Percussion note length:** it isn't documented whether a drum note's duration affects its sound, such as for a long guiro scrape, or whether the sample always plays out. I gave long guiro strokes 0.9 beats and other hits 0.2-0.3.
 - **Overlapping notes:** it isn't documented what happens when two notes of the same pitch overlap on one track. I shortened ties and anticipations so none overlap.
 - **Fractional pitch bend:** pitch-bend points take semitones from -12 to 12, but the docs don't say whether a small fraction such as 0.08 is applied as is or rounded. v3's doubled course relies on it being applied as is.
+- **What controllers do on a preset:** the docs name CC 1 as modulation but don't say whether it brings in vibrato on GeneralUser GS's presets, or at what rate and depth. v4's vibrato assumes it does. They also don't give CC 11's curve, so it's unclear how much quieter 116 or 88 is than 127.
 - **Kit sounds beyond GM:** the docs don't say whether GeneralUser GS's kits have sounds outside the GM key map, such as a timbale shell for cáscara.
