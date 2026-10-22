@@ -1,6 +1,6 @@
-# Afrobeats loop: A Dorian vamp (32 bars, 104 BPM)
+# Small Talk, an Afrobeats loop (32 bars, 104 BPM)
 
-**[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fa-dorian-vamp%2Fproject.json)**
+**[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsmall-talk%2Fproject.json)**
 
 The loop is on (bars 1–32), and there are locators at each section.
 

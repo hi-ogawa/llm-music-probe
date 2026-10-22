@@ -152,12 +152,12 @@
     "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/borrowed-mirrorball"
   },
   {
-    "name": "A Dorian vamp",
+    "name": "Small Talk",
     "description": "Afrobeats vamp with a highlife guitar answering the lead over tresillo drums",
     "date": "2026-10-13",
     "tags": ["afrobeats"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/a-dorian-vamp/project.json",
-    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/a-dorian-vamp"
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/small-talk/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/small-talk"
   },
   {
     "name": "Once More, From the Top",
