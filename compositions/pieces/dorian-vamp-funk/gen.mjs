@@ -112,10 +112,32 @@ for (const s of HITS15) rh.chord(15, s, V.B7alt, s === 6 ? 0.6 : 0.2, 110);
 rh.chord(16, 14, V.F7, 0.4, 110);
 rh.chord(24, 0, V.Am7, 0.2, 110); rh.chord(24, 3, V.Am7, 0.2, 105); rh.chord(24, 8, V.D7, 1.0, 112);
 
-// ---------------- Clav: 16th comping ----------------
+// ---------------- Clav: two-hand comping ----------------
+// Low hand: single-note E Dorian line in the slap bass's gaps, with dead-note ghosts.
+// High hand: 3rd-7th dyad chops above the Rhodes (D-G on Em7, C#-G tritone on A9).
 const cl = track();
-const clavPat = [[1,55],[2,95],[5,90],[7,60],[8,100],[10,92],[13,85],[14,60]];
-for (const bar of [...range(3, 8), ...A2]) for (const [s, v] of clavPat) cl.chord(bar, s, isEm(bar) ? [62,67,71] : [61,67,71], 0.12, v);
+const lowLine = { Em: [[1,52],[6,55],[8,57],[11,59],[14,62]], A9: [[1,57],[6,55],[8,57],[11,61],[14,59]] };
+const lowGhosts = [0, 2, 5, 9, 13];
+const lowGhostsA2 = [3, 10, 15];
+for (const bar of [...range(3, 8), ...A2]) {
+  const line = lowLine[isEm(bar) ? "Em" : "A9"];
+  const ghosts = A2.includes(bar) ? [...lowGhosts, ...lowGhostsA2] : lowGhosts;
+  for (const [s, p] of line) {
+    if (bar === 8 && s >= 12) continue;
+    cl.add(bar, s, p, 0.1, s === 1 || s === 8 ? 95 : 82);
+  }
+  for (const s of ghosts) {
+    if (bar === 8 && s >= 12) continue;
+    const prev = [...line].reverse().find(([ls]) => ls <= s) ?? line[0];
+    cl.add(bar, s, prev[1], 0.05, 34);
+  }
+  // chops enter with the sax at bar 5; backbeats under the sax call, pushes around the brass answer
+  if (bar < 5) continue;
+  const call = isEm(bar);
+  const chops = call ? [4, 12] : bar === 8 ? [4, 7] : [4, 7, 14];
+  if (A2.includes(bar) && call) chops.push(15);
+  for (const s of chops) cl.chord(bar, s, isEm(bar) ? [74,79] : [73,79], 0.1, s === 4 || s === 12 ? 100 : 85);
+}
 for (const s of HITS15) cl.chord(15, s, [63,67,74], 0.15, 112);
 cl.chord(16, 14, [62,67,69], 0.15, 112);
 cl.chord(24, 0, [62,67,72], 0.15, 112); cl.chord(24, 3, [62,67,72], 0.15, 105); cl.chord(24, 8, [66,71,76], 0.3, 112);
