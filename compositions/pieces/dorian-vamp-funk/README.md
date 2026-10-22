@@ -9,8 +9,8 @@
 | Bars | Section | Harmony | What happens | Energy |
 |---|---|---|---|---|
 | 1–2 | A | Em7 \| A9 (Dorian i–IV vamp) | Drums and slap bass only. Linear groove with ghost snares, and the bass locks to the kick. A light crash on bar 1 receives the loop. | 3 |
-| 3–4 | A | Em7 \| A9 | Rhodes quartal pads ("So What" on Em) come in, with the clav's left hand alone hammering the root in 8ths. | 5 |
-| 5–8 | A | Em7 \| A9 ×2 | The sax riff hook is the call (bars 5 and 7), and brass stabs answer (bars 6 and 8). The clav's right hand comes in, and the two hands fill a continuous 16th stream. Bar 8 ends with a linear tom fill, and the sax pushes into the bridge. | 7 |
+| 3–4 | A | Em7 \| A9 | Rhodes quartal pads ("So What" on Em) come in, with the clav's 16th sticking played softly. | 5 |
+| 5–8 | A | Em7 \| A9 ×2 | The sax riff hook is the call (bars 5 and 7), and brass stabs answer (bars 6 and 8). The clav comes up to full level. Bar 8 ends with a linear tom fill, and the sax pushes into the bridge. | 7 |
 | 9–10 | Bridge | Cmaj7 \| Bm7 | New key area (G major). Drums switch to ride, and the Rhodes plays Charleston comping in quartal voicings. A sax guide-tone line takes over from the riff. Clav and brass drop out. | 5 |
 | 11–12 | Bridge | Am7 Ab7 \| Gmaj7 | Ab7 is a tritone substitution for D7. The chord change is pushed to the "a" of beat 2. | 6 |
 | 13–14 | Bridge | Cm7 F7 \| Gmaj7 | Backdoor ii–V in G (iv–♭VII7–I), then a 16th snare build. | 6→7 |

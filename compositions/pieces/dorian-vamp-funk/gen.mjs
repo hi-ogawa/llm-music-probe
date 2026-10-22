@@ -123,16 +123,17 @@ const accentsA9 = [2, 5, 8, 11, 14]; // second bar of the phrase pushes on the "
 for (const bar of [...range(3, 8), ...A2]) {
   const ch = isEm(bar) ? "Em" : "A9";
   const accents = ch === "Em" ? accentsEm : accentsA9;
-  const right = bar >= 5; // bars 3-4: left hand only
-  const lift = A2.includes(bar) ? 8 : 0;
+  // bars 3-4 play the same cell softer; A' plays it harder
+  const lift = bar < 5 ? -15 : A2.includes(bar) ? 8 : 0;
+  const ghostLift = bar < 5 ? -8 : 0;
   for (let s = 0; s < 16; s++) {
     if (bar === 8 && s >= 12) break;
     const accent = accents.includes(s);
     if (s % 2 === 0) {
       const p = ch === "A9" && s === 14 ? 55 : LOW[ch];
-      cl.add(bar, s, p, accent ? 0.12 : 0.05, accent ? (right ? 105 : 90) + lift : 52);
-    } else if (right) {
-      cl.chord(bar, s, HIGH[ch], accent ? 0.12 : 0.05, accent ? 105 + lift : 46);
+      cl.add(bar, s, p, accent ? 0.12 : 0.05, accent ? 105 + lift : 52 + ghostLift);
+    } else {
+      cl.chord(bar, s, HIGH[ch], accent ? 0.12 : 0.05, accent ? 105 + lift : 46 + ghostLift);
     }
   }
 }
