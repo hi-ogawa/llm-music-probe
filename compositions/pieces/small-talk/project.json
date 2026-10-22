@@ -1,5 +1,5 @@
 {
-  "title": "Afrobeats loop: A Dorian vamp",
+  "title": "Small Talk",
   "comment": "32 bars at 104 BPM. Intro 1-4, verse 5-12, chorus 13-20, break 21-24, chorus 25-32, looping back to the intro.",
   "tempo": 104,
   "timeSignature": {
@@ -682,7 +682,7 @@
     },
     {
       "name": "Highlife guitar",
-      "program": 0,
+      "program": 27,
       "gain": 0.8,
       "pan": -0.5,
       "notes": [
@@ -2162,12 +2162,11 @@
           "duration": 0.22,
           "velocity": 88
         }
-      ],
-      "soundfont": "flamestudios-telecaster-neck"
+      ]
     },
     {
       "name": "Muted guitar stabs",
-      "program": 1,
+      "program": 28,
       "gain": 0.6,
       "pan": 0.5,
       "notes": [
@@ -4067,8 +4066,7 @@
           "duration": 0.16,
           "velocity": 65
         }
-      ],
-      "soundfont": "flamestudios-telecaster-bridge"
+      ]
     },
     {
       "name": "Keys",
