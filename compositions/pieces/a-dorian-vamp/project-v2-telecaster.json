@@ -683,7 +683,7 @@
     {
       "name": "Highlife guitar",
       "program": 0,
-      "gain": 0.75,
+      "gain": 0.8,
       "pan": -0.5,
       "notes": [
         {
@@ -2168,7 +2168,7 @@
     {
       "name": "Muted guitar stabs",
       "program": 1,
-      "gain": 0.58,
+      "gain": 0.6,
       "pan": 0.5,
       "notes": [
         {

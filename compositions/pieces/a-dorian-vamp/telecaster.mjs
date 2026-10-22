@@ -11,15 +11,14 @@
 // - Muted guitar stabs: GM program 28 to the bridge pickup's Muted preset
 //   (program 1), so the chop on the right stays sharper than the line on the
 //   left.
-// - Gains are level-matched to v1's solo loudness from `toy-midi render-audio`.
 
 import fs from "node:fs";
 
 const [input, output] = process.argv.slice(2);
 const project = JSON.parse(fs.readFileSync(input, "utf8"));
 const parts = {
-  "Highlife guitar": { soundfont: "flamestudios-telecaster-neck", program: 0, gain: 0.75 },
-  "Muted guitar stabs": { soundfont: "flamestudios-telecaster-bridge", program: 1, gain: 0.58 },
+  "Highlife guitar": { soundfont: "flamestudios-telecaster-neck", program: 0 },
+  "Muted guitar stabs": { soundfont: "flamestudios-telecaster-bridge", program: 1 },
 };
 
 for (const [name, part] of Object.entries(parts)) {

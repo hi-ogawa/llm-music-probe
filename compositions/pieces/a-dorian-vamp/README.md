@@ -6,11 +6,10 @@ The loop is on (bars 1–32), and there are locators at each section. v1 is `pro
 
 ## v2: Telecaster
 
-v2 moves both guitars from General MIDI to the FlameStudios Telecaster that Toy MIDI bundles since toy-midi#852. `telecaster.mjs` makes it from `project.json`, and the notes are v1's.
+v2 moves both guitars from General MIDI to the FlameStudios Telecaster that Toy MIDI bundles since toy-midi#852. `telecaster.mjs` makes it from `project.json`, and the notes and track gains are v1's.
 
 - **Highlife guitar** plays the neck pickup's Standard preset in place of program 27. The line sits high (A4–A5), where the neck pickup is rounder than the bridge. Its velocities are all 46 and up, above the preset's muted layer, and the accents at 96 and up get its brightest layer. The preset's release rings longer than program 27's, so each picked note carries a little into the next one, as it would on a guitar, and the part has no CC 11 cut.
 - **Muted guitar stabs** play the bridge pickup's Muted preset in place of program 28, so the chop on the right stays sharper than the line on the left. Its mutes die faster than program 28's.
-- Both tracks are level-matched to v1's solo loudness in Toy MIDI within 0.1 LU, measured from `toy-midi render-audio`. That puts the highlife guitar at gain 0.75 (from 0.8) and the stabs at 0.58 (from 0.6).
 
 Rendered with `toy-midi render-audio` against v1, as the full mix and the guitars alone. Feedback: pending.
 

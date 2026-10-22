@@ -9,22 +9,20 @@
 //   Quiet-Loud in E's `quiet-loud-swell-cut.json`.
 // - Guitar (muted): GM program 28 to the Muted preset (program 1). Its mutes die
 //   faster than program 28's, so they need no cut.
-// - Gains are level-matched to v5's solo loudness from `toy-midi render-audio`.
 
 import fs from "node:fs";
 
 const [input, output] = process.argv.slice(2);
 const project = JSON.parse(fs.readFileSync(input, "utf8"));
 const soundfont = "flamestudios-telecaster-bridge";
-const gains = { "Guitar (cutting)": 0.49, "Guitar (muted)": 0.54 };
 const ms = (x) => (x * project.tempo) / 60000;
 
 const cutting = project.midiTracks.find((t) => t.name === "Guitar (cutting)");
-Object.assign(cutting, { soundfont, program: 0, gain: gains[cutting.name] });
+Object.assign(cutting, { soundfont, program: 0 });
 cutting.automation = [{ type: "controller", controller: 11, points: tailCut(cutting.notes, ms(30)) }];
 
 const muted = project.midiTracks.find((t) => t.name === "Guitar (muted)");
-Object.assign(muted, { soundfont, program: 1, gain: gains[muted.name] });
+Object.assign(muted, { soundfont, program: 1 });
 
 fs.writeFileSync(output, JSON.stringify(project));
 
