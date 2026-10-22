@@ -8,7 +8,7 @@ Each version is a full project file here (`vN-<slug>.json`) with a Toy MIDI link
 
 ## Amp Version
 
-**[Open the amp version in Toy MIDI](https://fix-issue-974-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Famp-rearrangements%2Fcompositions%2Fpieces%2Finterlock-in-e%2Famp.json)**, on the preview of https://github.com/hi-ogawa/toy-midi/pull/977, the PR that adds the amp, so the link stops working once that preview is gone.
+**[Open the amp version in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Finterlock-in-e%2Famp.json)**.
 
 `amp.json` is `v8-tele.json` with the crunch amp on Guitar R (line). The cutting parts stay clean, since funk cutting wants a clean attack, and the line gets a light crunch against them. The amped track moves to the Telecaster bridge SoundFont the amp was tuned on, gets CC 11 cuts after each note-off so the drive doesn't bring a note's release up into the next one, and has its gain lowered so it plays at the original's dry loudness. `amp.mjs` builds it.
 
