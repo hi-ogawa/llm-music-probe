@@ -112,29 +112,28 @@ for (const s of HITS15) rh.chord(15, s, V.B7alt, s === 6 ? 0.6 : 0.2, 110);
 rh.chord(16, 14, V.F7, 0.4, 110);
 rh.chord(24, 0, V.Am7, 0.2, 110); rh.chord(24, 3, V.Am7, 0.2, 105); rh.chord(24, 8, V.D7, 1.0, 112);
 
-// ---------------- Clav: two-hand 16th sticking ----------------
-// Hands alternate on a continuous 16th stream like a drum sticking: left (even steps) hammers the root,
-// right (odd steps) chops the 3rd-7th dyad. Mostly ghosts; the groove is the accents.
+// ---------------- Clav: two-hand 16th cell ----------------
+// 1 = left-hand root, 2 = left-hand 5th+octave, 9 = right-hand 3rd-7th dyad:
+//   1292 9229 2912 9929
+// The root anchors 1 and the "and" of 3 with the kick and bass, the right hand takes the backbeats and
+// syncopates around them, and the 5th+octave fills between, mostly as ghosts.
 const cl = track();
-const LOW = { Em: 52, A9: 57 }; // E3, A3
-const HIGH = { Em: [67,74], A9: [67,73] }; // G-D, G-C#
-const accentsEm = [2, 5, 8, 11, 13]; // "and" of 1, "e" of 2, 3, "a" of 3, "e" of 4
-const accentsA9 = [2, 5, 8, 11, 14]; // second bar of the phrase pushes on the "and" of 4 with a b7 flick
+const CELL = "1292922929129929";
+const LEFT = { Em: { root: [52], fifth: [59,64] }, A9: { root: [57], fifth: [64,69] } }; // E3, B3-E4 / A3, E4-A4
+const RIGHT = { Em: [67,74], A9: [67,73] }; // G-D, G-C#
+const realFifths = [3, 14]; // the "a" of 1 with the kick, the "and" of 4 into the "a" of 4
+const rightVel = { 4: 105, 12: 105, 13: 85 }; // backbeats lead, the "e" of 4 trails
 for (const bar of [...range(3, 8), ...A2]) {
   const ch = isEm(bar) ? "Em" : "A9";
-  const accents = ch === "Em" ? accentsEm : accentsA9;
   // bars 3-4 play the same cell softer; A' plays it harder
   const lift = bar < 5 ? -15 : A2.includes(bar) ? 8 : 0;
   const ghostLift = bar < 5 ? -8 : 0;
   for (let s = 0; s < 16; s++) {
     if (bar === 8 && s >= 12) break;
-    const accent = accents.includes(s);
-    if (s % 2 === 0) {
-      const p = ch === "A9" && s === 14 ? 55 : LOW[ch];
-      cl.add(bar, s, p, accent ? 0.12 : 0.05, accent ? 105 + lift : 52 + ghostLift);
-    } else {
-      cl.chord(bar, s, HIGH[ch], accent ? 0.12 : 0.05, accent ? 105 + lift : 46 + ghostLift);
-    }
+    if (CELL[s] === "1") cl.chord(bar, s, LEFT[ch].root, 0.15, 100 + lift);
+    else if (CELL[s] === "9") cl.chord(bar, s, RIGHT[ch], 0.1, (rightVel[s] ?? 95) + lift);
+    else if (realFifths.includes(s)) cl.chord(bar, s, LEFT[ch].fifth, 0.1, 88 + lift);
+    else cl.chord(bar, s, LEFT[ch].fifth, 0.05, 48 + ghostLift);
   }
 }
 for (const s of HITS15) cl.chord(15, s, [63,67,74], 0.15, 112);

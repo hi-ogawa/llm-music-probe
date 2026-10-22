@@ -9,7 +9,7 @@
 | Bars | Section | Harmony | What happens | Energy |
 |---|---|---|---|---|
 | 1–2 | A | Em7 \| A9 (Dorian i–IV vamp) | Drums and slap bass only. Linear groove with ghost snares, and the bass locks to the kick. A light crash on bar 1 receives the loop. | 3 |
-| 3–4 | A | Em7 \| A9 | Rhodes quartal pads ("So What" on Em) come in, with the clav's 16th sticking played softly. | 5 |
+| 3–4 | A | Em7 \| A9 | Rhodes quartal pads ("So What" on Em) come in, with the clav's two-hand 16th cell played softly. | 5 |
 | 5–8 | A | Em7 \| A9 ×2 | The sax riff hook is the call (bars 5 and 7), and brass stabs answer (bars 6 and 8). The clav comes up to full level. Bar 8 ends with a linear tom fill, and the sax pushes into the bridge. | 7 |
 | 9–10 | Bridge | Cmaj7 \| Bm7 | New key area (G major). Drums switch to ride, and the Rhodes plays Charleston comping in quartal voicings. A sax guide-tone line takes over from the riff. Clav and brass drop out. | 5 |
 | 11–12 | Bridge | Am7 Ab7 \| Gmaj7 | Ab7 is a tritone substitution for D7. The chord change is pushed to the "a" of beat 2. | 6 |
@@ -36,7 +36,7 @@
 | Syncopated funk bass | 1–14, 17–23 (16th pushes, octave figures, chromatic approaches) |
 | Slap and pop | 1–8, 17–23 (Slap Bass preset, thumb roots plus popped octaves on the backbeat, more pops in A') |
 | Kick–bass interlock | A sections: bass roots on the kick 16ths (1, the "a" of 1, the "and" of 3, the "a" of 4). Bridge: bass pushes with the kick on the "a" of 2 and the "and" of 3 |
-| Comping patterns | Clav 16th sticking in 3–8 and 17–23 (left hand on the root, right hand on the G–D or G–C# dyad, mostly ghosts, with accents on the "and" of 1, the "e" of 2, 3, the "a" of 3, and the "e" of 4, moving to the "and" of 4 with a b7 flick in the A9 bar), Rhodes Charleston in 9–14 |
+| Comping patterns | Clav two-hand 16th cell in 3–8 and 17–23 (left-hand root on 1 and the "and" of 3 with the kick, right-hand G–D or G–C# dyad on the backbeats and the syncopations around them, left-hand 5th+octave filling between, mostly as ghosts), Rhodes Charleston in 9–14 |
 | Stabs and hits | Brass response stabs in 6, 8, 18, 20, 22, plus band hits in 15, 16, 24 |
 | Unison hits | 15 (B7alt ×3), 16 (F7 on the "and" of 4), 24 (Am7 ×2, D7) |
 | Stop-time and breaks | 15 (stop-time hits, then silence), 16 (drum break) |
