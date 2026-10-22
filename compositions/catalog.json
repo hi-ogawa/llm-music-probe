@@ -1,5 +1,21 @@
 [
   {
+    "name": "Quiet-Loud in E",
+    "description": "Quiet-loud rock in E, with the riff clean in the verse and power chords double-tracked at high gain in the chorus",
+    "date": "2026-10-18",
+    "tags": ["rock", "guitar"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/quiet-loud-in-e/quiet-loud-amp.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/quiet-loud-in-e"
+  },
+  {
+    "name": "Open E Mixolydian",
+    "description": "Blues-based hard rock in E built on one open-position riff, with crunch rhythm guitars and a pentatonic lead with bends",
+    "date": "2026-10-18",
+    "tags": ["rock", "guitar"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/open-e-mixolydian/project-amp.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/open-e-mixolydian"
+  },
+  {
     "name": "Swell",
     "description": "Short orchestral cue in D major turning to B minor, with its swells shaped by expression",
     "date": "2026-10-17",
@@ -49,10 +65,10 @@
   },
   {
     "name": "Orchestral Dilla",
-    "description": "Dilla beat played on pizzicato strings with a dragging late snare",
+    "description": "Dilla beat played on pizzicato strings with a dragging late snare, with the orchestra around the beat shaped by expression, vibrato, pedal, and pitch bend",
     "date": "2026-10-14",
     "tags": ["orchestral", "hip-hop"],
-    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla/orchestral-dilla.json",
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/orchestral-dilla/orchestral-dilla-v2.json",
     "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/orchestral-dilla"
   },
   {
