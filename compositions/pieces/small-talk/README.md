@@ -1,10 +1,16 @@
 # Small Talk, an Afrobeats loop (32 bars, 104 BPM)
 
-**[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsmall-talk%2Fproject.json)**
+**[Open v2 in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsmall-talk%2Fproject-v2-telecaster.json)** ([v1](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsmall-talk%2Fproject.json))
 
-The loop is on (bars 1–32), and there are locators at each section.
+The loop is on (bars 1–32), and there are locators at each section. v1 is `project.json`, and v2 is `project-v2-telecaster.json`.
 
-## Plan
+## v2: Telecaster
+
+`project-v2-telecaster.json` is v1 with the guitars on Toy MIDI's bundled Telecaster (toy-midi#852): the highlife guitar on the neck pickup's Standard preset (from program 27) and the muted stabs on the bridge pickup's Muted preset (from program 28). Feedback: pending.
+
+## v1
+
+### Plan
 
 Key center is A Dorian, at 104 BPM in 4/4. The harmony is either a static Am7 or an Am7 ↔ D9 vamp in which only G moves to F#. The lead calls on odd bars and the highlife guitar riff answers on even bars.
 
@@ -21,7 +27,7 @@ Key center is A Dorian, at 104 BPM in 4/4. The harmony is either a static Am7 or
 | 25–31 | Chorus 2 | 9 | Peak. The hook is doubled an octave down. Ghost kicks land on even bars, the bass gets octave pops, and the guitar responses gain extra 16ths. All of these are loop mutations of chorus 1 |
 | 32 | Chorus 2 | 9→1 | Turnaround on D9. Kit, bass, stabs, keys, congas, and bells drop at beat 3.5, leaving the shaker and guitar to fall straight back into bar 1's intro (D9 → Am7, IV → i) |
 
-## Checklist
+### Checklist
 
 | Technique | Bars |
 | --- | --- |
