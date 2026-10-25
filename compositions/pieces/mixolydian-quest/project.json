@@ -1,6 +1,6 @@
 {
   "title": "Mixolydian Quest (AABA loop)",
-  "comment": "32-bar AABA game loop in D Mixolydian, 128 BPM. A1 1-8, A2 9-16, B 17-24 (half-time), A3 25-32 (double-time). Bar 32 (G) resolves into bar 1 (D) as the C-G-D double-plagal across the loop seam.",
+  "comment": "32-bar AABA game loop in D Mixolydian, 128 BPM.\n\n| Section | Bars |\n| --- | --- |\n| A1 | 1-8 |\n| A2 | 9-16 |\n| B (half-time) | 17-24 |\n| A3 (double-time) | 25-32 |\n\nBar 32 (G) resolves into bar 1 (D) as the C-G-D double-plagal across the loop seam.",
   "tempo": 128,
   "timeSignature": {
     "numerator": 4,

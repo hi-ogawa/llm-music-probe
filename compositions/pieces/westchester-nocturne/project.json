@@ -1,6 +1,6 @@
 {
  "title": "Westchester Nocturne (soul-jazz, large band)",
- "comment": "70s CTI-style soul-jazz/fusion. 48 bars, F Dorian loop with an A-major bridge. Orchestration is the variation: the theme passes vibes -> flute -> trumpet/tenor -> strings (bridge) -> brass soli -> vibes. Loops back to bar 1.",
+ "comment": "70s CTI-style soul-jazz/fusion. 48 bars, F Dorian loop with an A-major bridge, looping back to bar 1.\n\nOrchestration is the variation, as the theme passes through:\n\n1. Vibes\n2. Flute\n3. Trumpet/tenor\n4. Strings (bridge)\n5. Brass soli\n6. Vibes",
  "tempo": 92,
  "timeSignature": {
   "numerator": 4,

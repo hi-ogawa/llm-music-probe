@@ -1,6 +1,6 @@
 {
   "title": "Swell v2 (expression)",
-  "comment": "A CC11 expression demo, 16 bars at 66 BPM, D major turning to B minor. Bars 1-4 shape single notes (cello swells and tapers, pad hairpins), bars 5-8 crescendo strings and horns into a timpani roll, bars 9-12 fall away from a forte arrival on G, bars 13-16 fade a held D chord to silence. This is the shaped version, with CC11 on cello, strings, horns, and timpani.",
+  "comment": "A CC11 expression demo, 16 bars at 66 BPM, D major turning to B minor. This is the shaped version, with CC11 on cello, strings, horns, and timpani.\n\n| Bars | Shape |\n| --- | --- |\n| 1-4 | Single notes (cello swells and tapers, pad hairpins) |\n| 5-8 | Strings and horns crescendo into a timpani roll |\n| 9-12 | Fall away from a forte arrival on G |\n| 13-16 | A held D chord fades to silence |",
   "tempo": 66,
   "timeSignature": {
     "numerator": 4,

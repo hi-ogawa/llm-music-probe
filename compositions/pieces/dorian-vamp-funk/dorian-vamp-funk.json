@@ -1,6 +1,6 @@
 {
   "title": "Dorian Vamp Funk",
-  "comment": "~24-bar funk in E Dorian. A (1-8) Em7-A9 vamp, Bridge (9-16) in G with tritone subs, backdoor ii-V, stop-time and drum break, A' (17-24) full band, ending on a backdoor iv-bVII7 turnaround that loops back to bar 1. Swing ~56% on 16ths is baked into the note timing.",
+  "comment": "~24-bar funk in E Dorian. Swing ~56% on 16ths is baked into the note timing.\n\n- **A (1-8):** Em7-A9 vamp\n- **Bridge (9-16):** in G with tritone subs, backdoor ii-V, stop-time and drum break\n- **A' (17-24):** full band, ending on a backdoor iv-bVII7 turnaround that loops back to bar 1",
   "tempo": 100,
   "timeSignature": {
     "numerator": 4,

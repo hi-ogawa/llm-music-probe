@@ -1,6 +1,6 @@
 {
   "title": "Small Talk",
-  "comment": "32 bars at 104 BPM. Intro 1-4, verse 5-12, chorus 13-20, break 21-24, chorus 25-32, looping back to the intro.",
+  "comment": "32 bars at 104 BPM, looping back to the intro.\n\n| Section | Bars |\n| --- | --- |\n| Intro | 1-4 |\n| Verse | 5-12 |\n| Chorus | 13-20 |\n| Break | 21-24 |\n| Chorus | 25-32 |",
   "tempo": 104,
   "timeSignature": {
     "numerator": 4,

@@ -1,6 +1,6 @@
 {
   "title": "Overture in D minor",
-  "comment": "Classical-style overture. A (theme, strings) → build → B (fanfare in F) → C (pastorale in B♭) → build → A′ (tutti) → codetta that leads back to the top. Loops.",
+  "comment": "Classical-style overture. Loops.\n\n1. A (theme, strings)\n2. Build\n3. B (fanfare in F)\n4. C (pastorale in B♭)\n5. Build\n6. A′ (tutti)\n7. Codetta that leads back to the top",
   "tempo": 112,
   "timeSignature": {
     "numerator": 4,

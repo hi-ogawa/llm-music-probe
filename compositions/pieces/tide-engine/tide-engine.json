@@ -1,6 +1,6 @@
 {
   "title": "Tide Engine",
-  "comment": "~40-bar orchestral cue in D minor. 3+3+2 ostinato identity, D pedal, chromatic mediants (D-F#, D-Bb), neo-Riemannian chain Bb-P-Bbm-L-Gb-R-Ebm-S-D. Loops bar 40 -> bar 1.",
+  "comment": "~40-bar orchestral cue in D minor. Loops bar 40 -> bar 1.\n\n- 3+3+2 ostinato identity\n- D pedal\n- Chromatic mediants (D-F#, D-Bb)\n- Neo-Riemannian chain Bb-P-Bbm-L-Gb-R-Ebm-S-D",
   "tempo": 96,
   "timeSignature": {
     "numerator": 4,

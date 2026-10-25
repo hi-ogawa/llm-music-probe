@@ -1,6 +1,6 @@
 {
   "title": "Interlock in E (guitar loop)",
-  "comment": "Two interlocking guitars, written from the fretboard. Left cuts Em9 (7-7-7 on G-B-e) and A13 (6-7-7), right plays a single-note 16th line with dead notes. 104 BPM.",
+  "comment": "Two interlocking guitars, written from the fretboard, at 104 BPM.\n\n- **Left:** cuts Em9 (7-7-7 on G-B-e) and A13 (6-7-7)\n- **Right:** a single-note 16th line with dead notes",
   "tempo": 104,
   "timeSignature": {
     "numerator": 4,

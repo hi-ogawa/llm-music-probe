@@ -1,6 +1,6 @@
 {
   "title": "Glass Hook v12 (bass climb into A')",
-  "comment": "Glass Hook grown into a looping demo in E minor, 90 BPM: Intro (Rhodes alone), A (the hook over the trap groove, with vibraphone above), B (Am9 Bm7 Cmaj7 D6 | Am9 Bm7 Cmaj7 B7, a calmer guitar melody with the same designed bends, harmonized a third below on the second pass), A' (a second guitar doubles the hook's arpeggio bars and harmonizes its runs a third below). Toy MIDI plays the notes without the bends.",
+  "comment": "Glass Hook grown into a looping demo in E minor, 90 BPM. Toy MIDI plays the notes without the bends.\n\n- **Intro:** Rhodes alone\n- **A:** the hook over the trap groove, with vibraphone above\n- **B:** Am9 Bm7 Cmaj7 D6 | Am9 Bm7 Cmaj7 B7, a calmer guitar melody with the same designed bends, harmonized a third below on the second pass\n- **A':** a second guitar doubles the hook's arpeggio bars and harmonizes its runs a third below",
   "tempo": 90,
   "timeSignature": {
     "numerator": 4,

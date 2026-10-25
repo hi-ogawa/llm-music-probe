@@ -1,6 +1,6 @@
 {
  "title": "Orchestral Dilla",
- "comment": "No drums: low pizz basses + timpani are the kick, a late pizz chord is the snare, swung high pizz are the hats, string ensemble chops are the sample. Db: Gbmaj9 - Fm7 - Ebm9 - Ab13. Flip in Bb minor: Bbm9 - Gbmaj7#11 - Ebm9 - F7b9. v2 adds expression (CC11), vibrato (CC1), harp and celesta pedal (CC64), and pitch bend, without changing a note.",
+ "comment": "No drums.\n\n| Part | Played by |\n| --- | --- |\n| Kick | Low pizz basses + timpani |\n| Snare | A late pizz chord |\n| Hats | Swung high pizz |\n| Sample | String ensemble chops |\n\n- **Db:** Gbmaj9 - Fm7 - Ebm9 - Ab13\n- **Flip in Bb minor:** Bbm9 - Gbmaj7#11 - Ebm9 - F7b9\n\nv2 adds expression (CC11), vibrato (CC1), harp and celesta pedal (CC64), and pitch bend, without changing a note.",
  "tempo": 88,
  "timeSignature": {
   "numerator": 4,
