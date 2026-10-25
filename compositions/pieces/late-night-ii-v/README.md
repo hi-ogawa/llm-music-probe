@@ -45,10 +45,10 @@ Levels are set by role and not measured.
 
 ## Toy MIDI doc gaps
 
-- **Where the tool lives.** `/llms.txt` says the app registers its tools through `document.modelContext`, but not that they exist only on a project page, so the project list at `/` has none. The session found this from the app's source.
-- **Calling the tool from a plain browser.** In a browser without WebMCP the page installs a polyfill, and calling it takes `document.modelContext.executeTool({ name: "toy_midi_eval" }, { code })`, which returns a JSON string. The docs cover a WebMCP browser and the bridge, not this.
-- **Which controllers the synth plays.** The declarations name CC1, CC11, and CC64 as examples. The session confirmed from the source that the synth passes any controller to SpessaSynth.
-- **Getting the project out.** The runtime has no way to produce a `SharedProject`, so a session that composes in the open app builds one by hand from `runtime.store.get()`.
-- **Collapsed tracks.** `viewMode: "overview"` alone leaves a row at its full height. The session matched how share links open tracks, overview at the minimum 44 px height, after reading the share code.
+- **Where the tool lives.** `/llms.txt` says the app registers its tools through `document.modelContext`, but not that they exist only on a project page, so the project list at `/` has none. The session found this from the app's source. Tracked in [toy-midi#785](https://github.com/hi-ogawa/toy-midi/issues/785).
+- **Calling the tool from a plain browser.** In a browser without WebMCP the page installs a polyfill, and calling it takes `document.modelContext.executeTool({ name: "toy_midi_eval" }, { code })`, which returns a JSON string. The docs cover a WebMCP browser and the bridge, not this. Tracked in [toy-midi#1001](https://github.com/hi-ogawa/toy-midi/issues/1001).
+- **Which controllers the synth plays.** The declarations name CC1, CC11, and CC64 as examples. The session confirmed from the source that the synth passes any controller to SpessaSynth. Close to [toy-midi#966](https://github.com/hi-ogawa/toy-midi/issues/966), which asks how each controller sounds.
+- **Getting the project out.** The runtime has no way to produce a `SharedProject`, so a session that composes in the open app builds one by hand from `runtime.store.get()`. Tracked in [toy-midi#1001](https://github.com/hi-ogawa/toy-midi/issues/1001).
+- **Collapsed tracks.** `viewMode: "overview"` alone leaves a row at its full height. The session matched how share links open tracks, overview at the minimum 44 px height, after reading the share code. A one-step collapse is [toy-midi#811](https://github.com/hi-ogawa/toy-midi/issues/811).
 
 The session read Toy MIDI's source for the points above, and for nothing about how to compose the piece.
