@@ -310,11 +310,16 @@ L(79, 19, 0, 1.5, 114); bend(19, 0, 1.5, 2, { rise: 0.33, release: true }); // G
 L(76, 19, 2.0, 0.5); L(79, 19, 2.5, 0.5); L(76, 19, 3.0, 0.5); L(74, 19, 3.5, 0.5);
 L(76, 20, 0, 0.5); L(74, 20, 0.5, 0.5); L(71, 20, 1.0, 0.5); L(67, 20, 1.5, 0.5);
 L(69, 20, 2.0, 0.5); L(71, 20, 2.5, 0.5);
-// D bent to E on beat 4, landing on the bar 21 downbeat and held over the E chord with a
-// widening vibrato, ending just before the riff's G on &2. The lead is silent until bar 13,
-// so the bend holds through the release and resets half a beat later.
-L(74, 20, 3.0, 2.375, 112);
-bend(20, 3.0, 2.375, 2, { rise: 1.0, vib: 0.15, vibEnd: 0.4, resetAfter: 0.5 });
+// D bent to E on beat 4, landing on the bar 21 downbeat and held through bar 21 over the
+// riff with a widening vibrato. The lead is silent until bar 13, so the bend holds through
+// the release and resets half a beat later.
+L(74, 20, 3.0, 4.875, 112);
+bend(20, 3.0, 4.875, 2, { rise: 1.0, vib: 0.15, vibEnd: 0.4, resetAfter: 0.5 });
+// CC 11 fades the held E out over the last two beats of bar 21, so it decays instead of
+// stopping at the note-off, and comes back up in bar 23 while the lead is silent
+const leadFade = [{ beat: 0, value: 127 }];
+for (let i = 0; i <= 8; i++) leadFade.push({ beat: 82 + (1.875 * i) / 8, value: Math.round(127 * (1 - i / 8)) });
+leadFade.push({ beat: 88, value: 127 });
 
 // Bars 21–24: the riff again, bar 24 cuts the band after the A hit so the riff guitar alone leads back to bar 1
 riffSection(21, { lastStop: true });
@@ -380,7 +385,7 @@ Blues-based hard rock in E at 125 BPM, 4/4 with straight 8ths, built on one open
 - Open and muted strokes sit on separate tracks because they use separate presets. Each pair shares a name prefix and a pan so it reads as one guitar.
 - Each guitar track runs through Toy MIDI's amp at one setting with the cabinet on: Crunch for the four rhythm tracks and High Gain for the lead.
 - CC 11 on each guitar track fades to 0 over about 30 ms after a note-off and returns at the next note, which works as a note gate in front of the amp.
-- The lead's bends and vibrato are pitch-bend automation.
+- The lead's bends and vibrato are pitch-bend automation. Its last note, held through bar 21, fades out with CC 11.
 - Chords are real open grips (E, A, D, G), strummed with about 8 ms between strings.
 `;
 
@@ -413,7 +418,10 @@ const project = {
       gain: 1.6,
       pan: 0.1,
       notes: sortNotes(lead),
-      automation: [{ type: "pitch-bend", points: round(bendPoints) }],
+      automation: [
+        { type: "pitch-bend", points: round(bendPoints) },
+        { type: "controller", controller: 11, points: leadFade },
+      ],
     },
     { name: "Bass", program: 34, gain: 0.8, pan: 0, notes: sortNotes(bass) },
     { name: "Drums", program: 16, bank: 128, gain: 0.65, pan: 0, notes: sortNotes(drumsUnique) },
@@ -428,8 +436,9 @@ writeFileSync(
 // ---------------- Swell-cut and amp variants ----------------
 // project-swell-cut.json: CC 11 on each guitar track fades to 0 over 30 ms (1/16 beat) after a
 // note-off and returns to 127 at the next note-on. Gaps shorter than the fade are left alone.
+// A track's own CC 11 points are kept, and a note they already fade to 0 gets no cut.
 const FADE = 0.0625;
-function swellCut(notes) {
+function swellCut(notes, own = []) {
   const spans = notes.map((x) => [x.start, x.start + x.duration]).sort((a, b) => a[0] - b[0]);
   const merged = [];
   for (const [a, z] of spans) {
@@ -437,9 +446,10 @@ function swellCut(notes) {
     if (last && a - last[1] < FADE) last[1] = Math.max(last[1], z);
     else merged.push([a, z]);
   }
-  const points = [{ beat: 0, value: 127 }];
+  const points = own.length ? [...own] : [{ beat: 0, value: 127 }];
   merged.forEach(([a, z], i) => {
     if (i > 0) points.push({ beat: a, value: 127 });
+    if (own.findLast((p) => p.beat <= z)?.value === 0) return;
     points.push(
       { beat: z, value: 127 },
       { beat: z + FADE / 3, value: 80 },
@@ -447,11 +457,15 @@ function swellCut(notes) {
       { beat: z + FADE, value: 0 },
     );
   });
-  return points;
+  return points.sort((a, b) => a.beat - b.beat);
 }
+const isCC11 = (a) => a.type === "controller" && a.controller === 11;
 const swell = structuredClone(project);
-for (const t of swell.midiTracks.filter((t) => t.soundfont === TELE))
-  t.automation = [...(t.automation ?? []), { type: "controller", controller: 11, points: swellCut(t.notes) }];
+for (const t of swell.midiTracks.filter((t) => t.soundfont === TELE)) {
+  const own = t.automation?.find(isCC11)?.points;
+  const rest = (t.automation ?? []).filter((a) => !isCC11(a));
+  t.automation = [...rest, { type: "controller", controller: 11, points: swellCut(t.notes, own) }];
+}
 writeFileSync(new URL("./project-swell-cut.json", import.meta.url), JSON.stringify(swell));
 
 // project-amp.json: the swell-cut project with Toy MIDI's amp on each guitar track

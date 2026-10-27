@@ -4527,7 +4527,7 @@
     {
      "pitch": 74,
      "start": 79,
-     "duration": 2.375,
+     "duration": 4.875,
      "velocity": 112
     }
    ],
@@ -5189,15 +5189,15 @@
       },
       {
        "beat": 80.15,
-       "semitones": 2.113
+       "semitones": 2.108
       },
       {
        "beat": 80.2,
-       "semitones": 2.17
+       "semitones": 2.157
       },
       {
        "beat": 80.25,
-       "semitones": 2.127
+       "semitones": 2.113
       },
       {
        "beat": 80.3,
@@ -5205,15 +5205,15 @@
       },
       {
        "beat": 80.35,
-       "semitones": 1.859
+       "semitones": 1.882
       },
       {
        "beat": 80.4,
-       "semitones": 1.791
+       "semitones": 1.83
       },
       {
        "beat": 80.45,
-       "semitones": 1.845
+       "semitones": 1.878
       },
       {
        "beat": 80.5,
@@ -5221,15 +5221,15 @@
       },
       {
        "beat": 80.55,
-       "semitones": 2.168
+       "semitones": 2.127
       },
       {
        "beat": 80.6,
-       "semitones": 2.248
+       "semitones": 2.183
       },
       {
        "beat": 80.65,
-       "semitones": 2.182
+       "semitones": 2.132
       },
       {
        "beat": 80.7,
@@ -5237,15 +5237,15 @@
       },
       {
        "beat": 80.75,
-       "semitones": 1.804
+       "semitones": 1.863
       },
       {
        "beat": 80.8,
-       "semitones": 1.713
+       "semitones": 1.804
       },
       {
        "beat": 80.85,
-       "semitones": 1.79
+       "semitones": 1.859
       },
       {
        "beat": 80.9,
@@ -5253,15 +5253,15 @@
       },
       {
        "beat": 80.95,
-       "semitones": 2.224
+       "semitones": 2.146
       },
       {
        "beat": 81,
-       "semitones": 2.326
+       "semitones": 2.21
       },
       {
        "beat": 81.05,
-       "semitones": 2.238
+       "semitones": 2.151
       },
       {
        "beat": 81.1,
@@ -5269,15 +5269,15 @@
       },
       {
        "beat": 81.15,
-       "semitones": 1.748
+       "semitones": 1.845
       },
       {
        "beat": 81.2,
-       "semitones": 1.634
+       "semitones": 1.777
       },
       {
        "beat": 81.25,
-       "semitones": 1.734
+       "semitones": 1.84
       },
       {
        "beat": 81.3,
@@ -5285,15 +5285,265 @@
       },
       {
        "beat": 81.35,
-       "semitones": 2.279
+       "semitones": 2.165
       },
       {
-       "beat": 81.365,
+       "beat": 81.4,
+       "semitones": 2.236
+      },
+      {
+       "beat": 81.45,
+       "semitones": 2.169
+      },
+      {
+       "beat": 81.5,
        "semitones": 2
       },
       {
-       "beat": 81.875,
+       "beat": 81.55,
+       "semitones": 1.826
+      },
+      {
+       "beat": 81.6,
+       "semitones": 1.751
+      },
+      {
+       "beat": 81.65,
+       "semitones": 1.821
+      },
+      {
+       "beat": 81.7,
+       "semitones": 2
+      },
+      {
+       "beat": 81.75,
+       "semitones": 2.183
+      },
+      {
+       "beat": 81.8,
+       "semitones": 2.263
+      },
+      {
+       "beat": 81.85,
+       "semitones": 2.188
+      },
+      {
+       "beat": 81.9,
+       "semitones": 2
+      },
+      {
+       "beat": 81.95,
+       "semitones": 1.807
+      },
+      {
+       "beat": 82,
+       "semitones": 1.724
+      },
+      {
+       "beat": 82.05,
+       "semitones": 1.803
+      },
+      {
+       "beat": 82.1,
+       "semitones": 2
+      },
+      {
+       "beat": 82.15,
+       "semitones": 2.202
+      },
+      {
+       "beat": 82.2,
+       "semitones": 2.289
+      },
+      {
+       "beat": 82.25,
+       "semitones": 2.207
+      },
+      {
+       "beat": 82.3,
+       "semitones": 2
+      },
+      {
+       "beat": 82.35,
+       "semitones": 1.789
+      },
+      {
+       "beat": 82.4,
+       "semitones": 1.698
+      },
+      {
+       "beat": 82.45,
+       "semitones": 1.784
+      },
+      {
+       "beat": 82.5,
+       "semitones": 2
+      },
+      {
+       "beat": 82.55,
+       "semitones": 2.221
+      },
+      {
+       "beat": 82.6,
+       "semitones": 2.316
+      },
+      {
+       "beat": 82.65,
+       "semitones": 2.225
+      },
+      {
+       "beat": 82.7,
+       "semitones": 2
+      },
+      {
+       "beat": 82.75,
+       "semitones": 1.77
+      },
+      {
+       "beat": 82.8,
+       "semitones": 1.671
+      },
+      {
+       "beat": 82.85,
+       "semitones": 1.765
+      },
+      {
+       "beat": 82.9,
+       "semitones": 2
+      },
+      {
+       "beat": 82.95,
+       "semitones": 2.24
+      },
+      {
+       "beat": 83,
+       "semitones": 2.342
+      },
+      {
+       "beat": 83.05,
+       "semitones": 2.244
+      },
+      {
+       "beat": 83.1,
+       "semitones": 2
+      },
+      {
+       "beat": 83.15,
+       "semitones": 1.751
+      },
+      {
+       "beat": 83.2,
+       "semitones": 1.645
+      },
+      {
+       "beat": 83.25,
+       "semitones": 1.746
+      },
+      {
+       "beat": 83.3,
+       "semitones": 2
+      },
+      {
+       "beat": 83.35,
+       "semitones": 2.258
+      },
+      {
+       "beat": 83.4,
+       "semitones": 2.369
+      },
+      {
+       "beat": 83.45,
+       "semitones": 2.263
+      },
+      {
+       "beat": 83.5,
+       "semitones": 2
+      },
+      {
+       "beat": 83.55,
+       "semitones": 1.732
+      },
+      {
+       "beat": 83.6,
+       "semitones": 1.618
+      },
+      {
+       "beat": 83.65,
+       "semitones": 1.728
+      },
+      {
+       "beat": 83.7,
+       "semitones": 2
+      },
+      {
+       "beat": 83.75,
+       "semitones": 2.277
+      },
+      {
+       "beat": 83.8,
+       "semitones": 2.395
+      },
+      {
+       "beat": 83.85,
+       "semitones": 2.282
+      },
+      {
+       "beat": 83.865,
+       "semitones": 2
+      },
+      {
+       "beat": 84.375,
        "semitones": 0
+      }
+     ]
+    },
+    {
+     "type": "controller",
+     "controller": 11,
+     "points": [
+      {
+       "beat": 0,
+       "value": 127
+      },
+      {
+       "beat": 82,
+       "value": 127
+      },
+      {
+       "beat": 82.234375,
+       "value": 111
+      },
+      {
+       "beat": 82.46875,
+       "value": 95
+      },
+      {
+       "beat": 82.703125,
+       "value": 79
+      },
+      {
+       "beat": 82.9375,
+       "value": 64
+      },
+      {
+       "beat": 83.171875,
+       "value": 48
+      },
+      {
+       "beat": 83.40625,
+       "value": 32
+      },
+      {
+       "beat": 83.640625,
+       "value": 16
+      },
+      {
+       "beat": 83.875,
+       "value": 0
+      },
+      {
+       "beat": 88,
+       "value": 127
       }
      ]
     }
