@@ -1,6 +1,6 @@
 # Open E Mixolydian
 
-A 24-bar blues-based hard rock loop in E at 125 BPM, 4/4, straight 8ths, built on one open-position guitar riff. The project is `project.json` (`SharedProject` format). `gen.mjs` generates it, and `render.mjs` runs the level check described below. `share-link.txt` has a `/draft#p=` link (about 10.6k characters, too long for Discord).
+A 24-bar blues-based hard rock loop in E at 125 BPM, 4/4, straight 8ths, built on one open-position guitar riff. The project is `project.json` (`SharedProject` format). `gen.mjs` generates it, along with `project-swell-cut.json`, `project-amp.json`, and `share-link.txt`, and `render.mjs` runs the level check described below. `share-link.txt` has a `/draft#p=` link (about 10.6k characters, too long for Discord).
 
 ## Tracks and gain
 
@@ -26,8 +26,8 @@ Bar numbers are 1-based. Riff bar A is on E and riff bar B is D–A–E.
 | 5–8 | Band in | same | Crunch (L + R) | Crash in. Bass doubles the riff an octave down, kick under the riff accents, rhythm guitar R plays open chords with chks on 2 and 4. Bar 8 walks into bar 9. |
 | 9–12 | ♭VII–IV–I section | D \| A \| E \| G A | Crunch (L + R) | Contrast: rhythm R lets open chords ring on a 3+3+2 accent, riff L plays open double stops with muted chugs between, bass goes to root 8ths, ride replaces hats. Snare fill into bar 13. |
 | 13–16 | Stop-time | E \| D A \| E \| D (A) | Crunch hits + High gain lead | Band hits on 1 (and on &2 in bar 14) followed by space, pedal hat keeps time. The lead enters in the gaps. The band comes back on beat 3 of bar 16 with an A–A♯–B walk and a fill. |
-| 17–20 | Lead break | E \| D A \| E \| G A | Crunch (L + R) + High gain lead | Full band. Riff L steps back to muted chugs with one open dyad per half bar, rhythm R plays the backbeat chord pattern. Fill into bar 21. |
-| 21–24 | Riff again | E \| D A \| E \| D A | Crunch (L + R) | Same as 5–8, except bar 24: band hits on D (beat 1) and A (&2), then everyone but the riff guitar drops out, and its E–G–G♯ pickup leads back into bar 1, where the riff is alone again. |
+| 17–20 | Lead break | E \| D A \| E \| G A | Crunch (L + R) + High gain lead | Full band. Riff L steps back to muted chugs with one open dyad per half bar, rhythm R plays the backbeat chord pattern. Fill into bar 21, under the lead's D→E bend on beat 4, which lands on the bar 21 downbeat. |
+| 21–24 | Riff again | E \| D A \| E \| D A | Crunch (L + R) | Same as 5–8, except the lead's E from bar 20 holds through bar 21 over the riff with a widening vibrato and ends with a tremolo-bar dive on beat 4, and bar 24: band hits on D (beat 1) and A (&2), then everyone but the riff guitar drops out, and its E–G–G♯ pickup leads back into bar 1, where the riff is alone again. |
 
 The loop range is beats 0–96, so bar 24 wraps into bar 1.
 
@@ -56,9 +56,9 @@ Two bars, played as A B A B′ (bar B′ swaps the last half for a blues-scale w
 | Unison hits | 13–16, 24 | Both guitars, bass, kick, and crash hit the same chord. |
 | Call and response | 13–16 | Each band hit is answered by a lead phrase in the space. |
 | Pentatonic and blues-scale hooks | 13–20 | E minor pentatonic around the 12th fret, with the blue B♭ in bar 16 (B–B♭–A) and the A♯ walks in the riff. |
-| Bends (pitch-bend automation) | 13 (A→B, whole step), 15 (G→A and release), 16 (quarter-tone curl on G), 17 (D→E held), 19 (G→A and release) | Track-level pitch-bend points, curved rise over a third of a beat or less, reset to 0 before the next note. |
-| Vibrato (pitch-bend automation) | 13, 14, 15, 17, 18, 20 | About 5 Hz sine on the longer notes, 0.2–0.35 semitones deep, on top of the bend where there is one. |
-| Repetition with variation | 17 vs 19; riff A B A B′ | Bar 19 repeats bar 17's held bend a fourth higher with a release. The riff's fourth bar swaps its tail for a walk. |
+| Bends (pitch-bend automation) | 13 (A→B, whole step), 15 (G→A and release), 16 (quarter-tone curl on G), 17 (D→E held), 19 (G→A and release), 20–21 (D→E over beat 4, held through bar 21, then a tremolo-bar dive of a fourth over its last beat) | Track-level pitch-bend points, curved rise over a third of a beat or less (a full beat in bar 20, so the E arrives on the downbeat), reset to 0 before the next note. |
+| Vibrato (pitch-bend automation) | 13, 14, 15, 17, 18, 21 | About 5 Hz sine on the longer notes, 0.2–0.35 semitones deep, on top of the bend where there is one. The held E in bar 21 widens from 0.15 to 0.4 semitones over the bar, up to the dive. |
+| Repetition with variation | 17 vs 19 vs 20–21; riff A B A B′ | Bar 19 repeats bar 17's held bend a fourth higher with a release, and bar 20 ends the break on bar 17's D→E bend, held into the riff. The riff's fourth bar swaps its tail for a walk. |
 | Rock backbeat, kick under riff accents | 5–12, 17–23 | Snare on 2 and 4 throughout. Under the riff (5–8, 21–23) the kicks follow its accents: bar A on 1, &2 (the G), and &4; bar B on 1, &2 (the A chord), and &3. In 9–12 and 17–20 the kicks fall on 1, &2, and 3. |
 | Fills and build rolls | 4, 12, 16, 20 | 16th snare and tom fills into the next section. |
 | Drum dropout | 1–4, 24 | No kit under the riff alone apart from the one-beat pickup fill in bar 4. The kit drops after the A hit in bar 24. |

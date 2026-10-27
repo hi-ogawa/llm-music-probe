@@ -4525,10 +4525,10 @@
      "velocity": 104
     },
     {
-     "pitch": 76,
+     "pitch": 74,
      "start": 79,
-     "duration": 1,
-     "velocity": 104
+     "duration": 4.875,
+     "velocity": 112
     }
    ],
    "automation": [
@@ -5160,71 +5160,315 @@
        "semitones": 0
       },
       {
-       "beat": 79.25,
-       "semitones": 0
+       "beat": 79.1667,
+       "semitones": 0.611
       },
       {
-       "beat": 79.3,
-       "semitones": 0.247
-      },
-      {
-       "beat": 79.35,
-       "semitones": 0.35
-      },
-      {
-       "beat": 79.4,
-       "semitones": 0.247
-      },
-      {
-       "beat": 79.45,
-       "semitones": 0
+       "beat": 79.3333,
+       "semitones": 1.111
       },
       {
        "beat": 79.5,
-       "semitones": -0.247
+       "semitones": 1.5
       },
       {
-       "beat": 79.55,
-       "semitones": -0.35
+       "beat": 79.6667,
+       "semitones": 1.778
       },
       {
-       "beat": 79.6,
-       "semitones": -0.247
+       "beat": 79.8333,
+       "semitones": 1.944
       },
       {
-       "beat": 79.65,
-       "semitones": 0
+       "beat": 80,
+       "semitones": 2
       },
       {
-       "beat": 79.7,
-       "semitones": 0.247
+       "beat": 80.1,
+       "semitones": 2
       },
       {
-       "beat": 79.75,
-       "semitones": 0.35
+       "beat": 80.15,
+       "semitones": 2.109
       },
       {
-       "beat": 79.8,
-       "semitones": 0.247
+       "beat": 80.2,
+       "semitones": 2.159
       },
       {
-       "beat": 79.85,
-       "semitones": 0
+       "beat": 80.25,
+       "semitones": 2.115
       },
       {
-       "beat": 79.9,
-       "semitones": -0.247
+       "beat": 80.3,
+       "semitones": 2
       },
       {
-       "beat": 79.95,
-       "semitones": -0.35
+       "beat": 80.35,
+       "semitones": 1.879
       },
       {
-       "beat": 79.99,
-       "semitones": 0
+       "beat": 80.4,
+       "semitones": 1.824
       },
       {
-       "beat": 79.995,
+       "beat": 80.45,
+       "semitones": 1.873
+      },
+      {
+       "beat": 80.5,
+       "semitones": 2
+      },
+      {
+       "beat": 80.55,
+       "semitones": 2.133
+      },
+      {
+       "beat": 80.6,
+       "semitones": 2.193
+      },
+      {
+       "beat": 80.65,
+       "semitones": 2.14
+      },
+      {
+       "beat": 80.7,
+       "semitones": 2
+      },
+      {
+       "beat": 80.75,
+       "semitones": 1.854
+      },
+      {
+       "beat": 80.8,
+       "semitones": 1.79
+      },
+      {
+       "beat": 80.85,
+       "semitones": 1.848
+      },
+      {
+       "beat": 80.9,
+       "semitones": 2
+      },
+      {
+       "beat": 80.95,
+       "semitones": 2.158
+      },
+      {
+       "beat": 81,
+       "semitones": 2.228
+      },
+      {
+       "beat": 81.05,
+       "semitones": 2.164
+      },
+      {
+       "beat": 81.1,
+       "semitones": 2
+      },
+      {
+       "beat": 81.15,
+       "semitones": 1.83
+      },
+      {
+       "beat": 81.2,
+       "semitones": 1.755
+      },
+      {
+       "beat": 81.25,
+       "semitones": 1.824
+      },
+      {
+       "beat": 81.3,
+       "semitones": 2
+      },
+      {
+       "beat": 81.35,
+       "semitones": 2.182
+      },
+      {
+       "beat": 81.4,
+       "semitones": 2.262
+      },
+      {
+       "beat": 81.45,
+       "semitones": 2.188
+      },
+      {
+       "beat": 81.5,
+       "semitones": 2
+      },
+      {
+       "beat": 81.55,
+       "semitones": 1.806
+      },
+      {
+       "beat": 81.6,
+       "semitones": 1.721
+      },
+      {
+       "beat": 81.65,
+       "semitones": 1.799
+      },
+      {
+       "beat": 81.7,
+       "semitones": 2
+      },
+      {
+       "beat": 81.75,
+       "semitones": 2.207
+      },
+      {
+       "beat": 81.8,
+       "semitones": 2.297
+      },
+      {
+       "beat": 81.85,
+       "semitones": 2.213
+      },
+      {
+       "beat": 81.9,
+       "semitones": 2
+      },
+      {
+       "beat": 81.95,
+       "semitones": 1.781
+      },
+      {
+       "beat": 82,
+       "semitones": 1.686
+      },
+      {
+       "beat": 82.05,
+       "semitones": 1.775
+      },
+      {
+       "beat": 82.1,
+       "semitones": 2
+      },
+      {
+       "beat": 82.15,
+       "semitones": 2.231
+      },
+      {
+       "beat": 82.2,
+       "semitones": 2.331
+      },
+      {
+       "beat": 82.25,
+       "semitones": 2.237
+      },
+      {
+       "beat": 82.3,
+       "semitones": 2
+      },
+      {
+       "beat": 82.35,
+       "semitones": 1.757
+      },
+      {
+       "beat": 82.4,
+       "semitones": 1.652
+      },
+      {
+       "beat": 82.45,
+       "semitones": 1.751
+      },
+      {
+       "beat": 82.5,
+       "semitones": 2
+      },
+      {
+       "beat": 82.55,
+       "semitones": 2.255
+      },
+      {
+       "beat": 82.6,
+       "semitones": 2.366
+      },
+      {
+       "beat": 82.65,
+       "semitones": 2.262
+      },
+      {
+       "beat": 82.7,
+       "semitones": 2
+      },
+      {
+       "beat": 82.75,
+       "semitones": 1.732
+      },
+      {
+       "beat": 82.8,
+       "semitones": 1.617
+      },
+      {
+       "beat": 82.85,
+       "semitones": 1.726
+      },
+      {
+       "beat": 82.9,
+       "semitones": 2
+      },
+      {
+       "beat": 82.95,
+       "semitones": 2.28
+      },
+      {
+       "beat": 82.99,
+       "semitones": 2
+      },
+      {
+       "beat": 83.0729,
+       "semitones": 1.965
+      },
+      {
+       "beat": 83.1458,
+       "semitones": 1.861
+      },
+      {
+       "beat": 83.2188,
+       "semitones": 1.688
+      },
+      {
+       "beat": 83.2917,
+       "semitones": 1.444
+      },
+      {
+       "beat": 83.3646,
+       "semitones": 1.132
+      },
+      {
+       "beat": 83.4375,
+       "semitones": 0.75
+      },
+      {
+       "beat": 83.5104,
+       "semitones": 0.299
+      },
+      {
+       "beat": 83.5833,
+       "semitones": -0.222
+      },
+      {
+       "beat": 83.6563,
+       "semitones": -0.813
+      },
+      {
+       "beat": 83.7292,
+       "semitones": -1.472
+      },
+      {
+       "beat": 83.8021,
+       "semitones": -2.201
+      },
+      {
+       "beat": 83.875,
+       "semitones": -3
+      },
+      {
+       "beat": 84.375,
        "semitones": 0
       }
      ]

@@ -1,6 +1,8 @@
-// Generates project.json for "Open E Mixolydian" — a 24-bar blues-based hard rock loop.
+// Generates project.json, project-swell-cut.json, project-amp.json, and share-link.txt for
+// "Open E Mixolydian" — a 24-bar blues-based hard rock loop.
 // 125 BPM, 4/4, straight 8ths. Beats are quarter notes; one 8th slot = 0.5 beat.
 import { writeFileSync } from "node:fs";
+import { deflateRawSync } from "node:zlib";
 
 const BAR = 4;
 const S = (bar, slot) => (bar - 1) * BAR + slot * 0.5; // bar is 1-based, slot is 8th 0..7
@@ -166,29 +168,47 @@ const KICK_B = [0, 3, 5];
 const lead = [];
 const bendPoints = [{ beat: 0, semitones: 0 }];
 const L = (p, bar, beat, dur, v = 104) => lead.push(n(p, (bar - 1) * 4 + beat, dur, v));
-// Bend: rise to `amount` over `rise` beats, hold, optional vibrato, release before the note ends
-function bend(bar, beat, dur, amount, { rise = 0.25, vib = 0, release = false } = {}) {
+// Bend: rise to `amount` over `rise` beats, hold, optional vibrato, release before the note ends.
+// The bend resets to 0 just before the note-off, or `resetAfter` beats after it so a held
+// bend keeps its pitch through the note's release when no lead note follows. `dive` ends the
+// note with a tremolo-bar dive of that many semitones over its last `diveLen` beats.
+function bend(
+  bar,
+  beat,
+  dur,
+  amount,
+  { rise = 0.25, vib = 0, vibEnd = vib, release = false, resetAfter = -0.005, dive = 0, diveLen = 1 } = {},
+) {
   const t0 = (bar - 1) * 4 + beat;
   const steps = 6;
   for (let i = 1; i <= steps; i++) {
     const x = i / steps;
     bendPoints.push({ beat: t0 + rise * x, semitones: amount * (1 - (1 - x) ** 2) });
   }
-  const holdEnd = release ? t0 + dur * 0.6 : t0 + dur;
-  if (vib) vibrato(t0 + rise + 0.1, holdEnd, amount, vib);
+  const holdEnd = release ? t0 + dur * 0.6 : dive ? t0 + dur - diveLen : t0 + dur;
+  if (vib) vibrato(t0 + rise + 0.1, holdEnd, amount, vib, vibEnd);
+  if (dive) {
+    // slow at first, then dropping faster, like pushing the bar down
+    for (let i = 1; i <= 12; i++) {
+      const x = i / 12;
+      bendPoints.push({ beat: holdEnd + diveLen * x, semitones: amount + dive * x ** 2 });
+    }
+  }
   if (release) {
     for (let i = 1; i <= steps; i++) {
       const x = i / steps;
       bendPoints.push({ beat: holdEnd + 0.25 * x, semitones: amount * (1 - x) });
     }
   }
-  bendPoints.push({ beat: t0 + dur - 0.005, semitones: 0 });
+  bendPoints.push({ beat: t0 + dur + resetAfter, semitones: 0 });
 }
-// Vibrato as pitch-bend: ~5.2 Hz (2.5 cycles per beat at 125 BPM), depth in semitones
-function vibrato(from, to, center, depth) {
+// Vibrato as pitch-bend: ~5.2 Hz (2.5 cycles per beat at 125 BPM), depth in semitones,
+// moving linearly from `depth` to `depthEnd` (a widening vibrato as the note decays)
+function vibrato(from, to, center, depth, depthEnd = depth) {
   const rate = 2.5;
   for (let t = from; t < to - 0.02; t += 1 / (rate * 8)) {
-    bendPoints.push({ beat: t, semitones: center + depth * Math.sin(2 * Math.PI * rate * (t - from)) });
+    const dep = depth + (depthEnd - depth) * ((t - from) / (to - from));
+    bendPoints.push({ beat: t, semitones: center + dep * Math.sin(2 * Math.PI * rate * (t - from)) });
   }
   bendPoints.push({ beat: to - 0.01, semitones: center });
 }
@@ -304,7 +324,11 @@ L(79, 19, 0, 1.5, 114); bend(19, 0, 1.5, 2, { rise: 0.33, release: true }); // G
 L(76, 19, 2.0, 0.5); L(79, 19, 2.5, 0.5); L(76, 19, 3.0, 0.5); L(74, 19, 3.5, 0.5);
 L(76, 20, 0, 0.5); L(74, 20, 0.5, 0.5); L(71, 20, 1.0, 0.5); L(67, 20, 1.5, 0.5);
 L(69, 20, 2.0, 0.5); L(71, 20, 2.5, 0.5);
-vibNote(76, 20, 3.0, 1.0, 0.35);
+// D bent to E on beat 4, landing on the bar 21 downbeat and held at full level through bar 21
+// over the riff with a widening vibrato, then dived down a fourth with the tremolo bar on beat 4.
+// The lead is silent until bar 13, so the bend holds through the release and resets half a beat later.
+L(74, 20, 3.0, 4.875, 112);
+bend(20, 3.0, 4.875, 2, { rise: 1.0, vib: 0.15, vibEnd: 0.4, resetAfter: 0.5, dive: -5, diveLen: 0.875 });
 
 // Bars 21–24: the riff again, bar 24 cuts the band after the A hit so the riff guitar alone leads back to bar 1
 riffSection(21, { lastStop: true });
@@ -336,6 +360,43 @@ const drumsUnique = drums.filter((x) => {
 });
 const round = (pts) => pts.map((p) => ({ beat: +p.beat.toFixed(4), semitones: +p.semitones.toFixed(3) }));
 const sortNotes = (ns) => ns.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
+
+// Markdown comment shown with project-amp.json, the version the catalog opens
+const AMP_COMMENT = `# Open E Mixolydian
+
+Blues-based hard rock in E at 125 BPM, 4/4 with straight 8ths, built on one open-position guitar riff. The 24 bars (about 46 seconds) loop, so the riff guitar's E–G–G♯ pickup in bar 24 leads back into bar 1, where the riff is alone again.
+
+## Form
+
+| Section | Bars | Chords | What happens |
+| --- | --- | --- | --- |
+| Riff alone | 1–4 | E–D A–E–D A | Riff guitar alone, a G–A–A♯–B walk and a drum pickup in bar 4 |
+| Band in | 5–8 | E–D A–E–D A | Crash in, bass doubles the riff an octave down, right guitar chords with chks on 2 and 4 |
+| bVII–IV–I section | 9–12 | D–A–E–G A | Ringing chords on a 3+3+2 accent, riff guitar plays double stops, ride replaces hats |
+| Stop-time + lead | 13–16 | E–D A–E–D (A) | Band hits then space, the lead answers in the gaps, A–A♯–B walk back in |
+| Lead break | 17–20 | E–D A–E–G A | Full band, riff guitar thins to muted chugs so the lead has room |
+| Riff again | 21–24 | E–D A–E–D A | As bars 5–8, then the band drops out after the bar 24 hits |
+
+## Tracks
+
+| Track | Part |
+| --- | --- |
+| Crunch L Riff (open) | Open strokes of the riff |
+| Crunch L Riff (muted) | Chugs and chks of the riff |
+| Crunch R Chords (open) | Open chords of the rhythm guitar |
+| Crunch R Chords (muted) | Chks of the rhythm guitar |
+| High Gain Lead | E minor pentatonic lead with bends and vibrato |
+| Bass | Riff an octave down, root 8ths in bars 9–12 |
+| Drums | Backbeat, kick under the riff accents, fills |
+
+## Notes
+
+- Open and muted strokes sit on separate tracks because they use separate presets. Each pair shares a name prefix and a pan so it reads as one guitar.
+- Each guitar track runs through Toy MIDI's amp at one setting with the cabinet on: Crunch for the four rhythm tracks and High Gain for the lead.
+- CC 11 on each guitar track fades to 0 over about 30 ms after a note-off and returns at the next note, which works as a note gate in front of the amp.
+- The lead's bends and vibrato are pitch-bend automation.
+- Chords are real open grips (E, A, D, G), strummed with about 8 ms between strings.
+`;
 
 const TELE = "flamestudios-telecaster-bridge";
 const project = {
@@ -373,4 +434,45 @@ const project = {
   ],
 };
 writeFileSync(new URL("./project.json", import.meta.url), JSON.stringify(project, null, 1));
+writeFileSync(
+  new URL("./share-link.txt", import.meta.url),
+  `https://toy-midi.hiro18181.workers.dev/draft#p=${deflateRawSync(JSON.stringify(project)).toString("base64url")}\n`,
+);
+
+// ---------------- Swell-cut and amp variants ----------------
+// project-swell-cut.json: CC 11 on each guitar track fades to 0 over 30 ms (1/16 beat) after a
+// note-off and returns to 127 at the next note-on. Gaps shorter than the fade are left alone.
+const FADE = 0.0625;
+function swellCut(notes) {
+  const spans = notes.map((x) => [x.start, x.start + x.duration]).sort((a, b) => a[0] - b[0]);
+  const merged = [];
+  for (const [a, z] of spans) {
+    const last = merged.at(-1);
+    if (last && a - last[1] < FADE) last[1] = Math.max(last[1], z);
+    else merged.push([a, z]);
+  }
+  const points = [{ beat: 0, value: 127 }];
+  merged.forEach(([a, z], i) => {
+    if (i > 0) points.push({ beat: a, value: 127 });
+    points.push(
+      { beat: z, value: 127 },
+      { beat: z + FADE / 3, value: 80 },
+      { beat: z + (2 * FADE) / 3, value: 32 },
+      { beat: z + FADE, value: 0 },
+    );
+  });
+  return points;
+}
+const swell = structuredClone(project);
+for (const t of swell.midiTracks.filter((t) => t.soundfont === TELE))
+  t.automation = [...(t.automation ?? []), { type: "controller", controller: 11, points: swellCut(t.notes) }];
+writeFileSync(new URL("./project-swell-cut.json", import.meta.url), JSON.stringify(swell));
+
+// project-amp.json: the swell-cut project with Toy MIDI's amp on each guitar track
+const amp = structuredClone(swell);
+amp.comment = AMP_COMMENT;
+for (const t of amp.midiTracks.filter((t) => t.soundfont === TELE))
+  t.amp = { preset: t.name.startsWith("High Gain") ? "high-gain" : "crunch", cabinet: true };
+writeFileSync(new URL("./project-amp.json", import.meta.url), JSON.stringify(amp));
+
 console.log(project.midiTracks.map((t) => `${t.name}: ${t.notes.length} notes`).join("\n"));
