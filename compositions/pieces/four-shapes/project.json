@@ -19,7 +19,26 @@
       "synth": {
         "waveform": "sawtooth"
       },
-      "gain": 0.7685339695748038,
+      "gain": 0.555204842696,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 2000,
+            "q": 0.541,
+            "gain": 1,
+            "bypass": false
+          },
+          {
+            "type": "low-pass",
+            "frequency": 2000,
+            "q": 1.307,
+            "gain": 1,
+            "bypass": false
+          }
+        ]
+      },
       "notes": [
         {
           "pitch": 76,
@@ -125,7 +144,7 @@
       "synth": {
         "waveform": "sine"
       },
-      "gain": 0.7167894373329972,
+      "gain": 0.45387842233634856,
       "notes": [
         {
           "pitch": 69,
@@ -519,7 +538,19 @@
       "synth": {
         "waveform": "triangle"
       },
-      "gain": 0.7665714245011392,
+      "gain": 0.4863539391867803,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 2500,
+            "q": 0.707,
+            "gain": 1,
+            "bypass": false
+          }
+        ]
+      },
       "notes": [
         {
           "pitch": 57,
@@ -602,6 +633,25 @@
         "waveform": "square"
       },
       "gain": 1,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 600,
+            "q": 0.541,
+            "gain": 1,
+            "bypass": false
+          },
+          {
+            "type": "low-pass",
+            "frequency": 600,
+            "q": 1.307,
+            "gain": 1,
+            "bypass": false
+          }
+        ]
+      },
       "notes": [
         {
           "pitch": 45,
