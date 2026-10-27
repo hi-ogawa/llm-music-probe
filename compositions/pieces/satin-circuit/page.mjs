@@ -54,7 +54,8 @@ details summary { cursor: pointer; color: #777; font-size: 13px; }
 <p>An early-80s boogie in G minor at ${tempo} BPM, written so the synth parts carry it: a filter-envelope synth bass, a portamento lead, and a pad. The project plays on General MIDI presets in Toy MIDI. This page replaces the bass and then the lead with an offline prototype subtractive synth, one change per step, to hear whether a synth of its own earns a place in Toy MIDI.</p>
 <ul>
 <li>Clips are bars ${bars[0]}-${bars[1] - 1}, the second half of A and all of B, which has the most held lead notes.</li>
-<li>Every synth part is loudness-matched to its General MIDI version (K-weighted, BS.1770 without gating, over the same bars), so a step can't win by being louder. One gain is shared by every clip.</li>
+<li>Every version of the bass and the lead is loudness-matched to the project's General MIDI version (K-weighted, BS.1770 without gating, over the same bars), so a step can't win by being louder. One gain is shared by every clip.</li>
+<li>Each ladder starts with three General MIDI rows: the notes alone, then portamento (CC 65 and CC 5) on the overlapping notes, then CC 74 set from each note's velocity, which is the project as it plays in Toy MIDI. So the synth's glide and velocity steps compare against what a preset can do with the same intent.</li>
 <li>Drums and pad stay on General MIDI throughout, rendered through spessasynth_core with GeneralUser GS and no reverb or chorus, like the app. The lead ladder plays over the bass from the last bass step.</li>
 <li>Switching clips keeps the playback position, so you can flip between steps or between mix and solo mid-phrase. Space toggles play.</li>
 </ul>
@@ -63,7 +64,7 @@ details summary { cursor: pointer; color: #777; font-size: 13px; }
 <h2>Whole piece</h2>
 <p><button data-clip="full-gm">General MIDI</button> <button data-clip="full-synth">synth bass and lead (last steps)</button></p>
 <h2>Bass ladder</h2>
-<p>Solo is the bass alone. The lead stays on General MIDI Saw Lead in the mix.</p>
+<p>Solo is the bass alone. The lead plays as the project does in the mix.</p>
 ${table("bass")}
 <h2>Lead ladder</h2>
 <p>Solo is the lead alone.</p>

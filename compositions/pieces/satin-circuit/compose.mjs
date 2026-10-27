@@ -120,6 +120,26 @@ for (let bar = 1; bar <= 20; bar++) {
 for (const bar of [5, 13, 17, 21]) hit(bar, 0, 49, 110);
 hit(21, 0, 36, 120);
 
+// ---------- General MIDI controls where the synth versions get the same ----------
+// SpessaSynth's portamento (CC 65 on, CC 5 time) glides every note-on from the previous key while it's on,
+// so CC 65 opens just around each slide's landing note. CC 5 sets milliseconds per semitone, not a total time.
+// CC 74 shifts the preset's cutoff for the whole channel, so it's set before each note from its velocity.
+const EPS = 1 / 96;
+function gmControls(notes, { portaTime, cutoffPerVelocity }) {
+  const porta = [{ beat: 0, value: 0 }];
+  notes.forEach((n, i) => {
+    const prev = notes[i - 1];
+    if (prev && prev.start + prev.duration > n.start) porta.push({ beat: n.start - EPS, value: 127 }, { beat: n.start + EPS, value: 0 });
+  });
+  const cutoff = notes.map((n) => ({ beat: Math.max(0, n.start - EPS), value: Math.max(0, Math.min(127, Math.round(64 + (n.velocity - 96) * cutoffPerVelocity))) }));
+  cutoff[0].beat = 0;
+  return [
+    { type: "controller", controller: 5, points: [{ beat: 0, value: portaTime }] },
+    { type: "controller", controller: 65, points: porta },
+    { type: "controller", controller: 74, points: cutoff },
+  ];
+}
+
 const comment = `# Satin Circuit
 
 Early-80s boogie in G minor, 114 BPM, written to demo a custom synth against General MIDI ([toy-midi#1005](https://github.com/hi-ogawa/toy-midi/issues/1005)). The synth parts carry it.
@@ -130,7 +150,7 @@ Early-80s boogie in G minor, 114 BPM, written to demo a custom synth against Gen
 
 Form: intro (1-4), A (5-12), B (13-16, Ebmaj9 Dm9 Cm9 D7#9 with long lead notes), A' (17-20), last chord (21).
 
-On General MIDI the overlaps sound as a short double note instead of a glide.`;
+On General MIDI, the bass and lead get portamento (CC 65 and CC 5) on the overlapping notes, and CC 74 raises the cutoff on accents and lowers it on ghosts. The previous note still sounds for the overlap, because a track can't switch the channel to mono.`;
 
 const track = (o) => ({ viewMode: "editor", height: 160, pan: 0, muted: false, soloed: false, keySignature: { fifths: -2, mode: "minor" }, ...o });
 const project = {
@@ -147,8 +167,8 @@ const project = {
     { beat: 80, label: "End" },
   ],
   midiTracks: [
-    track({ name: "Lead", program: 81, gain: 0.6, pan: 0.1, notes: lead }),
-    track({ name: "Synth Bass", program: 38, gain: 0.8, notes: bass }),
+    track({ name: "Lead", program: 81, gain: 0.6, pan: 0.1, notes: lead, automation: gmControls(lead, { portaTime: 48, cutoffPerVelocity: 0.15 }) }),
+    track({ name: "Synth Bass", program: 38, gain: 0.8, notes: bass, automation: gmControls(bass, { portaTime: 32, cutoffPerVelocity: 0.25 }) }),
     track({ name: "Pad", program: 90, gain: 0.4, pan: -0.1, notes: pad }),
     track({ name: "Drums", program: 0, bank: 128, gain: 0.7, notes: drums }),
   ],

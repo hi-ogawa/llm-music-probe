@@ -31,7 +31,8 @@ const pan = ([L, R], p, gain = 1) => {
   return [L, R];
 };
 
-async function renderGM(track) {
+// controllers: which of the track's automated controllers to play, all by default
+async function renderGM(track, controllers) {
   const synth = new S.SpessaSynthProcessor(SR, { eventsEnabled: false, effectsEnabled: false });
   await synth.processorInitialized;
   synth.soundBankManager.addSoundBank(S.SoundBankLoader.fromArrayBuffer(sf.buffer.slice(sf.byteOffset, sf.byteOffset + sf.byteLength)), "gu");
@@ -45,13 +46,18 @@ async function renderGM(track) {
     ev.push({ s: Math.round(n.start * spb * SR), on: true, n });
     ev.push({ s: Math.round((n.start + n.duration) * spb * SR), on: false, n });
   }
-  ev.sort((a, b) => a.s - b.s || a.on - b.on);
+  for (const a of track.automation ?? [])
+    if (a.type === "controller" && (!controllers || controllers.includes(a.controller)))
+      for (const pt of a.points) ev.push({ s: Math.round(pt.beat * spb * SR), cc: a.controller, value: pt.value });
+  const order = (e) => (e.cc !== undefined ? 1 : e.on ? 2 : 0); // note-offs, then controllers, then note-ons
+  ev.sort((a, b) => a.s - b.s || order(a) - order(b));
   const L = new Float32Array(TOTAL), R = new Float32Array(TOTAL);
   let pos = 0;
   for (const e of [...ev, { s: TOTAL }]) {
     const to = Math.min(e.s, TOTAL);
     while (pos < to) { const n = Math.min(128, to - pos); synth.process(L, R, pos, n); pos += n; }
-    if (e.n) e.on ? synth.noteOn(0, e.n.pitch, e.n.velocity) : synth.noteOff(0, e.n.pitch);
+    if (e.cc !== undefined) synth.controllerChange(0, e.cc, e.value);
+    else if (e.n) e.on ? synth.noteOn(0, e.n.pitch, e.n.velocity) : synth.noteOff(0, e.n.pitch);
   }
   return pan([L, R], track.pan, track.gain);
 }
@@ -172,15 +178,20 @@ const lead4 = { ...lead3, glide: 0.06 };
 const lead5 = { ...lead4, vib: 18 };
 const lead6 = { ...lead5, unison: 3, spread: 9, width: 0.6 };
 
+const PORTA = [5, 65], CUTOFF = [74];
 const STEPS = [
-  { ladder: "bass", id: "b0", title: "General MIDI Synth Bass 1", change: "GeneralUser's Synth Bass 1, as the project plays in Toy MIDI" },
+  { ladder: "bass", id: "b0", title: "General MIDI Synth Bass 1, notes only", change: "GeneralUser's Synth Bass 1 playing the notes with no controllers, so overlaps sound as short double notes", gmBass: [] },
+  { ladder: "bass", id: "b0p", title: "+ portamento on overlaps", change: "CC 65 turns portamento on around each overlapping note, and CC 5 at 32 glides it at about 12 ms per semitone", gmBass: PORTA },
+  { ladder: "bass", id: "b0c", title: "+ CC 74 from velocity", change: "CC 74 before each note raises the preset's cutoff on accents and lowers it on ghosts, which is the project as it plays in Toy MIDI", gmBass: [...PORTA, ...CUTOFF] },
   { ladder: "bass", id: "b1", title: "Own saw, nothing moving", change: "one band-limited saw through a wide-open lowpass, with a gate-shaped amp envelope", bass: bass0 },
   { ladder: "bass", id: "b2", title: "+ filter envelope", change: "the lowpass sits at 150 Hz, follows half the key, and opens 4 octaves at each attack, falling back over a 150 ms time constant to 15% of that", bass: bass1 },
   { ladder: "bass", id: "b3", title: "+ resonance", change: "resonance at 0.6, so the falling cutoff rings", bass: bass2 },
   { ladder: "bass", id: "b4", title: "+ velocity to filter depth", change: "velocity scales the filter envelope's depth, so a ghost note at 64 opens 60% as far as an accent at 127", bass: bass3 },
   { ladder: "bass", id: "b5", title: "+ glide on overlaps", change: "a note that starts before the previous one ends slides to its pitch with a 35 ms time constant and doesn't retrigger the envelopes", bass: bass4 },
   { ladder: "bass", id: "b6", title: "+ sub oscillator", change: "a square one octave below the saw, at 60% level", bass: bass5 },
-  { ladder: "lead", id: "l0", title: "General MIDI Saw Lead", change: "GeneralUser's Saw Lead, as the project plays in Toy MIDI, over the bass from the last bass step", bass: bass5 },
+  { ladder: "lead", id: "l0", title: "General MIDI Saw Lead, notes only", change: "GeneralUser's Saw Lead playing the notes with no controllers, over the bass from the last bass step", bass: bass5, gmLead: [] },
+  { ladder: "lead", id: "l0p", title: "+ portamento on overlaps", change: "CC 65 around each overlapping note, and CC 5 at 48 for about 25 ms per semitone", bass: bass5, gmLead: PORTA },
+  { ladder: "lead", id: "l0c", title: "+ CC 74 from velocity", change: "CC 74 before each note from its velocity, milder than the bass's, which is the project as it plays in Toy MIDI", bass: bass5, gmLead: [...PORTA, ...CUTOFF] },
   { ladder: "lead", id: "l1", title: "Own saw, nothing moving", change: "one band-limited saw through a wide-open lowpass, with a gate-shaped amp envelope", bass: bass5, lead: lead0 },
   { ladder: "lead", id: "l2", title: "+ filter envelope", change: "the lowpass sits at 1.1 kHz, follows 70% of the key, and opens 2.5 octaves at each attack, settling over 350 ms to 35% of that", bass: bass5, lead: lead1 },
   { ladder: "lead", id: "l3", title: "+ resonance", change: "resonance at 0.4", bass: bass5, lead: lead2 },
@@ -195,6 +206,13 @@ for (const t of project.midiTracks) { gm[t.name] = await renderGM(t); console.lo
 const trackLufs = Object.fromEntries(Object.entries(gm).map(([n, st]) => [n, +lufs(st).toFixed(1)]));
 console.log("GM track LUFS over the excerpt", trackLufs);
 const others = project.midiTracks.filter((t) => t !== BASS && t !== LEAD).map((t) => gm[t.name]);
+// General MIDI variants with fewer controllers are matched to the project's version, like the synth parts
+const gmCache = new Map();
+const gmPart = async (track, controllers) => {
+  const key = track.name + controllers.join();
+  if (!gmCache.has(key)) gmCache.set(key, matchTo(await renderGM(track, controllers), gm[track.name]));
+  return gmCache.get(key);
+};
 const synthCache = new Map();
 const synthPart = (track, p) => {
   const key = track.name + JSON.stringify(p);
@@ -210,8 +228,8 @@ const mixdown = (parts, from, to) => {
 const clips = [];
 const levels = [];
 for (const st of STEPS) {
-  const bass = st.bass ? synthPart(BASS, st.bass) : gm[BASS.name];
-  const lead = st.lead ? synthPart(LEAD, st.lead) : gm[LEAD.name];
+  const bass = st.bass ? synthPart(BASS, st.bass) : st.gmBass ? await gmPart(BASS, st.gmBass) : gm[BASS.name];
+  const lead = st.lead ? synthPart(LEAD, st.lead) : st.gmLead ? await gmPart(LEAD, st.gmLead) : gm[LEAD.name];
   const solo = st.ladder === "bass" ? bass : lead;
   clips.push({ id: `${st.id}-mix`, st: mixdown([...others, bass, lead], s0, s1) });
   clips.push({ id: `${st.id}-solo`, st: mixdown([solo], s0, s1) });

@@ -21,11 +21,11 @@ An early-80s boogie in G minor at 114 BPM, 21 bars, written to test whether Toy 
 - **Pad** holds rootless voicings on Polysynth, with C9 and F13 pushed an eighth ahead of the beat.
 - **Drums** are the Standard kit, with sixteenth hats, a clap on the snare, and fills into each section.
 
-On General MIDI, an overlap plays as a short double note instead of a glide.
+On General MIDI, the bass and the lead get the same intent through controllers. CC 65 turns portamento on around each overlapping note, and CC 5 sets its speed, at 32 for the bass and 48 for the lead. SpessaSynth's portamento moves at a set time per semitone, about 12 ms and 25 ms here, so an octave dive takes longer than a half-step slide, unlike the synth's glide. CC 74 before each note raises the preset's cutoff on accents and lowers it on ghosts. The previous note still sounds through the overlap, because mono mode is CC 126, past the controllers a Toy MIDI track automates.
 
 ## Files
 
-- `compose.mjs` writes `project.json`. Parts are written bar by bar as `pos:note:len:vel` tokens in sixteenths, and a trailing `~` makes a note overlap the next one by an eighth of a beat.
+- `compose.mjs` writes `project.json`. Parts are written bar by bar as `pos:note:len:vel` tokens in sixteenths, and a trailing `~` makes a note overlap the next one by an eighth of a beat. The General MIDI controllers are derived from the notes.
 - `render.mjs` is the prototype synth and the ladder. It renders the drums and the pad, and the General MIDI bass and lead, through spessasynth_core with GeneralUser GS and effects off, the way the app plays them. It needs a Toy MIDI checkout with dependencies installed, found next to this repository or through `TOY_MIDI`, and writes its clips to `out/`.
 - `page.mjs` builds the ladder page from `out/`, with every clip embedded so it shares as one gist file.
 
@@ -42,11 +42,13 @@ It is one monophonic voice, which can be a unison stack.
 
 ## The ladder
 
-Clips cover bars 9 to 16, the second half of A and all of B. Each synth part is loudness-matched to its General MIDI version over those bars, using K-weighted loudness as in BS.1770 without gating, and one gain is shared by every clip, so no step wins by being louder.
+Clips cover bars 9 to 16, the second half of A and all of B. Every version of the bass and the lead is loudness-matched to the project's General MIDI version over those bars, using K-weighted loudness as in BS.1770 without gating, and one gain is shared by every clip, so no step wins by being louder.
 
-| Step | Bass ladder, lead on General MIDI |
+| Step | Bass ladder, lead as the project plays it |
 |---|---|
-| b0 | General MIDI Synth Bass 1 |
+| b0 | General MIDI Synth Bass 1, notes only |
+| b0p | + portamento on overlaps |
+| b0c | + CC 74 from velocity, which is the project as it plays |
 | b1 | own saw, filter wide open |
 | b2 | + filter envelope: base 150 Hz, half keytrack, 4 octaves of envelope with a 150 ms decay |
 | b3 | + resonance 0.6 |
@@ -56,7 +58,9 @@ Clips cover bars 9 to 16, the second half of A and all of B. Each synth part is 
 
 | Step | Lead ladder, over the b6 bass |
 |---|---|
-| l0 | General MIDI Saw Lead |
+| l0 | General MIDI Saw Lead, notes only |
+| l0p | + portamento on overlaps |
+| l0c | + CC 74 from velocity, which is the project as it plays |
 | l1 | own saw, filter wide open |
 | l2 | + filter envelope: base 1.1 kHz, 70% keytrack, 2.5 octaves of envelope with a 350 ms decay |
 | l3 | + resonance 0.4 |
@@ -75,5 +79,5 @@ General MIDI levels over bars 9 to 16 with the project's track gains are lead -2
 
 ## Toy MIDI doc gaps
 
-- The docs don't say how two overlapping notes at different pitches play on one track, or whether any preset honors portamento controllers such as CC 5 and CC 65. The piece assumes they play as two notes, and leaves portamento out of the General MIDI version.
-- The docs name CC 1, 11, and 64 as examples but don't list which controllers shape a synth preset's sound, such as CC 74 for cutoff, so the General MIDI version has no controller automation.
+- The docs don't say that presets honor portamento through CC 65 and CC 5, how CC 5 maps to time, or that overlapping notes on a track both sound because a track can't switch to mono. This session found them in SpessaSynth's source.
+- The docs name CC 1, 11, and 64 as examples but don't list which controllers shape a synth preset's sound, such as CC 74 for cutoff, or how far they move it.
