@@ -25,20 +25,20 @@
           }
         ]
       },
-      "gain": 0.555204842696,
+      "gain": 0.5248074602497727,
       "eq": {
         "bypass": false,
         "bands": [
           {
             "type": "low-pass",
-            "frequency": 2000,
+            "frequency": 1900,
             "q": 0.541,
             "gain": 1,
             "bypass": false
           },
           {
             "type": "low-pass",
-            "frequency": 2000,
+            "frequency": 2292,
             "q": 1.307,
             "gain": 1,
             "bypass": false
@@ -156,7 +156,7 @@
           }
         ]
       },
-      "gain": 0.45387842233634856,
+      "gain": 0.5688529308438414,
       "notes": [
         {
           "pitch": 69,
@@ -556,13 +556,13 @@
           }
         ]
       },
-      "gain": 0.4863539391867803,
+      "gain": 0.5432503314924332,
       "eq": {
         "bypass": false,
         "bands": [
           {
             "type": "low-pass",
-            "frequency": 2500,
+            "frequency": 4041,
             "q": 0.707,
             "gain": 1,
             "bypass": false
@@ -656,7 +656,7 @@
           }
         ]
       },
-      "gain": 1,
+      "gain": 0.5011872336272722,
       "eq": {
         "bypass": false,
         "bands": [
