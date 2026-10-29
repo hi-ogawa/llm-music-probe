@@ -71,7 +71,7 @@ const project = {
   midiTracks: tracks.map(({ name, program, waveform, notes, lowPass }, i) => ({
     name,
     program,
-    synth: { waveform },
+    synth: { layers: [{ oscillator: { waveform } }] },
     gain: 10 ** ((offsets[i] + shift) / 20),
     ...(lowPass.length > 0 && { eq: { bypass: false, bands: lowPass } }),
     notes,

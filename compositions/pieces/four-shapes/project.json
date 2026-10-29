@@ -17,7 +17,13 @@
       "name": "Lead (saw)",
       "program": 81,
       "synth": {
-        "waveform": "sawtooth"
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sawtooth"
+            }
+          }
+        ]
       },
       "gain": 0.555204842696,
       "eq": {
@@ -142,7 +148,13 @@
       "name": "Arp (sine)",
       "program": 80,
       "synth": {
-        "waveform": "sine"
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine"
+            }
+          }
+        ]
       },
       "gain": 0.45387842233634856,
       "notes": [
@@ -536,7 +548,13 @@
       "name": "Pad (triangle)",
       "program": 89,
       "synth": {
-        "waveform": "triangle"
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "triangle"
+            }
+          }
+        ]
       },
       "gain": 0.4863539391867803,
       "eq": {
@@ -630,7 +648,13 @@
       "name": "Bass (square)",
       "program": 38,
       "synth": {
-        "waveform": "square"
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "square"
+            }
+          }
+        ]
       },
       "gain": 1,
       "eq": {
