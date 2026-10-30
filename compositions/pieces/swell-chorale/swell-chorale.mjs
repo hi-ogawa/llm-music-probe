@@ -40,9 +40,8 @@ function createLine(line, velocity) {
   }
   return notes;
 }
-// The synth scales level with velocity, so the inner voices sit under the
-// melody.
-const manual = [...createLine(soprano, 100), ...createLine(alto, 80), ...createLine(tenor, 80)];
+const solo = createLine(soprano, 100);
+const swell = [...createLine(alto, 100), ...createLine(tenor, 100)];
 const pedal = createLine(bass.map((pitch) => [pitch, 2]), 100);
 
 // Automation holds each point's value until the next, so a point every 16th
@@ -61,13 +60,18 @@ const expression = createRamps([
   [16, 85, 26, 127], [26, 127, 28, 127], [28, 127, 32, 60],
 ]);
 
+// Track gains in dB, set from per-track loudness in a render: the swell's
+// peak sits just under the steady melody, and the pedal under both.
+const fromDb = (db) => 10 ** (db / 20);
+
 const project = {
   title: "Swell Chorale",
   comment: [
-    "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM.",
+    "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM. Like an organ's divisions, each part has its own stop and place.",
     "",
-    "- **Manual**: a soprano melody over two inner voices that hold common tones and suspend into each A chord. A sine with a quiet square (gain 0.3) gives a reedy organ tone, through a gentle low-pass. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.",
-    "- **Pedal**: a sine with a triangle (gain 0.5). Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level while the manual swells.",
+    "- **Solo**: the soprano melody on a flute-like stop, a sine with a triangle (gain 0.5), a little right of center at a steady level.",
+    "- **Swell**: two inner voices that hold common tones and suspend into each A chord, on a reedy stop, a sine with a quiet square (gain 0.3) through a gentle low-pass, a little left of center. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.",
+    "- **Pedal**: the bass line on a sine with a triangle (gain 0.5), centered. Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level.",
     "- The second phrase ends on A7, which resolves into the opening D as the loop wraps.",
   ].join("\n"),
   tempo: 66,
@@ -75,8 +79,22 @@ const project = {
   loop: { range: { startBeat: 0, endBeat: 32 }, enabled: true },
   midiTracks: [
     {
-      name: "Manual",
+      name: "Solo",
       program: 19,
+      pan: 0.3,
+      synth: {
+        layers: [
+          { oscillator: { waveform: "sine" }, gain: 1 },
+          { oscillator: { waveform: "triangle" }, gain: 0.5 },
+        ],
+      },
+      notes: solo,
+    },
+    {
+      name: "Swell",
+      program: 19,
+      pan: -0.3,
+      gain: fromDb(-4),
       synth: {
         layers: [
           { oscillator: { waveform: "sine" }, gain: 1 },
@@ -85,11 +103,12 @@ const project = {
       },
       eq: { bypass: false, bands: [{ type: "low-pass", frequency: 2573, q: 0.707, gain: 1, bypass: false }] },
       automation: [{ type: "controller", controller: 11, points: expression }],
-      notes: manual,
+      notes: swell,
     },
     {
       name: "Pedal",
       program: 19,
+      gain: fromDb(-2),
       synth: {
         layers: [
           { oscillator: { waveform: "sine" }, gain: 1 },
