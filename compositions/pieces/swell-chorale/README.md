@@ -8,11 +8,12 @@ An 8-bar organ chorale loop in D major at 66 BPM, one chord per half note, with 
 
 | Track | Layers | Part |
 |---|---|---|
-| Manual | sine at 1, square at 0.3 | three-voice chords |
+| Manual | sine at 1, square at 0.3 | soprano melody over two inner voices |
 | Pedal | sine at 1, triangle at 0.5 | bass line |
 
 - `swell-chorale.mjs` writes `project.json`.
 - CC11 on the manual works like an organ's swell pedal, rising into each cadence and easing back to its opening value of 60 by the loop point, so the wrap has no jump. Automation holds each point's value until the next, so the curves have a point every 16th to keep the swells from sounding stepped.
+- The soprano moves in quarters and eighths with passing and neighbor tones. The inner voices hold common tones across chords instead of restriking them, as an organist ties them, and resolve a 4-3 suspension, D to C#, into each A chord. They play at velocity 80 under the melody's 100, since the synth scales level with velocity.
 - The pedal has no automation. Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level under the swells.
 - The manual's square layer goes through a gentle low-pass at 2.6 kHz in the track EQ, which takes the edge off its upper harmonics.
 - Both tracks keep General MIDI program 19, Church Organ, for `.mid` export.

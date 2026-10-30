@@ -1,19 +1,49 @@
 import { writeFileSync } from "node:fs";
 
-// D major, one chord per half note, as [bass, upper voices]. Each phrase is 4
-// bars: the first ends on A, the second on A7, which resolves into the opening
-// D as the loop wraps.
-const chords = [
-  // D, A/C#, Bm, F#m/A, G, D/F#, Em7, A
-  [50, [57, 62, 66]], [49, [57, 61, 64]], [47, [59, 62, 66]], [45, [57, 61, 66]],
-  [43, [59, 62, 67]], [42, [57, 62, 66]], [40, [59, 62, 67]], [45, [57, 61, 64]],
-  // D, G, Bm, Em, G/B, D/A, Em7, A7
-  [50, [57, 62, 66]], [43, [59, 62, 67]], [47, [59, 62, 66]], [40, [59, 64, 67]],
-  [47, [59, 62, 67]], [45, [57, 62, 66]], [40, [59, 62, 67]], [45, [61, 64, 67]],
+// D major, one chord per half note. Each phrase is 4 bars: the first ends on
+// A, the second on A7, which resolves into the opening D as the loop wraps.
+// Phrase 1: D, A/C#, Bm, F#m/A, G, D/F#, Em7, A
+// Phrase 2: D, G, Bm, Em, G/B, D/A, Em7, A7
+const bass = [50, 49, 47, 45, 43, 42, 40, 45, 50, 43, 47, 40, 47, 45, 40, 45];
+
+// Voice lines as [pitch, beats]. The soprano moves in quarters and eighths
+// with passing and neighbor tones. The inner voices hold common tones across
+// chords and resolve a 4-3 suspension, D to C#, into each A chord.
+const soprano = [
+  [78, 1], [76, 1], [76, 1], [73, 1], [74, 1], [76, 0.5], [74, 0.5], [73, 1],
+  [69, 1], [71, 1], [74, 1], [78, 1], [76, 0.5], [74, 0.5], [74, 1], [71, 1], [73, 2],
+  [74, 1], [78, 1], [79, 1.5], [78, 0.5], [74, 1], [78, 1], [79, 1], [76, 1],
+  [74, 1], [79, 0.5], [78, 0.5], [78, 1], [76, 0.5], [74, 0.5], [76, 1], [74, 1], [73, 1], [76, 1],
 ];
-const manual = chords.flatMap(([, upper], i) =>
-  upper.map((pitch) => ({ pitch, start: i * 2, duration: 2, velocity: 100 })));
-const pedal = chords.map(([bass], i) => ({ pitch: bass, start: i * 2, duration: 2, velocity: 100 }));
+const alto = [
+  [62, 2], [64, 2], [66, 2], [66, 2], [67, 2], [62, 2], [67, 2], [64, 2],
+  [62, 2], [62, 2], [62, 2], [64, 2], [67, 2], [66, 2], [67, 2], [67, 2],
+];
+const tenor = [
+  [57, 2], [57, 2], [59, 2], [61, 2], [62, 2], [57, 2], [62, 2], [62, 1], [61, 1],
+  [57, 2], [59, 2], [59, 2], [59, 2], [62, 2], [62, 2], [62, 2], [62, 1], [61, 1],
+];
+
+// Repeated pitches in a line become one held note, the way an organist ties
+// common tones instead of restriking them.
+function createLine(line, velocity) {
+  const notes = [];
+  let start = 0;
+  for (const [pitch, duration] of line) {
+    const previous = notes.at(-1);
+    if (previous?.pitch === pitch && previous.start + previous.duration === start) {
+      previous.duration += duration;
+    } else {
+      notes.push({ pitch, start, duration, velocity });
+    }
+    start += duration;
+  }
+  return notes;
+}
+// The synth scales level with velocity, so the inner voices sit under the
+// melody.
+const manual = [...createLine(soprano, 100), ...createLine(alto, 80), ...createLine(tenor, 80)];
+const pedal = createLine(bass.map((pitch) => [pitch, 2]), 100);
 
 // Automation holds each point's value until the next, so a point every 16th
 // keeps a swell from sounding stepped.
@@ -36,7 +66,7 @@ const project = {
   comment: [
     "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM.",
     "",
-    "- **Manual**: a sine with a quiet square (gain 0.3) for a reedy organ tone, through a gentle low-pass. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.",
+    "- **Manual**: a soprano melody over two inner voices that hold common tones and suspend into each A chord. A sine with a quiet square (gain 0.3) gives a reedy organ tone, through a gentle low-pass. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.",
     "- **Pedal**: a sine with a triangle (gain 0.5). Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level while the manual swells.",
     "- The second phrase ends on A7, which resolves into the opening D as the loop wraps.",
   ].join("\n"),
