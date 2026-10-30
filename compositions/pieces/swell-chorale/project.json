@@ -1,6 +1,6 @@
 {
   "title": "Swell Chorale",
-  "comment": "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM. Like an organ's divisions, each part has its own stop and place.\n\n- **Solo**: the soprano melody on a flute-like stop, a sine with a triangle (gain 0.5), a little right of center at a steady level.\n- **Swell**: two inner voices that hold common tones and suspend into each A chord, on a reedy stop, a sine with a quiet square (gain 0.3) through a gentle low-pass, a little left of center. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.\n- **Pedal**: the bass line on a sine with a triangle (gain 0.5), centered. Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level.\n- The second phrase ends on A7, which resolves into the opening D as the loop wraps.",
+  "comment": "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM. Like an organ's divisions, each part has its own stop and place.\n\n- **Solo**: the soprano melody on a flute-like stop, a sine with a triangle (gain 0.5) through a gentle low-pass, a little right of center. Its own CC11 curve phrases the melody on a narrower range than the swell, so it stays on top.\n- **Swell**: two inner voices that hold common tones and suspend into each A chord, on a reedy stop, a sine with a quiet square (gain 0.3) through a gentle low-pass, a little left of center. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.\n- **Pedal**: the bass line on a sine with a triangle (gain 0.5), centered. Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level.\n- The second phrase ends on A7, which resolves into the opening D as the loop wraps.",
   "tempo": 66,
   "timeSignature": {
     "numerator": 4,
@@ -13,11 +13,13 @@
     },
     "enabled": true
   },
+  "masterGain": 0.7943282347242815,
   "midiTracks": [
     {
       "name": "Solo",
       "program": 19,
       "pan": 0.3,
+      "gain": 1.2589254117941673,
       "synth": {
         "layers": [
           {
@@ -34,6 +36,538 @@
           }
         ]
       },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 2482,
+            "q": 0.707,
+            "gain": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "automation": [
+        {
+          "type": "controller",
+          "controller": 11,
+          "points": [
+            {
+              "beat": 0,
+              "value": 112
+            },
+            {
+              "beat": 0.25,
+              "value": 112
+            },
+            {
+              "beat": 0.5,
+              "value": 111
+            },
+            {
+              "beat": 0.75,
+              "value": 111
+            },
+            {
+              "beat": 1,
+              "value": 111
+            },
+            {
+              "beat": 1.25,
+              "value": 111
+            },
+            {
+              "beat": 1.5,
+              "value": 110
+            },
+            {
+              "beat": 1.75,
+              "value": 110
+            },
+            {
+              "beat": 2,
+              "value": 110
+            },
+            {
+              "beat": 2.25,
+              "value": 109
+            },
+            {
+              "beat": 2.5,
+              "value": 109
+            },
+            {
+              "beat": 2.75,
+              "value": 109
+            },
+            {
+              "beat": 3,
+              "value": 109
+            },
+            {
+              "beat": 3.25,
+              "value": 108
+            },
+            {
+              "beat": 3.5,
+              "value": 108
+            },
+            {
+              "beat": 3.75,
+              "value": 108
+            },
+            {
+              "beat": 4,
+              "value": 107
+            },
+            {
+              "beat": 4.25,
+              "value": 107
+            },
+            {
+              "beat": 4.5,
+              "value": 107
+            },
+            {
+              "beat": 4.75,
+              "value": 107
+            },
+            {
+              "beat": 5,
+              "value": 106
+            },
+            {
+              "beat": 5.25,
+              "value": 106
+            },
+            {
+              "beat": 5.5,
+              "value": 106
+            },
+            {
+              "beat": 5.75,
+              "value": 105
+            },
+            {
+              "beat": 6,
+              "value": 105
+            },
+            {
+              "beat": 6.25,
+              "value": 105
+            },
+            {
+              "beat": 6.5,
+              "value": 105
+            },
+            {
+              "beat": 6.75,
+              "value": 104
+            },
+            {
+              "beat": 7,
+              "value": 104
+            },
+            {
+              "beat": 7.25,
+              "value": 106
+            },
+            {
+              "beat": 7.5,
+              "value": 108
+            },
+            {
+              "beat": 7.75,
+              "value": 110
+            },
+            {
+              "beat": 8,
+              "value": 112
+            },
+            {
+              "beat": 8.25,
+              "value": 114
+            },
+            {
+              "beat": 8.5,
+              "value": 116
+            },
+            {
+              "beat": 8.75,
+              "value": 117
+            },
+            {
+              "beat": 9,
+              "value": 119
+            },
+            {
+              "beat": 9.25,
+              "value": 121
+            },
+            {
+              "beat": 9.5,
+              "value": 123
+            },
+            {
+              "beat": 9.75,
+              "value": 125
+            },
+            {
+              "beat": 10,
+              "value": 127
+            },
+            {
+              "beat": 10.25,
+              "value": 127
+            },
+            {
+              "beat": 10.5,
+              "value": 127
+            },
+            {
+              "beat": 10.75,
+              "value": 127
+            },
+            {
+              "beat": 11,
+              "value": 127
+            },
+            {
+              "beat": 11.25,
+              "value": 127
+            },
+            {
+              "beat": 11.5,
+              "value": 127
+            },
+            {
+              "beat": 11.75,
+              "value": 127
+            },
+            {
+              "beat": 12,
+              "value": 127
+            },
+            {
+              "beat": 12.25,
+              "value": 127
+            },
+            {
+              "beat": 12.5,
+              "value": 127
+            },
+            {
+              "beat": 12.75,
+              "value": 127
+            },
+            {
+              "beat": 13,
+              "value": 127
+            },
+            {
+              "beat": 13.25,
+              "value": 124
+            },
+            {
+              "beat": 13.5,
+              "value": 122
+            },
+            {
+              "beat": 13.75,
+              "value": 119
+            },
+            {
+              "beat": 14,
+              "value": 116
+            },
+            {
+              "beat": 14.25,
+              "value": 114
+            },
+            {
+              "beat": 14.5,
+              "value": 113
+            },
+            {
+              "beat": 14.75,
+              "value": 111
+            },
+            {
+              "beat": 15,
+              "value": 109
+            },
+            {
+              "beat": 15.25,
+              "value": 107
+            },
+            {
+              "beat": 15.5,
+              "value": 106
+            },
+            {
+              "beat": 15.75,
+              "value": 104
+            },
+            {
+              "beat": 16,
+              "value": 102
+            },
+            {
+              "beat": 16.25,
+              "value": 104
+            },
+            {
+              "beat": 16.5,
+              "value": 107
+            },
+            {
+              "beat": 16.75,
+              "value": 109
+            },
+            {
+              "beat": 17,
+              "value": 111
+            },
+            {
+              "beat": 17.25,
+              "value": 113
+            },
+            {
+              "beat": 17.5,
+              "value": 116
+            },
+            {
+              "beat": 17.75,
+              "value": 118
+            },
+            {
+              "beat": 18,
+              "value": 120
+            },
+            {
+              "beat": 18.25,
+              "value": 119
+            },
+            {
+              "beat": 18.5,
+              "value": 119
+            },
+            {
+              "beat": 18.75,
+              "value": 118
+            },
+            {
+              "beat": 19,
+              "value": 117
+            },
+            {
+              "beat": 19.25,
+              "value": 116
+            },
+            {
+              "beat": 19.5,
+              "value": 116
+            },
+            {
+              "beat": 19.75,
+              "value": 115
+            },
+            {
+              "beat": 20,
+              "value": 114
+            },
+            {
+              "beat": 20.25,
+              "value": 116
+            },
+            {
+              "beat": 20.5,
+              "value": 117
+            },
+            {
+              "beat": 20.75,
+              "value": 119
+            },
+            {
+              "beat": 21,
+              "value": 121
+            },
+            {
+              "beat": 21.25,
+              "value": 122
+            },
+            {
+              "beat": 21.5,
+              "value": 124
+            },
+            {
+              "beat": 21.75,
+              "value": 125
+            },
+            {
+              "beat": 22,
+              "value": 127
+            },
+            {
+              "beat": 22.25,
+              "value": 127
+            },
+            {
+              "beat": 22.5,
+              "value": 127
+            },
+            {
+              "beat": 22.75,
+              "value": 127
+            },
+            {
+              "beat": 23,
+              "value": 127
+            },
+            {
+              "beat": 23.25,
+              "value": 127
+            },
+            {
+              "beat": 23.5,
+              "value": 127
+            },
+            {
+              "beat": 23.75,
+              "value": 127
+            },
+            {
+              "beat": 24,
+              "value": 127
+            },
+            {
+              "beat": 24.25,
+              "value": 127
+            },
+            {
+              "beat": 24.5,
+              "value": 127
+            },
+            {
+              "beat": 24.75,
+              "value": 127
+            },
+            {
+              "beat": 25,
+              "value": 127
+            },
+            {
+              "beat": 25.25,
+              "value": 127
+            },
+            {
+              "beat": 25.5,
+              "value": 127
+            },
+            {
+              "beat": 25.75,
+              "value": 127
+            },
+            {
+              "beat": 26,
+              "value": 127
+            },
+            {
+              "beat": 26.25,
+              "value": 127
+            },
+            {
+              "beat": 26.5,
+              "value": 127
+            },
+            {
+              "beat": 26.75,
+              "value": 127
+            },
+            {
+              "beat": 27,
+              "value": 127
+            },
+            {
+              "beat": 27.25,
+              "value": 127
+            },
+            {
+              "beat": 27.5,
+              "value": 127
+            },
+            {
+              "beat": 27.75,
+              "value": 127
+            },
+            {
+              "beat": 28,
+              "value": 127
+            },
+            {
+              "beat": 28.25,
+              "value": 126
+            },
+            {
+              "beat": 28.5,
+              "value": 125
+            },
+            {
+              "beat": 28.75,
+              "value": 124
+            },
+            {
+              "beat": 29,
+              "value": 123
+            },
+            {
+              "beat": 29.25,
+              "value": 122
+            },
+            {
+              "beat": 29.5,
+              "value": 121
+            },
+            {
+              "beat": 29.75,
+              "value": 120
+            },
+            {
+              "beat": 30,
+              "value": 120
+            },
+            {
+              "beat": 30.25,
+              "value": 119
+            },
+            {
+              "beat": 30.5,
+              "value": 118
+            },
+            {
+              "beat": 30.75,
+              "value": 117
+            },
+            {
+              "beat": 31,
+              "value": 116
+            },
+            {
+              "beat": 31.25,
+              "value": 115
+            },
+            {
+              "beat": 31.5,
+              "value": 114
+            },
+            {
+              "beat": 31.75,
+              "value": 113
+            }
+          ]
+        }
+      ],
       "notes": [
         {
           "pitch": 78,
@@ -233,7 +767,7 @@
       "name": "Swell",
       "program": 19,
       "pan": -0.3,
-      "gain": 0.6309573444801932,
+      "gain": 0.5956621435290105,
       "synth": {
         "layers": [
           {
@@ -255,7 +789,7 @@
         "bands": [
           {
             "type": "low-pass",
-            "frequency": 2573,
+            "frequency": 1992,
             "q": 0.707,
             "gain": 1,
             "bypass": false

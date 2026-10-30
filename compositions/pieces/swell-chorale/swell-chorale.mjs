@@ -55,13 +55,21 @@ function createRamps(segments) {
 }
 // The swell pedal opens into each cadence and settles back to the opening
 // level by the loop point.
-const expression = createRamps([
+const swellExpression = createRamps([
   [0, 60, 12, 127], [12, 127, 14, 127], [14, 127, 16, 85],
   [16, 85, 26, 127], [26, 127, 28, 127], [28, 127, 32, 60],
 ]);
+// The melody phrases on a narrower range, so it stays over the swell. Phrase 1
+// dips with the line's low A, leans into the F#5, holds through the swell's
+// peak, and breathes out on the held C#. Phrase 2 builds to the G5s, holds
+// through the cadence, and tapers back to the opening value by the loop point.
+const soloExpression = createRamps([
+  [0, 112, 7, 104], [7, 104, 10, 127], [10, 127, 13, 127], [13, 127, 14, 116], [14, 116, 16, 102],
+  [16, 102, 18, 120], [18, 120, 20, 114], [20, 114, 22, 127], [22, 127, 28, 127], [28, 127, 32, 112],
+]);
 
-// Track gains in dB, set from per-track loudness in a render: the swell's
-// peak sits just under the steady melody, and the pedal under both.
+// Gains in dB, set from per-track loudness in a render and then by ear: the
+// melody stays 3 dB or more over the swell, and the pedal sits under both.
 const fromDb = (db) => 10 ** (db / 20);
 
 const project = {
@@ -69,7 +77,7 @@ const project = {
   comment: [
     "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM. Like an organ's divisions, each part has its own stop and place.",
     "",
-    "- **Solo**: the soprano melody on a flute-like stop, a sine with a triangle (gain 0.5), a little right of center at a steady level.",
+    "- **Solo**: the soprano melody on a flute-like stop, a sine with a triangle (gain 0.5) through a gentle low-pass, a little right of center. Its own CC11 curve phrases the melody on a narrower range than the swell, so it stays on top.",
     "- **Swell**: two inner voices that hold common tones and suspend into each A chord, on a reedy stop, a sine with a quiet square (gain 0.3) through a gentle low-pass, a little left of center. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.",
     "- **Pedal**: the bass line on a sine with a triangle (gain 0.5), centered. Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level.",
     "- The second phrase ends on A7, which resolves into the opening D as the loop wraps.",
@@ -77,32 +85,36 @@ const project = {
   tempo: 66,
   timeSignature: { numerator: 4, denominator: 4 },
   loop: { range: { startBeat: 0, endBeat: 32 }, enabled: true },
+  masterGain: fromDb(-2),
   midiTracks: [
     {
       name: "Solo",
       program: 19,
       pan: 0.3,
+      gain: fromDb(2),
       synth: {
         layers: [
           { oscillator: { waveform: "sine" }, gain: 1 },
           { oscillator: { waveform: "triangle" }, gain: 0.5 },
         ],
       },
+      eq: { bypass: false, bands: [{ type: "low-pass", frequency: 2482, q: 0.707, gain: 1, bypass: false }] },
+      automation: [{ type: "controller", controller: 11, points: soloExpression }],
       notes: solo,
     },
     {
       name: "Swell",
       program: 19,
       pan: -0.3,
-      gain: fromDb(-4),
+      gain: fromDb(-4.5),
       synth: {
         layers: [
           { oscillator: { waveform: "sine" }, gain: 1 },
           { oscillator: { waveform: "square" }, gain: 0.3 },
         ],
       },
-      eq: { bypass: false, bands: [{ type: "low-pass", frequency: 2573, q: 0.707, gain: 1, bypass: false }] },
-      automation: [{ type: "controller", controller: 11, points: expression }],
+      eq: { bypass: false, bands: [{ type: "low-pass", frequency: 1992, q: 0.707, gain: 1, bypass: false }] },
+      automation: [{ type: "controller", controller: 11, points: swellExpression }],
       notes: swell,
     },
     {
