@@ -1,8 +1,8 @@
 # Four Shapes
 
-**Demo: [open in Toy MIDI's toy-midi#1023 preview](https://synth-layers-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Ffour-shapes-layers%2Fcompositions%2Fpieces%2Ffour-shapes%2Fproject.json)**
+**Demo: [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Ffour-shapes%2Fproject.json)**
 
-A quick demo of the oscillator waveforms in Toy MIDI's own synth, for https://github.com/hi-ogawa/toy-midi/pull/1023, which stores the synth patch's waveform in a list of layers, on top of https://github.com/hi-ogawa/toy-midi/pull/1014, which adds the waveform and a Synth panel to set it. The layers are only on that PR's branch, so the link opens the branch preview.
+A quick demo of the oscillator waveforms in Toy MIDI's own synth, made for https://github.com/hi-ogawa/toy-midi/pull/1014, which adds the waveform and a Synth panel to set it, and updated for https://github.com/hi-ogawa/toy-midi/pull/1023, which stores the waveform in a list of layers.
 
 A 4-bar loop in A minor at 110 BPM, Am, F, C, and G one bar each, with the loop range set so it repeats. Every track plays on the synth, each with a different waveform:
 
