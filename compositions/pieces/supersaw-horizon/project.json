@@ -1770,8 +1770,6 @@
     {
       "name": "Pad R",
       "program": 0,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "synth": {
@@ -7241,8 +7239,6 @@
     {
       "name": "Uplifter",
       "program": 0,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "synth": {
