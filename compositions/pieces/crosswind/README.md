@@ -4,7 +4,7 @@
 
 A demo of per-layer synth pan for [toy-midi#1062](https://github.com/hi-ogawa/toy-midi/pull/1062). It's a synthwave ballad in D minor, 86 BPM, 36 bars of 4/4. Every synth part is built on Toy MIDI's own synth, and each one uses layer pan differently: the lead keeps two detuned saws close to the center, the arp strikes on one side and blooms on the other, and the pad spreads two detuned saws wide.
 
-[`crosswind.mjs`](crosswind.mjs) writes [`project.json`](project.json).
+[`crosswind.mjs`](crosswind.mjs) writes [`project.json`](project.json). An [ambient take](#ambient-take) with no melody sits beside it.
 
 ## Tracks
 
@@ -39,6 +39,31 @@ The loop range covers the whole piece, and locators mark the sections.
 - **Bass.** Both layers sit at pan 0 to anchor the center. The sine sounds an octave below the written note, and the quiet saw gives it an edge that reads on small speakers.
 - **Drums.** The Electronic kit suits the genre, where an earlier take found the Standard kit's acoustic tone off. The drums stay centered, so the synth layers carry all the width.
 - **Levels.** Set from renders with Toy MIDI's `render-audio`, with each track also rendered alone. By track, the lead is about −27.6 dB RMS in the verse and −22.9 dB in the chorus, the arp −29.4 dB, the pad −29 to −31 dB, the bass −29 dB, and the drums −29 to −32 dB. The mix peaks at −3.1 dBFS. The side-to-mid ratio, a rough measure of width, is about 0.5 to 0.6 in the intro and break, and about 0.3 with the full band.
+
+## Ambient take
+
+[Demo](https://fix-issue-1058-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Flayer-pan-demo%2Fcompositions%2Fpieces%2Fcrosswind%2Fambient.json)
+
+[`ambient.mjs`](ambient.mjs) writes [`ambient.json`](ambient.json): the same demo as an ambient loop in D Dorian, 70 BPM, 36 bars, with no melody. The catalog's ambient pieces, such as [Slow Tide](../../../experiments/11-ambient-pan-loop/README.md) and [Tidepool](../tidepool/README.md), rest on harmony, register, and pan, with only sparse melodic fragments, and the earlier takes here failed by leaving a single line to carry a piece with thin harmony. This take puts the harmony first and lets the layers' movement across the field be the foreground.
+
+| Track | Layers | Part |
+| ----- | ------ | ---- |
+| Pad   | sawtooth, detune −8, pan −0.7, gain 0.5<br>sawtooth, detune +8, pan +0.7, gain 0.5<br>both A 1.5 D 1.5 S 0.85 R 2.5 s | A chord every two bars throughout; low-pass at 2 kHz; CC 11 breathes with each chord and rises toward C; track gain 1.5 |
+| Arp   | sawtooth, pan −0.6, gain 2, A 0.003 D 0.2 S 0 R 0.15 s<br>triangle, pan +0.5, gain 0.7, A 0.08 D 0.5 S 0.3 R 0.6 s | 8ths over the pad's tones grouped 3+3+2, an octave up in B and two in C; low-pass at 5 kHz; CC 11 swells it in through B; track gain 2 |
+| Bells | sine, pan −0.5, gain 1.6, A 0.002 D 2.5 S 0 R 2 s<br>triangle, octave +1, pan +0.6, gain 1.4, A 0.002 D 0.3 S 0 R 0.25 s | Two sparse hits per chord, high in its tones, in A, C, and A′; track gain 1.5 |
+| Drone | sine, octave −1, pan 0, gain 0.9<br>triangle, pan 0, gain 0.25<br>both A 1.2 D 1 S 0.9 R 2 s | A D pedal in A and A′, the chord roots in B and C; track gain 0.55 |
+
+| Bars  | Section | Chords | What happens |
+| ----- | ------- | ------ | ------------ |
+| 1–8   | A  | Dm9, Gadd9/D, Dm9, Am7/D over a D pedal | Pad, drone, and bells. The pad's top voice moves E D E G |
+| 9–20  | B  | Fmaj9, Cadd9/E, Dm9, Am11, Gadd9, Em11 | The roots move, the bells drop out, and the arp swells in. The top voice moves G E F E G A |
+| 21–28 | C  | Fmaj7♯11, Cadd9, Dm9, G6/9 | The arp jumps an octave and the pad's top voice climbs B4 C5 D5 E5, the loudest and widest section |
+| 29–36 | A′ | as A | The arp drops out and the pad thins back toward bar 1 |
+
+- **The line.** Each pad voicing is chosen so its top note moves by step from the last, which gives an implied melody without a lead. C's climb to E5 is the peak, and A′ drops back to E4.
+- **Motion.** The arp strikes left and blooms right; the bells do the opposite, a bright ping on the right and a sine body ringing on the left. The bells' ring outlasts the ping, so they lean about 6 dB left, which offsets the arp in C.
+- **EQ and CC.** The low-passes take the saws' edge off, which a melody-free piece exposes. CC 11 does the arc: the pad's level rises from A to C and falls in A′, with a swell over each two-bar chord, and the arp fades in over B.
+- **Levels.** The pad leads, at about −32 dB RMS in A and −26 dB in C. The arp is about 4 dB under it, and the bells and drone sit near −33 dB. Both arp layers already sit at the faders' +6 dB top, so its velocity and low-pass were raised instead. The mix peaks at −3.9 dBFS, and the width ratio rises from 0.44 in A to 0.55 in C.
 
 ## Toy MIDI doc gaps
 
