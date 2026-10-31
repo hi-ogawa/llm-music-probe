@@ -35,6 +35,25 @@ const padSynth = {
   ],
 };
 
+// Keys: an electric-piano-like patch, a sine body with a soft triangle "tine" an
+// octave up, both struck and decaying. Centered, so A stays narrow.
+const keysSynth = {
+  layers: [
+    {
+      oscillator: { waveform: "sine", octave: 0, detune: 0 },
+      gain: 0.7,
+      pan: 0,
+      amp: { envelope: { attack: 0.004, decay: 1.2, sustain: 0.35, release: 0.4 } },
+    },
+    {
+      oscillator: { waveform: "triangle", octave: 1, detune: 0 },
+      gain: 0.15,
+      pan: 0,
+      amp: { envelope: { attack: 0.002, decay: 0.35, sustain: 0.05, release: 0.3 } },
+    },
+  ],
+};
+
 // Answer: a soft sine leaning left with a quiet triangle an octave up nearer the center.
 // The pluck's sustained bloom makes it lean right, so the answer replies from the left
 // and balances it.
@@ -264,7 +283,7 @@ for (let bar = 1; bar <= 24; bar++) {
   }
 }
 
-// Keys: a centered electric piano comping the chords from bar 1, so the melody and
+// Keys comping the chords from bar 1, so the melody and
 // bass have harmony under them before the wide pad arrives. Hits on 1, the "and" of
 // 2 as a push, and a short stab on 4, voiced below the melody.
 const keysNotes = [];
@@ -288,37 +307,34 @@ for (let bar = 1; bar <= 24; bar++) {
   }
 }
 
-// Drums, all centered on GeneralUser GS's Standard kit: a shaker alone through
-// bar 4, kick and side stick from bar 5, hats and a soft snare from B, and a
-// short snare pickup into A′. They stop for the coda.
+// Drums, all centered on GeneralUser GS's TR-808 kit: maracas alone through bar 4,
+// kick and rim from bar 5, hats and a soft clap on 4 from B, and a short rim
+// pickup into A′. They stop for the coda.
 const KICK = 36;
-const SIDE_STICK = 37;
-const SNARE = 38;
+const RIM = 37;
+const CLAP = 39;
 const CLOSED_HAT = 42;
-const SHAKER = 82;
+const MARACAS = 70;
 const drumNotes = [];
 const hit = (bar, beat, pitch, velocity) =>
   drumNotes.push({ pitch, start: at(bar, beat), duration: 0.25, velocity: Math.round(velocity * 1.25) });
 for (let bar = 1; bar <= 24; bar++) {
   for (let step = 0; step < 16; step++) {
-    hit(bar, step / 4, SHAKER, step % 4 === 2 ? 46 : step % 2 === 0 ? 36 : 26);
+    hit(bar, step / 4, MARACAS, step % 4 === 2 ? 46 : step % 2 === 0 ? 36 : 26);
   }
   if (bar < 5) continue;
   hit(bar, 0, KICK, 84);
   hit(bar, 2.5, KICK, 70);
-  if (bar < 9) {
-    hit(bar, 1, SIDE_STICK, 58);
-    hit(bar, 3, SIDE_STICK, 62);
-    continue;
-  }
+  hit(bar, 1, RIM, 58);
+  hit(bar, 3, RIM, 62);
+  if (bar < 9) continue;
   hit(bar, 1.75, KICK, 56);
-  hit(bar, 1, SNARE, 60);
-  hit(bar, 3, SNARE, 66);
+  hit(bar, 3, CLAP, 50);
   for (let eighth = 0; eighth < 8; eighth++) {
     hit(bar, eighth / 2, CLOSED_HAT, eighth % 2 === 0 ? 50 : 38);
   }
   if (bar === 16) {
-    for (const beat of [3.25, 3.5, 3.75]) hit(bar, beat, SNARE, 48 + beat * 4);
+    for (const beat of [3.25, 3.5, 3.75]) hit(bar, beat, RIM, 48 + beat * 4);
   }
 }
 
@@ -338,10 +354,10 @@ const project = {
     "",
     "- **Pluck:** a short sawtooth panned left and a slow triangle panned right, so each note strikes left and blooms right.",
     "- **Pad:** two sawtooths detuned ±8 cents and panned ±0.7; its entry at bar 9 opens the width.",
-    "- **Keys:** a centered electric piano comping the chords from bar 1.",
+    "- **Keys:** an electric-piano-like synth patch at the center, comping the chords from bar 1.",
     "- **Answer:** a soft sine leaning left that replies in the motif's gaps, then harmonizes it in A′.",
     "- **Bass:** a sine an octave down and a soft triangle, both centered, moving from bar 5.",
-    "- **Drums:** a centered downtempo groove that builds from a lone shaker.",
+    "- **Drums:** a centered downtempo groove on the TR-808 kit that builds from lone maracas.",
     "",
     "Form: A (1–8) pluck, answer, bass, and drums building, B (9–16) pad enters, A′ (17–24) the motif is harmonized and inverted over the full texture, Coda (25–32) pad alone, fading with CC 11.",
   ].join("\n"),
@@ -381,8 +397,9 @@ const project = {
     },
     {
       name: "Keys",
-      program: 4,
-      gain: 1.9,
+      program: 0,
+      synth: keysSynth,
+      gain: 1.5,
       pan: 0,
       muted: false,
       soloed: false,
@@ -413,7 +430,7 @@ const project = {
     },
     {
       name: "Drums",
-      program: 0,
+      program: 25,
       bank: 128,
       gain: 1.4,
       pan: 0,
