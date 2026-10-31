@@ -5,7 +5,7 @@ const BAR = 4;
 const at = (bar, beat = 0) => (bar - 1) * BAR + beat;
 
 const N = {
-  C4: 60, E4: 64, F4: 65, G4: 67, A4: 69, B4: 71, C5: 72, D5: 74, E5: 76, F5: 77, G5: 79, A5: 81,
+  F4: 65, G4: 67, A4: 69, BB4: 70, B4: 71, C5: 72, D5: 74, E5: 76, F5: 77, G5: 79, A5: 81,
 };
 
 // Travelling pluck: each note strikes left (short saw) and blooms right (slow triangle).
@@ -61,7 +61,7 @@ const answerSynth = {
   layers: [
     {
       oscillator: { waveform: "sine", octave: 0, detune: 0 },
-      gain: 0.8,
+      gain: 1.1,
       pan: -0.45,
       amp: { envelope: { attack: 0.02, decay: 0.5, sustain: 0.55, release: 0.9 } },
     },
@@ -102,148 +102,99 @@ const CYCLE = [
 ];
 const CODA = [CYCLE[0], CYCLE[1], CYCLE[2], CYCLE[0]];
 
-// Motif shapes as [beat offset, pitch, duration, velocity].
-// Call: up a fourth, up a step, fall to the Dorian B, lean up to C.
-const call = [
-  [0, N.A4, 1, 84],
-  [1.5, N.D5, 1, 78],
-  [3, N.E5, 1.5, 90],
-  [5, N.B4, 1, 72],
-  [6, N.C5, 2, 80],
+// Melody: a one-bar hook traded bar by bar. The pluck calls, and the answer replies
+// in the next bar in the same rhythm with the contour turned over, so the reply is
+// audibly about the call. Every call opens on the same A–C head, and the peaks climb
+// E → F → G across the phrase before falling back. In each phrase's last bar the
+// pluck goes on unanswered, rising B–C–D into Dm, which closes the phrase.
+
+// Syncopated cell on the 16th grid: two dotted eighths, a held note, then a pickup
+// into a held note. [beat offset, duration]
+const CELL = [
+  [0, 0.75],
+  [0.75, 0.75],
+  [1.5, 1],
+  [2.5, 0.5],
+  [3, 1],
 ];
-// Same opening, settling down onto A instead of hanging on C.
-const callSettled = [
-  [0, N.A4, 1, 80],
-  [1.5, N.D5, 1, 76],
-  [3, N.E5, 1.5, 86],
-  [5, N.C5, 1, 72],
-  [6, N.A4, 2, 74],
+const CALL_VELOCITIES = [84, 76, 92, 74, 80];
+const REPLY_VELOCITIES = [80, 72, 86, 70, 76];
+// A′'s doubled thirds sit under the voice they double.
+const HARMONY_VELOCITIES = [62, 56, 68, 54, 60];
+
+// Calls over Dm9, B♭maj7, Fmaj7, C/E; replies over the first three.
+const CALLS = [
+  [N.A4, N.C5, N.E5, N.D5, N.C5],
+  [N.A4, N.C5, N.F5, N.D5, N.C5],
+  [N.A4, N.C5, N.G5, N.E5, N.D5],
+  [N.G4, N.C5, N.E5, N.D5, N.C5],
 ];
-// Tighter rhythm so the right-side blooms overlap and smear.
-const callClose = [
-  [0, N.A4, 1.5, 82],
-  [1, N.D5, 1.5, 78],
-  [2, N.E5, 2, 90],
-  [4.5, N.B4, 1.5, 70],
-  [5.5, N.C5, 2.5, 78],
+const REPLIES = [
+  [N.C5, N.A4, N.G4, N.A4, N.F4],
+  [N.D5, N.C5, N.BB4, N.C5, N.A4],
+  [N.E5, N.D5, N.C5, N.D5, N.A4],
 ];
-// Reaching variation: leaps to the peak A5 and falls to G.
-const callPeak = [
-  [0, N.A4, 1, 80],
-  [1.5, N.D5, 1, 80],
-  [3, N.E5, 1, 86],
-  [4, N.A5, 2, 96],
-  [6, N.G5, 2, 78],
-];
-// Inversion of the call (−4th, −step, +4th, −step), from G5 over Fmaj7.
-const inversion = [
-  [0, N.G5, 1, 90],
-  [1.5, N.D5, 1, 78],
-  [3, N.C5, 1.5, 80],
-  [5, N.F5, 1, 84],
-  [6, N.E5, 2.5, 80],
-];
-// Two-note echo over B♭maj7.
-const echo = [
-  [1.5, N.F5, 1.5, 70],
-  [4, N.D5, 2, 66],
-];
-// The call's first three notes, left hanging on E into the coda.
-const fragment = [
-  [0, N.A4, 1, 76],
-  [1.5, N.D5, 1, 72],
-  [3, N.E5, 4, 80],
+// B's call over Fmaj7 reaches A5 instead, and its C/E call G5.
+const CALLS_B = [CALLS[0], CALLS[1], [N.A4, N.C5, N.A5, N.G5, N.E5], [N.G4, N.C5, N.G5, N.E5, N.D5]];
+// The unanswered last bar: up through the Dorian B into D.
+const cadence = (holdD) => [
+  [0, N.B4, 0.75, 78],
+  [0.75, N.C5, 0.75, 82],
+  [1.5, N.D5, holdD, 90],
 ];
 
-const pluckPhrases = [
-  // A: pluck and bass only.
-  [1, call],
-  [5, callSettled],
-  // B: the pad enters.
-  [9, callClose],
-  [13, callPeak],
-  // A′: call, echo, and the inverted answer.
-  [17, call],
-  [19, echo],
-  [21, inversion],
-  [23, fragment],
-];
-
-// Answers fill the bars the motif leaves empty, then harmonize it in A′.
-// Over B♭maj7: rise and fall back to A, answering the call's open C.
-const answerRise = [
-  [0.5, N.F4, 1, 62],
-  [1.5, N.A4, 1, 66],
-  [2.5, N.D5, 1.5, 72],
-  [4, N.C5, 1, 64],
-  [5, N.A4, 2.5, 60],
-];
-// Over C/E: up to the Dorian B and down onto A, which leads into Dm.
-const answerTurn = [
-  [0.5, N.G4, 1, 62],
-  [1.5, N.C5, 1, 68],
-  [2.5, N.B4, 1.5, 70],
-  [4, N.G4, 1, 62],
-  [5, N.A4, 2.5, 60],
-];
-// B's busier answer over B♭maj7, climbing back to D.
-const answerRun = [
-  [0, N.D5, 0.5, 70],
-  [0.5, N.C5, 0.5, 64],
-  [1, N.A4, 1, 66],
-  [2, N.F4, 1, 62],
-  [3, N.A4, 1, 66],
-  [4, N.C5, 1.5, 70],
-  [6, N.D5, 2, 66],
-];
-// Over C/E: a stepwise descent from E onto A, into A′.
-const answerDescent = [
-  [0.5, N.E5, 1, 72],
-  [1.5, N.D5, 1, 68],
-  [2.5, N.C5, 1, 66],
-  [3.5, N.B4, 1, 64],
-  [4.5, N.G4, 1, 62],
-  [5.5, N.A4, 2.5, 64],
-];
-// A′ harmonies: the call a diatonic third below, the inversion a sixth below,
-// and the closing fragment a sixth below.
-const harmonyCall = [
-  [0, N.F4, 1, 66],
-  [1.5, N.B4, 1, 62],
-  [3, N.C5, 1.5, 70],
-  [5, N.G4, 1, 58],
-  [6, N.A4, 2, 64],
-];
-const harmonyInversion = [
-  [0, N.B4, 1, 70],
-  [1.5, N.F4, 1, 62],
-  [3, N.E4, 1.5, 64],
-  [5, N.A4, 1, 66],
-  [6, N.G4, 2.5, 64],
-];
-const harmonyFragment = [
-  [0, N.C4, 1, 60],
-  [1.5, N.F4, 1, 58],
-  [3, N.G4, 4, 64],
-];
-
-const answerPhrases = [
-  [3, answerRise],
-  [7, answerTurn],
-  [11, answerRun],
-  [15, answerDescent],
-  [17, harmonyCall],
-  [21, harmonyInversion],
-  [23, harmonyFragment],
-];
-
-const toNotes = (phrases) =>
-  phrases.flatMap(([bar, shape]) =>
-    shape.map(([offset, pitch, duration, velocity]) => ({ pitch, start: at(bar) + offset, duration, velocity })),
+const playCell = (notes, bar, pitches, velocities) =>
+  CELL.forEach(([offset, duration], i) =>
+    notes.push({ pitch: pitches[i], start: at(bar) + offset, duration, velocity: velocities[i] }),
   );
-const answerNotes = toNotes(answerPhrases);
+const playShape = (notes, bar, shape) =>
+  shape.forEach(([offset, pitch, duration, velocity]) =>
+    notes.push({ pitch, start: at(bar) + offset, duration, velocity }),
+  );
 
-const pluckNotes = toNotes(pluckPhrases);
+// Diatonic shifts in D Dorian, with B♭ in place of B over B♭maj7, for A′'s thirds.
+const DORIAN_PCS = [2, 4, 5, 7, 9, 11, 0];
+const scaleFor = (bar) => {
+  const flatB = Math.floor((bar - 1) / 2) % 4 === 1;
+  const pcs = DORIAN_PCS.map((pc) => (flatB && pc === 11 ? 10 : pc));
+  const pitches = [];
+  for (let pitch = 48; pitch <= 96; pitch++) if (pcs.includes(pitch % 12)) pitches.push(pitch);
+  return pitches;
+};
+const shiftThird = (pitches, bar, direction) => {
+  const scale = scaleFor(bar);
+  return pitches.map((pitch) => scale[scale.indexOf(pitch) + 2 * direction]);
+};
+
+const pluckNotes = [];
+const answerNotes = [];
+// One 8-bar phrase from `startBar`. In A′ the two voices join: the answer doubles
+// each call a third below, and the pluck doubles each reply a third above.
+const playPhrase = (startBar, calls, together) => {
+  calls.forEach((call, i) => {
+    const callBar = startBar + 2 * i;
+    playCell(pluckNotes, callBar, call, CALL_VELOCITIES);
+    if (together) playCell(answerNotes, callBar, shiftThird(call, callBar, -1), HARMONY_VELOCITIES);
+    if (i < 3) {
+      const replyBar = callBar + 1;
+      playCell(answerNotes, replyBar, REPLIES[i], REPLY_VELOCITIES);
+      if (together) playCell(pluckNotes, replyBar, shiftThird(REPLIES[i], replyBar, 1), HARMONY_VELOCITIES);
+    }
+  });
+  const cadenceBar = startBar + 7;
+  const last = startBar === 17;
+  playShape(pluckNotes, cadenceBar, cadence(last ? 4.5 : 2.5));
+  if (together) {
+    playShape(answerNotes, cadenceBar, [
+      [0, N.G4, 0.75, 70],
+      [0.75, N.A4, 0.75, 74],
+      [1.5, N.B4, 4.5, 80],
+    ]);
+  }
+};
+playPhrase(1, CALLS, false);
+playPhrase(9, CALLS_B, false);
+playPhrase(17, CALLS, true);
 
 const padNotes = [];
 const bassNotes = [];
@@ -355,15 +306,15 @@ const project = {
     "- **Pluck:** a short sawtooth panned left and a slow triangle panned right, so each note strikes left and blooms right.",
     "- **Pad:** two sawtooths detuned ±8 cents and panned ±0.7; its entry at bar 9 opens the width.",
     "- **Keys:** an electric-piano-like synth patch at the center, comping the chords from bar 1.",
-    "- **Answer:** a soft sine leaning left that replies in the motif's gaps, then harmonizes it in A′.",
+    "- **Answer:** a soft sine leaning left that replies to each call in the next bar, in the call's rhythm, then doubles it in thirds in A′.",
     "- **Bass:** a sine an octave down and a soft triangle, both centered, moving from bar 5.",
     "- **Drums:** a centered downtempo groove on the TR-808 kit that builds from lone maracas.",
     "",
-    "Form: A (1–8) pluck, answer, bass, and drums building, B (9–16) pad enters, A′ (17–24) the motif is harmonized and inverted over the full texture, Coda (25–32) pad alone, fading with CC 11.",
+    "Form: A (1–8) pluck, answer, bass, and drums building, B (9–16) pad enters, A′ (17–24) the two voices join in thirds over the full texture, Coda (25–32) pad alone, fading with CC 11.",
   ].join("\n"),
   tempo: 72,
   timeSignature: { numerator: 4, denominator: 4 },
-  masterGain: 1,
+  masterGain: 0.85,
   loop: { range: { startBeat: 0, endBeat: at(33) }, enabled: true },
   locators: [
     { beat: at(1), label: "A" },
