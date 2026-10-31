@@ -264,6 +264,30 @@ for (let bar = 1; bar <= 24; bar++) {
   }
 }
 
+// Keys: a centered electric piano comping the chords from bar 1, so the melody and
+// bass have harmony under them before the wide pad arrives. Hits on 1, the "and" of
+// 2 as a push, and a short stab on 4, voiced below the melody.
+const keysNotes = [];
+for (let bar = 1; bar <= 24; bar++) {
+  const chord = CYCLE[Math.floor((bar - 1) / 2) % 4];
+  const firstOfChord = (bar - 1) % 2 === 0;
+  const hits = firstOfChord
+    ? [
+        [0, 1.4, 64],
+        [1.5, 0.9, 54],
+        [3, 0.4, 50],
+      ]
+    : [
+        [0.5, 1, 56],
+        [2.5, 0.9, 52],
+      ];
+  for (const [offset, duration, velocity] of hits) {
+    for (const pitch of chord.pad) {
+      keysNotes.push({ pitch, start: at(bar) + offset, duration, velocity });
+    }
+  }
+}
+
 // Drums, all centered on GeneralUser GS's Standard kit: a shaker alone through
 // bar 4, kick and side stick from bar 5, hats and a soft snare from B, and a
 // short snare pickup into A′. They stop for the coda.
@@ -314,6 +338,7 @@ const project = {
     "",
     "- **Pluck:** a short sawtooth panned left and a slow triangle panned right, so each note strikes left and blooms right.",
     "- **Pad:** two sawtooths detuned ±8 cents and panned ±0.7; its entry at bar 9 opens the width.",
+    "- **Keys:** a centered electric piano comping the chords from bar 1.",
     "- **Answer:** a soft sine leaning left that replies in the motif's gaps, then harmonizes it in A′.",
     "- **Bass:** a sine an octave down and a soft triangle, both centered, moving from bar 5.",
     "- **Drums:** a centered downtempo groove that builds from a lone shaker.",
@@ -353,6 +378,16 @@ const project = {
       keySignature: { fifths: 0, mode: "minor" },
       automation: [{ type: "controller", controller: 11, points: expression }],
       notes: padNotes,
+    },
+    {
+      name: "Keys",
+      program: 4,
+      gain: 1.9,
+      pan: 0,
+      muted: false,
+      soloed: false,
+      keySignature: { fifths: 0, mode: "minor" },
+      notes: keysNotes,
     },
     {
       name: "Answer",
