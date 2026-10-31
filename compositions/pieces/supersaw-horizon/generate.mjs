@@ -388,8 +388,6 @@ const eq = (...bands) => ({ bypass: false, bands: bands.map((b) => ({ gain: 1, q
 const track = (name, fields) => ({
   name,
   program: 0,
-  viewMode: "editor",
-  height: 160,
   muted: false,
   soloed: false,
   ...fields,

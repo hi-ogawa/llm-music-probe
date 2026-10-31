@@ -48,8 +48,6 @@
     {
       "name": "Lead",
       "program": 0,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "synth": {
@@ -1207,8 +1205,6 @@
     {
       "name": "Pad",
       "program": 0,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "synth": {
@@ -1805,8 +1801,6 @@
     {
       "name": "Pluck Arp",
       "program": 0,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "synth": {
@@ -4232,8 +4226,6 @@
     {
       "name": "Bass",
       "program": 0,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "synth": {
@@ -6713,8 +6705,6 @@
     {
       "name": "Drums",
       "program": 24,
-      "viewMode": "editor",
-      "height": 160,
       "muted": false,
       "soloed": false,
       "bank": 128,
