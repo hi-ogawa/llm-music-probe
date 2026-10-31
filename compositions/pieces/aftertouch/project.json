@@ -1555,9 +1555,7 @@
             }
           ]
         }
-      ],
-      "viewMode": "editor",
-      "height": 220
+      ]
     },
     {
       "name": "Close pad",
@@ -2170,9 +2168,7 @@
             }
           ]
         }
-      ],
-      "viewMode": "editor",
-      "height": 160
+      ]
     },
     {
       "name": "Open low pad",
@@ -2768,9 +2764,7 @@
             }
           ]
         }
-      ],
-      "viewMode": "editor",
-      "height": 160
+      ]
     },
     {
       "name": "Strings (B)",
@@ -3179,9 +3173,7 @@
             }
           ]
         }
-      ],
-      "viewMode": "editor",
-      "height": 160
+      ]
     },
     {
       "name": "Bass",
@@ -3368,9 +3360,7 @@
             "bypass": false
           }
         ]
-      },
-      "viewMode": "editor",
-      "height": 160
+      }
     },
     {
       "name": "Bells",
@@ -3760,9 +3750,7 @@
             "bypass": false
           }
         ]
-      },
-      "viewMode": "editor",
-      "height": 160
+      }
     },
     {
       "name": "Bells echo",
@@ -4159,9 +4147,7 @@
             "bypass": false
           }
         ]
-      },
-      "viewMode": "editor",
-      "height": 160
+      }
     }
   ]
 }

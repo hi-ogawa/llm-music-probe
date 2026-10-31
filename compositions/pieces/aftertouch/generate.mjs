@@ -195,7 +195,7 @@ const padExpression = {
   ),
 };
 
-const track = (name, { synth, notes, gain, pan, eqBands, automation, height = 160 }) => ({
+const track = (name, { synth, notes, gain, pan, eqBands, automation }) => ({
   name,
   program: 0,
   synth: { layers: synth },
@@ -206,8 +206,6 @@ const track = (name, { synth, notes, gain, pan, eqBands, automation, height = 16
   soloed: false,
   eq: eq(...eqBands),
   ...(automation ? { automation } : {}),
-  viewMode: "editor",
-  height,
 });
 
 const bells = bellNotes();
@@ -242,7 +240,6 @@ const project = {
       pan: 0,
       eqBands: [band("high-pass", 140), band("low-pass", 4000), band("peaking", 1400, 1, 1.4)],
       automation: leadAutomation(),
-      height: 220,
     }),
     track("Close pad", {
       synth: [layer("sawtooth", 0.25, 1.6, 1.5, 0.85, 2.8), layer("triangle", 0.35, 0.9, 1, 0.9, 2.5)],
