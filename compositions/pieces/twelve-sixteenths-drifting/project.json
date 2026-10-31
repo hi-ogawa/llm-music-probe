@@ -77,8 +77,8 @@
       "gain": 1.6,
       "muted": false,
       "soloed": false,
-      "viewMode": "editor",
-      "height": 160,
+      "viewMode": "overview",
+      "height": 64,
       "notes": [
         {
           "pitch": 69,
@@ -9373,8 +9373,8 @@
       "gain": 1.6,
       "muted": false,
       "soloed": false,
-      "viewMode": "editor",
-      "height": 160,
+      "viewMode": "overview",
+      "height": 64,
       "notes": [
         {
           "pitch": 69,
@@ -18381,8 +18381,8 @@
       "gain": 1.2,
       "muted": false,
       "soloed": false,
-      "viewMode": "editor",
-      "height": 120,
+      "viewMode": "overview",
+      "height": 64,
       "notes": [
         {
           "pitch": 57,

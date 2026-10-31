@@ -64,8 +64,8 @@
       "pan": -0.3,
       "muted": false,
       "soloed": false,
-      "height": 160,
-      "viewMode": "editor",
+      "height": 64,
+      "viewMode": "overview",
       "keySignature": {
         "fifths": -1,
         "mode": "minor"
@@ -932,8 +932,8 @@
       "pan": 0.3,
       "muted": false,
       "soloed": false,
-      "height": 160,
-      "viewMode": "editor",
+      "height": 64,
+      "viewMode": "overview",
       "keySignature": {
         "fifths": -1,
         "mode": "minor"
@@ -2142,8 +2142,8 @@
       "pan": 0,
       "muted": false,
       "soloed": false,
-      "height": 160,
-      "viewMode": "editor",
+      "height": 64,
+      "viewMode": "overview",
       "keySignature": {
         "fifths": -1,
         "mode": "minor"
