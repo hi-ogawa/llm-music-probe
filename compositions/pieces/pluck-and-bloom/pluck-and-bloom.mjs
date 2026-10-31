@@ -142,7 +142,6 @@ const pluckLayer = {
   gain: 0.3,
   amp: {
     envelope: { attack: 0.001, decay: 0.25, sustain: 0, release: 0.2 },
-    velocity: 1,
   },
 };
 
@@ -151,7 +150,6 @@ const bloomLayer = {
   gain: 0.35,
   amp: {
     envelope: { attack: 1, decay: 1, sustain: 0.7, release: 2.5 },
-    velocity: 1,
   },
 };
 
@@ -160,13 +158,12 @@ const arpLayer = {
   gain: 0.4,
   amp: {
     envelope: { attack: 0.002, decay: 0.14, sustain: 0.15, release: 0.12 },
-    velocity: 1,
   },
 };
 
 const COMMENT = `# Pluck and Bloom
 
-A slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope and a velocity depth. Before it, every synth note had the same 5 ms fade in and out.
+A slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope. Before it, every synth note had the same 5 ms fade in and out.
 
 - **Pluck & Bloom:** the centerpiece, playing the chords and the melody. A square layer plucks (1 ms attack, 0.25 s decay, sustain 0) while a sine layer swells in behind it (1 s attack, 2.5 s release), so each note pings and then blooms into a pad. Listen to the long melody notes, and to the pad tails overlapping across chord changes.
 - **Bass:** sawtooth with sine sub, 8th-note pulse with octave jumps. A 3 ms attack and 0.25 s decay to sustain 0.45 give each note a punchy front.
@@ -200,7 +197,6 @@ const project = {
             gain: 0.35,
             amp: {
               envelope: { attack: 0.003, decay: 0.25, sustain: 0.45, release: 0.08 },
-              velocity: 1,
             },
           },
           {
@@ -208,7 +204,6 @@ const project = {
             gain: 0.6,
             amp: {
               envelope: { attack: 0.003, decay: 0.6, sustain: 0.7, release: 0.08 },
-              velocity: 1,
             },
           },
         ],

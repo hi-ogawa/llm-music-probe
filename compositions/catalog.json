@@ -1,5 +1,13 @@
 [
   {
+    "name": "Pluck and Bloom",
+    "description": "Synthwave loop in D minor on Toy MIDI's own synth, where each chord and melody note pings on a plucked square layer and then blooms into a slow sine pad, over a punchy saw bass and a ticking 3+3+2 arpeggio",
+    "date": "2026-10-31",
+    "tags": ["synthwave"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/pluck-and-bloom/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/pluck-and-bloom"
+  },
+  {
     "name": "Four Shapes",
     "description": "Synth-pop loop in A minor on Am, F, C, and G with a saw lead, sine arp, triangle pad, and square bass, each on Toy MIDI's own synth",
     "date": "2026-10-28",
