@@ -151,7 +151,7 @@ const bloomLayer = {
   gain: 0.35,
   amp: {
     envelope: { attack: 1, decay: 1, sustain: 0.7, release: 2.5 },
-    velocity: 0.5,
+    velocity: 1,
   },
 };
 
@@ -208,7 +208,7 @@ const project = {
             gain: 0.6,
             amp: {
               envelope: { attack: 0.003, decay: 0.6, sustain: 0.7, release: 0.08 },
-              velocity: 0.5,
+              velocity: 1,
             },
           },
         ],

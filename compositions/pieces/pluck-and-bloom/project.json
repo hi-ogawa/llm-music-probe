@@ -46,7 +46,7 @@
                 "sustain": 0.7,
                 "release": 2.5
               },
-              "velocity": 0.5
+              "velocity": 1
             }
           }
         ]
@@ -381,7 +381,7 @@
                 "sustain": 0.7,
                 "release": 0.08
               },
-              "velocity": 0.5
+              "velocity": 1
             }
           }
         ]
