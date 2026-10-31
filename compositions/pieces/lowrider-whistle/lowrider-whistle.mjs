@@ -195,8 +195,6 @@ const project = {
       synth: { layers: [{ oscillator: { waveform: "sine" }, gain: 0.8 }] },
       gain: 0.8,
       pan: 0.1,
-      viewMode: "editor",
-      height: 220,
       notes: leadNotes,
       automation: [
         {
@@ -218,8 +216,6 @@ const project = {
       },
       gain: 0.3,
       pan: -0.15,
-      viewMode: "editor",
-      height: 160,
       notes: padNotes,
       automation: [{ type: "pitch-bend", points: padBend }],
     },
@@ -227,8 +223,6 @@ const project = {
       name: "Synth Bass",
       program: 38,
       gain: 0.75,
-      viewMode: "editor",
-      height: 140,
       notes: bassNotes,
     },
     {
@@ -236,8 +230,6 @@ const project = {
       program: 25,
       bank: 128,
       gain: 0.8,
-      viewMode: "editor",
-      height: 140,
       notes: drumNotes,
     },
   ],

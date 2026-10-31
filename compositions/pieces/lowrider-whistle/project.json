@@ -29,8 +29,6 @@
       },
       "gain": 0.8,
       "pan": 0.1,
-      "viewMode": "editor",
-      "height": 220,
       "notes": [
         {
           "pitch": 79,
@@ -676,8 +674,6 @@
       },
       "gain": 0.3,
       "pan": -0.15,
-      "viewMode": "editor",
-      "height": 160,
       "notes": [
         {
           "pitch": 60,
@@ -980,8 +976,6 @@
       "name": "Synth Bass",
       "program": 38,
       "gain": 0.75,
-      "viewMode": "editor",
-      "height": 140,
       "notes": [
         {
           "pitch": 36,
@@ -1254,8 +1248,6 @@
       "program": 25,
       "bank": 128,
       "gain": 0.8,
-      "viewMode": "editor",
-      "height": 140,
       "notes": [
         {
           "pitch": 36,
