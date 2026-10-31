@@ -71,20 +71,16 @@ const LEAD = {
   ],
 };
 
-// Pad: two tracks panned apart, each a three-saw stack with mirrored detune,
-// so the beating spreads across the stereo field. A triangle an octave down
-// gives each side body.
+// Pad: the widest stack in the piece, five saws spread unevenly to about
+// ±20 cents, so the beating never settles into one rate. A triangle an
+// octave down gives it body.
 const padAmp = env(0.45, 0.6, 0.85, 1.4);
-const padSide = (detunes) => ({
+const PAD = {
   layers: [
-    ...detunes.map((detune) =>
-      layer("sawtooth", 0.1, padAmp, { detune }),
-    ),
-    layer("triangle", 0.12, padAmp, { octave: -1, detune: detunes[1] }),
+    ...[-21, -10, -3, 9, 20].map((detune) => layer("sawtooth", 0.1, padAmp, { detune })),
+    layer("triangle", 0.14, padAmp, { octave: -1, detune: -3 }),
   ],
-});
-const PAD_L = padSide([-19, -7, 11]);
-const PAD_R = padSide([-11, 7, 19]);
+};
 
 // Bass: a saw at pitch for the bite, and the sub as a sine an octave down.
 const bassAmp = env(0.002, 0.09, 0.55, 0.03);
@@ -103,19 +99,6 @@ const ARP = {
     layer("sawtooth", 0.35, pluckAmp, { detune: -7 }),
     layer("sawtooth", 0.35, pluckAmp, { detune: 7 }),
     layer("square", 0.14, env(0.001, 0.07, 0, 0.05), { octave: 1 }),
-  ],
-};
-
-// Uplifter: the widest stack in the piece, five saws to ±35 cents across two
-// octaves, swept up two octaves by pitch bend into the drop.
-const liftAmp = env(0.8, 0.5, 1, 0.6);
-const LIFT = {
-  layers: [
-    layer("sawtooth", 0.18, liftAmp, { detune: -35 }),
-    layer("sawtooth", 0.18, liftAmp, { detune: -12 }),
-    layer("sawtooth", 0.18, liftAmp, { detune: 13 }),
-    layer("sawtooth", 0.18, liftAmp, { detune: 34 }),
-    layer("sawtooth", 0.12, liftAmp, { octave: 1, detune: 21 }),
   ],
 };
 
@@ -224,7 +207,7 @@ function leadPart() {
 
 // --- pad ---
 
-function padPart(side) {
+function padPart() {
   const notes = [];
   const cc11 = [{ beat: 0, value: 0 }];
   const chordBlock = (startBar, bars, prog, velocity) => {
@@ -251,7 +234,6 @@ function padPart(side) {
   notes.push(...CHORDS.Am.pad.map((p) => note(p, bar(45), 8, 85)));
   return {
     notes,
-    pan: side === "L" ? -0.65 : 0.65,
     automation: [{ type: "controller", controller: 11, points: sortPoints(cc11) }],
   };
 }
@@ -329,28 +311,6 @@ function arpPart() {
   };
 }
 
-// --- uplifter ---
-
-function liftPart() {
-  const start = bar(25);
-  const len = 4 * BAR - 0.25;
-  const bend = [{ beat: 0, semitones: -12 }];
-  const cc11 = [{ beat: 0, value: 0 }];
-  for (let i = 0; i <= 32; i++) {
-    const t = i / 32;
-    bend.push({ beat: start + t * len, semitones: Math.round((-12 + 24 * t * t) * 100) / 100 });
-    cc11.push({ beat: start + t * len, value: Math.round(15 + 100 * t) });
-  }
-  bend.push({ beat: start + len + 0.25, semitones: 0 });
-  return {
-    notes: [note(57, start, len, 100), note(64, start, len, 100)],
-    automation: [
-      { type: "controller", controller: 11, points: sortPoints(cc11) },
-      { type: "pitch-bend", points: sortPoints(bend) },
-    ],
-  };
-}
-
 // --- drums ---
 
 const KICK = 36, SNARE = 38, CLAP = 39, CH = 42, OH = 46, CRASH = 49;
@@ -394,10 +354,10 @@ function drumPart() {
   // Breakdown: only a crash to mark it.
   hit(CRASH, bar(17), 80);
   // Riser: a snare roll from quarters to 32nds, no kick.
-  roll(bar(25), bar(26), 1, 30, 45);
-  roll(bar(26), bar(27), 0.5, 45, 60);
-  roll(bar(27), bar(28), 0.25, 60, 78);
-  roll(bar(28), bar(28) + 3.5, 0.125, 78, 100);
+  roll(bar(25), bar(26), 1, 25, 40);
+  roll(bar(26), bar(27), 0.5, 40, 54);
+  roll(bar(27), bar(28), 0.25, 54, 70);
+  roll(bar(28), bar(28) + 3.5, 0.125, 70, 90);
   // Drops: everything, with a fill before drop 2.
   for (let b = 29; b < 45; b++) {
     if (b === 29 || b === 37) hit(CRASH, bar(b), 115);
@@ -436,15 +396,13 @@ const track = (name, fields) => ({
 });
 
 const lead = leadPart();
-const padL = padPart("L");
-const padR = padPart("R");
 
 const project = {
   title: "Supersaw Horizon",
   comment: [
     "Trance in A minor at 138 BPM, on Toy MIDI's own synth.",
     "",
-    "Detune is the star: the lead, the pads, the pluck, and the uplifter are each a stack of saws spread from ±7 to ±35 cents, and the two pad tracks mirror their detune left and right. `octave` layers add a sine sub under the bass, air over the lead, and body under the pads.",
+    "Detune is the star: the lead, the pad, and the pluck are each a stack of saws, spread from ±7 cents on the pluck to about ±20 on the pad. `octave` layers add a sine sub under the bass, air over the lead, and body under the pad.",
     "",
     "Intro (1) · Build (9) · Breakdown (17) · Riser (25) · Drop 1 (29) · Drop 2 (37) · Outro (45)",
   ].join("\n"),
@@ -461,17 +419,10 @@ const project = {
       eq: eq({ type: "high-pass", frequency: 180 }, { type: "low-pass", frequency: 7500 }),
       keySignature: { fifths: 0, mode: "minor" },
     }),
-    track("Pad L", {
-      synth: PAD_L,
-      gain: 0.45,
-      ...padL,
-      eq: eq({ type: "high-pass", frequency: 220 }, { type: "low-pass", frequency: 4200 }),
-      keySignature: { fifths: 0, mode: "minor" },
-    }),
-    track("Pad R", {
-      synth: PAD_R,
-      gain: 0.45,
-      ...padR,
+    track("Pad", {
+      synth: PAD,
+      gain: 0.67,
+      ...padPart(),
       eq: eq({ type: "high-pass", frequency: 220 }, { type: "low-pass", frequency: 4200 }),
       keySignature: { fifths: 0, mode: "minor" },
     }),
@@ -488,12 +439,6 @@ const project = {
       ...bassPart(),
       eq: eq({ type: "low-pass", frequency: 900 }),
       keySignature: { fifths: 0, mode: "minor" },
-    }),
-    track("Uplifter", {
-      synth: LIFT,
-      gain: 1,
-      ...liftPart(),
-      eq: eq({ type: "high-pass", frequency: 250 }),
     }),
     track("Drums", {
       bank: 128,
