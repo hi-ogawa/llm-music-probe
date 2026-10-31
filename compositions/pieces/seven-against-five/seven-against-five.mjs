@@ -414,9 +414,12 @@ function composeProgMetal() {
     },
   ];
   // The riffs are written in drop D, but the Telecaster SoundFonts sample only keys 40-84
-  // (E2-C6), so every pitched track moves up a whole step to drop E.
+  // (E2-C6), so every pitched track moves up a whole step to drop E. At the top, the lead
+  // drops an octave and the swell drops any note above C6 an octave.
   for (const t of tracks) {
     if (t.bank !== 128) for (const n of t.notes) n.pitch += 2;
+    if (t.name === "Lead") for (const n of t.notes) n.pitch -= 12;
+    if (t.name === "Clean swell (neck)") for (const n of t.notes) if (n.pitch > 84) n.pitch -= 12;
     t.notes.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
     Object.assign(t, { muted: false, soloed: false, viewMode: "overview", height: 64 });
     if (!t.automation) t.automation = [];
