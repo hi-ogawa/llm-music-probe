@@ -1,11 +1,11 @@
 // Run from a directory where `playwright` resolves: node <this file> project.json
-// Renders the project on the toy-midi#1055 preview and prints per-track RMS in dB by section.
+// Renders the project on the toy-midi#1064 preview and prints per-track RMS in dB by section.
 import { chromium } from "playwright";
 import { readFileSync } from "node:fs";
 const project = JSON.parse(readFileSync(process.argv[2], "utf8"));
 const browser = await chromium.launch();
 const page = await browser.newPage();
-await page.goto("https://fix-issue-1052-toy-midi.hiro18181.workers.dev/draft");
+await page.goto("https://fix-issue-1052-on-bend-toy-midi.hiro18181.workers.dev/draft");
 await page.waitForFunction(() => window.toyMidi?.runtime, null, { timeout: 60000 });
 const out = await page.evaluate(async (project) => {
   const { runtime, utils } = window.toyMidi;

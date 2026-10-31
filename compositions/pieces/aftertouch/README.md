@@ -1,8 +1,8 @@
 # Aftertouch
 
-A slow cinematic synth loop in the spirit of Vangelis, composed as the demo for [toy-midi#1052](https://github.com/hi-ogawa/toy-midi/issues/1052), which makes Toy MIDI's own synth honor CC1 as vibrato depth. It was implemented in [toy-midi#1055](https://github.com/hi-ogawa/toy-midi/pull/1055), so until that merges, open the piece on the PR's preview:
+A slow cinematic synth loop in the spirit of Vangelis, composed as the demo for [toy-midi#1052](https://github.com/hi-ogawa/toy-midi/issues/1052), which makes Toy MIDI's own synth honor CC1 as vibrato depth. It is implemented in [toy-midi#1064](https://github.com/hi-ogawa/toy-midi/pull/1064), so until that merges, open the piece on the PR's preview:
 
-https://fix-issue-1052-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fcc1-vibrato-demo%2Fcompositions%2Fpieces%2Faftertouch%2Fproject.json
+https://fix-issue-1052-on-bend-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fcc1-vibrato-demo%2Fcompositions%2Fpieces%2Faftertouch%2Fproject.json
 
 The title comes from the CS-80, whose players brought vibrato in by pressing into held keys.
 
@@ -58,13 +58,13 @@ I rendered the project on the preview with `runtime.renderMix()` in headless Chr
 | Climax Bb5 bloomed (beat 52.5-54) | 127 | -47 to +46 cents |
 | Short D5 (beat 36) | 0 | -1 to +5 cents |
 
-That matches #1052's mapping of 0 to 50 cents across CC1. The climax note's RMS also rises 2.8 dB through its swell, so the own synth honors CC11 too.
+That matches toy-midi#1052's mapping of 0 to 50 cents across CC1. The climax note's RMS also rises 2.8 dB through its swell, so the own synth honors CC11 too.
 
 [`levels.mjs`](levels.mjs) measures each track alone, as in experiment 13's level check. The first balance had the bass 11 dB over the lead in RMS and the strings and bells nearly silent, so I lowered the bass, raised the strings and bells, and boosted every layer by 3 for headroom. The mix now peaks at 0.38, and the lead sits at least 4 dB over each pad and the strings in every section.
 
 ## Toy MIDI doc gaps
 
-- **CC1 on the own synth.** Neither `/llms.txt` nor the type declarations say that the own synth reads CC1, or what it does: the 0-50 cent depth, the LFO rate, or that each voice's LFO starts at its note-on. I took the mapping from #1052 and the 5.5 Hz rate from the description of #1055.
+- **CC1 on the own synth.** Neither `/llms.txt` nor the type declarations say that the own synth reads CC1, or what it does: the 0-50 cent depth, the LFO rate, or that each voice's LFO starts at its note-on. I took the mapping from toy-midi#1052 and the 5.5 Hz rate from the description of toy-midi#1055, which toy-midi#1064 superseded.
 - **CC11 and velocity on the own synth.** The docs don't say whether either changes the synth's level. CC11 measurably does, and I didn't test velocity.
 - **Own synth level.** A layer's `gain` is documented as a linear multiplier with no range or level reference. At gain 1, a seven-track mix peaked at 0.16, so I scaled every layer by 3 without knowing the intended range.
 - **Pitch bend on the own synth.** The docs don't say whether the own synth honors pitch bend. A small fixed bend on a doubled pad would have given a detuned chorus, so I left it out rather than guess.
