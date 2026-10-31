@@ -1,6 +1,6 @@
 {
   "title": "Lowrider Whistle",
-  "comment": "# Lowrider Whistle\n\nA laid-back G-funk loop in C minor at 92 BPM that shows Toy MIDI's own synth following pitch bend.\n\n- **Whistle Lead**: a lone sine on the own synth. It scoops up into its long notes, slides down at phrase ends, and dives a full octave as the fill in bar 7. The bend returns to zero before each next note, which is why the lead has a track to itself.\n- **Tape Pad**: triangle with a little sawtooth on the own synth, holding the chords Cm9, F9, Abmaj7, G7, Cm9, G7b9. Once per loop, over the held F9 in bar 4, the whole chord sags a semitone and recovers like a warped tape, since a bend moves every note on the track at once.\n- **Synth Bass**: GM Synth Bass 1, syncopated root and octave lines with chromatic approaches.\n- **Drums**: GeneralUser GS TR-808 kit, kick and snare-clap backbeat with eighth-note hats.\n\nBends are stepped, so every slide is written as a point every 64th note.",
+  "comment": "# Lowrider Whistle\n\nA laid-back G-funk loop in C minor at 92 BPM that shows Toy MIDI's own synth following pitch bend.\n\n- **Whistle Lead**: a lone sine on the own synth that eases in like breath. It scoops up into its long notes, slides down at phrase ends, and dives a full octave as the fill in bar 7. The bend returns to zero after each slide's release fades and before the next note, which is why the lead has a track to itself.\n- **Tape Pad**: triangle with a little sawtooth on the own synth, swelling in and crossfading between the chords Cm9, F9, Abmaj7, G7, Cm9, G7b9. Once per loop, over the held F9 in bar 4, the whole chord sags a semitone and recovers like a warped tape, since a bend moves every note on the track at once.\n- **Synth Bass**: a plucked sine with a little sawtooth on the own synth, playing syncopated root and octave lines with chromatic approaches.\n- **Drums**: GeneralUser GS TR-808 kit, kick and snare-clap backbeat with eighth-note hats.\n\nBends are stepped, so every slide is written as a point every 64th note.",
   "tempo": 92,
   "timeSignature": {
     "numerator": 4,
@@ -23,7 +23,15 @@
             "oscillator": {
               "waveform": "sine"
             },
-            "gain": 0.8
+            "gain": 0.8,
+            "amp": {
+              "envelope": {
+                "attack": 0.04,
+                "decay": 0.3,
+                "sustain": 1,
+                "release": 0.12
+              }
+            }
           }
         ]
       },
@@ -295,6 +303,10 @@
             },
             {
               "beat": 7.5,
+              "semitones": -3
+            },
+            {
+              "beat": 7.75,
               "semitones": 0
             },
             {
@@ -355,6 +367,10 @@
             },
             {
               "beat": 14,
+              "semitones": -3
+            },
+            {
+              "beat": 14.25,
               "semitones": 0
             },
             {
@@ -459,6 +475,10 @@
             },
             {
               "beat": 23,
+              "semitones": -2
+            },
+            {
+              "beat": 23.25,
               "semitones": 0
             },
             {
@@ -586,7 +606,7 @@
               "semitones": -12
             },
             {
-              "beat": 27.5,
+              "beat": 27.75,
               "semitones": 0
             },
             {
@@ -647,6 +667,10 @@
             },
             {
               "beat": 31.5,
+              "semitones": -2
+            },
+            {
+              "beat": 31.75,
               "semitones": 0
             }
           ]
@@ -662,13 +686,29 @@
             "oscillator": {
               "waveform": "triangle"
             },
-            "gain": 0.6
+            "gain": 0.6,
+            "amp": {
+              "envelope": {
+                "attack": 0.4,
+                "decay": 0.6,
+                "sustain": 0.85,
+                "release": 0.9
+              }
+            }
           },
           {
             "oscillator": {
               "waveform": "sawtooth"
             },
-            "gain": 0.12
+            "gain": 0.12,
+            "amp": {
+              "envelope": {
+                "attack": 0.4,
+                "decay": 0.6,
+                "sustain": 0.85,
+                "release": 0.9
+              }
+            }
           }
         ]
       },
@@ -975,7 +1015,39 @@
     {
       "name": "Synth Bass",
       "program": 38,
-      "gain": 0.75,
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine"
+            },
+            "gain": 1,
+            "amp": {
+              "envelope": {
+                "attack": 0.003,
+                "decay": 0.25,
+                "sustain": 0.55,
+                "release": 0.06
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "sawtooth"
+            },
+            "gain": 0.2,
+            "amp": {
+              "envelope": {
+                "attack": 0.003,
+                "decay": 0.25,
+                "sustain": 0.55,
+                "release": 0.06
+              }
+            }
+          }
+        ]
+      },
+      "gain": 0.95,
       "notes": [
         {
           "pitch": 36,

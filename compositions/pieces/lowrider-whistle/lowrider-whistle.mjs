@@ -2,6 +2,9 @@ import { writeFileSync } from "node:fs";
 
 const STEP = 1 / 16; // bend resolution in beats (a 64th note)
 const LOOP_BEATS = 32;
+// A releasing note keeps following the track's bend, so a reset waits until
+// the lead's release has faded, a quarter beat (163 ms) after the note-off.
+const RESET_DELAY = 1 / 4;
 
 // --- Lead: lone sine whistle -------------------------------------------------
 // [start, duration, pitch, gesture?]
@@ -85,8 +88,9 @@ leadSpec.forEach(([start, duration, , gesture = {}], i) => {
       setBend(from + t, -12 * x * x * (3 - 2 * x));
     }
   }
-  // Return to zero at the note-off, before the next note can start.
-  if (gesture.fall || gesture.dive) setBend(end, 0);
+  // Return to zero once the release has faded, before the next note starts.
+  // Every gap after a fall or dive is at least half a beat.
+  if (gesture.fall || gesture.dive) setBend(end + RESET_DELAY, 0);
 });
 
 // --- Pads: sustained chords with one tape wobble --------------------------------
@@ -121,7 +125,7 @@ for (let t = wobbleUp[0]; t <= wobbleUp[1] + 1e-9; t += STEP) {
   padBend.push({ beat: round(t), semitones: round(-1 + x * x * (3 - 2 * x)) });
 }
 
-// --- Bass: GM Synth Bass 1 ---------------------------------------------------------
+// --- Bass: own synth ---------------------------------------------------------
 const bassSpec = [
   // Cm9
   [0, 1.25, 36], [1.5, 0.25, 36], [1.75, 0.75, 48], [2.5, 0.5, 46], [3, 0.75, 43], [3.75, 0.25, 39],
@@ -170,14 +174,23 @@ for (let bar = 0; bar < 8; bar++) {
 for (const s of [31.5, 31.75]) hit(SNARE, s, 70);
 drumNotes.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
 
+// --- Amp envelopes ------------------------------------------------------------------
+// Times in seconds, sustain as a level from 0 to 1.
+// The whistle eases in like breath and stops soon after its key.
+const leadEnvelope = { attack: 0.04, decay: 0.3, sustain: 1, release: 0.12 };
+// The pad swells in and crossfades into the next chord.
+const padEnvelope = { attack: 0.4, decay: 0.6, sustain: 0.85, release: 0.9 };
+// The bass plucks, settles to a held body, and stops short for the syncopation.
+const bassEnvelope = { attack: 0.003, decay: 0.25, sustain: 0.55, release: 0.06 };
+
 // --- Project -------------------------------------------------------------------------
 const comment = `# Lowrider Whistle
 
 A laid-back G-funk loop in C minor at 92 BPM that shows Toy MIDI's own synth following pitch bend.
 
-- **Whistle Lead**: a lone sine on the own synth. It scoops up into its long notes, slides down at phrase ends, and dives a full octave as the fill in bar 7. The bend returns to zero before each next note, which is why the lead has a track to itself.
-- **Tape Pad**: triangle with a little sawtooth on the own synth, holding the chords Cm9, F9, Abmaj7, G7, Cm9, G7b9. Once per loop, over the held F9 in bar 4, the whole chord sags a semitone and recovers like a warped tape, since a bend moves every note on the track at once.
-- **Synth Bass**: GM Synth Bass 1, syncopated root and octave lines with chromatic approaches.
+- **Whistle Lead**: a lone sine on the own synth that eases in like breath. It scoops up into its long notes, slides down at phrase ends, and dives a full octave as the fill in bar 7. The bend returns to zero after each slide's release fades and before the next note, which is why the lead has a track to itself.
+- **Tape Pad**: triangle with a little sawtooth on the own synth, swelling in and crossfading between the chords Cm9, F9, Abmaj7, G7, Cm9, G7b9. Once per loop, over the held F9 in bar 4, the whole chord sags a semitone and recovers like a warped tape, since a bend moves every note on the track at once.
+- **Synth Bass**: a plucked sine with a little sawtooth on the own synth, playing syncopated root and octave lines with chromatic approaches.
 - **Drums**: GeneralUser GS TR-808 kit, kick and snare-clap backbeat with eighth-note hats.
 
 Bends are stepped, so every slide is written as a point every 64th note.`;
@@ -192,7 +205,11 @@ const project = {
     {
       name: "Whistle Lead",
       program: 0,
-      synth: { layers: [{ oscillator: { waveform: "sine" }, gain: 0.8 }] },
+      synth: {
+        layers: [
+          { oscillator: { waveform: "sine" }, gain: 0.8, amp: { envelope: leadEnvelope } },
+        ],
+      },
       gain: 0.8,
       pan: 0.1,
       notes: leadNotes,
@@ -210,8 +227,8 @@ const project = {
       program: 0,
       synth: {
         layers: [
-          { oscillator: { waveform: "triangle" }, gain: 0.6 },
-          { oscillator: { waveform: "sawtooth" }, gain: 0.12 },
+          { oscillator: { waveform: "triangle" }, gain: 0.6, amp: { envelope: padEnvelope } },
+          { oscillator: { waveform: "sawtooth" }, gain: 0.12, amp: { envelope: padEnvelope } },
         ],
       },
       gain: 0.3,
@@ -222,7 +239,16 @@ const project = {
     {
       name: "Synth Bass",
       program: 38,
-      gain: 0.75,
+      // A sine body with a little sawtooth so the low notes carry on small
+      // speakers, since the synth has no filter yet to tame a fuller sawtooth.
+      synth: {
+        layers: [
+          { oscillator: { waveform: "sine" }, gain: 1, amp: { envelope: bassEnvelope } },
+          { oscillator: { waveform: "sawtooth" }, gain: 0.2, amp: { envelope: bassEnvelope } },
+        ],
+      },
+      // About 2 dB above the GM Synth Bass 1 it replaces, to match its level.
+      gain: 0.95,
       notes: bassNotes,
     },
     {
