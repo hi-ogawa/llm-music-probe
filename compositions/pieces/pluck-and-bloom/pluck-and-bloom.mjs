@@ -92,9 +92,9 @@ function createBassNotes() {
   return notes;
 }
 
-function createArpNotes(bars) {
+function createArpNotes() {
   const notes = [];
-  for (const bar of bars) {
+  for (let bar = 0; bar < BARS; bar++) {
     const tones = [...CHORDS[bar].arp];
     for (let step = 0; step < 16; step++) {
       let pitch = tones[step % 4];
@@ -155,20 +155,11 @@ const bloomLayer = {
   },
 };
 
-function createArpPatch(velocity) {
-  return {
-    layers: [
-      {
-        oscillator: { waveform: "sawtooth" },
-        gain: 0.4,
-        amp: {
-          envelope: { attack: 0.002, decay: 0.14, sustain: 0.15, release: 0.12 },
-          velocity,
-        },
-      },
-    ],
-  };
-}
+const arpLayer = {
+  oscillator: { waveform: "sawtooth" },
+  gain: 0.4,
+  amp: { envelope: { attack: 0.002, decay: 0.14, sustain: 0.15, release: 0.12 } },
+};
 
 const COMMENT = `# Pluck and Bloom
 
@@ -176,7 +167,7 @@ A slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa
 
 - **Pluck & Bloom:** the centerpiece, playing the chords and the melody. A square layer plucks (1 ms attack, 0.25 s decay, sustain 0) while a sine layer swells in behind it (1 s attack, 2.5 s release), so each note pings and then blooms into a pad. Listen to the long melody notes, and to the pad tails overlapping across chord changes.
 - **Bass:** sawtooth with sine sub, 8th-note pulse with octave jumps. A 3 ms attack and 0.25 s decay to sustain 0.45 give each note a punchy front.
-- **Even Arp (bars 1–4)** and **Accent Arp (bars 5–8):** the same 16th-note sawtooth arpeggio with the same 3+3+2 accent velocities. Even Arp has velocity depth 0, so every note plays at full level and the accents vanish. Accent Arp has velocity depth 1, so the accents come through. Even Arp's track gain is lower to keep the two halves at a similar loudness.
+- **Arp:** a 16th-note sawtooth arpeggio, accented 3+3+2 across each bar, with a short decay so each note ticks.
 - **Drums:** TR-808 kit, kick and hats throughout, snare from bar 5.
 
 Loops bars 1–8 at 84 BPM.
@@ -194,8 +185,6 @@ const project = {
       program: 0,
       synth: { layers: [pluckLayer, bloomLayer] },
       gain: 0.5,
-      viewMode: "editor",
-      height: 220,
       notes: createPadNotes(),
     },
     {
@@ -222,37 +211,21 @@ const project = {
         ],
       },
       gain: 0.7,
-      viewMode: "editor",
-      height: 140,
       notes: createBassNotes(),
     },
     {
-      name: "Even Arp (velocity depth 0)",
+      name: "Arp",
       program: 0,
-      synth: createArpPatch(0),
-      gain: 0.22,
-      pan: 0.2,
-      viewMode: "editor",
-      height: 140,
-      notes: createArpNotes([0, 1, 2, 3]),
-    },
-    {
-      name: "Accent Arp (velocity depth 1)",
-      program: 0,
-      synth: createArpPatch(1),
+      synth: { layers: [arpLayer] },
       gain: 0.32,
       pan: 0.2,
-      viewMode: "editor",
-      height: 140,
-      notes: createArpNotes([4, 5, 6, 7]),
+      notes: createArpNotes(),
     },
     {
       name: "Drums",
       bank: 128,
       program: 25,
       gain: 0.45,
-      viewMode: "editor",
-      height: 120,
       notes: createDrumNotes(),
     },
   ],

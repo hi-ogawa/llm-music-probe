@@ -1,6 +1,6 @@
 {
   "title": "Pluck and Bloom",
-  "comment": "# Pluck and Bloom\n\nA slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope and a velocity depth. Before it, every synth note had the same 5 ms fade in and out.\n\n- **Pluck & Bloom:** the centerpiece, playing the chords and the melody. A square layer plucks (1 ms attack, 0.25 s decay, sustain 0) while a sine layer swells in behind it (1 s attack, 2.5 s release), so each note pings and then blooms into a pad. Listen to the long melody notes, and to the pad tails overlapping across chord changes.\n- **Bass:** sawtooth with sine sub, 8th-note pulse with octave jumps. A 3 ms attack and 0.25 s decay to sustain 0.45 give each note a punchy front.\n- **Even Arp (bars 1–4)** and **Accent Arp (bars 5–8):** the same 16th-note sawtooth arpeggio with the same 3+3+2 accent velocities. Even Arp has velocity depth 0, so every note plays at full level and the accents vanish. Accent Arp has velocity depth 1, so the accents come through. Even Arp's track gain is lower to keep the two halves at a similar loudness.\n- **Drums:** TR-808 kit, kick and hats throughout, snare from bar 5.\n\nLoops bars 1–8 at 84 BPM.\n",
+  "comment": "# Pluck and Bloom\n\nA slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope and a velocity depth. Before it, every synth note had the same 5 ms fade in and out.\n\n- **Pluck & Bloom:** the centerpiece, playing the chords and the melody. A square layer plucks (1 ms attack, 0.25 s decay, sustain 0) while a sine layer swells in behind it (1 s attack, 2.5 s release), so each note pings and then blooms into a pad. Listen to the long melody notes, and to the pad tails overlapping across chord changes.\n- **Bass:** sawtooth with sine sub, 8th-note pulse with octave jumps. A 3 ms attack and 0.25 s decay to sustain 0.45 give each note a punchy front.\n- **Arp:** a 16th-note sawtooth arpeggio, accented 3+3+2 across each bar, with a short decay so each note ticks.\n- **Drums:** TR-808 kit, kick and hats throughout, snare from bar 5.\n\nLoops bars 1–8 at 84 BPM.\n",
   "tempo": 84,
   "timeSignature": {
     "numerator": 4,
@@ -52,8 +52,6 @@
         ]
       },
       "gain": 0.5,
-      "viewMode": "editor",
-      "height": 220,
       "notes": [
         {
           "pitch": 53,
@@ -389,8 +387,6 @@
         ]
       },
       "gain": 0.7,
-      "viewMode": "editor",
-      "height": 140,
       "notes": [
         {
           "pitch": 38,
@@ -779,7 +775,7 @@
       ]
     },
     {
-      "name": "Even Arp (velocity depth 0)",
+      "name": "Arp",
       "program": 0,
       "synth": {
         "layers": [
@@ -794,16 +790,13 @@
                 "decay": 0.14,
                 "sustain": 0.15,
                 "release": 0.12
-              },
-              "velocity": 0
+              }
             }
           }
         ]
       },
-      "gain": 0.22,
+      "gain": 0.32,
       "pan": 0.2,
-      "viewMode": "editor",
-      "height": 140,
       "notes": [
         {
           "pitch": 62,
@@ -1188,36 +1181,7 @@
           "start": 15.75,
           "duration": 0.2,
           "velocity": 56
-        }
-      ]
-    },
-    {
-      "name": "Accent Arp (velocity depth 1)",
-      "program": 0,
-      "synth": {
-        "layers": [
-          {
-            "oscillator": {
-              "waveform": "sawtooth"
-            },
-            "gain": 0.4,
-            "amp": {
-              "envelope": {
-                "attack": 0.002,
-                "decay": 0.14,
-                "sustain": 0.15,
-                "release": 0.12
-              },
-              "velocity": 1
-            }
-          }
-        ]
-      },
-      "gain": 0.32,
-      "pan": 0.2,
-      "viewMode": "editor",
-      "height": 140,
-      "notes": [
+        },
         {
           "pitch": 62,
           "start": 16,
@@ -1609,8 +1573,6 @@
       "bank": 128,
       "program": 25,
       "gain": 0.45,
-      "viewMode": "editor",
-      "height": 120,
       "notes": [
         {
           "pitch": 36,
