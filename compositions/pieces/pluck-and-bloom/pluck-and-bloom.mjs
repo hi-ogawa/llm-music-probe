@@ -158,7 +158,10 @@ const bloomLayer = {
 const arpLayer = {
   oscillator: { waveform: "sawtooth" },
   gain: 0.4,
-  amp: { envelope: { attack: 0.002, decay: 0.14, sustain: 0.15, release: 0.12 } },
+  amp: {
+    envelope: { attack: 0.002, decay: 0.14, sustain: 0.15, release: 0.12 },
+    velocity: 1,
+  },
 };
 
 const COMMENT = `# Pluck and Bloom

@@ -790,7 +790,8 @@
                 "decay": 0.14,
                 "sustain": 0.15,
                 "release": 0.12
-              }
+              },
+              "velocity": 1
             }
           }
         ]
