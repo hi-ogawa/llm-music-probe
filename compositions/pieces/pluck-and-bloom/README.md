@@ -4,18 +4,20 @@
 
 A quick demo of the amp envelope on Toy MIDI's own synth, made for https://github.com/hi-ogawa/toy-midi/pull/1030, which gives each synth layer an envelope (attack, decay, sustain, release). Before it, every synth note had the same 5 ms fade in and out.
 
-An 8-bar synthwave loop in D minor at 84 BPM, one chord per bar, with the loop range set so it repeats. A session composed it from a brief and Toy MIDI's agent docs, without checking it in the browser, and the user then listened to it on that PR's preview.
+An 8-bar synthwave loop in D minor at 84 BPM, one chord per bar, with the loop range set so it repeats. A session composed it from a brief and Toy MIDI's agent docs, without checking it in the browser. The user then rearranged it by ear on the preview of [toy-midi#1048](https://github.com/hi-ogawa/toy-midi/pull/1048), which edits the envelopes on a graph.
 
 | Track | Layers and envelopes | Part |
 |---|---|---|
-| Pluck & Bloom | square pluck (1 ms attack, 0.25 s decay, sustain 0) and sine bloom (1 s attack, 2.5 s release) | chords and a slow melody |
-| Bass | sawtooth (0.25 s decay to sustain 0.45) and sine sub | 8th-note pulse with octave jumps |
-| Arp | sawtooth (0.14 s decay to sustain 0.15) | 16th-note arpeggio, accented 3+3+2 across each bar |
+| Lead | square pluck (4 ms attack, 0.63 s decay, sustain 0) over a sine at sustain 0.68 with a 2.5 s release | slow melody |
+| Pad | sine (1 s attack, sustain 0.7, 2.5 s release) | chords |
+| Bass | sine sub (3 ms attack) and sawtooth (95 ms attack), low-passed at 7.75 kHz | 8th-note pulse with octave jumps |
+| Arp | sine (5 ms attack, full sustain) and sawtooth (100 ms attack, sustain 0.59) | 16th-note arpeggio, accented 3+3+2 across each bar |
 | Drums | GeneralUser GS TR-808 kit | kick and hats, with the snare from bar 5 |
 
 - `pluck-and-bloom.mjs` writes `project.json`.
-- The centerpiece is one track whose two layers have different envelopes, so each note pings and then blooms into a pad, which only per-layer envelopes can do. Listen to the long melody notes, and to the pad tails overlapping across chord changes.
-- The arp's short decay makes each note tick, and its 3+3+2 accents come from the notes' velocities.
+- The first version played the chords and the melody on one track, where every note plucked and then bloomed. On the four-note chords, the pluck made the close inner voicing sound crowded, so the chords moved to their own Pad track without the pluck, and the pluck stays on the melody.
+- The slower attacks on the bass and arp saws came from the same listen. The sub and the arp's sine now carry each note's start, and the saws fill in behind them.
+- The arp's 3+3+2 accents come from the notes' velocities.
 
 ## Toy MIDI doc gaps
 

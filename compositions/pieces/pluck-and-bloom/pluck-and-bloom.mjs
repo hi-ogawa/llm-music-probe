@@ -3,7 +3,12 @@ import { writeFileSync } from "node:fs";
 const BAR = 4;
 const BARS = 8;
 
-// D minor, one chord per bar. `pad` is the centerpiece's voicing, `arp` the
+// Level in decibels as a linear gain, as the app's knobs read them.
+function db(value) {
+  return 10 ** (value / 20);
+}
+
+// D minor, one chord per bar. `pad` is the Pad track's voicing, `arp` the
 // four tones the arpeggio cycles through, `root` the bass note.
 const CHORDS = [
   { name: "Dm9", root: 38, pad: [53, 57, 60, 64], arp: [62, 65, 69, 72] },
@@ -71,10 +76,16 @@ function createPadNotes() {
       notes.push({ pitch: 61, start: bar * BAR + 2, duration: 1.9, velocity: 70 });
     }
   });
-  for (const [bar, beat, duration, pitch, velocity] of MELODY) {
-    notes.push({ pitch, start: bar * BAR + beat, duration, velocity });
-  }
   return notes;
+}
+
+function createLeadNotes() {
+  return MELODY.map(([bar, beat, duration, pitch, velocity]) => ({
+    pitch,
+    start: bar * BAR + beat,
+    duration,
+    velocity,
+  }));
 }
 
 function createBassNotes() {
@@ -137,37 +148,61 @@ function createDrumNotes() {
   return notes;
 }
 
-const pluckLayer = {
-  oscillator: { waveform: "square" },
-  gain: 0.3,
-  amp: {
-    envelope: { attack: 0.001, decay: 0.25, sustain: 0, release: 0.2 },
+const leadLayers = [
+  {
+    oscillator: { waveform: "square" },
+    gain: db(-6),
+    amp: { envelope: { attack: 0.0038, decay: 0.63, sustain: 0, release: 0.2 } },
   },
-};
+  {
+    oscillator: { waveform: "sine" },
+    gain: 0.35,
+    amp: { envelope: { attack: 0.016, decay: 0.51, sustain: 0.68, release: 2.5 } },
+  },
+];
 
-const bloomLayer = {
-  oscillator: { waveform: "sine" },
-  gain: 0.35,
-  amp: {
-    envelope: { attack: 1, decay: 1, sustain: 0.7, release: 2.5 },
+const padLayers = [
+  {
+    oscillator: { waveform: "sine" },
+    gain: db(-5),
+    amp: { envelope: { attack: 1, decay: 1, sustain: 0.7, release: 2.5 } },
   },
-};
+];
 
-const arpLayer = {
-  oscillator: { waveform: "sawtooth" },
-  gain: 0.4,
-  amp: {
-    envelope: { attack: 0.002, decay: 0.14, sustain: 0.15, release: 0.12 },
+const bassLayers = [
+  {
+    oscillator: { waveform: "sawtooth" },
+    gain: db(-6.1),
+    amp: { envelope: { attack: 0.095, decay: 1.8, sustain: 0, release: 0.019 } },
   },
-};
+  {
+    oscillator: { waveform: "sine" },
+    gain: 0.6,
+    amp: { envelope: { attack: 0.003, decay: 0.61, sustain: 0.48, release: 0.08 } },
+  },
+];
+
+const arpLayers = [
+  {
+    oscillator: { waveform: "sawtooth" },
+    gain: 0.4,
+    amp: { envelope: { attack: 0.1, decay: 0.13, sustain: 0.59, release: 0.12 } },
+  },
+  {
+    oscillator: { waveform: "sine" },
+    gain: db(-2.5),
+    amp: { envelope: { attack: 0.005, decay: 0.3, sustain: 1, release: 0.005 } },
+  },
+];
 
 const COMMENT = `# Pluck and Bloom
 
 A slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope. Before it, every synth note had the same 5 ms fade in and out.
 
-- **Pluck & Bloom:** the centerpiece, playing the chords and the melody. A square layer plucks (1 ms attack, 0.25 s decay, sustain 0) while a sine layer swells in behind it (1 s attack, 2.5 s release), so each note pings and then blooms into a pad. Listen to the long melody notes, and to the pad tails overlapping across chord changes.
-- **Bass:** sawtooth with sine sub, 8th-note pulse with octave jumps. A 3 ms attack and 0.25 s decay to sustain 0.45 give each note a punchy front.
-- **Arp:** a 16th-note sawtooth arpeggio, accented 3+3+2 across each bar, with a short decay so each note ticks.
+- **Lead:** the melody. A square layer plucks (4 ms attack, 0.63 s decay to silence) over a sine that holds at 68% and rings for 2.5 s after each note.
+- **Pad:** the chords on one sine layer that swells in over 1 s and releases over 2.5 s, so the tails overlap across chord changes.
+- **Bass:** a sine sub with a 3 ms attack gives each 8th note its front, and a sawtooth fades in behind it over 95 ms. A gentle low-pass at 7.75 kHz takes the fizz off the top.
+- **Arp:** a 16th-note arpeggio, accented 3+3+2 across each bar, on a sine at full sustain with a sawtooth swelling in over 100 ms.
 - **Drums:** TR-808 kit, kick and hats throughout, snare from bar 5.
 
 Loops bars 1–8 at 84 BPM.
@@ -181,41 +216,38 @@ const project = {
   loop: { range: { startBeat: 0, endBeat: BARS * BAR }, enabled: true },
   midiTracks: [
     {
-      name: "Pluck & Bloom",
+      name: "Lead",
       program: 0,
-      synth: { layers: [pluckLayer, bloomLayer] },
-      gain: 0.5,
+      synth: { layers: leadLayers },
+      gain: db(-4),
+      notes: createLeadNotes(),
+    },
+    {
+      name: "Pad",
+      program: 0,
+      synth: { layers: padLayers },
+      gain: 0.45,
+      pan: -0.29,
       notes: createPadNotes(),
     },
     {
       name: "Bass",
       program: 0,
-      synth: {
-        layers: [
-          {
-            oscillator: { waveform: "sawtooth" },
-            gain: 0.35,
-            amp: {
-              envelope: { attack: 0.003, decay: 0.25, sustain: 0.45, release: 0.08 },
-            },
-          },
-          {
-            oscillator: { waveform: "sine" },
-            gain: 0.6,
-            amp: {
-              envelope: { attack: 0.003, decay: 0.6, sustain: 0.7, release: 0.08 },
-            },
-          },
-        ],
+      synth: { layers: bassLayers },
+      gain: db(-4.1),
+      pan: -0.14,
+      // Takes the fizz off the top of the saw.
+      eq: {
+        bypass: false,
+        bands: [{ type: "low-pass", frequency: 7750, gain: 1, q: Math.SQRT1_2, bypass: false }],
       },
-      gain: 0.7,
       notes: createBassNotes(),
     },
     {
       name: "Arp",
       program: 0,
-      synth: { layers: [arpLayer] },
-      gain: 0.32,
+      synth: { layers: arpLayers },
+      gain: db(-8),
       pan: 0.2,
       notes: createArpNotes(),
     },
