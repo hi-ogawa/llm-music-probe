@@ -1,6 +1,6 @@
 import { writeFileSync } from "node:fs";
 
-// Seven Against Five: djent / prog metal in 7/4 at 132 BPM, drop D. See README.md for the
+// Seven Against Five: djent / prog metal in 7/4 at 132 BPM, drop E. See README.md for the
 // form and the parts. Run `node seven-against-five.mjs` to write project.json next to this file.
 
 function composeProgMetal() {
@@ -413,7 +413,10 @@ function composeProgMetal() {
       notes: notes.Drums,
     },
   ];
+  // The riffs are written in drop D, but the Telecaster SoundFonts sample only keys 40-84
+  // (E2-C6), so every pitched track moves up a whole step to drop E.
   for (const t of tracks) {
+    if (t.bank !== 128) for (const n of t.notes) n.pitch += 2;
     t.notes.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
     Object.assign(t, { muted: false, soloed: false, viewMode: "overview", height: 64 });
     if (!t.automation) t.automation = [];
@@ -443,13 +446,13 @@ function composeProgMetal() {
 
 const COMMENT = `# Seven Against Five
 
-Djent / prog-metal in **7/4 at 132 BPM**, drop D, D Phrygian-minor (D Eb F G A Bb C, with an Ab blue note in Riff B). 49 bars, about 2:36.
+Djent / prog-metal in **7/4 at 132 BPM**, drop E, E Phrygian-minor (E F G A B C D, with a Bb blue note in Riff B). 49 bars, about 2:36.
 
 ## Meter
 The drums count each bar **2+2+3** quarters: hats on every quarter, snare on beats 3 and 7 in the riffs. The guitars subdivide the same 28 sixteenths differently:
 
-- **Riff A**: \`3+3+2 | 3+3+2 | 3+3+2 | 4\`. Three tresillos of palm-muted low-D chugs, then a one-beat open power-chord stab. The stab walks Eb5, F5, Eb5, Bb5-A5 across the 4-bar phrase.
-- **Riff B**: a 5-sixteenth cell (chug-chug-rest-chug-rest) repeated against the 7/4 bar. 5 against 28 never lines up inside a bar, so the riff seems to slide while the snare stays put. It resets every 4 bars with a Bb5-A5 stab.
+- **Riff A**: \`3+3+2 | 3+3+2 | 3+3+2 | 4\`. Three tresillos of palm-muted low-E chugs, then a one-beat open power-chord stab. The stab walks F5, G5, F5, C5-B5 across the 4-bar phrase.
+- **Riff B**: a 5-sixteenth cell (chug-chug-rest-chug-rest) repeated against the 7/4 bar. 5 against 28 never lines up inside a bar, so the riff seems to slide while the snare stays put. It resets every 4 bars with a C5-B5 stab.
 - **Chorus**: open chords on the group heads (beats 1, 3, 5), snare on the second pulse of each group (2, 4, 6), and a two-sixteenth chug pickup on the last beat.
 - **Breakdown**: eighths grouped \`3+3+3+3+2\`, half-time snare, china on every hit.
 
@@ -461,11 +464,11 @@ The kick doubles every chug and stab, so the guitars, bass and kick hit as one i
 | 1-4 | Intro: Riff A on the left guitar alone, then the band with floor toms |
 | 5-12 | Riff A |
 | 13-20 | Riff B (5 over 7), ride bell then china |
-| 21-28 | Lead chorus: D5 Bb5 F5 C5 under the lead |
-| 29-36 | Clean break: neck pickup, no amp, Dm9 Bbmaj9 Fmaj7 Csus2 arpeggios, volume swells, tom build |
+| 21-28 | Lead chorus: E5 C5 G5 D5 under the lead |
+| 29-36 | Clean break: neck pickup, no amp, Em9 Cmaj9 Gmaj7 Dsus2 arpeggios, volume swells, tom build |
 | 37-40 | Riff A return |
 | 41-44 | Breakdown |
-| 45-49 | Outro: second half of the lead over the chorus, final D5 |
+| 45-49 | Outro: second half of the lead over the chorus, final E5 |
 
 ## Sound
 - Rhythm guitars: Telecaster bridge into the **high-gain** amp, double-tracked hard left and right with small timing and velocity drift. Each side has a Muted (program 1) track for chugs and a Standard track for open chords.

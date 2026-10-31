@@ -1,6 +1,6 @@
 # Seven Against Five
 
-A djent and prog-metal piece in 7/4 at 132 BPM, in drop D and D minor with a Phrygian Eb. It runs 49 bars, about 2:36. Toy MIDI's examples had rock at crunch and high gain but no metal, so this piece pushes the high-gain amp, the Telecaster's Muted preset and automation further. Two double-tracked rhythm guitars play palm-muted chugs that are grouped against the 7/4 bar, and the kick and bass hit with every chug. A lead guitar uses pitch-bend bends, vibrato and a dive. A clean break on the neck pickup with no amp comes before the heavy riff returns.
+A djent and prog-metal piece in 7/4 at 132 BPM, in drop E and E minor with a Phrygian F. It runs 49 bars, about 2:36. Toy MIDI's examples had rock at crunch and high gain but no metal, so this piece pushes the high-gain amp, the Telecaster's Muted preset and automation further. Two double-tracked rhythm guitars play palm-muted chugs that are grouped against the 7/4 bar, and the kick and bass hit with every chug. A lead guitar uses pitch-bend bends, vibrato and a dive. A clean break on the neck pickup with no amp comes before the heavy riff returns.
 
 ## Files
 
@@ -20,13 +20,13 @@ The drums count every bar as 2+2+3 quarter notes, with hats on each quarter and 
 | Bars | Section | What happens |
 |---|---|---|
 | 1-4 | Intro | Riff A on the left guitar alone for two bars. Then the right guitar, bass and drums come in, with floor toms on the snare beats and a snare roll into bar 5. |
-| 5-12 | Riff A | Sixteenths grouped `3+3+2 \| 3+3+2 \| 3+3+2 \| 4`. Three tresillos of muted low-D chugs, then a one-beat open chord stab. The stab moves Eb5, F5, Eb5, then Bb5 to A5 across each 4-bar phrase. |
-| 13-20 | Riff B (5 over 7) | A 5-sixteenth cell (chug, chug, rest, chug, rest) repeats against the bar. 5 doesn't divide 28, so the cell lands somewhere new in each bar while the snare stays put. It resets every 4 bars with a Bb5 to A5 stab. Ride bell in the first phrase, china in the second. |
-| 21-28 | Lead chorus | Open D5, Bb5, F5 and C5 chords on the group heads (beats 1, 3 and 5), the snare on the second pulse of each group (beats 2, 4 and 6), and a two-sixteenth chug pickup on beat 7. The lead plays an 8-bar melody over it. The last bar rings out. |
-| 29-36 | Clean break | Neck pickup with no amp. Arpeggios on Dm9, Bbmaj9, Fmaj7 and Csus2, with eighths grouped 3+2+2 \| 3+2+2. Volume swells, soft bass and a light kit with a cross-stick enter in bar 31. A tom build in bar 36 leads back in. |
+| 5-12 | Riff A | Sixteenths grouped `3+3+2 \| 3+3+2 \| 3+3+2 \| 4`. Three tresillos of muted low-E chugs, then a one-beat open chord stab. The stab moves F5, G5, F5, then C5 to B5 across each 4-bar phrase. |
+| 13-20 | Riff B (5 over 7) | A 5-sixteenth cell (chug, chug, rest, chug, rest) repeats against the bar. 5 doesn't divide 28, so the cell lands somewhere new in each bar while the snare stays put. It resets every 4 bars with a C5 to B5 stab. Ride bell in the first phrase, china in the second. |
+| 21-28 | Lead chorus | Open E5, C5, G5 and D5 chords on the group heads (beats 1, 3 and 5), the snare on the second pulse of each group (beats 2, 4 and 6), and a two-sixteenth chug pickup on beat 7. The lead plays an 8-bar melody over it. The last bar rings out. |
+| 29-36 | Clean break | Neck pickup with no amp. Arpeggios on Em9, Cmaj9, Gmaj7 and Dsus2, with eighths grouped 3+2+2 \| 3+2+2. Volume swells, soft bass and a light kit with a cross-stick enter in bar 31. A tom build in bar 36 leads back in. |
 | 37-40 | Riff A return | One phrase of Riff A. |
 | 41-44 | Breakdown | Eighths grouped `3+3+3+3+2`, a half-time snare, and a china cymbal on every hit. Bar 44 drops the last stab for a snare pickup. |
-| 45-49 | Outro | The second half of the lead melody over the chorus chords, then one ringing D5 chord with the lead bending up to D. |
+| 45-49 | Outro | The second half of the lead melody over the chorus chords, then one ringing E5 chord with the lead bending up to E. |
 
 ## The parts
 
@@ -47,7 +47,7 @@ The drums count every bar as 2+2+3 quarter notes, with hats on each quarter and 
 
 ## Toy MIDI doc gaps
 
-- **Low range of the Telecaster SoundFonts.** The docs don't say which notes are sampled. Djent often uses a 7-string tuned to B1, but this piece stays in drop D (D2) because notes below the lowest sample may sound unnatural.
+- **Range of the Telecaster SoundFonts.** The docs don't say which notes are sampled. The session wrote the piece in drop D, assuming notes below the lowest sample would only sound unnatural. A listen found the chugs silent, and the SoundFont files map only keys 40-84 (E2-C6) on both presets, so nothing below E2 plays at all. The generator now moves every pitched track up a whole step to drop E, which puts the lowest chug on E2.
 - **Amp output level.** The docs don't say how loud the amp output is compared with the dry track, so the track gains were set by role. A render showed safe peaks, but the balance between the amped and clean parts is a guess.
 - **Ramps in automation.** Points hold their value until the next point, and there is no way to ask for a linear ramp. Bends, vibrato and swells use dense points, and it isn't clear whether steps of 1/12 beat sound smooth or make audible zipper noise.
 - **Power kit note map.** The docs list the drum kits by program but not their notes. The piece assumes the General MIDI drum map, including china at 52 and ride bell at 53.
