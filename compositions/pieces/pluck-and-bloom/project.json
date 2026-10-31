@@ -1,6 +1,6 @@
 {
   "title": "Pluck and Bloom",
-  "comment": "# Pluck and Bloom\n\nA slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope. Before it, every synth note had the same 5 ms fade in and out.\n\n- **Pluck & Bloom:** the centerpiece, playing the chords and the melody. A square layer plucks (1 ms attack, 0.25 s decay, sustain 0) while a sine layer swells in behind it (1 s attack, 2.5 s release), so each note pings and then blooms into a pad. Listen to the long melody notes, and to the pad tails overlapping across chord changes.\n- **Bass:** sawtooth with sine sub, 8th-note pulse with octave jumps. A 3 ms attack and 0.25 s decay to sustain 0.45 give each note a punchy front.\n- **Arp:** a 16th-note sawtooth arpeggio, accented 3+3+2 across each bar, with a short decay so each note ticks.\n- **Drums:** TR-808 kit, kick and hats throughout, snare from bar 5.\n\nLoops bars 1–8 at 84 BPM.\n",
+  "comment": "# Pluck and Bloom\n\nA slow synthwave loop in D minor for [toy-midi#1030](https://github.com/hi-ogawa/toy-midi/pull/1030), which gives each synth layer an amp envelope. Before it, every synth note had the same 5 ms fade in and out.\n\n- **Lead:** the melody. A square layer plucks (4 ms attack, 0.63 s decay to silence) over a sine that holds at 68% and rings for 2.5 s after each note.\n- **Pad:** the chords on one sine layer that swells in over 1 s and releases over 2.5 s, so the tails overlap across chord changes.\n- **Bass:** a sine sub with a 3 ms attack gives each 8th note its front, and a sawtooth fades in behind it over 95 ms. A gentle low-pass at 7.75 kHz takes the fizz off the top.\n- **Arp:** a 16th-note arpeggio, accented 3+3+2 across each bar, on a sine at full sustain with a sawtooth swelling in over 100 ms.\n- **Drums:** TR-808 kit, kick and hats throughout, snare from bar 5.\n\nLoops bars 1–8 at 84 BPM.\n",
   "tempo": 84,
   "timeSignature": {
     "numerator": 4,
@@ -15,7 +15,7 @@
   },
   "midiTracks": [
     {
-      "name": "Pluck & Bloom",
+      "name": "Lead",
       "program": 0,
       "synth": {
         "layers": [
@@ -23,11 +23,11 @@
             "oscillator": {
               "waveform": "square"
             },
-            "gain": 0.3,
+            "gain": 0.5011872336272722,
             "amp": {
               "envelope": {
-                "attack": 0.001,
-                "decay": 0.25,
+                "attack": 0.0038,
+                "decay": 0.63,
                 "sustain": 0,
                 "release": 0.2
               }
@@ -40,6 +40,127 @@
             "gain": 0.35,
             "amp": {
               "envelope": {
+                "attack": 0.016,
+                "decay": 0.51,
+                "sustain": 0.68,
+                "release": 2.5
+              }
+            }
+          }
+        ]
+      },
+      "gain": 0.6309573444801932,
+      "notes": [
+        {
+          "pitch": 76,
+          "start": 1,
+          "duration": 1.5,
+          "velocity": 96
+        },
+        {
+          "pitch": 74,
+          "start": 2.5,
+          "duration": 1.5,
+          "velocity": 88
+        },
+        {
+          "pitch": 77,
+          "start": 4,
+          "duration": 3,
+          "velocity": 104
+        },
+        {
+          "pitch": 74,
+          "start": 7,
+          "duration": 1,
+          "velocity": 84
+        },
+        {
+          "pitch": 74,
+          "start": 8,
+          "duration": 2,
+          "velocity": 92
+        },
+        {
+          "pitch": 81,
+          "start": 10,
+          "duration": 2,
+          "velocity": 108
+        },
+        {
+          "pitch": 79,
+          "start": 12,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 14,
+          "duration": 2,
+          "velocity": 90
+        },
+        {
+          "pitch": 76,
+          "start": 17,
+          "duration": 1.5,
+          "velocity": 96
+        },
+        {
+          "pitch": 81,
+          "start": 18.5,
+          "duration": 1.5,
+          "velocity": 110
+        },
+        {
+          "pitch": 81,
+          "start": 20,
+          "duration": 3,
+          "velocity": 106
+        },
+        {
+          "pitch": 77,
+          "start": 23,
+          "duration": 1,
+          "velocity": 86
+        },
+        {
+          "pitch": 76,
+          "start": 24,
+          "duration": 2,
+          "velocity": 98
+        },
+        {
+          "pitch": 72,
+          "start": 26,
+          "duration": 2,
+          "velocity": 88
+        },
+        {
+          "pitch": 74,
+          "start": 28,
+          "duration": 2,
+          "velocity": 96
+        },
+        {
+          "pitch": 73,
+          "start": 30,
+          "duration": 2,
+          "velocity": 104
+        }
+      ]
+    },
+    {
+      "name": "Pad",
+      "program": 0,
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine"
+            },
+            "gain": 0.5623413251903491,
+            "amp": {
+              "envelope": {
                 "attack": 1,
                 "decay": 1,
                 "sustain": 0.7,
@@ -49,7 +170,8 @@
           }
         ]
       },
-      "gain": 0.5,
+      "gain": 0.45,
+      "pan": -0.29,
       "notes": [
         {
           "pitch": 53,
@@ -248,102 +370,6 @@
           "start": 30,
           "duration": 1.9,
           "velocity": 70
-        },
-        {
-          "pitch": 76,
-          "start": 1,
-          "duration": 1.5,
-          "velocity": 96
-        },
-        {
-          "pitch": 74,
-          "start": 2.5,
-          "duration": 1.5,
-          "velocity": 88
-        },
-        {
-          "pitch": 77,
-          "start": 4,
-          "duration": 3,
-          "velocity": 104
-        },
-        {
-          "pitch": 74,
-          "start": 7,
-          "duration": 1,
-          "velocity": 84
-        },
-        {
-          "pitch": 74,
-          "start": 8,
-          "duration": 2,
-          "velocity": 92
-        },
-        {
-          "pitch": 81,
-          "start": 10,
-          "duration": 2,
-          "velocity": 108
-        },
-        {
-          "pitch": 79,
-          "start": 12,
-          "duration": 2,
-          "velocity": 100
-        },
-        {
-          "pitch": 76,
-          "start": 14,
-          "duration": 2,
-          "velocity": 90
-        },
-        {
-          "pitch": 76,
-          "start": 17,
-          "duration": 1.5,
-          "velocity": 96
-        },
-        {
-          "pitch": 81,
-          "start": 18.5,
-          "duration": 1.5,
-          "velocity": 110
-        },
-        {
-          "pitch": 81,
-          "start": 20,
-          "duration": 3,
-          "velocity": 106
-        },
-        {
-          "pitch": 77,
-          "start": 23,
-          "duration": 1,
-          "velocity": 86
-        },
-        {
-          "pitch": 76,
-          "start": 24,
-          "duration": 2,
-          "velocity": 98
-        },
-        {
-          "pitch": 72,
-          "start": 26,
-          "duration": 2,
-          "velocity": 88
-        },
-        {
-          "pitch": 74,
-          "start": 28,
-          "duration": 2,
-          "velocity": 96
-        },
-        {
-          "pitch": 73,
-          "start": 30,
-          "duration": 2,
-          "velocity": 104
         }
       ]
     },
@@ -356,13 +382,13 @@
             "oscillator": {
               "waveform": "sawtooth"
             },
-            "gain": 0.35,
+            "gain": 0.49545019080479025,
             "amp": {
               "envelope": {
-                "attack": 0.003,
-                "decay": 0.25,
-                "sustain": 0.45,
-                "release": 0.08
+                "attack": 0.095,
+                "decay": 1.8,
+                "sustain": 0,
+                "release": 0.019
               }
             }
           },
@@ -374,15 +400,28 @@
             "amp": {
               "envelope": {
                 "attack": 0.003,
-                "decay": 0.6,
-                "sustain": 0.7,
+                "decay": 0.61,
+                "sustain": 0.48,
                 "release": 0.08
               }
             }
           }
         ]
       },
-      "gain": 0.7,
+      "gain": 0.6237348354824193,
+      "pan": -0.14,
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 7750,
+            "gain": 1,
+            "q": 0.7071067811865476,
+            "bypass": false
+          }
+        ]
+      },
       "notes": [
         {
           "pitch": 38,
@@ -782,16 +821,30 @@
             "gain": 0.4,
             "amp": {
               "envelope": {
-                "attack": 0.002,
-                "decay": 0.14,
-                "sustain": 0.15,
+                "attack": 0.1,
+                "decay": 0.13,
+                "sustain": 0.59,
                 "release": 0.12
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "sine"
+            },
+            "gain": 0.7498942093324559,
+            "amp": {
+              "envelope": {
+                "attack": 0.005,
+                "decay": 0.3,
+                "sustain": 1,
+                "release": 0.005
               }
             }
           }
         ]
       },
-      "gain": 0.32,
+      "gain": 0.3981071705534972,
       "pan": 0.2,
       "notes": [
         {
