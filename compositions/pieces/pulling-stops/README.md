@@ -2,7 +2,7 @@
 
 **Demo: [open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fpulling-stops%2Fproject.json)**
 
-A demo of octave and detune on Toy MIDI's own synth, made for https://github.com/hi-ogawa/toy-midi/pull/1067, which gives each synth layer's oscillator an octave and a detune in cents. Until that PR is merged, the deployed app plays every layer at the note's pitch, so listen on the [PR's preview](https://fix-issue-1060-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fpulling-stops%2Fproject.json).
+A demo of octave and detune on Toy MIDI's own synth, made for https://github.com/hi-ogawa/toy-midi/pull/1067, which gives each synth layer's oscillator an octave and a detune in cents. Until that PR is merged, the deployed app plays every layer at the note's pitch, so listen on the preview of [toy-midi#1070](https://github.com/hi-ogawa/toy-midi/pull/1070), which also adds the octave and detune controls to the Synth panel: [open on the preview](https://fix-issue-1068-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fpulling-stops%2Fproject.json).
 
 90s organ house in A minor at 122 BPM, 32 bars on i–VI–VII–v, looped. A house organ is itself a stack of octaves, so the genre's own sounds are what the feature builds.
 
