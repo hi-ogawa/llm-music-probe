@@ -3,7 +3,7 @@
 A 48-bar trance piece in A minor at 138 BPM, played on Toy MIDI's own synth. It demos the per-layer `octave` and `detune` fields from [toy-midi#1067](https://github.com/hi-ogawa/toy-midi/pull/1067), with detune as the star. Every melodic part is a stack of saws spread a few cents apart, so the beating between them is the genre's wide supersaw sound.
 
 - **Project file:** [`project.json`](project.json), written by [`generate.mjs`](generate.mjs) (`node generate.mjs`)
-- **Listen on the PR preview:** [`/draft?src=…`](https://fix-issue-1060-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fsupersaw-horizon%2Fcompositions%2Fpieces%2Fsupersaw-horizon%2Fproject.json). The deployed app doesn't have `octave` and `detune` yet, so it plays every layer at the note's pitch.
+- **Listen on the preview of [toy-midi#1070](https://github.com/hi-ogawa/toy-midi/pull/1070),** which also adds the octave and detune controls to the Synth panel: [`/draft?src=…`](https://fix-issue-1068-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fsupersaw-horizon%2Fcompositions%2Fpieces%2Fsupersaw-horizon%2Fproject.json). The deployed app doesn't have `octave` and `detune` yet, so it plays every layer at the note's pitch.
 
 ## Arrangement
 
