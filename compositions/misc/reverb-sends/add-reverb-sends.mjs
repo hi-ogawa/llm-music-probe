@@ -6,6 +6,7 @@ const PIECES = [
   "open-e-mixolydian/project-amp.json",
   "orchestral-dilla/orchestral-dilla-v2.json",
   "tidepool/tidepool-v2.json",
+  "night-cruise-overture/project.json",
 ];
 
 // #869's levels, 8 dB higher, the lower of the two raises that sounded good on

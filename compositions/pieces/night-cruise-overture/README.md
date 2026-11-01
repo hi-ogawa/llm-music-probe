@@ -23,7 +23,7 @@ The timpani is the only percussion, and it marks section downbeats, pushes into 
 
 - Tracks are all General MIDI on the default GeneralUser GS bank: flute (73), clarinet (71), violins (48), horns (60), trumpet (56), trombone (57), brass section (61), glockenspiel (9), harp (46), pizzicato chords (45), low strings (49), string runs (48), pizzicato basses (45), contrabass (43), and timpani (47).
 - Optional track fields such as `height`, `viewMode`, `keySignature`, `muted`, and `soloed` are left out, so the app's defaults apply. `gain` and `pan` are kept because they carry the mix balance.
-- `compose.mjs` writes `project.json`, and running it reproduces the file byte for byte. Chords are written as a chart with one entry per bar, a voice-leading voicer picks each part's voicing in its own register, and melodies are hand-written as note strings in 16ths.
+- `compose.mjs` writes `project.json`, and running it reproduces the file byte for byte, except for each track's send into Toy MIDI's reverb, which [`misc/reverb-sends/`](../../misc/reverb-sends/) sets afterward. Chords are written as a chart with one entry per bar, a voice-leading voicer picks each part's voicing in its own register, and melodies are hand-written as note strings in 16ths.
 - `render.mjs` renders each track alone with `spessasynth_core` (the engine Toy MIDI uses) and the same GeneralUser GS bank, without effects, and prints RMS level per section. It is a stopgap for per-track loudness in https://github.com/hi-ogawa/toy-midi/issues/845, so it measures plain RMS without loudness weighting.
 
 ## Form
