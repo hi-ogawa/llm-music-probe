@@ -86,6 +86,7 @@ The boundary from D back to A has no build. It is the breakdown above, because a
 
 1. **First take** (`orchestral-dilla.json`, `gen.mjs`). Everything above. Feedback: pending.
 2. **Automation** (`orchestral-dilla-v2.json`, `v2-automation.mjs`). The same notes, with expression, vibrato, pedal, and pitch bend added, as described in [v2](#v2-automation). Feedback: pending.
+3. **Reverb** (`orchestral-dilla-v2.json`). v2 with each track's send into Toy MIDI's reverb, which [`misc/reverb-sends/`](../../misc/reverb-sends/) sets after `v2-automation.mjs` writes the file.
 
 ## v2: automation
 

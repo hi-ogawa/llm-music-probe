@@ -7,6 +7,8 @@ Open it:
 - v2 (latest): https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Ftidepool%2Ftidepool-v2.json
 - v1: https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Ftidepool%2Ftidepool.json
 
+v2 has each track's send into Toy MIDI's reverb, which [`misc/reverb-sends/`](../../misc/reverb-sends/) sets.
+
 ## v2: strings split by register
 
 v1 played every string voicing from one track (String Ensemble 2, pan −0.15), so the C swell got louder without getting wider. v2 keeps the same notes and splits each voicing across sections:

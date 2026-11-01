@@ -2902,7 +2902,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.158
   },
   {
    "name": "Muted Trumpet",
@@ -4307,7 +4308,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.158
   },
   {
    "name": "Violins (melody)",
@@ -6039,7 +6041,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.079
   },
   {
    "name": "Clarinet",
@@ -6597,7 +6600,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.158
   },
   {
    "name": "Horns",
@@ -13297,7 +13301,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.158
   },
   {
    "name": "Brass Section",
@@ -15067,7 +15072,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.158
   },
   {
    "name": "Celesta",
@@ -17110,7 +17116,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.079
   },
   {
    "name": "Harp",
@@ -19955,7 +19962,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.079
   },
   {
    "name": "Strings (chops)",
@@ -22391,7 +22399,8 @@
    "keySignature": {
     "fifths": -5,
     "mode": "major"
-   }
+   },
+   "reverbSend": 0.079
   },
   {
    "name": "Strings (pad)",
@@ -30496,7 +30505,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.079
   },
   {
    "name": "Tremolo Strings",
@@ -32152,7 +32162,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.079
   },
   {
    "name": "Pizz (hats)",
@@ -34114,7 +34125,8 @@
    "keySignature": {
     "fifths": -5,
     "mode": "major"
-   }
+   },
+   "reverbSend": 0.079
   },
   {
    "name": "Pizz (backbeat)",
@@ -35434,7 +35446,8 @@
    "keySignature": {
     "fifths": -5,
     "mode": "major"
-   }
+   },
+   "reverbSend": 0.079
   },
   {
    "name": "Pizz Basses (kick)",
@@ -36766,7 +36779,8 @@
    "keySignature": {
     "fifths": -5,
     "mode": "major"
-   }
+   },
+   "reverbSend": 0.079
   },
   {
    "name": "Contrabass",
@@ -44598,7 +44612,8 @@
       }
      ]
     }
-   ]
+   ],
+   "reverbSend": 0.079
   },
   {
    "name": "Timpani",
@@ -45852,7 +45867,8 @@
    "keySignature": {
     "fifths": -5,
     "mode": "major"
-   }
+   },
+   "reverbSend": 0.079
   }
  ]
 }

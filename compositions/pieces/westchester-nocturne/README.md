@@ -102,4 +102,4 @@ The harmony and groove stay recognizable throughout, because the same 8-bar them
 ### Notes
 
 - I couldn't hear the result, because I wrote this as a share link without driving the app. The balance comes from track gains and velocities, so the first thing to check by ear is whether the tenor under the trumpet in 17–23 clouds the ostinato.
-- `project.json` in this gist is the same project as plain JSON, so it can also be opened with [this file link](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fwestchester-nocturne%2Fproject.json).
+- `project.json` in this gist is the same project as plain JSON, so it can also be opened with [this file link](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fwestchester-nocturne%2Fproject.json). It also has each track's send into Toy MIDI's reverb, which [`misc/reverb-sends/`](../../misc/reverb-sends/) sets.
