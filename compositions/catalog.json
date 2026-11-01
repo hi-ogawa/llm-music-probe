@@ -1,5 +1,13 @@
 [
   {
+    "name": "Filter Patch Gallery",
+    "description": "Gallery of nine synth filter patches in E minor, each a 4-bar pattern in its own part of the timeline over a TR-808 kit: envelope filter basses sweeping up and down, a Moog bass, brass, a pluck arp, a CC74 wah comp, swelling and darkening pads, and an acid line",
+    "date": "2026-11-01",
+    "tags": ["synth", "patch gallery"],
+    "url": "https://raw.githubusercontent.com/hi-ogawa/llm-music-probe/main/compositions/pieces/filter-patch-gallery/project.json",
+    "writeup": "https://github.com/hi-ogawa/llm-music-probe/tree/main/compositions/pieces/filter-patch-gallery"
+  },
+  {
     "name": "Hand on the Knob",
     "description": "Acid house loop in A minor on Toy MIDI's own synth, with a squelching resonant saw bass whose filter CC74 opens like a hand on a knob, a pad that brightens through a slow filter-envelope attack, and a layered stab whose resonance CC71 pushes into the peak",
     "date": "2026-11-01",
