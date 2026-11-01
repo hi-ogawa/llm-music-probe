@@ -1,6 +1,6 @@
 # Reverb sends
 
-Toy MIDI has a shared plate reverb ([toy-midi#987](https://github.com/hi-ogawa/toy-midi/issues/987)), and every track's send into it starts off. `add-reverb-sends.mjs` sets each track's `reverbSend` in the cataloged file of four pieces, Open E Mixolydian, Orchestral Dilla, Tidepool, and Night Cruise Overture, so the Examples page plays them with reverb. It changes nothing else, and running it again gives the same files.
+Toy MIDI has a shared plate reverb ([toy-midi#987](https://github.com/hi-ogawa/toy-midi/issues/987)), and every track's send into it starts off. `add-reverb-sends.mjs` sets each track's `reverbSend` in the cataloged file of five pieces, Open E Mixolydian, Orchestral Dilla, Tidepool, Night Cruise Overture, and Westchester Nocturne, so the Examples page plays them with reverb. It changes nothing else, and running it again gives the same files.
 
 The pieces' generators don't write the sends, so after regenerating one of these files, run `node add-reverb-sends.mjs` again.
 
