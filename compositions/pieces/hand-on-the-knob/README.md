@@ -3,9 +3,6 @@
 An acid house loop in A minor at 124 BPM, 16 bars, looped. It demos Toy MIDI's synth filter: a resonant low-pass with its own envelope on each synth layer ([toy-midi#1081](https://github.com/hi-ogawa/toy-midi/pull/1081)), with CC74 steering the cutoff and CC71 the resonance ([toy-midi#1085](https://github.com/hi-ogawa/toy-midi/pull/1085)).
 
 **[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fhand-on-the-knob%2Fproject.json)**
-
-Production plays the synth without the filter until toy-midi#1081 and #1085 merge. Until then, [open it on their preview](https://fix-issue-1084-toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fhand-on-the-knob%2Fproject.json).
-
 A session composed it from the brief below and the agent docs on the filter's preview, https://fix-issue-1084-toy-midi.hiro18181.workers.dev/llms.txt, without checking it in the browser. [`hand-on-the-knob.mjs`](hand-on-the-knob.mjs) writes [`project.json`](project.json).
 
 ## Brief
