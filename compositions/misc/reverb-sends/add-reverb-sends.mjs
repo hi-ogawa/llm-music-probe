@@ -36,7 +36,7 @@ function getSendDb(track) {
 const toGain = (db) => Number((10 ** (db / 20)).toFixed(3));
 
 for (const path of PIECES) {
-  const url = new URL(`../${path}`, import.meta.url);
+  const url = new URL(`../../pieces/${path}`, import.meta.url);
   const text = readFileSync(url, "utf8");
   const project = JSON.parse(text);
   for (const track of project.midiTracks) {
