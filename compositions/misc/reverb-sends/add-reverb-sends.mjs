@@ -22,7 +22,8 @@ function getSendDb(track) {
   if (track.bank === 128) {
     return DEFAULT_DB;
   }
-  if (program >= 32 && program <= 39) {
+  // Acoustic bass (32) plays in the room, like an orchestra's basses
+  if (program >= 33 && program <= 39) {
     return undefined;
   }
   if (program >= 80 && program <= 95) {

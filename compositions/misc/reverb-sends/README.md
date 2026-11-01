@@ -13,8 +13,8 @@ A track's send comes from its General MIDI family, at [toy-midi#869](https://git
 | Pads and synth leads | −16 dB | −8 dB |
 | Choir and pipes, such as flute, with brass and reeds by analogy | −24 dB | −16 dB |
 | Everything else, such as piano, guitar, strings, harp, and drum kits | −30 dB | −22 dB |
-| Bass | | off |
+| Electric and synth bass | | off |
 
-The bass stays dry to keep the low end clear. The orchestral pieces' contrabass, pizzicato bass, and timpani follow their families instead, because an orchestra plays in one hall.
+Electric and synth basses stay dry to keep the low end clear. An acoustic bass is played in the room, so it gets the default send, like the orchestral pieces' contrabass, pizzicato bass, and timpani, which follow their families because an orchestra plays in one hall.
 
 These are starting points and not tuned by ear. #869's numbers are the synth's reverb return relative to dry, and toy-midi#934's A/B used fluidsynth's Dattorro, so they carry over to Toy MIDI's plate only as far as its return gain matches. The send knob in each mixer strip adjusts a track while it plays.
