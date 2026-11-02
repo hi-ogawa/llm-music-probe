@@ -1235,9 +1235,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           },
@@ -1265,9 +1265,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           },
@@ -1295,9 +1295,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           },
@@ -1325,9 +1325,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           },
@@ -1355,9 +1355,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           },
@@ -1385,9 +1385,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           }
@@ -1909,9 +1909,9 @@
             "amp": {
               "envelope": {
                 "attack": 0.0005,
-                "decay": 0.25,
-                "sustain": 0.35,
-                "release": 0.06
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
               }
             }
           }

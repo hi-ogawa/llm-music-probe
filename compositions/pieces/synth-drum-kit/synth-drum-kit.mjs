@@ -189,12 +189,14 @@ const closedHats = track("Hats Closed (808)", {
   eq: hatEq,
   notes: drumNotes(everyBar(squareHatBars, HAT_STEPS), 0.05),
 });
-// The open hat holds while its note does and stops on note-off, so a note that
-// ends at the next closed hat chokes it, as the 808's shared circuit does.
+// The open hat decays on its own like a one-shot, and a short release cuts it
+// at note-off, so a note that ends at the next closed hat chokes it, as the
+// 808's shared circuit does. A long note rings out instead of holding.
+const openHatEnvelope = envelope(0.0005, 0.7, 0, 0.04);
 const openHats = track("Hats Open (808)", {
   gain: 0.6,
   reverbDb: -26,
-  layers: metalLayers(envelope(0.0005, 0.25, 0.35, 0.06)),
+  layers: metalLayers(openHatEnvelope),
   eq: hatEq,
   notes: drumNotes(everyBar(squareHatBars, [[OPEN_STEP, 96]]), STEP),
 });
@@ -213,7 +215,7 @@ const noiseHats = track("Hats (noise)", {
 const noiseOpenHats = track("Hats Open (noise)", {
   gain: 0.5,
   reverbDb: -26,
-  layers: [noiseLayer({ gain: 0.3, amp: envelope(0.0005, 0.25, 0.35, 0.06) })],
+  layers: [noiseLayer({ gain: 0.3, amp: openHatEnvelope })],
   eq: hatEq,
   notes: drumNotes(everyBar(noiseHatBars, [[OPEN_STEP, 96]]), STEP),
 });
@@ -324,7 +326,7 @@ A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundF
 - **Kick:** a 48 Hz sine decaying over 0.55 s, a sine an octave up for the knock, and a noise click. A pitch-bend drop of 7 semitones on each hit stands in for a pitch envelope.
 - **Snare:** tones at 185 and 330 Hz, and noise through a low-pass that opens on the hit.
 - **Clap:** three noise bursts 10 ms apart and a tail, through a resonant low-pass and a track high-pass.
-- **Hats (808), bars 1-4:** six squares at 205, 304, 370, 523, 540, and 800 Hz through a steep track high-pass and a peak near 8 kHz. Open hats are choked by their note ending.
+- **Hats (808), bars 1-4:** six squares at 205, 304, 370, 523, 540, and 800 Hz through a steep track high-pass and a peak near 8 kHz. Open hats decay on their own and are choked by their note ending.
 - **Hats (noise), bars 5-8:** the same pattern from noise through the same EQ, for comparison.
 - **Cowbell, bars 5-8:** squares at 540 and 800 Hz, each played twice, short and long, for a fast drop and a ringing tail.
 - **Toms:** tuned sines with a small bend drop, in the fills of bars 4 and 8.
