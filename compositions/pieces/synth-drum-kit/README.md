@@ -13,6 +13,7 @@ A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundF
 - **Fixed-frequency layers.** Every drum voice plays one note, and each layer reaches its own frequency through `detune`, which has no limit. That's how one track holds six square oscillators at inharmonic frequencies.
 - **Track EQ as the highpass.** The synth's layers only have a low-pass. Each voice is its own track, so the track EQ's high-pass and peaking bands shape the whole voice, which is what a highpass on the voice would do.
 - **Pitch bend as the pitch envelope.** The synth has no pitch envelope, so the kick and toms get a pitch-bend drop on each hit, decaying exponentially. The synth applies bend without smoothing, so the points sit about 2 ms apart.
+- **Release equal to decay.** A drum hit decays to silence with sustain 0, and a note-off starts the release. Both stages fall toward 0, and a stage's time sets its rate, so a release as long as the decay continues the same curve, and a hit decays fully however short its note. The clap is the exception, since its bursts need their quick note-off to stop them.
 - **Layers as a two-stage envelope.** An ADSR decays once. A voice that drops fast and then rings, such as the cowbell, plays each oscillator twice, once loud with a short decay and once quiet with a long one.
 - **Note length as a choke.** The open hats sustain while their note holds and stop on note-off, so ending the note at the next closed hat chokes it, as the 808's shared hat circuit does.
 

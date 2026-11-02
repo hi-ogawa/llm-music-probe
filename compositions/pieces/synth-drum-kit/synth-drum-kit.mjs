@@ -15,6 +15,10 @@ const dbToGain = (db) => 10 ** (db / 20);
 const midiToHz = (pitch) => 440 * 2 ** ((pitch - 69) / 12);
 
 const envelope = (attack, decay, sustain, release) => ({ attack, decay, sustain, release });
+// A drum hit decays to silence. Release and decay fall toward 0 at the same
+// rate, so a note-off continues the same curve, and the hit decays fully
+// however short its note.
+const hitEnvelope = (attack, decay) => envelope(attack, decay, 0, decay);
 const unfiltered = {
   cutoff: 20000,
   resonance: 0.7,
@@ -98,9 +102,9 @@ const kickHits = allBars.flatMap((bar) =>
 const kick = track("Kick", {
   gain: 0.9,
   layers: [
-    layerAt(48, { gain: 0.9, amp: envelope(0.001, 0.55, 0, 0.05) }),
-    layerAt(96, { gain: 0.3, amp: envelope(0.001, 0.07, 0, 0.03) }),
-    noiseLayer({ gain: 0.25, filter: lowPass(3000), amp: envelope(0.0005, 0.008, 0, 0.005) }),
+    layerAt(48, { gain: 0.9, amp: hitEnvelope(0.001, 0.55) }),
+    layerAt(96, { gain: 0.3, amp: hitEnvelope(0.001, 0.07) }),
+    noiseLayer({ gain: 0.25, filter: lowPass(3000), amp: hitEnvelope(0.0005, 0.008) }),
   ],
   notes: drumNotes(kickHits, 0.5),
   automation: [bendDrops(kickHits, { depth: 7, timeConstant: 0.012 })],
@@ -119,12 +123,12 @@ const snare = track("Snare", {
   gain: 0.75,
   reverbDb: -20,
   layers: [
-    layerAt(185, { gain: 0.45, amp: envelope(0.001, 0.12, 0, 0.04) }),
-    layerAt(330, { gain: 0.3, amp: envelope(0.001, 0.07, 0, 0.03) }),
+    layerAt(185, { gain: 0.45, amp: hitEnvelope(0.001, 0.12) }),
+    layerAt(330, { gain: 0.3, amp: hitEnvelope(0.001, 0.07) }),
     noiseLayer({
       gain: 0.5,
       filter: lowPass(1800, 1, { ...envelope(0.001, 0.09, 0.2, 0.05), amount: 2, velocity: 0.8 }),
-      amp: envelope(0.001, 0.18, 0, 0.05),
+      amp: hitEnvelope(0.001, 0.18),
     }),
   ],
   notes: drumNotes(snareHits, 0.15),
@@ -181,7 +185,7 @@ const noiseHatBars = [4, 5, 6, 7];
 const closedHats = track("Hats Closed (808)", {
   gain: 0.7,
   reverbDb: -30,
-  layers: metalLayers(envelope(0.0005, 0.045, 0, 0.02)),
+  layers: metalLayers(hitEnvelope(0.0005, 0.045)),
   eq: hatEq,
   notes: drumNotes(everyBar(squareHatBars, HAT_STEPS), 0.05),
 });
@@ -202,7 +206,7 @@ const openHats = track("Hats Open (808)", {
 const noiseHats = track("Hats (noise)", {
   gain: 0.6,
   reverbDb: -30,
-  layers: [noiseLayer({ gain: 0.3, amp: envelope(0.0005, 0.04, 0, 0.02) })],
+  layers: [noiseLayer({ gain: 0.3, amp: hitEnvelope(0.0005, 0.04) })],
   eq: hatEq,
   notes: drumNotes(everyBar(noiseHatBars, HAT_STEPS), 0.05),
 });
@@ -226,8 +230,8 @@ const cowbell = track("Cowbell", {
   gain: 0.45,
   reverbDb: -24,
   layers: COWBELL_FREQUENCIES.flatMap((frequency) => [
-    layerAt(frequency, { waveform: "square", gain: 0.3, filter: cowbellFilter, amp: envelope(0.0005, 0.05, 0, 0.03) }),
-    layerAt(frequency, { waveform: "square", gain: 0.1, filter: cowbellFilter, amp: envelope(0.0005, 0.35, 0, 0.05) }),
+    layerAt(frequency, { waveform: "square", gain: 0.3, filter: cowbellFilter, amp: hitEnvelope(0.0005, 0.05) }),
+    layerAt(frequency, { waveform: "square", gain: 0.1, filter: cowbellFilter, amp: hitEnvelope(0.0005, 0.35) }),
   ]),
   eq: eq(highPass(350)),
   notes: drumNotes(everyBar([4, 5, 6, 7], [[0, 104], [3, 84], [6, 100], [10, 88], [13, 96]]), 0.1),
@@ -248,8 +252,8 @@ const toms = track("Toms", {
   reverbDb: -20,
   layers: [
     { oscillator: { waveform: "sine", octave: 0, detune: 0 }, gain: 0.8, pan: 0, filter: unfiltered,
-      amp: { envelope: envelope(0.001, 0.3, 0, 0.05) } },
-    noiseLayer({ gain: 0.08, filter: lowPass(2500), amp: envelope(0.0005, 0.02, 0, 0.01) }),
+      amp: { envelope: hitEnvelope(0.001, 0.3) } },
+    noiseLayer({ gain: 0.08, filter: lowPass(2500), amp: hitEnvelope(0.0005, 0.02) }),
   ],
   notes: tomHits.map(([bar, step, pitch, velocity]) => ({ pitch, start: round(bar * BAR + step * STEP), duration: 0.2, velocity })),
   automation: [bendDrops(tomHits, { depth: 2, timeConstant: 0.03 })],
@@ -263,8 +267,8 @@ const rim = track("Rim", {
   gain: 0.5,
   reverbDb: -24,
   layers: [
-    layerAt(1700, { waveform: "triangle", gain: 0.5, amp: envelope(0.0005, 0.02, 0, 0.01) }),
-    layerAt(480, { waveform: "square", gain: 0.25, filter: lowPass(3000), amp: envelope(0.0005, 0.012, 0, 0.01) }),
+    layerAt(1700, { waveform: "triangle", gain: 0.5, amp: hitEnvelope(0.0005, 0.02) }),
+    layerAt(480, { waveform: "square", gain: 0.25, filter: lowPass(3000), amp: hitEnvelope(0.0005, 0.012) }),
   ],
   eq: eq(highPass(300)),
   notes: drumNotes(everyBar(allBars, [[3, 70], [11, 64]]), 0.05),
