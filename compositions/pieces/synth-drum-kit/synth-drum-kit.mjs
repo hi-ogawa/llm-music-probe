@@ -1,5 +1,5 @@
-// Writes project.json: a drum kit built on Toy MIDI's own synth, one track per
-// voice, as a baseline toward the TR-808 kit in
+// Writes project.json and project-plain.json: a drum kit built on Toy MIDI's
+// own synth, one track per voice, as a baseline toward the TR-808 kit in
 // https://github.com/hi-ogawa/toy-midi/issues/1098. An 8-bar electro beat
 // exercises every voice, with a bass and a pad for context.
 // Run with `node synth-drum-kit.mjs`.
@@ -326,14 +326,36 @@ A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundF
 - **Toms:** tuned sines with a small bend drop, in the fills of bars 4 and 8.
 - **Rim:** two very short tones through a track high-pass.`;
 
-const project = {
-  title: "Synth Drum Kit",
-  comment,
-  tempo: TEMPO,
-  timeSignature: { numerator: 4, denominator: 4 },
-  loop: { range: { startBeat: 0, endBeat: BARS * BAR }, enabled: true },
-  locators: [{ beat: 0, label: "808 hats" }, { beat: 16, label: "Noise hats, cowbell" }],
-  midiTracks: [kick, snare, clapTrack, closedHats, openHats, noiseHats, noiseOpenHats, cowbell, toms, rim, bass, pad],
+// The plain version drops the stand-ins written into the score, the bend drops
+// and the clap's extra bursts, to A/B what a pitch envelope and a retriggering
+// envelope would add. Everything else is the same.
+const withoutAutomation = ({ automation, ...rest }) => rest;
+// Each clap keeps only its tail note, moved back onto the hit.
+const plainClap = {
+  ...clapTrack,
+  notes: clapTrack.notes
+    .filter((note) => note.duration > BURST)
+    .map((note) => ({ ...note, start: round(note.start - 3 * BURST) })),
 };
 
-writeFileSync(new URL("project.json", import.meta.url), JSON.stringify(project, null, 2) + "\n");
+const plainComment = `# Synth Drum Kit (plain)
+
+The Synth Drum Kit without the stand-ins written into the score, to A/B against the full version. The kick and toms have no pitch-bend drop, and each clap is one noise note instead of three bursts and a tail. The patches and every other note are the same.`;
+
+function writeProject(file, title, projectComment, tracks) {
+  const project = {
+    title,
+    comment: projectComment,
+    tempo: TEMPO,
+    timeSignature: { numerator: 4, denominator: 4 },
+    loop: { range: { startBeat: 0, endBeat: BARS * BAR }, enabled: true },
+    locators: [{ beat: 0, label: "808 hats" }, { beat: 16, label: "Noise hats, cowbell" }],
+    midiTracks: tracks,
+  };
+  writeFileSync(new URL(file, import.meta.url), JSON.stringify(project, null, 2) + "\n");
+}
+
+writeProject("project.json", "Synth Drum Kit", comment,
+  [kick, snare, clapTrack, closedHats, openHats, noiseHats, noiseOpenHats, cowbell, toms, rim, bass, pad]);
+writeProject("project-plain.json", "Synth Drum Kit (plain)", plainComment,
+  [withoutAutomation(kick), snare, plainClap, closedHats, openHats, noiseHats, noiseOpenHats, cowbell, withoutAutomation(toms), rim, bass, pad]);

@@ -4,7 +4,9 @@ A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundF
 
 **[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsynth-drum-kit%2Fproject.json)**
 
-[`synth-drum-kit.mjs`](synth-drum-kit.mjs) writes [`project.json`](project.json). Unlike a composing session, the session that built it read Toy MIDI's synth source where the agent docs were vague, such as how pitch bend and detune are applied, because the goal is engineering the voices rather than testing the docs.
+[Open the plain version](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsynth-drum-kit%2Fproject-plain.json), without the stand-ins written into the score, to A/B.
+
+[`synth-drum-kit.mjs`](synth-drum-kit.mjs) writes [`project.json`](project.json) and [`project-plain.json`](project-plain.json). Unlike a composing session, the session that built it read Toy MIDI's synth source where the agent docs were vague, such as how pitch bend and detune are applied, because the goal is engineering the voices rather than testing the docs.
 
 ## Building blocks
 
@@ -13,6 +15,17 @@ A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundF
 - **Pitch bend as the pitch envelope.** The synth has no pitch envelope, so the kick and toms get a pitch-bend drop on each hit, decaying exponentially. The synth applies bend without smoothing, so the points sit about 2 ms apart.
 - **Layers as a two-stage envelope.** An ADSR decays once. A voice that drops fast and then rings, such as the cowbell, plays each oscillator twice, once loud with a short decay and once quiet with a long one.
 - **Note length as a choke.** The open hats sustain while their note holds and stop on note-off, so ending the note at the next closed hat chokes it, as the 808's shared hat circuit does.
+
+## Plain version
+
+Two of the stand-ins live in the score rather than the patch: the pitch-bend drops and the clap's extra burst notes. They should become synth features, a pitch envelope and an envelope that retriggers, so the score only says when a drum hits. The plain version drops both, keeping the same patches and every other note:
+
+- The kick and toms have no bend drop.
+- Each clap is one noise note on the hit, instead of three bursts and a tail.
+
+A/B against the full version, it shows what each feature would add. When a feature lands, the plain version with the new patch settings should sound like the full version does today.
+
+The open hats' choke stays in both, because ending a note is how a score normally stops a sound.
 
 ## Voices
 
