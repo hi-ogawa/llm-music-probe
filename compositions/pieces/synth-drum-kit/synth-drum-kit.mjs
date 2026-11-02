@@ -280,9 +280,10 @@ const rim = track("Rim", {
 
 // Fm | Fm | Db | Eb, twice
 const ROOTS = [29, 29, 37, 39];
-// The riff's color tone follows each chord: the minor 7th on Fm9, the major
-// 7th on Dbmaj9, and the 6th on Eb6/9.
-const COLOR_TONES = [10, 10, 11, 9];
+// The riff's 7th follows each chord: minor on Fm9, major on Dbmaj9, where a
+// minor 7th would be Cb against the pad's C, and minor on Eb, making the pad's
+// Eb6/9 an Eb13 that leads back to Fm.
+const COLOR_TONES = [10, 10, 11, 10];
 const COLOR = "color";
 const BASS_STEPS = [[0, 0, 112, 3], [3, 12, 88, 1], [6, 0, 104, 2], [10, 7, 96, 1], [12, COLOR, 92, 2], [14, 12, 100, 1]];
 const bassNotes = allBars.flatMap((bar) => BASS_STEPS.map(([step, offset, velocity, length]) => ({
