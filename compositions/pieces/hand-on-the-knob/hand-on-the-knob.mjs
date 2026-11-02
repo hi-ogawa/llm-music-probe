@@ -6,6 +6,7 @@ import { writeFileSync } from "node:fs";
 const BAR = 4;
 const STEP = 0.25;
 const round = (x) => Math.round(x * 1000) / 1000;
+const dbToGain = (db) => 10 ** (db / 20);
 const clamp = (x) => Math.max(0, Math.min(127, Math.round(x)));
 const smoothstep = (t) => t * t * (3 - 2 * t);
 
@@ -97,6 +98,8 @@ const acidBass = {
   name: "Acid Bass",
   program: 0,
   gain: 0.75,
+  // Dry, so the low end stays tight
+  reverbSend: 0,
   keySignature: { fifths: 0, mode: "minor" },
   synth: {
     layers: [
@@ -156,6 +159,7 @@ const pad = {
   name: "Pad",
   program: 0,
   gain: 0.5,
+  reverbSend: dbToGain(-12),
   keySignature: { fifths: 0, mode: "minor" },
   synth: {
     layers: [
@@ -210,6 +214,7 @@ const stab = {
   name: "Stab",
   program: 0,
   gain: 0.55,
+  reverbSend: dbToGain(-22),
   keySignature: { fifths: 0, mode: "minor" },
   synth: {
     layers: [
@@ -305,7 +310,7 @@ for (const [beat, velocity] of [[3.25, 64], [3.375, 72], [3.5, 80], [3.625, 88],
 }
 drumNotes.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
 
-const drums = { name: "Drums", program: 25, bank: 128, gain: 0.85, notes: drumNotes };
+const drums = { name: "Drums", program: 25, bank: 128, gain: 0.85, reverbSend: dbToGain(-30), notes: drumNotes };
 
 // --- Project -----------------------------------------------------------------
 
@@ -323,6 +328,8 @@ Filter features by part:
 - **Acid Bass:** sawtooth, Q 9, 0.16 s filter-envelope decay, 4-octave amount at full velocity depth, so accented notes (velocity about 120) sweep deeper than plain ones (about 78). Keytrack 1 makes the octave and two-octave jumps brighter.
 - **Pad:** two detuned saws. The amp opens in 60 ms, and the brightening is the filter envelope's 1.7 s attack, settling over a 2.5 s decay. A quiet noise layer under the same filter envelope adds air, and two sines an octave up, outside the filter, add a stereo sheen.
 - **Stab:** a resonant swept saw on top, a square under a fixed gentle low-pass, and an unfiltered sine sub an octave down.
+
+Reverb sends: Pad −12 dB, Stab −22 dB, Drums −30 dB, and the bass dry.
 
 The docs don't say how far CC74 and CC71 move a synth track's filter. This piece assumes 64 leaves the patch as written, with CC74 moving the cutoff by up to about 4 octaves either way and CC71 scaling the resonance up to about 4x either way.`;
 

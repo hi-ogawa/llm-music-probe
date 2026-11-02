@@ -1,6 +1,6 @@
 {
   "title": "Hand on the Knob",
-  "comment": "# Hand on the Knob\n\nAcid house loop in A minor, 124 BPM, 16 bars, looped. A demo for the synth filter: a resonant low-pass with its own envelope on each layer, steered by CC74 (cutoff) and CC71 (resonance).\n\n- **Bars 1-4, Closed:** the acid bass with CC74 at 30, kick and hats.\n- **Bars 5-8, Opening:** CC74 opens the bass like a hand on a knob. The pad enters and brightens over each chord.\n- **Bars 9-12, Groove:** open hats, rim, and the layered stab. CC71 pushes the resonance on the bass and the stab's top.\n- **Bars 13-16, Peak:** extra bass accents and a denser stab, then CC74 and CC71 return to their bar-1 values so the loop joins.\n\nFilter features by part:\n\n- **Acid Bass:** sawtooth, Q 9, 0.16 s filter-envelope decay, 4-octave amount at full velocity depth, so accented notes (velocity about 120) sweep deeper than plain ones (about 78). Keytrack 1 makes the octave and two-octave jumps brighter.\n- **Pad:** two detuned saws. The amp opens in 60 ms, and the brightening is the filter envelope's 1.7 s attack, settling over a 2.5 s decay. A quiet noise layer under the same filter envelope adds air, and two sines an octave up, outside the filter, add a stereo sheen.\n- **Stab:** a resonant swept saw on top, a square under a fixed gentle low-pass, and an unfiltered sine sub an octave down.\n\nThe docs don't say how far CC74 and CC71 move a synth track's filter. This piece assumes 64 leaves the patch as written, with CC74 moving the cutoff by up to about 4 octaves either way and CC71 scaling the resonance up to about 4x either way.",
+  "comment": "# Hand on the Knob\n\nAcid house loop in A minor, 124 BPM, 16 bars, looped. A demo for the synth filter: a resonant low-pass with its own envelope on each layer, steered by CC74 (cutoff) and CC71 (resonance).\n\n- **Bars 1-4, Closed:** the acid bass with CC74 at 30, kick and hats.\n- **Bars 5-8, Opening:** CC74 opens the bass like a hand on a knob. The pad enters and brightens over each chord.\n- **Bars 9-12, Groove:** open hats, rim, and the layered stab. CC71 pushes the resonance on the bass and the stab's top.\n- **Bars 13-16, Peak:** extra bass accents and a denser stab, then CC74 and CC71 return to their bar-1 values so the loop joins.\n\nFilter features by part:\n\n- **Acid Bass:** sawtooth, Q 9, 0.16 s filter-envelope decay, 4-octave amount at full velocity depth, so accented notes (velocity about 120) sweep deeper than plain ones (about 78). Keytrack 1 makes the octave and two-octave jumps brighter.\n- **Pad:** two detuned saws. The amp opens in 60 ms, and the brightening is the filter envelope's 1.7 s attack, settling over a 2.5 s decay. A quiet noise layer under the same filter envelope adds air, and two sines an octave up, outside the filter, add a stereo sheen.\n- **Stab:** a resonant swept saw on top, a square under a fixed gentle low-pass, and an unfiltered sine sub an octave down.\n\nReverb sends: Pad −12 dB, Stab −22 dB, Drums −30 dB, and the bass dry.\n\nThe docs don't say how far CC74 and CC71 move a synth track's filter. This piece assumes 64 leaves the patch as written, with CC74 moving the cutoff by up to about 4 octaves either way and CC71 scaling the resonance up to about 4x either way.",
   "tempo": 124,
   "timeSignature": {
     "numerator": 4,
@@ -36,6 +36,7 @@
       "name": "Acid Bass",
       "program": 0,
       "gain": 0.75,
+      "reverbSend": 0,
       "keySignature": {
         "fifths": 0,
         "mode": "minor"
@@ -2264,6 +2265,7 @@
       "name": "Pad",
       "program": 0,
       "gain": 0.5,
+      "reverbSend": 0.251188643150958,
       "keySignature": {
         "fifths": 0,
         "mode": "minor"
@@ -2784,6 +2786,7 @@
       "name": "Stab",
       "program": 0,
       "gain": 0.55,
+      "reverbSend": 0.07943282347242814,
       "keySignature": {
         "fifths": 0,
         "mode": "minor"
@@ -4114,6 +4117,7 @@
       "program": 25,
       "bank": 128,
       "gain": 0.85,
+      "reverbSend": 0.03162277660168379,
       "notes": [
         {
           "pitch": 36,

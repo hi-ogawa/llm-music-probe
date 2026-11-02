@@ -3,6 +3,7 @@
 An acid house loop in A minor at 124 BPM, 16 bars, looped. It demos Toy MIDI's synth filter: a resonant low-pass with its own envelope on each synth layer ([toy-midi#1081](https://github.com/hi-ogawa/toy-midi/pull/1081)), with CC74 steering the cutoff and CC71 the resonance ([toy-midi#1085](https://github.com/hi-ogawa/toy-midi/pull/1085)).
 
 **[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fhand-on-the-knob%2Fproject.json)**
+
 A session composed it from the brief below and the agent docs on the filter's preview, https://fix-issue-1084-toy-midi.hiro18181.workers.dev/llms.txt, without checking it in the browser. [`hand-on-the-knob.mjs`](hand-on-the-knob.mjs) writes [`project.json`](project.json).
 
 ## Brief
@@ -20,7 +21,7 @@ Each filter feature shows in a part: the acid bass squelches, accents sweep deep
 
 Harmony repeats every 4 bars, Am | Am | F | G, with the bass riff moving to each root.
 
-After a listen, Hiroshi reworked the Pad by ear in Toy MIDI. The session's 0.8 s filter decay made each chord's brightness peak and snap back down, so he lengthened it to 2.5 s, and he added the noise and sine layers. The script reproduces his version, with his knob values rounded and the added layers' 5 ms amp release raised to 1 s to match the saws, so the air and sheen don't cut off at each chord change.
+After a listen, Hiroshi reworked the Pad by ear in Toy MIDI. The session's 0.8 s filter decay made each chord's brightness peak and snap back down, so he lengthened it to 2.5 s, added the noise and sine layers, and set reverb sends of −12 dB on the Pad, −22 dB on the Stab, and −30 dB on the Drums, with the bass dry. The script reproduces his version, with his knob values rounded and the added layers' 5 ms amp release raised to 1 s to match the saws, so the air and sheen don't cut off at each chord change.
 
 | Track | Patch | Part |
 |---|---|---|
