@@ -6,6 +6,7 @@ import { writeFileSync } from "node:fs";
 const BAR = 4;
 const STEP = 0.25;
 const round = (x) => Math.round(x * 1000) / 1000;
+const dbToGain = (db) => 10 ** (db / 20);
 const clamp = (x) => Math.max(0, Math.min(127, Math.round(x)));
 const smoothstep = (t) => t * t * (3 - 2 * t);
 
@@ -97,6 +98,8 @@ const acidBass = {
   name: "Acid Bass",
   program: 0,
   gain: 0.75,
+  // Dry, so the low end stays tight
+  reverbSend: 0,
   keySignature: { fifths: 0, mode: "minor" },
   synth: {
     layers: [
@@ -135,24 +138,45 @@ for (let bar = 4; bar < 16; bar++) {
 
 // The amp opens almost at once, so the pad is there and dark from the
 // downbeat. The filter envelope's 1.7 s attack, about a bar at 124 BPM, does
-// the brightening.
+// the brightening. The long decay lets the peak settle slowly instead of
+// snapping back down.
 const padFilter = {
   cutoff: 320,
   resonance: 1.6,
   keytrack: 0.5,
-  envelope: { attack: 1.7, decay: 0.8, sustain: 0.75, release: 1.2, amount: 3.5, velocity: 0 },
+  envelope: { attack: 1.7, decay: 2.5, sustain: 0.75, release: 1.2, amount: 3.5, velocity: 0 },
 };
 const padAmp = { envelope: { attack: 0.06, decay: 0.5, sustain: 0.85, release: 1.0 } };
+const unfiltered = {
+  cutoff: 20000,
+  resonance: 0.7,
+  keytrack: 0,
+  envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.1, amount: 0, velocity: 0 },
+};
+const sheenAmp = { envelope: { attack: 0.13, decay: 0.3, sustain: 1, release: 1.0 } };
 
 const pad = {
   name: "Pad",
   program: 0,
   gain: 0.5,
+  reverbSend: dbToGain(-12),
   keySignature: { fifths: 0, mode: "minor" },
   synth: {
     layers: [
-      { oscillator: { waveform: "sawtooth", detune: -9 }, gain: 0.2, pan: -0.45, filter: padFilter, amp: padAmp },
-      { oscillator: { waveform: "sawtooth", detune: 9 }, gain: 0.2, pan: 0.45, filter: padFilter, amp: padAmp },
+      { oscillator: { waveform: "sawtooth", detune: -9 }, gain: 0.25, pan: -0.45, filter: padFilter, amp: padAmp },
+      { oscillator: { waveform: "sawtooth", detune: 9 }, gain: 0.25, pan: 0.45, filter: padFilter, amp: padAmp },
+      // Air that brightens with the saws. Noise has no pitch, so its cutoff
+      // doesn't follow the note.
+      {
+        oscillator: { waveform: "noise" },
+        gain: 0.1,
+        filter: { ...padFilter, keytrack: 0 },
+        amp: { envelope: { attack: 0.005, decay: 0.3, sustain: 1, release: 1.0 } },
+      },
+      // Sheen an octave up, outside the filter, so the top stays present while
+      // the saws are still dark
+      { oscillator: { waveform: "sine", octave: 1, detune: -8 }, gain: 0.16, pan: -1, filter: unfiltered, amp: sheenAmp },
+      { oscillator: { waveform: "sine", octave: 1, detune: 8 }, gain: 0.16, pan: 1, filter: unfiltered, amp: sheenAmp },
     ],
   },
   notes: padNotes,
@@ -190,6 +214,7 @@ const stab = {
   name: "Stab",
   program: 0,
   gain: 0.55,
+  reverbSend: dbToGain(-22),
   keySignature: { fifths: 0, mode: "minor" },
   synth: {
     layers: [
@@ -285,7 +310,7 @@ for (const [beat, velocity] of [[3.25, 64], [3.375, 72], [3.5, 80], [3.625, 88],
 }
 drumNotes.sort((a, b) => a.start - b.start || a.pitch - b.pitch);
 
-const drums = { name: "Drums", program: 25, bank: 128, gain: 0.85, notes: drumNotes };
+const drums = { name: "Drums", program: 25, bank: 128, gain: 0.85, reverbSend: dbToGain(-30), notes: drumNotes };
 
 // --- Project -----------------------------------------------------------------
 
@@ -301,8 +326,10 @@ Acid house loop in A minor, 124 BPM, 16 bars, looped. A demo for the synth filte
 Filter features by part:
 
 - **Acid Bass:** sawtooth, Q 9, 0.16 s filter-envelope decay, 4-octave amount at full velocity depth, so accented notes (velocity about 120) sweep deeper than plain ones (about 78). Keytrack 1 makes the octave and two-octave jumps brighter.
-- **Pad:** two detuned saws. The amp opens in 60 ms, and the brightening is the filter envelope's 1.7 s attack.
+- **Pad:** two detuned saws. The amp opens in 60 ms, and the brightening is the filter envelope's 1.7 s attack, settling over a 2.5 s decay. A quiet noise layer under the same filter envelope adds air, and two sines an octave up, outside the filter, add a stereo sheen.
 - **Stab:** a resonant swept saw on top, a square under a fixed gentle low-pass, and an unfiltered sine sub an octave down.
+
+Reverb sends: Pad −12 dB, Stab −22 dB, Drums −30 dB, and the bass dry.
 
 The docs don't say how far CC74 and CC71 move a synth track's filter. This piece assumes 64 leaves the patch as written, with CC74 moving the cutoff by up to about 4 octaves either way and CC71 scaling the resonance up to about 4x either way.`;
 
