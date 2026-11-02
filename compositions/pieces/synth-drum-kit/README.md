@@ -1,6 +1,6 @@
-# Synth Drum Kit
+# Six Squares: a synth drum kit
 
-A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundFont drums. It isn't a composition. It's a testbed and a baseline to iterate on toward the TR-808 kit in [toy-midi#1098](https://github.com/hi-ogawa/toy-midi/issues/1098). An 8-bar electro beat in F minor at 108 BPM exercises every voice, with a bass and a pad only for context. Solo a track to hear one voice.
+An 8-bar electro beat in F minor at 108 BPM that tests a drum kit built on Toy MIDI's own synth, with one track per voice and no SoundFont drums. The kit is the point: a testbed and a baseline to iterate on toward the TR-808 kit in [toy-midi#1098](https://github.com/hi-ogawa/toy-midi/issues/1098). The title is the six square oscillators behind the 808's hats, and the bass and pad are there for context. Solo a track to hear one voice.
 
 **[Open in Toy MIDI](https://toy-midi.hiro18181.workers.dev/draft?src=https%3A%2F%2Fraw.githubusercontent.com%2Fhi-ogawa%2Fllm-music-probe%2Fmain%2Fcompositions%2Fpieces%2Fsynth-drum-kit%2Fproject.json)**
 

@@ -1,6 +1,6 @@
 {
-  "title": "Synth Drum Kit (plain)",
-  "comment": "# Synth Drum Kit (plain)\n\nThe Synth Drum Kit without the stand-ins written into the score, to A/B against the full version. The kick and toms have no pitch-bend drop, and each clap is one noise note instead of three bursts and a tail. The patches and every other note are the same.",
+  "title": "Six Squares (plain)",
+  "comment": "# Six Squares (plain)\n\nSix Squares without the stand-ins written into the score, to A/B against the full version. The kick and toms have no pitch-bend drop, and each clap is one noise note instead of three bursts and a tail. The patches and every other note are the same.",
   "tempo": 108,
   "timeSignature": {
     "numerator": 4,

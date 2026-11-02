@@ -319,9 +319,9 @@ const pad = track("Pad", {
 
 // --- Project ------------------------------------------------------------------------------
 
-const comment = `# Synth Drum Kit
+const comment = `# Six Squares
 
-A drum kit built on Toy MIDI's own synth, with one track per voice and no SoundFont drums. It's a testbed, a baseline to iterate on toward the TR-808 kit in toy-midi#1098. An 8-bar electro beat in F minor at 108 BPM exercises every voice, with a bass and a pad for context. Solo a track to hear one voice.
+An 8-bar electro beat that tests a drum kit built on Toy MIDI's own synth, with one track per voice and no SoundFont drums. It's a testbed, a baseline to iterate on toward the TR-808 kit in toy-midi#1098, named after the six square oscillators behind the 808's hats. The beat is in F minor at 108 BPM, with a bass and a pad for context. Solo a track to hear one voice.
 
 - **Kick:** a 48 Hz sine decaying over 0.55 s, a sine an octave up for the knock, and a noise click. A pitch-bend drop of 7 semitones on each hit stands in for a pitch envelope.
 - **Snare:** tones at 185 and 330 Hz, and noise through a low-pass that opens on the hit.
@@ -344,9 +344,9 @@ const plainClap = {
     .map((note) => ({ ...note, start: round(note.start - 3 * BURST) })),
 };
 
-const plainComment = `# Synth Drum Kit (plain)
+const plainComment = `# Six Squares (plain)
 
-The Synth Drum Kit without the stand-ins written into the score, to A/B against the full version. The kick and toms have no pitch-bend drop, and each clap is one noise note instead of three bursts and a tail. The patches and every other note are the same.`;
+Six Squares without the stand-ins written into the score, to A/B against the full version. The kick and toms have no pitch-bend drop, and each clap is one noise note instead of three bursts and a tail. The patches and every other note are the same.`;
 
 function writeProject(file, title, projectComment, tracks) {
   const project = {
@@ -361,7 +361,7 @@ function writeProject(file, title, projectComment, tracks) {
   writeFileSync(new URL(file, import.meta.url), JSON.stringify(project, null, 2) + "\n");
 }
 
-writeProject("project.json", "Synth Drum Kit", comment,
+writeProject("project.json", "Six Squares", comment,
   [kick, snare, clapTrack, closedHats, openHats, noiseHats, noiseOpenHats, cowbell, toms, rim, bass, pad]);
-writeProject("project-plain.json", "Synth Drum Kit (plain)", plainComment,
+writeProject("project-plain.json", "Six Squares (plain)", plainComment,
   [withoutAutomation(kick), snare, plainClap, closedHats, openHats, noiseHats, noiseOpenHats, cowbell, withoutAutomation(toms), rim, bass, pad]);
