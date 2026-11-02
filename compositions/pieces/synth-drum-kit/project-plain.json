@@ -1,0 +1,3240 @@
+{
+  "title": "Six Squares (plain)",
+  "comment": "# Six Squares (plain)\n\nSix Squares without the stand-ins written into the score, to A/B against the full version. The kick and toms have no pitch-bend drop, and each clap is one noise note instead of three bursts and a tail. The patches and every other note are the same.",
+  "tempo": 108,
+  "timeSignature": {
+    "numerator": 4,
+    "denominator": 4
+  },
+  "loop": {
+    "range": {
+      "startBeat": 0,
+      "endBeat": 32
+    },
+    "enabled": true
+  },
+  "locators": [
+    {
+      "beat": 0,
+      "label": "808 hats"
+    },
+    {
+      "beat": 16,
+      "label": "Noise hats, cowbell"
+    }
+  ],
+  "midiTracks": [
+    {
+      "name": "Kick",
+      "program": 0,
+      "gain": 0.9,
+      "reverbSend": 0,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine",
+              "octave": 0,
+              "detune": -2935.6767
+            },
+            "gain": 0.9,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.55,
+                "sustain": 0,
+                "release": 0.55
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "sine",
+              "octave": 0,
+              "detune": -1735.6767
+            },
+            "gain": 0.3,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.07,
+                "sustain": 0,
+                "release": 0.07
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "noise"
+            },
+            "gain": 0.25,
+            "pan": 0,
+            "filter": {
+              "cutoff": 3000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.008,
+                "sustain": 0,
+                "release": 0.008
+              }
+            }
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 0,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 2.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 4,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 5.5,
+          "duration": 0.5,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 6.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 7.25,
+          "duration": 0.5,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 8,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 10.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 12,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 13.5,
+          "duration": 0.5,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 14.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 15.25,
+          "duration": 0.5,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 16,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 18.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 20,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 21.5,
+          "duration": 0.5,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 22.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 23.25,
+          "duration": 0.5,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 24,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 26.5,
+          "duration": 0.5,
+          "velocity": 112
+        },
+        {
+          "pitch": 60,
+          "start": 28,
+          "duration": 0.5,
+          "velocity": 120
+        },
+        {
+          "pitch": 60,
+          "start": 30.5,
+          "duration": 0.5,
+          "velocity": 112
+        }
+      ]
+    },
+    {
+      "name": "Snare",
+      "program": 0,
+      "gain": 0.75,
+      "reverbSend": 0.1,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine",
+              "octave": 0,
+              "detune": -599.9739
+            },
+            "gain": 0.45,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.12,
+                "sustain": 0,
+                "release": 0.12
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "sine",
+              "octave": 0,
+              "detune": 401.955
+            },
+            "gain": 0.3,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.07,
+                "sustain": 0,
+                "release": 0.07
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "noise"
+            },
+            "gain": 0.5,
+            "pan": 0,
+            "filter": {
+              "cutoff": 1800,
+              "resonance": 1,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.09,
+                "sustain": 0.2,
+                "release": 0.05,
+                "amount": 2,
+                "velocity": 0.8
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.18,
+                "sustain": 0,
+                "release": 0.18
+              }
+            }
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 1,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 3,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 5,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 7,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 9,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 11,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 13,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 15,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 17,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 19,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 21,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 23,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 25,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 27,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 29,
+          "duration": 0.15,
+          "velocity": 116
+        },
+        {
+          "pitch": 60,
+          "start": 31,
+          "duration": 0.15,
+          "velocity": 118
+        },
+        {
+          "pitch": 60,
+          "start": 5.75,
+          "duration": 0.15,
+          "velocity": 44
+        },
+        {
+          "pitch": 60,
+          "start": 14.25,
+          "duration": 0.15,
+          "velocity": 40
+        },
+        {
+          "pitch": 60,
+          "start": 15.75,
+          "duration": 0.15,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 21.75,
+          "duration": 0.15,
+          "velocity": 44
+        },
+        {
+          "pitch": 60,
+          "start": 30.25,
+          "duration": 0.15,
+          "velocity": 40
+        }
+      ]
+    },
+    {
+      "name": "Clap",
+      "program": 0,
+      "gain": 0.7,
+      "reverbSend": 0.19952623149688797,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "noise"
+            },
+            "gain": 0.7,
+            "pan": 0,
+            "filter": {
+              "cutoff": 1500,
+              "resonance": 3,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.25,
+                "sustain": 0,
+                "release": 0.004
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 600,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 3,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 7,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 11,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 15,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 19,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 23,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 27,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 31,
+          "duration": 0.3,
+          "velocity": 110
+        },
+        {
+          "pitch": 60,
+          "start": 15.5,
+          "duration": 0.3,
+          "velocity": 84
+        },
+        {
+          "pitch": 60,
+          "start": 31.25,
+          "duration": 0.3,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 31.5,
+          "duration": 0.3,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 31.75,
+          "duration": 0.3,
+          "velocity": 104
+        }
+      ]
+    },
+    {
+      "name": "Hats Closed (808)",
+      "program": 0,
+      "gain": 0.7,
+      "reverbSend": 0.03162277660168379,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": -419.7239
+            },
+            "gain": 0.25,
+            "pan": -0.15,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.045,
+                "sustain": 0,
+                "release": 0.045
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 262.1578
+            },
+            "gain": 0.25,
+            "pan": -0.09,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.045,
+                "sustain": 0,
+                "release": 0.045
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 598.1535
+            },
+            "gain": 0.25,
+            "pan": -0.03,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.045,
+                "sustain": 0,
+                "release": 0.045
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1198.1756
+            },
+            "gain": 0.25,
+            "pan": 0.03,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.045,
+                "sustain": 0,
+                "release": 0.045
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1254.5471
+            },
+            "gain": 0.25,
+            "pan": 0.09,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.045,
+                "sustain": 0,
+                "release": 0.045
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1934.9958
+            },
+            "gain": 0.25,
+            "pan": 0.15,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.045,
+                "sustain": 0,
+                "release": 0.045
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "peaking",
+            "frequency": 8000,
+            "gain": 1.9952623149688795,
+            "q": 1.2,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 0,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 0.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 0.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 0.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 1,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 1.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 1.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 1.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 2,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 2.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 2.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 2.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 3,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 3.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 3.75,
+          "duration": 0.05,
+          "velocity": 60
+        },
+        {
+          "pitch": 60,
+          "start": 4,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 4.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 4.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 4.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 5,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 5.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 5.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 5.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 6,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 6.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 6.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 6.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 7,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 7.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 7.75,
+          "duration": 0.05,
+          "velocity": 60
+        },
+        {
+          "pitch": 60,
+          "start": 8,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 8.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 8.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 8.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 9,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 9.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 9.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 9.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 10,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 10.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 10.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 10.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 11,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 11.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 11.75,
+          "duration": 0.05,
+          "velocity": 60
+        },
+        {
+          "pitch": 60,
+          "start": 12,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 12.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 12.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 12.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 13,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 13.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 13.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 13.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 14,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 14.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 14.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 14.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 15,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 15.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 15.75,
+          "duration": 0.05,
+          "velocity": 60
+        }
+      ]
+    },
+    {
+      "name": "Hats Open (808)",
+      "program": 0,
+      "gain": 0.6,
+      "reverbSend": 0.05011872336272722,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": -419.7239
+            },
+            "gain": 0.25,
+            "pan": -0.15,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 262.1578
+            },
+            "gain": 0.25,
+            "pan": -0.09,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 598.1535
+            },
+            "gain": 0.25,
+            "pan": -0.03,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1198.1756
+            },
+            "gain": 0.25,
+            "pan": 0.03,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1254.5471
+            },
+            "gain": 0.25,
+            "pan": 0.09,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1934.9958
+            },
+            "gain": 0.25,
+            "pan": 0.15,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "peaking",
+            "frequency": 8000,
+            "gain": 1.9952623149688795,
+            "q": 1.2,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 3.5,
+          "duration": 0.25,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 7.5,
+          "duration": 0.25,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 11.5,
+          "duration": 0.25,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 15.5,
+          "duration": 0.25,
+          "velocity": 96
+        }
+      ]
+    },
+    {
+      "name": "Hats (noise)",
+      "program": 0,
+      "gain": 0.6,
+      "reverbSend": 0.03162277660168379,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "noise"
+            },
+            "gain": 0.3,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.04,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "peaking",
+            "frequency": 8000,
+            "gain": 1.9952623149688795,
+            "q": 1.2,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 16,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 16.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 16.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 16.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 17,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 17.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 17.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 17.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 18,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 18.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 18.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 18.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 19,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 19.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 19.75,
+          "duration": 0.05,
+          "velocity": 60
+        },
+        {
+          "pitch": 60,
+          "start": 20,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 20.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 20.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 20.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 21,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 21.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 21.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 21.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 22,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 22.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 22.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 22.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 23,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 23.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 23.75,
+          "duration": 0.05,
+          "velocity": 60
+        },
+        {
+          "pitch": 60,
+          "start": 24,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 24.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 24.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 24.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 25,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 25.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 25.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 25.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 26,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 26.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 26.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 26.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 27,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 27.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 27.75,
+          "duration": 0.05,
+          "velocity": 60
+        },
+        {
+          "pitch": 60,
+          "start": 28,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 28.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 28.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 28.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 29,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 29.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 29.5,
+          "duration": 0.05,
+          "velocity": 78
+        },
+        {
+          "pitch": 60,
+          "start": 29.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 30,
+          "duration": 0.05,
+          "velocity": 92
+        },
+        {
+          "pitch": 60,
+          "start": 30.25,
+          "duration": 0.05,
+          "velocity": 52
+        },
+        {
+          "pitch": 60,
+          "start": 30.5,
+          "duration": 0.05,
+          "velocity": 76
+        },
+        {
+          "pitch": 60,
+          "start": 30.75,
+          "duration": 0.05,
+          "velocity": 50
+        },
+        {
+          "pitch": 60,
+          "start": 31,
+          "duration": 0.05,
+          "velocity": 90
+        },
+        {
+          "pitch": 60,
+          "start": 31.25,
+          "duration": 0.05,
+          "velocity": 54
+        },
+        {
+          "pitch": 60,
+          "start": 31.75,
+          "duration": 0.05,
+          "velocity": 60
+        }
+      ]
+    },
+    {
+      "name": "Hats Open (noise)",
+      "program": 0,
+      "gain": 0.5,
+      "reverbSend": 0.05011872336272722,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "noise"
+            },
+            "gain": 0.3,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.7,
+                "sustain": 0,
+                "release": 0.04
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "high-pass",
+            "frequency": 5500,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          },
+          {
+            "type": "peaking",
+            "frequency": 8000,
+            "gain": 1.9952623149688795,
+            "q": 1.2,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 19.5,
+          "duration": 0.25,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 23.5,
+          "duration": 0.25,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 27.5,
+          "duration": 0.25,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 31.5,
+          "duration": 0.25,
+          "velocity": 96
+        }
+      ]
+    },
+    {
+      "name": "Cowbell",
+      "program": 0,
+      "gain": 0.45,
+      "reverbSend": 0.06309573444801933,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1254.5471
+            },
+            "gain": 0.3,
+            "pan": 0,
+            "filter": {
+              "cutoff": 2400,
+              "resonance": 2.5,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.05,
+                "sustain": 0,
+                "release": 0.05
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1254.5471
+            },
+            "gain": 0.1,
+            "pan": 0,
+            "filter": {
+              "cutoff": 2400,
+              "resonance": 2.5,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.35,
+                "sustain": 0,
+                "release": 0.35
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1934.9958
+            },
+            "gain": 0.3,
+            "pan": 0,
+            "filter": {
+              "cutoff": 2400,
+              "resonance": 2.5,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.05,
+                "sustain": 0,
+                "release": 0.05
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1934.9958
+            },
+            "gain": 0.1,
+            "pan": 0,
+            "filter": {
+              "cutoff": 2400,
+              "resonance": 2.5,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.35,
+                "sustain": 0,
+                "release": 0.35
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 350,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 16,
+          "duration": 0.1,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 16.75,
+          "duration": 0.1,
+          "velocity": 84
+        },
+        {
+          "pitch": 60,
+          "start": 17.5,
+          "duration": 0.1,
+          "velocity": 100
+        },
+        {
+          "pitch": 60,
+          "start": 18.5,
+          "duration": 0.1,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 19.25,
+          "duration": 0.1,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 20,
+          "duration": 0.1,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 20.75,
+          "duration": 0.1,
+          "velocity": 84
+        },
+        {
+          "pitch": 60,
+          "start": 21.5,
+          "duration": 0.1,
+          "velocity": 100
+        },
+        {
+          "pitch": 60,
+          "start": 22.5,
+          "duration": 0.1,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 23.25,
+          "duration": 0.1,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 24,
+          "duration": 0.1,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 24.75,
+          "duration": 0.1,
+          "velocity": 84
+        },
+        {
+          "pitch": 60,
+          "start": 25.5,
+          "duration": 0.1,
+          "velocity": 100
+        },
+        {
+          "pitch": 60,
+          "start": 26.5,
+          "duration": 0.1,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 27.25,
+          "duration": 0.1,
+          "velocity": 96
+        },
+        {
+          "pitch": 60,
+          "start": 28,
+          "duration": 0.1,
+          "velocity": 104
+        },
+        {
+          "pitch": 60,
+          "start": 28.75,
+          "duration": 0.1,
+          "velocity": 84
+        },
+        {
+          "pitch": 60,
+          "start": 29.5,
+          "duration": 0.1,
+          "velocity": 100
+        },
+        {
+          "pitch": 60,
+          "start": 30.5,
+          "duration": 0.1,
+          "velocity": 88
+        },
+        {
+          "pitch": 60,
+          "start": 31.25,
+          "duration": 0.1,
+          "velocity": 96
+        }
+      ]
+    },
+    {
+      "name": "Toms",
+      "program": 0,
+      "gain": 0.7,
+      "reverbSend": 0.1,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine",
+              "octave": 0,
+              "detune": 0
+            },
+            "gain": 0.8,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.3,
+                "sustain": 0,
+                "release": 0.3
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "noise"
+            },
+            "gain": 0.08,
+            "pan": 0,
+            "filter": {
+              "cutoff": 2500,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.02,
+                "sustain": 0,
+                "release": 0.02
+              }
+            }
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 51,
+          "start": 15,
+          "duration": 0.2,
+          "velocity": 104
+        },
+        {
+          "pitch": 51,
+          "start": 15.25,
+          "duration": 0.2,
+          "velocity": 92
+        },
+        {
+          "pitch": 46,
+          "start": 15.5,
+          "duration": 0.2,
+          "velocity": 108
+        },
+        {
+          "pitch": 41,
+          "start": 15.75,
+          "duration": 0.2,
+          "velocity": 116
+        },
+        {
+          "pitch": 51,
+          "start": 30.5,
+          "duration": 0.2,
+          "velocity": 100
+        },
+        {
+          "pitch": 51,
+          "start": 30.75,
+          "duration": 0.2,
+          "velocity": 92
+        },
+        {
+          "pitch": 46,
+          "start": 31,
+          "duration": 0.2,
+          "velocity": 104
+        },
+        {
+          "pitch": 46,
+          "start": 31.25,
+          "duration": 0.2,
+          "velocity": 96
+        },
+        {
+          "pitch": 41,
+          "start": 31.5,
+          "duration": 0.2,
+          "velocity": 112
+        },
+        {
+          "pitch": 41,
+          "start": 31.75,
+          "duration": 0.2,
+          "velocity": 120
+        }
+      ]
+    },
+    {
+      "name": "Rim",
+      "program": 0,
+      "gain": 0.5,
+      "reverbSend": 0.06309573444801933,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "triangle",
+              "octave": 0,
+              "detune": 3239.9512
+            },
+            "gain": 0.5,
+            "pan": 0,
+            "filter": {
+              "cutoff": 20000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.02,
+                "sustain": 0,
+                "release": 0.02
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": 0,
+              "detune": 1050.6371
+            },
+            "gain": 0.25,
+            "pan": 0,
+            "filter": {
+              "cutoff": 3000,
+              "resonance": 0.7,
+              "keytrack": 0,
+              "envelope": {
+                "attack": 0.001,
+                "decay": 0.1,
+                "sustain": 0,
+                "release": 0.1,
+                "amount": 0,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.0005,
+                "decay": 0.012,
+                "sustain": 0,
+                "release": 0.012
+              }
+            }
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "high-pass",
+            "frequency": 300,
+            "gain": 1,
+            "q": 0.7,
+            "bypass": false
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 60,
+          "start": 0.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 2.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 4.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 6.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 8.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 10.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 12.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 14.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 16.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 18.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 20.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 22.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 24.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 26.75,
+          "duration": 0.05,
+          "velocity": 64
+        },
+        {
+          "pitch": 60,
+          "start": 28.75,
+          "duration": 0.05,
+          "velocity": 70
+        },
+        {
+          "pitch": 60,
+          "start": 30.75,
+          "duration": 0.05,
+          "velocity": 64
+        }
+      ]
+    },
+    {
+      "name": "Bass",
+      "program": 0,
+      "gain": 0.7,
+      "reverbSend": 0,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sawtooth",
+              "octave": 0,
+              "detune": 0
+            },
+            "gain": 0.35,
+            "pan": 0,
+            "filter": {
+              "cutoff": 260,
+              "resonance": 2,
+              "keytrack": 0.5,
+              "envelope": {
+                "attack": 0.002,
+                "decay": 0.2,
+                "sustain": 0.3,
+                "release": 0.08,
+                "amount": 2.2,
+                "velocity": 0.6
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.002,
+                "decay": 0.3,
+                "sustain": 0.8,
+                "release": 0.06
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "square",
+              "octave": -1,
+              "detune": 0
+            },
+            "gain": 0.2,
+            "pan": 0,
+            "filter": {
+              "cutoff": 260,
+              "resonance": 2,
+              "keytrack": 0.5,
+              "envelope": {
+                "attack": 0.002,
+                "decay": 0.2,
+                "sustain": 0.3,
+                "release": 0.08,
+                "amount": 2.2,
+                "velocity": 0.6
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.002,
+                "decay": 0.3,
+                "sustain": 0.8,
+                "release": 0.06
+              }
+            }
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 29,
+          "start": 0,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 41,
+          "start": 0.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 29,
+          "start": 1.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 36,
+          "start": 2.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 39,
+          "start": 3,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 41,
+          "start": 3.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 29,
+          "start": 4,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 41,
+          "start": 4.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 29,
+          "start": 5.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 36,
+          "start": 6.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 39,
+          "start": 7,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 41,
+          "start": 7.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 37,
+          "start": 8,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 49,
+          "start": 8.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 37,
+          "start": 9.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 44,
+          "start": 10.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 48,
+          "start": 11,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 49,
+          "start": 11.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 39,
+          "start": 12,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 51,
+          "start": 12.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 39,
+          "start": 13.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 46,
+          "start": 14.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 49,
+          "start": 15,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 51,
+          "start": 15.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 29,
+          "start": 16,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 41,
+          "start": 16.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 29,
+          "start": 17.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 36,
+          "start": 18.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 39,
+          "start": 19,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 41,
+          "start": 19.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 29,
+          "start": 20,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 41,
+          "start": 20.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 29,
+          "start": 21.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 36,
+          "start": 22.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 39,
+          "start": 23,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 41,
+          "start": 23.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 37,
+          "start": 24,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 49,
+          "start": 24.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 37,
+          "start": 25.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 44,
+          "start": 26.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 48,
+          "start": 27,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 49,
+          "start": 27.5,
+          "duration": 0.2125,
+          "velocity": 100
+        },
+        {
+          "pitch": 39,
+          "start": 28,
+          "duration": 0.6375,
+          "velocity": 112
+        },
+        {
+          "pitch": 51,
+          "start": 28.75,
+          "duration": 0.2125,
+          "velocity": 88
+        },
+        {
+          "pitch": 39,
+          "start": 29.5,
+          "duration": 0.425,
+          "velocity": 104
+        },
+        {
+          "pitch": 46,
+          "start": 30.5,
+          "duration": 0.2125,
+          "velocity": 96
+        },
+        {
+          "pitch": 49,
+          "start": 31,
+          "duration": 0.425,
+          "velocity": 92
+        },
+        {
+          "pitch": 51,
+          "start": 31.5,
+          "duration": 0.2125,
+          "velocity": 100
+        }
+      ]
+    },
+    {
+      "name": "Pad",
+      "program": 0,
+      "gain": 0.4,
+      "reverbSend": 0.31622776601683794,
+      "keySignature": {
+        "fifths": -4,
+        "mode": "minor"
+      },
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sawtooth",
+              "octave": 0,
+              "detune": -9
+            },
+            "gain": 0.2,
+            "pan": -0.45,
+            "filter": {
+              "cutoff": 380,
+              "resonance": 1.4,
+              "keytrack": 0.5,
+              "envelope": {
+                "attack": 1.5,
+                "decay": 3,
+                "sustain": 0.8,
+                "release": 1.2,
+                "amount": 2.5,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.08,
+                "decay": 0.5,
+                "sustain": 0.85,
+                "release": 1
+              }
+            }
+          },
+          {
+            "oscillator": {
+              "waveform": "sawtooth",
+              "octave": 0,
+              "detune": 9
+            },
+            "gain": 0.2,
+            "pan": 0.45,
+            "filter": {
+              "cutoff": 380,
+              "resonance": 1.4,
+              "keytrack": 0.5,
+              "envelope": {
+                "attack": 1.5,
+                "decay": 3,
+                "sustain": 0.8,
+                "release": 1.2,
+                "amount": 2.5,
+                "velocity": 0
+              }
+            },
+            "amp": {
+              "envelope": {
+                "attack": 0.08,
+                "decay": 0.5,
+                "sustain": 0.85,
+                "release": 1
+              }
+            }
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 53,
+          "start": 0,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 56,
+          "start": 0,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 0,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 63,
+          "start": 0,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 67,
+          "start": 0,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 53,
+          "start": 4,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 56,
+          "start": 4,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 4,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 63,
+          "start": 4,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 67,
+          "start": 4,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 49,
+          "start": 8,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 53,
+          "start": 8,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 56,
+          "start": 8,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 8,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 63,
+          "start": 8,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 51,
+          "start": 12,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 55,
+          "start": 12,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 58,
+          "start": 12,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 12,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 65,
+          "start": 12,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 53,
+          "start": 16,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 56,
+          "start": 16,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 16,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 63,
+          "start": 16,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 67,
+          "start": 16,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 53,
+          "start": 20,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 56,
+          "start": 20,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 20,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 63,
+          "start": 20,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 67,
+          "start": 20,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 49,
+          "start": 24,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 53,
+          "start": 24,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 56,
+          "start": 24,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 24,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 63,
+          "start": 24,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 51,
+          "start": 28,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 55,
+          "start": 28,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 58,
+          "start": 28,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 60,
+          "start": 28,
+          "duration": 3.9,
+          "velocity": 80
+        },
+        {
+          "pitch": 65,
+          "start": 28,
+          "duration": 3.9,
+          "velocity": 80
+        }
+      ]
+    }
+  ]
+}
