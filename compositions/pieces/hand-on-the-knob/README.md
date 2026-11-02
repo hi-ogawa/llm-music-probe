@@ -20,10 +20,12 @@ Each filter feature shows in a part: the acid bass squelches, accents sweep deep
 
 Harmony repeats every 4 bars, Am | Am | F | G, with the bass riff moving to each root.
 
+After a listen, Hiroshi reworked the Pad by ear in Toy MIDI. The session's 0.8 s filter decay made each chord's brightness peak and snap back down, so he lengthened it to 2.5 s, and he added the noise and sine layers. The script reproduces his version, with his knob values rounded and the added layers' 5 ms amp release raised to 1 s to match the saws, so the air and sheen don't cut off at each chord change.
+
 | Track | Patch | Part |
 |---|---|---|
 | Acid Bass | sawtooth, cutoff 700 Hz, Q 9, keytrack 1, filter envelope 0.16 s decay to sustain 0 with a 4-octave amount at full velocity depth | 16th-note riff from bar 1, accents at velocity about 120 over plain notes at about 78, with jumps of one and two octaves |
-| Pad | two saws detuned ±9 cents and panned apart, cutoff 320 Hz, filter envelope with a 1.7 s attack and a 3.5-octave amount, amp attack 60 ms | Am9, Am9, Fmaj9, G6/9, one per bar from bar 5 |
+| Pad | two saws detuned ±9 cents and panned apart, cutoff 320 Hz, filter envelope with a 1.7 s attack, a 2.5 s decay, and a 3.5-octave amount, amp attack 60 ms. A quiet noise layer under the same filter envelope adds air, and two sines an octave up, detuned ±8 cents, panned hard apart, and outside the filter, add a sheen | Am9, Am9, Fmaj9, G6/9, one per bar from bar 5 |
 | Stab | resonant swept saw (Q 8, 0.22 s decay, 4.5 octaves), a square under a fixed 1.4 kHz low-pass, and a sine sub an octave down with the cutoff at 20 kHz | offbeat chord stabs from bar 9, denser in bars 13–15 |
 | Drums | GeneralUser GS TR-808 kit | four on the floor with 16th hats, then clap from bar 5, open hats on the offbeats and a rim from bar 9, and ride and tambourine in the peak |
 
