@@ -1,0 +1,1580 @@
+{
+  "title": "Swell Chorale",
+  "comment": "An 8-bar organ chorale loop for Toy MIDI's own synth, in D major at 66 BPM. Like an organ's divisions, each part has its own stop and place.\n\n- **Solo**: the soprano melody on a flute-like stop, a sine with a triangle (gain 0.5) through a gentle low-pass, a little right of center. Its own CC11 curve phrases the melody on a narrower range than the swell, so it stays on top.\n- **Swell**: two inner voices that hold common tones and suspend into each A chord, on a reedy stop, a sine with a quiet square (gain 0.3) through a gentle low-pass, a little left of center. CC11 expression works like a swell pedal, opening into each cadence and settling back to its opening level by the loop point.\n- **Pedal**: the bass line on a sine with a triangle (gain 0.5), centered. Like a real organ's pedal division, it sits outside the swell box, so it keeps a steady level.\n- The second phrase ends on A7, which resolves into the opening D as the loop wraps.",
+  "tempo": 66,
+  "timeSignature": {
+    "numerator": 4,
+    "denominator": 4
+  },
+  "loop": {
+    "range": {
+      "startBeat": 0,
+      "endBeat": 32
+    },
+    "enabled": true
+  },
+  "masterGain": 0.7943282347242815,
+  "midiTracks": [
+    {
+      "name": "Solo",
+      "program": 19,
+      "pan": 0.3,
+      "gain": 1.2589254117941673,
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine"
+            },
+            "gain": 1
+          },
+          {
+            "oscillator": {
+              "waveform": "triangle"
+            },
+            "gain": 0.5
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 2482,
+            "q": 0.707,
+            "gain": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "automation": [
+        {
+          "type": "controller",
+          "controller": 11,
+          "points": [
+            {
+              "beat": 0,
+              "value": 112
+            },
+            {
+              "beat": 0.25,
+              "value": 112
+            },
+            {
+              "beat": 0.5,
+              "value": 111
+            },
+            {
+              "beat": 0.75,
+              "value": 111
+            },
+            {
+              "beat": 1,
+              "value": 111
+            },
+            {
+              "beat": 1.25,
+              "value": 111
+            },
+            {
+              "beat": 1.5,
+              "value": 110
+            },
+            {
+              "beat": 1.75,
+              "value": 110
+            },
+            {
+              "beat": 2,
+              "value": 110
+            },
+            {
+              "beat": 2.25,
+              "value": 109
+            },
+            {
+              "beat": 2.5,
+              "value": 109
+            },
+            {
+              "beat": 2.75,
+              "value": 109
+            },
+            {
+              "beat": 3,
+              "value": 109
+            },
+            {
+              "beat": 3.25,
+              "value": 108
+            },
+            {
+              "beat": 3.5,
+              "value": 108
+            },
+            {
+              "beat": 3.75,
+              "value": 108
+            },
+            {
+              "beat": 4,
+              "value": 107
+            },
+            {
+              "beat": 4.25,
+              "value": 107
+            },
+            {
+              "beat": 4.5,
+              "value": 107
+            },
+            {
+              "beat": 4.75,
+              "value": 107
+            },
+            {
+              "beat": 5,
+              "value": 106
+            },
+            {
+              "beat": 5.25,
+              "value": 106
+            },
+            {
+              "beat": 5.5,
+              "value": 106
+            },
+            {
+              "beat": 5.75,
+              "value": 105
+            },
+            {
+              "beat": 6,
+              "value": 105
+            },
+            {
+              "beat": 6.25,
+              "value": 105
+            },
+            {
+              "beat": 6.5,
+              "value": 105
+            },
+            {
+              "beat": 6.75,
+              "value": 104
+            },
+            {
+              "beat": 7,
+              "value": 104
+            },
+            {
+              "beat": 7.25,
+              "value": 106
+            },
+            {
+              "beat": 7.5,
+              "value": 108
+            },
+            {
+              "beat": 7.75,
+              "value": 110
+            },
+            {
+              "beat": 8,
+              "value": 112
+            },
+            {
+              "beat": 8.25,
+              "value": 114
+            },
+            {
+              "beat": 8.5,
+              "value": 116
+            },
+            {
+              "beat": 8.75,
+              "value": 117
+            },
+            {
+              "beat": 9,
+              "value": 119
+            },
+            {
+              "beat": 9.25,
+              "value": 121
+            },
+            {
+              "beat": 9.5,
+              "value": 123
+            },
+            {
+              "beat": 9.75,
+              "value": 125
+            },
+            {
+              "beat": 10,
+              "value": 127
+            },
+            {
+              "beat": 10.25,
+              "value": 127
+            },
+            {
+              "beat": 10.5,
+              "value": 127
+            },
+            {
+              "beat": 10.75,
+              "value": 127
+            },
+            {
+              "beat": 11,
+              "value": 127
+            },
+            {
+              "beat": 11.25,
+              "value": 127
+            },
+            {
+              "beat": 11.5,
+              "value": 127
+            },
+            {
+              "beat": 11.75,
+              "value": 127
+            },
+            {
+              "beat": 12,
+              "value": 127
+            },
+            {
+              "beat": 12.25,
+              "value": 127
+            },
+            {
+              "beat": 12.5,
+              "value": 127
+            },
+            {
+              "beat": 12.75,
+              "value": 127
+            },
+            {
+              "beat": 13,
+              "value": 127
+            },
+            {
+              "beat": 13.25,
+              "value": 124
+            },
+            {
+              "beat": 13.5,
+              "value": 122
+            },
+            {
+              "beat": 13.75,
+              "value": 119
+            },
+            {
+              "beat": 14,
+              "value": 116
+            },
+            {
+              "beat": 14.25,
+              "value": 114
+            },
+            {
+              "beat": 14.5,
+              "value": 113
+            },
+            {
+              "beat": 14.75,
+              "value": 111
+            },
+            {
+              "beat": 15,
+              "value": 109
+            },
+            {
+              "beat": 15.25,
+              "value": 107
+            },
+            {
+              "beat": 15.5,
+              "value": 106
+            },
+            {
+              "beat": 15.75,
+              "value": 104
+            },
+            {
+              "beat": 16,
+              "value": 102
+            },
+            {
+              "beat": 16.25,
+              "value": 104
+            },
+            {
+              "beat": 16.5,
+              "value": 107
+            },
+            {
+              "beat": 16.75,
+              "value": 109
+            },
+            {
+              "beat": 17,
+              "value": 111
+            },
+            {
+              "beat": 17.25,
+              "value": 113
+            },
+            {
+              "beat": 17.5,
+              "value": 116
+            },
+            {
+              "beat": 17.75,
+              "value": 118
+            },
+            {
+              "beat": 18,
+              "value": 120
+            },
+            {
+              "beat": 18.25,
+              "value": 119
+            },
+            {
+              "beat": 18.5,
+              "value": 119
+            },
+            {
+              "beat": 18.75,
+              "value": 118
+            },
+            {
+              "beat": 19,
+              "value": 117
+            },
+            {
+              "beat": 19.25,
+              "value": 116
+            },
+            {
+              "beat": 19.5,
+              "value": 116
+            },
+            {
+              "beat": 19.75,
+              "value": 115
+            },
+            {
+              "beat": 20,
+              "value": 114
+            },
+            {
+              "beat": 20.25,
+              "value": 116
+            },
+            {
+              "beat": 20.5,
+              "value": 117
+            },
+            {
+              "beat": 20.75,
+              "value": 119
+            },
+            {
+              "beat": 21,
+              "value": 121
+            },
+            {
+              "beat": 21.25,
+              "value": 122
+            },
+            {
+              "beat": 21.5,
+              "value": 124
+            },
+            {
+              "beat": 21.75,
+              "value": 125
+            },
+            {
+              "beat": 22,
+              "value": 127
+            },
+            {
+              "beat": 22.25,
+              "value": 127
+            },
+            {
+              "beat": 22.5,
+              "value": 127
+            },
+            {
+              "beat": 22.75,
+              "value": 127
+            },
+            {
+              "beat": 23,
+              "value": 127
+            },
+            {
+              "beat": 23.25,
+              "value": 127
+            },
+            {
+              "beat": 23.5,
+              "value": 127
+            },
+            {
+              "beat": 23.75,
+              "value": 127
+            },
+            {
+              "beat": 24,
+              "value": 127
+            },
+            {
+              "beat": 24.25,
+              "value": 127
+            },
+            {
+              "beat": 24.5,
+              "value": 127
+            },
+            {
+              "beat": 24.75,
+              "value": 127
+            },
+            {
+              "beat": 25,
+              "value": 127
+            },
+            {
+              "beat": 25.25,
+              "value": 127
+            },
+            {
+              "beat": 25.5,
+              "value": 127
+            },
+            {
+              "beat": 25.75,
+              "value": 127
+            },
+            {
+              "beat": 26,
+              "value": 127
+            },
+            {
+              "beat": 26.25,
+              "value": 127
+            },
+            {
+              "beat": 26.5,
+              "value": 127
+            },
+            {
+              "beat": 26.75,
+              "value": 127
+            },
+            {
+              "beat": 27,
+              "value": 127
+            },
+            {
+              "beat": 27.25,
+              "value": 127
+            },
+            {
+              "beat": 27.5,
+              "value": 127
+            },
+            {
+              "beat": 27.75,
+              "value": 127
+            },
+            {
+              "beat": 28,
+              "value": 127
+            },
+            {
+              "beat": 28.25,
+              "value": 126
+            },
+            {
+              "beat": 28.5,
+              "value": 125
+            },
+            {
+              "beat": 28.75,
+              "value": 124
+            },
+            {
+              "beat": 29,
+              "value": 123
+            },
+            {
+              "beat": 29.25,
+              "value": 122
+            },
+            {
+              "beat": 29.5,
+              "value": 121
+            },
+            {
+              "beat": 29.75,
+              "value": 120
+            },
+            {
+              "beat": 30,
+              "value": 120
+            },
+            {
+              "beat": 30.25,
+              "value": 119
+            },
+            {
+              "beat": 30.5,
+              "value": 118
+            },
+            {
+              "beat": 30.75,
+              "value": 117
+            },
+            {
+              "beat": 31,
+              "value": 116
+            },
+            {
+              "beat": 31.25,
+              "value": 115
+            },
+            {
+              "beat": 31.5,
+              "value": 114
+            },
+            {
+              "beat": 31.75,
+              "value": 113
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "pitch": 78,
+          "start": 0,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 1,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 73,
+          "start": 3,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 4,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 5,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 5.5,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 73,
+          "start": 6,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 69,
+          "start": 7,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 71,
+          "start": 8,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 9,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 78,
+          "start": 10,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 11,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 11.5,
+          "duration": 1.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 71,
+          "start": 13,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 73,
+          "start": 14,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 16,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 78,
+          "start": 17,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 79,
+          "start": 18,
+          "duration": 1.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 78,
+          "start": 19.5,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 20,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 78,
+          "start": 21,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 79,
+          "start": 22,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 23,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 24,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 79,
+          "start": 25,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 78,
+          "start": 25.5,
+          "duration": 1.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 27,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 27.5,
+          "duration": 0.5,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 28,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 74,
+          "start": 29,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 73,
+          "start": 30,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 76,
+          "start": 31,
+          "duration": 1,
+          "velocity": 100
+        }
+      ]
+    },
+    {
+      "name": "Swell",
+      "program": 19,
+      "pan": -0.3,
+      "gain": 0.5956621435290105,
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine"
+            },
+            "gain": 1
+          },
+          {
+            "oscillator": {
+              "waveform": "square"
+            },
+            "gain": 0.3
+          }
+        ]
+      },
+      "eq": {
+        "bypass": false,
+        "bands": [
+          {
+            "type": "low-pass",
+            "frequency": 1992,
+            "q": 0.707,
+            "gain": 1,
+            "bypass": false
+          }
+        ]
+      },
+      "automation": [
+        {
+          "type": "controller",
+          "controller": 11,
+          "points": [
+            {
+              "beat": 0,
+              "value": 60
+            },
+            {
+              "beat": 0.25,
+              "value": 61
+            },
+            {
+              "beat": 0.5,
+              "value": 63
+            },
+            {
+              "beat": 0.75,
+              "value": 64
+            },
+            {
+              "beat": 1,
+              "value": 66
+            },
+            {
+              "beat": 1.25,
+              "value": 67
+            },
+            {
+              "beat": 1.5,
+              "value": 68
+            },
+            {
+              "beat": 1.75,
+              "value": 70
+            },
+            {
+              "beat": 2,
+              "value": 71
+            },
+            {
+              "beat": 2.25,
+              "value": 73
+            },
+            {
+              "beat": 2.5,
+              "value": 74
+            },
+            {
+              "beat": 2.75,
+              "value": 75
+            },
+            {
+              "beat": 3,
+              "value": 77
+            },
+            {
+              "beat": 3.25,
+              "value": 78
+            },
+            {
+              "beat": 3.5,
+              "value": 80
+            },
+            {
+              "beat": 3.75,
+              "value": 81
+            },
+            {
+              "beat": 4,
+              "value": 82
+            },
+            {
+              "beat": 4.25,
+              "value": 84
+            },
+            {
+              "beat": 4.5,
+              "value": 85
+            },
+            {
+              "beat": 4.75,
+              "value": 87
+            },
+            {
+              "beat": 5,
+              "value": 88
+            },
+            {
+              "beat": 5.25,
+              "value": 89
+            },
+            {
+              "beat": 5.5,
+              "value": 91
+            },
+            {
+              "beat": 5.75,
+              "value": 92
+            },
+            {
+              "beat": 6,
+              "value": 94
+            },
+            {
+              "beat": 6.25,
+              "value": 95
+            },
+            {
+              "beat": 6.5,
+              "value": 96
+            },
+            {
+              "beat": 6.75,
+              "value": 98
+            },
+            {
+              "beat": 7,
+              "value": 99
+            },
+            {
+              "beat": 7.25,
+              "value": 100
+            },
+            {
+              "beat": 7.5,
+              "value": 102
+            },
+            {
+              "beat": 7.75,
+              "value": 103
+            },
+            {
+              "beat": 8,
+              "value": 105
+            },
+            {
+              "beat": 8.25,
+              "value": 106
+            },
+            {
+              "beat": 8.5,
+              "value": 107
+            },
+            {
+              "beat": 8.75,
+              "value": 109
+            },
+            {
+              "beat": 9,
+              "value": 110
+            },
+            {
+              "beat": 9.25,
+              "value": 112
+            },
+            {
+              "beat": 9.5,
+              "value": 113
+            },
+            {
+              "beat": 9.75,
+              "value": 114
+            },
+            {
+              "beat": 10,
+              "value": 116
+            },
+            {
+              "beat": 10.25,
+              "value": 117
+            },
+            {
+              "beat": 10.5,
+              "value": 119
+            },
+            {
+              "beat": 10.75,
+              "value": 120
+            },
+            {
+              "beat": 11,
+              "value": 121
+            },
+            {
+              "beat": 11.25,
+              "value": 123
+            },
+            {
+              "beat": 11.5,
+              "value": 124
+            },
+            {
+              "beat": 11.75,
+              "value": 126
+            },
+            {
+              "beat": 12,
+              "value": 127
+            },
+            {
+              "beat": 12.25,
+              "value": 127
+            },
+            {
+              "beat": 12.5,
+              "value": 127
+            },
+            {
+              "beat": 12.75,
+              "value": 127
+            },
+            {
+              "beat": 13,
+              "value": 127
+            },
+            {
+              "beat": 13.25,
+              "value": 127
+            },
+            {
+              "beat": 13.5,
+              "value": 127
+            },
+            {
+              "beat": 13.75,
+              "value": 127
+            },
+            {
+              "beat": 14,
+              "value": 127
+            },
+            {
+              "beat": 14.25,
+              "value": 122
+            },
+            {
+              "beat": 14.5,
+              "value": 117
+            },
+            {
+              "beat": 14.75,
+              "value": 111
+            },
+            {
+              "beat": 15,
+              "value": 106
+            },
+            {
+              "beat": 15.25,
+              "value": 101
+            },
+            {
+              "beat": 15.5,
+              "value": 96
+            },
+            {
+              "beat": 15.75,
+              "value": 90
+            },
+            {
+              "beat": 16,
+              "value": 85
+            },
+            {
+              "beat": 16.25,
+              "value": 86
+            },
+            {
+              "beat": 16.5,
+              "value": 87
+            },
+            {
+              "beat": 16.75,
+              "value": 88
+            },
+            {
+              "beat": 17,
+              "value": 89
+            },
+            {
+              "beat": 17.25,
+              "value": 90
+            },
+            {
+              "beat": 17.5,
+              "value": 91
+            },
+            {
+              "beat": 17.75,
+              "value": 92
+            },
+            {
+              "beat": 18,
+              "value": 93
+            },
+            {
+              "beat": 18.25,
+              "value": 94
+            },
+            {
+              "beat": 18.5,
+              "value": 96
+            },
+            {
+              "beat": 18.75,
+              "value": 97
+            },
+            {
+              "beat": 19,
+              "value": 98
+            },
+            {
+              "beat": 19.25,
+              "value": 99
+            },
+            {
+              "beat": 19.5,
+              "value": 100
+            },
+            {
+              "beat": 19.75,
+              "value": 101
+            },
+            {
+              "beat": 20,
+              "value": 102
+            },
+            {
+              "beat": 20.25,
+              "value": 103
+            },
+            {
+              "beat": 20.5,
+              "value": 104
+            },
+            {
+              "beat": 20.75,
+              "value": 105
+            },
+            {
+              "beat": 21,
+              "value": 106
+            },
+            {
+              "beat": 21.25,
+              "value": 107
+            },
+            {
+              "beat": 21.5,
+              "value": 108
+            },
+            {
+              "beat": 21.75,
+              "value": 109
+            },
+            {
+              "beat": 22,
+              "value": 110
+            },
+            {
+              "beat": 22.25,
+              "value": 111
+            },
+            {
+              "beat": 22.5,
+              "value": 112
+            },
+            {
+              "beat": 22.75,
+              "value": 113
+            },
+            {
+              "beat": 23,
+              "value": 114
+            },
+            {
+              "beat": 23.25,
+              "value": 115
+            },
+            {
+              "beat": 23.5,
+              "value": 117
+            },
+            {
+              "beat": 23.75,
+              "value": 118
+            },
+            {
+              "beat": 24,
+              "value": 119
+            },
+            {
+              "beat": 24.25,
+              "value": 120
+            },
+            {
+              "beat": 24.5,
+              "value": 121
+            },
+            {
+              "beat": 24.75,
+              "value": 122
+            },
+            {
+              "beat": 25,
+              "value": 123
+            },
+            {
+              "beat": 25.25,
+              "value": 124
+            },
+            {
+              "beat": 25.5,
+              "value": 125
+            },
+            {
+              "beat": 25.75,
+              "value": 126
+            },
+            {
+              "beat": 26,
+              "value": 127
+            },
+            {
+              "beat": 26.25,
+              "value": 127
+            },
+            {
+              "beat": 26.5,
+              "value": 127
+            },
+            {
+              "beat": 26.75,
+              "value": 127
+            },
+            {
+              "beat": 27,
+              "value": 127
+            },
+            {
+              "beat": 27.25,
+              "value": 127
+            },
+            {
+              "beat": 27.5,
+              "value": 127
+            },
+            {
+              "beat": 27.75,
+              "value": 127
+            },
+            {
+              "beat": 28,
+              "value": 127
+            },
+            {
+              "beat": 28.25,
+              "value": 123
+            },
+            {
+              "beat": 28.5,
+              "value": 119
+            },
+            {
+              "beat": 28.75,
+              "value": 114
+            },
+            {
+              "beat": 29,
+              "value": 110
+            },
+            {
+              "beat": 29.25,
+              "value": 106
+            },
+            {
+              "beat": 29.5,
+              "value": 102
+            },
+            {
+              "beat": 29.75,
+              "value": 98
+            },
+            {
+              "beat": 30,
+              "value": 94
+            },
+            {
+              "beat": 30.25,
+              "value": 89
+            },
+            {
+              "beat": 30.5,
+              "value": 85
+            },
+            {
+              "beat": 30.75,
+              "value": 81
+            },
+            {
+              "beat": 31,
+              "value": 77
+            },
+            {
+              "beat": 31.25,
+              "value": 73
+            },
+            {
+              "beat": 31.5,
+              "value": 68
+            },
+            {
+              "beat": 31.75,
+              "value": 64
+            }
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "pitch": 62,
+          "start": 0,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 64,
+          "start": 2,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 66,
+          "start": 4,
+          "duration": 4,
+          "velocity": 100
+        },
+        {
+          "pitch": 67,
+          "start": 8,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 62,
+          "start": 10,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 67,
+          "start": 12,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 64,
+          "start": 14,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 62,
+          "start": 16,
+          "duration": 6,
+          "velocity": 100
+        },
+        {
+          "pitch": 64,
+          "start": 22,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 67,
+          "start": 24,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 66,
+          "start": 26,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 67,
+          "start": 28,
+          "duration": 4,
+          "velocity": 100
+        },
+        {
+          "pitch": 57,
+          "start": 0,
+          "duration": 4,
+          "velocity": 100
+        },
+        {
+          "pitch": 59,
+          "start": 4,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 61,
+          "start": 6,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 62,
+          "start": 8,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 57,
+          "start": 10,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 62,
+          "start": 12,
+          "duration": 3,
+          "velocity": 100
+        },
+        {
+          "pitch": 61,
+          "start": 15,
+          "duration": 1,
+          "velocity": 100
+        },
+        {
+          "pitch": 57,
+          "start": 16,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 59,
+          "start": 18,
+          "duration": 6,
+          "velocity": 100
+        },
+        {
+          "pitch": 62,
+          "start": 24,
+          "duration": 7,
+          "velocity": 100
+        },
+        {
+          "pitch": 61,
+          "start": 31,
+          "duration": 1,
+          "velocity": 100
+        }
+      ]
+    },
+    {
+      "name": "Pedal",
+      "program": 19,
+      "gain": 0.7943282347242815,
+      "synth": {
+        "layers": [
+          {
+            "oscillator": {
+              "waveform": "sine"
+            },
+            "gain": 1
+          },
+          {
+            "oscillator": {
+              "waveform": "triangle"
+            },
+            "gain": 0.5
+          }
+        ]
+      },
+      "notes": [
+        {
+          "pitch": 50,
+          "start": 0,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 49,
+          "start": 2,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 47,
+          "start": 4,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 45,
+          "start": 6,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 43,
+          "start": 8,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 42,
+          "start": 10,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 40,
+          "start": 12,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 45,
+          "start": 14,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 50,
+          "start": 16,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 43,
+          "start": 18,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 47,
+          "start": 20,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 40,
+          "start": 22,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 47,
+          "start": 24,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 45,
+          "start": 26,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 40,
+          "start": 28,
+          "duration": 2,
+          "velocity": 100
+        },
+        {
+          "pitch": 45,
+          "start": 30,
+          "duration": 2,
+          "velocity": 100
+        }
+      ]
+    }
+  ]
+}
