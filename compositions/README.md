@@ -22,6 +22,17 @@ A composing session works from the brief and Toy MIDI's agent docs, [`/llms.txt`
 
 Toy MIDI's Examples page reads `catalog.json` and opens the files it links, so when you move a file, update its `url` in the same commit, and keep the entry fields Toy MIDI reads unless Toy MIDI changes with them.
 
+## Writing a brief
+
+These notes are for whoever writes a composing brief, such as an agent asked for "a prompt for good music" with no further detail. That writer picks the genre and the elements.
+
+- **"Good music" means convincing within the medium.** Aim for what a General MIDI render in Toy MIDI can carry, see [What the medium limits](../docs/README.md#what-the-medium-limits), and for what an agent can write.
+- **Name techniques, form, and contrast, and leave the instrumentation open.** Fixed instruments or banned parts make the brief harder without steering it. [Tidepool](pieces/tidepool/)'s first brief fixed five instruments and allowed no percussion beyond bells, and the listener found it too narrow.
+- **Ask for denser writing than a live band would play, within the genre.** Idiomatic parts sound thin on a General MIDI render, because a live band's fullness doesn't come through. Name the extra layers, such as backgrounds, a second chordal layer, and doubling slow-attack presets, as in [Son de la Esquina](pieces/son-de-la-esquina/)'s second version.
+- **Guitar fails through the writing more than the samples.** Ask for real chord shapes, open and muted strokes, and grips that stay in one position, see [toy-midi#861](https://github.com/hi-ogawa/toy-midi/issues/861).
+
+When relaying a session's write-up, check its claims against the project file first.
+
 ## Catalog format
 
 `catalog.json` is an array, newest first, of:
